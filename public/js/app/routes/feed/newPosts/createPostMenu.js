@@ -1,4 +1,9 @@
-export default function newPostMenu() {
+/**
+ * This is the create new post menu.
+ * @returns menuWrapper that holds the speed dial menu for creating new posts.
+ */
+
+export default function createPostMenu() {
   const menuWrapper = document.createElement("div");
   menuWrapper.className = "fixed bottom-6 right-24 group";
 

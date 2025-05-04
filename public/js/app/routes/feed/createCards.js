@@ -1,22 +1,10 @@
 import { posts } from "/js/utils/source/posts/posts.js";
-import { createSortOptions } from "/js/app/components/search/sortOptions.js";
 
 export function createCards() {
   const cardContainer = document.createElement("div");
   cardContainer.id = "card-container";
   cardContainer.className =
-    "flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center m-20";
-
-  const sortWrapper = document.createElement("div");
-  sortWrapper.className = "w-full flex flex-wrap justify-center";
-
-  const sortingMenu = createSortOptions({
-    triggerType: "button",
-    triggerText: "Sort options",
-  });
-  sortWrapper.appendChild(sortingMenu);
-
-  cardContainer.appendChild(sortWrapper);
+    "flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center ml-20 mr-20";
 
   posts.forEach((post) => {
     const card = document.createElement("div");

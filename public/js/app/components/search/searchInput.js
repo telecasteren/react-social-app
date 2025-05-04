@@ -1,6 +1,6 @@
 export default function searchInput() {
   const form = document.createElement("form");
-  form.className = "max-w-md mx-auto";
+  form.className = "max-w-md";
 
   const label = document.createElement("label");
   label.htmlFor = "default-search";

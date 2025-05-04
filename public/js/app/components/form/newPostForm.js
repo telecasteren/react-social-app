@@ -119,8 +119,14 @@ export default function newPost() {
   submitButton.innerHTML =
     '<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> Submit post.';
 
+  const errorText = document.createElement("p");
+  errorText.className = "hidden mb-2 text-sm text-red-600";
+  errorText.id = "error-text";
+  errorText.textContent = "Missing image, title or caption.";
+
   form.appendChild(formTitle);
   form.appendChild(grid);
+  form.appendChild(errorText);
   form.appendChild(submitButton);
 
   return form;

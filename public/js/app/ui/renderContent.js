@@ -5,9 +5,8 @@ import SinglePost from "/js/app/routes/profile/singlePost/singlePost.js";
 import { updateUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import { displayAuthForms } from "/js/app/events/authForm/displayAuthForms.js";
 import { createCards } from "/js/app/routes/feed/createCards.js";
-import { newPostMenuEvents } from "/js/app/events/feed/newPostMenuEvents.js";
+import { createPostMenuEvents } from "/js/app/events/feed/createPost/createPostMenuEvents.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
-import { submitPost } from "/js/app/events/feed/createPost/submitPostEvents.js";
 import { createSkeletonCard } from "/js/app/components/loader/skeletonCard.js";
 import { createSkeletonProfile } from "/js/app/components/loader/skeletonProfile.js";
 import { spinner } from "/js/app/components/loader/spinner.js";
@@ -15,9 +14,9 @@ import { spinner } from "/js/app/components/loader/spinner.js";
 export default function renderContent() {
   function renderPage() {
     const authContent = document.getElementById("auth-content");
-    const feedContent = document.getElementById("feed-content");
     const profileContent = document.getElementById("profile-content");
     const postContent = document.getElementById("post-content");
+    const feedContent = document.getElementById("feed-content");
 
     // Make sure the container exist first
     if (!authContent && !profileContent && !feedContent && !postContent) return;
@@ -40,8 +39,7 @@ export default function renderContent() {
             feedContent.innerHTML = "";
             feedContent.prepend(Feed());
             feedContent.appendChild(createCards());
-            submitPost();
-            newPostMenuEvents();
+            createPostMenuEvents();
             openPost();
           }, 1000);
         }

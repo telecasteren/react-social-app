@@ -1,8 +1,30 @@
-export function userMessage(type, message) {
+/**
+ * Removes the currently displayed user alert message from the DOM, if it exists.
+ * Useful for clearing any existing messages before showing a new one and
+ * is good to combine with setInterval.
+ *
+ * @function clearUserMessage
+ * @returns {void}
+ */
+export function clearUserMessage() {
   const existingAlert = document.querySelector(".user-message");
-  if (existingAlert) {
-    existingAlert.remove();
-  }
+  if (existingAlert) existingAlert.remove();
+}
+
+/**
+ * Displays a custom user message alert at the top of the screen.
+ * Automatically removes any previous message. Can be dismissed by clicking outside of it.
+ *
+ * @function userMessage
+ * @param {"info" | "error" | "success" | "warning" | "alert"} type - The type of message to display, which affects styling.
+ * @param {string} message - The message text content to display to the user.
+ * @returns {void}
+ *
+ * @example
+ * userMessage("success", "Your post was submitted successfully!");
+ */
+export function userMessage(type, message) {
+  clearUserMessage();
 
   const alertTypes = {
     info: {

@@ -70,3 +70,16 @@ export function createSortOptions({
 
   return container;
 }
+
+export function sortOptions() {
+  const sortWrapper = document.createElement("div");
+  sortWrapper.className = "mt-20 w-full flex flex-wrap justify-center";
+
+  const sortingMenu = createSortOptions({
+    triggerType: "button",
+    triggerText: "Sort options",
+  });
+  sortWrapper.appendChild(sortingMenu);
+
+  return sortWrapper;
+}
