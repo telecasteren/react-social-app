@@ -32,8 +32,8 @@
 ## 🧑‍💻 Required Functionality (User Stories)
 
 These are mandatory for a passing grade:<br/>
-• ✅ User with @noroff.no or @stud.noroff.no email can register a profile<br/>
-• ✅ Registered user can login<br/>
+• <s>✅ User with @noroff.no or @stud.noroff.no email can register a profile</s><br/>
+• <s>✅ Registered user can login</s><br/>
 • <s>✅ User can view post content feed</s><br/>
 • <s>✅ User can filter the post content feed</s><br/>
 • <s>✅ User can search the post content feed</s><br/>

@@ -1,3 +1,9 @@
+import {
+  emailValidation,
+  passwordValidation,
+} from "../../events/authForm/auth/validation.js";
+import { handleAuth } from "/js/app/events/authForm/auth/authActions.js";
+
 export default function AuthForm(isSignup = false) {
   const authContainer = document.getElementById("auth-content");
   authContainer.innerHTML = "";
@@ -27,6 +33,7 @@ export default function AuthForm(isSignup = false) {
   formContainer.className = "mt-10 sm:mx-auto sm:w-full sm:max-w-sm";
 
   const form = document.createElement("form");
+  form.id = "auth-form";
   form.className = "space-y-6";
   form.setAttribute("action", "/user/profile/");
   form.setAttribute("method", "POST");
@@ -88,6 +95,7 @@ export default function AuthForm(isSignup = false) {
 
   const submitDiv = document.createElement("div");
   const submitButton = document.createElement("button");
+  submitButton.id = "submit-auth";
   submitButton.className = "submit-btn btn-primary";
   submitButton.setAttribute("type", "submit");
   submitButton.textContent = isSignup ? "Sign up." : "Log in.";
@@ -129,4 +137,14 @@ export default function AuthForm(isSignup = false) {
   wrapper.appendChild(logoContainer);
   wrapper.appendChild(formContainer);
   authContainer.appendChild(wrapper);
+
+  // Input validation
+  if (emailInput) emailValidation(emailInput);
+  if (passwordInput) passwordValidation(passwordInput);
+  if (isSignup) {
+    const confirmPassword = document.getElementById("confirm-password");
+    if (confirmPassword) passwordValidation(confirmPassword);
+  }
+
+  handleAuth(isSignup);
 }
