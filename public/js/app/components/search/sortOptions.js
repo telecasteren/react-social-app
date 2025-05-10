@@ -1,3 +1,19 @@
+import {
+  sortByComments,
+  sortByCreated,
+  sortByLikes,
+} from "/js/app/events/search/sorting.js";
+
+/**
+ * Creates a sort options dropdown menu.
+ *
+ * @param {object} [options={}] - Configuration for the sort menu
+ * @param {string} [options.triggerType="button"] - The type of element to use as the dropdown trigger ("button", "span" etc.)
+ * @param {string} [options.triggerText="Sort options"] - The text content of the dropdown trigger
+ * @param {string} [options.triggerClasses=""] - Additional CSS classes to apply to the dropdown trigger
+ * @param {string} [options.containerClasses="sortOptions relative"] - CSS classes to apply to the main container of the sort options
+ * @returns {HTMLDivElement} The container holding the sort options dropdown
+ */
 export function createSortOptions({
   triggerType = "button",
   triggerText = "Sort options",
@@ -40,16 +56,23 @@ export function createSortOptions({
   menuList.setAttribute("aria-labelledby", "dropdownInformationButton");
 
   const items = ["Most recent", "Most likes", "Most comments"];
-  items.forEach((text) => {
+  items.forEach((text, index) => {
     const li = document.createElement("li");
+    li.id = index;
     li.className =
-      "w-full text-black hover:text-accent-light dark:text-white dark:hover:text-accent-dark";
+      "sort-options w-full text-black hover:text-accent-light dark:text-white dark:hover:text-accent-dark";
     const a = document.createElement("a");
-    a.href = "#";
     a.className = "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600";
     a.textContent = text;
     li.appendChild(a);
     menuList.appendChild(li);
+
+    li.addEventListener("click", () => {
+      if (index === 0) sortByCreated();
+      if (index === 1) sortByLikes();
+      if (index === 2) sortByComments();
+      dropdown.classList.add("hidden");
+    });
   });
 
   dropdown.appendChild(userInfo);
@@ -71,6 +94,11 @@ export function createSortOptions({
   return container;
 }
 
+/**
+ * Creates a wrapper containing the sort options
+ *
+ * @returns {HTMLDivElement} It's the wrapper for the sort options throughout the app
+ */
 export function sortOptions() {
   const sortWrapper = document.createElement("div");
   sortWrapper.className = "mt-20 w-full flex flex-wrap justify-center";

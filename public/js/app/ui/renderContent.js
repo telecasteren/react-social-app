@@ -11,14 +11,25 @@ import { createSkeletonCard } from "/js/app/components/loader/skeletonCard.js";
 import { createSkeletonProfile } from "/js/app/components/loader/skeletonProfile.js";
 import { spinner } from "/js/app/components/loader/spinner.js";
 
+/**
+ * Renders the content of the page based on the current URL path.
+ * This function dynamically imports and appends components to specific
+ * container elements in the DOM. It also handles initial loading states
+ * with skeleton loaders and updates the navigation underline.
+ * It listens for 'popstate' events to handle browser navigation (back/forward).
+ */
 export default function renderContent() {
+  /**
+   * Renders the appropriate page content based on the current window location.
+   * It identifies content containers and updates their innerHTML with components
+   * based on the URL path. It also manages loading states and navigation highlighting.
+   */
   function renderPage() {
     const authContent = document.getElementById("auth-content");
     const profileContent = document.getElementById("profile-content");
     const postContent = document.getElementById("post-content");
     const feedContent = document.getElementById("feed-content");
 
-    // Make sure the container exist first
     if (!authContent && !profileContent && !feedContent && !postContent) return;
 
     switch (window.location.pathname) {

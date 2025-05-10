@@ -13,6 +13,7 @@ export default function Posts() {
   const userId = parseInt(urlParams.get("id"));
 
   const postsList = document.createElement("div");
+  postsList.id = "posts-container";
   postsList.className =
     "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5";
 
@@ -28,9 +29,15 @@ export default function Posts() {
 
   postsLookup[userId].forEach((post) => {
     const postContainer = document.createElement("div");
-    postContainer.setAttribute("data-id", post.id);
     postContainer.className =
       "user-post relative w-full h-48 flex justify-center items-center cursor-pointer";
+    postContainer.setAttribute("data-id", post.id);
+    postContainer.dataset.created = post.createdAt;
+    postContainer.dataset.likes =
+      typeof post.likes === "number" ? post.likes : 0;
+    postContainer.dataset.comments = Array.isArray(post.comments)
+      ? post.comments.length
+      : 0;
 
     const statsWrapper = document.createElement("div");
     statsWrapper.className =

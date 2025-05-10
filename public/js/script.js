@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /** Loads posts from localStorage */
   function loadPosts() {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-    const cardContainer = document.getElementById("card-container");
+    const cardContainer = document.querySelector(".card-container");
 
     storedPosts.forEach((post) => {
       const postCard = createSingleCard(post);

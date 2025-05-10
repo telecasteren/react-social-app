@@ -2,15 +2,21 @@ import { posts } from "/js/utils/source/posts/posts.js";
 
 export function createCards() {
   const cardContainer = document.createElement("div");
-  cardContainer.id = "card-container";
+  cardContainer.id = "posts-container";
   cardContainer.className =
-    "flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center ml-20 mr-20";
+    "card-container flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center ml-20 mr-20";
 
   posts.forEach((post) => {
     const card = document.createElement("div");
-    card.setAttribute("data-id", post.id);
     card.className = `user-post max-w-sm w-80 bg-white border border-gray-200 rounded-md
     shadow-sm dark:bg-[#0f0c29] dark:border-none hover:scale-105 transition-transform duration-300`;
+    card.setAttribute("data-id", post.id);
+    card.setAttribute("data-id", post.id);
+    card.dataset.created = post.createdAt;
+    card.dataset.likes = typeof post.likes === "number" ? post.likes : 0;
+    card.dataset.comments = Array.isArray(post.comments)
+      ? post.comments.length
+      : 0;
 
     const image = document.createElement("img");
     image.className = `rounded-t-md w-full h-48 object-cover cursor-pointer`;

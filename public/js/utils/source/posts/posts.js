@@ -284,7 +284,7 @@ export let posts = JSON.parse(localStorage.getItem("posts")) || [
     likes: 2756,
     username: userLookup[5].username,
     userId: 5,
-    createdAt: "2024-011-18T12:00:00Z",
+    createdAt: "2024-11-18T12:00:00Z",
     comments: [
       {
         id: 1,

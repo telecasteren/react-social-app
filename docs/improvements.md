@@ -1,9 +1,5 @@
 # Areas for improvements
 
-**Reviewing**
-
-- In page search vs global search at the Feed
-
 **Planned**
 
 - Saving users and posts to some backend. Firebase?

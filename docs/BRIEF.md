@@ -2,10 +2,10 @@
 
 ## 📱 Application Features
 
-• Build a JavaScript front-end client for an existing social media platform.<br/>
-• Must be attractive and responsive (you decide theme/design).<br/>
-• Use pure/original JavaScript (no frameworks like React, Vue, etc.).<br/>
-• Can use a CSS Framework (e.g., Bootstrap, Tailwind) for UI.<br/>
+• <s>Build a JavaScript front-end client for an existing social media platform.</s><br/>
+• <s>Must be attractive and responsive (you decide theme/design).</s><br/>
+• <s>Use pure/original JavaScript (no frameworks like React, Vue, etc.).</s><br/>
+• <s>Can use a CSS Framework (e.g., Bootstrap, Tailwind) for UI.</s><br/>
 • Use localStorage (strongly recommended) to store JWT tokens.<br/>
 
 ## 🔐 Authentication & API
@@ -15,9 +15,9 @@
 • JWT token<br/>
 • API Key<br/>
 • You must:<br/>
-• Register an account<br/>
+• <s>Register an account</s><br/>
 • Login to get JWT<br/>
-• Generate API Key via API documentation<br/>
+• <s>Generate API Key via API documentation</s><br/>
 • Use HTTP methods: GET, POST, PUT, DELETE<br/>
 
 ## 📄 Documentation
@@ -34,10 +34,10 @@
 These are mandatory for a passing grade:<br/>
 • ✅ User with @noroff.no or @stud.noroff.no email can register a profile<br/>
 • ✅ Registered user can login<br/>
-• ✅ User can view post content feed<br/>
-• ✅ User can filter the post content feed<br/>
-• ✅ User can search the post content feed<br/>
-• ✅ User can view a post by ID<br/>
+• <s>✅ User can view post content feed</s><br/>
+• <s>✅ User can filter the post content feed</s><br/>
+• <s>✅ User can search the post content feed</s><br/>
+• <s>✅ User can view a post by ID</s><br/>
 • ✅ User can create a post<br/>
 • ✅ User can update a post<br/>
 • ✅ User can delete a post<br/>
@@ -47,8 +47,8 @@ These are mandatory for a passing grade:<br/>
 Recommended, especially for team projects:<br/>
 • 💬 User can create a comment on a post<br/>
 • 🖼️ User can edit profile media<br/>
-• ➕/➖ User can follow/unfollow a profile<br/>
-• ❤️ User can react to a post<br/>
+• <s>➕/➖ User can follow/unfollow a profile</s><br/>
+• <s>❤️ User can react to a post</s><br/>
 
 ## 🧰 Development Process Requirements
 
