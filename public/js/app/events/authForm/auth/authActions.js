@@ -1,6 +1,11 @@
-import { userLookup } from "/js/utils/source/users/users.js";
 import { displayFormErrorMessage } from "/js/utils/messages/formMessage.js";
 import { createNewUser } from "/js/app/events/profile/createNewUser.js";
+import {
+  getAllUsers,
+  getUserEmails,
+  saveUsers,
+  saveCurrentUser,
+} from "/js/app/events/authForm/auth/users/userData.js";
 
 function getAuthInputs() {
   const form = document.getElementById("auth-form");
@@ -9,11 +14,6 @@ function getAuthInputs() {
   const confirmPassInput = document.getElementById("confirm-password");
 
   return { form, emailInput, passwordInput, confirmPassInput };
-}
-
-function getUserEmails(email) {
-  const users = Object.values(userLookup);
-  return users.find((user) => user.email === email);
 }
 
 /**
@@ -45,13 +45,16 @@ export function handleAuth(isSignup = false) {
         return;
       }
 
-      const newId = Math.max(...Object.keys(userLookup).map(Number)) + 1;
+      const users = getAllUsers();
+      const newId = Math.max(...users.map((user) => user.id)) + 1;
       const newUser = createNewUser({ id: newId, email, password });
 
-      userLookup[newId] = newUser;
+      users.push(newUser);
+      saveUsers(users);
+      saveCurrentUser(newUser);
 
-      console.log("Signed up as:", newUser.username);
       window.location.href = `/user/profile/?id=${newId}`;
+      console.log("Signed up as:", newUser.username);
     } else {
       if (!user) {
         displayFormErrorMessage(emailInput, "User not found.");

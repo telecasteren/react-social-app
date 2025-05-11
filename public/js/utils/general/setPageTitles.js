@@ -1,5 +1,5 @@
 import { posts } from "/js/utils/source/posts/posts.js";
-import { userLookup } from "/js/utils/source/users/users.js";
+import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
 function getQueryParams(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -40,7 +40,7 @@ export async function setPageTitles() {
 
     if (userId) {
       const numericUserId = Number(userId);
-      let user = userLookup[numericUserId];
+      let user = getAllUsers().find((u) => u.id === numericUserId);
 
       if (user) {
         pageTitle = `Foodiegram | ${user.username}` || "Foodiegram | Profile";

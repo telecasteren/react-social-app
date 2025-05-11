@@ -7,8 +7,8 @@ export function createNewUser({ id, email, password }) {
     password,
     active: true,
     description: "",
-    avatarSrc: "/resources/images/avatars/default.webp",
-    avatarAlt: "default user",
+    avatarSrc: "/resources/icons/no-avatar-img.jpg",
+    avatarAlt: `Profile image for this user`,
     followers: "0",
     following: "0",
     posts: {

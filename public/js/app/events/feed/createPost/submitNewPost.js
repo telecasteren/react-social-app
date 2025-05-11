@@ -4,8 +4,8 @@ import {
 } from "/js/utils/messages/userMessage.js";
 import { createSingleCard } from "/js/app/routes/feed/cards/createSingleCard.js";
 import { posts } from "/js/utils/source/posts/posts.js";
-import { userLookup } from "/js/utils/source/users/users.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
+import { getCurrentUser } from "/js/app/events/authForm/auth/users/userData.js";
 
 /**
  * Attaches the submit event listener to the "create new post" form.
@@ -76,6 +76,11 @@ function submitHandler() {
   const postImage = document.querySelector("img[alt='New post-image']");
   const title = document.getElementById("title");
   const caption = document.getElementById("caption");
+  const currentUser = getCurrentUser();
+
+  if (!currentUser) {
+    userMessage("error", "You must be logged in to post.");
+  }
 
   if (!postImage.src || !caption.value.trim()) {
     userMessage("warning", "Please upload an image and write a caption!");
@@ -100,8 +105,8 @@ function submitHandler() {
           caption: caption.value.trim(),
           text: 0,
           likes: 0,
-          username: userLookup[3].username || "Unknown user",
-          userId: 3,
+          username: currentUser?.username || "Unknown user",
+          userId: currentUser?.id,
           createdAt: new Date(),
           comments: [],
         };

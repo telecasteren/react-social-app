@@ -1,10 +1,9 @@
-import { userLookup } from "/js/utils/source/users/users.js";
-import { userMessage } from "/js/utils/messages/userMessage.js";
+import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
 export default function Details() {
   const urlParams = new URLSearchParams(window.location.search);
   const userId = parseInt(urlParams.get("id"));
-  const user = userLookup[userId];
+  const user = getAllUsers().find((u) => u.id === userId);
 
   const userDetails = document.createElement("div");
   userDetails.className = "flex flex-wrap justify-center mr-0 gap-2 md:ml-24";

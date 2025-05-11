@@ -1,10 +1,10 @@
 import { createTitle } from "/js/app/components/titles/title.js";
-import { userLookup } from "/js/utils/source/users/users.js";
+import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
 export default function Heading() {
   const urlParams = new URLSearchParams(window.location.search);
   const userId = parseInt(urlParams.get("id"));
-  const user = userLookup[userId];
+  const user = getAllUsers().find((u) => u.id === userId);
 
   const userHeading = document.createElement("div");
   userHeading.classList.add(
@@ -18,8 +18,10 @@ export default function Heading() {
 
   let visibleUsername = user.username;
   let maxLength = 20;
-  if (visibleUsername.length > maxLength) {
-    visibleUsername = visibleUsername.substring(0, maxLength) + "..";
+  if (visibleUsername) {
+    if (visibleUsername.length > maxLength) {
+      visibleUsername = visibleUsername.substring(0, maxLength) + "..";
+    }
   }
 
   const username = createTitle(visibleUsername);

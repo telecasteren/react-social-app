@@ -38,7 +38,7 @@ These are mandatory for a passing grade:<br/>
 • <s>✅ User can filter the post content feed</s><br/>
 • <s>✅ User can search the post content feed</s><br/>
 • <s>✅ User can view a post by ID</s><br/>
-• ✅ User can create a post<br/>
+• <s>✅ User can create a post</s><br/>
 • ✅ User can update a post<br/>
 • ✅ User can delete a post<br/>
 

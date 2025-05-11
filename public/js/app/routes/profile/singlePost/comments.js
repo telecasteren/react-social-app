@@ -1,6 +1,6 @@
 import { posts } from "/js/utils/source/posts/posts.js";
-import { userLookup } from "/js/utils/source/users/users.js";
 import { formatDate } from "/js/utils/general/formatDate.js";
+import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
 export default function Comments() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -27,7 +27,7 @@ export default function Comments() {
   }
 
   post.comments.forEach((comment) => {
-    const commentAuthor = userLookup[comment.userId];
+    const commentAuthor = getAllUsers().find((u) => u.id === comment.userId);
 
     const container = document.createElement("div");
     container.className = "flex flex-wrap items-center gap-x-2";

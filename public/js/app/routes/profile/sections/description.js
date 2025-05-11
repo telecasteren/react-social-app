@@ -1,11 +1,11 @@
 import createButton from "/js/app/components/buttons/primaryBtn.js";
-import { userLookup } from "/js/utils/source/users/users.js";
 import { userMessage } from "/js/utils/messages/userMessage.js";
+import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
 export default function Description() {
   const urlParams = new URLSearchParams(window.location.search);
   const userId = parseInt(urlParams.get("id"));
-  const user = userLookup[userId];
+  const user = getAllUsers().find((u) => u.id === userId);
 
   const userDescription = document.createElement("div");
   userDescription.className = "grid grid-cols-1 mt-16";

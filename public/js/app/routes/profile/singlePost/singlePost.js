@@ -1,13 +1,17 @@
 import { posts } from "/js/utils/source/posts/posts.js";
-import { userLookup } from "/js/utils/source/users/users.js";
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
+import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
 export default function SinglePost() {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));
   const post = posts.find((p) => p.id == postId);
-  const postAuthor = userLookup[post.userId];
+
+  const userId = post.userId;
+  const users = getAllUsers();
+  const user = users.find((u) => u.id === userId);
+  const author = user;
 
   const cardContainer = document.createElement("div");
   cardContainer.className =
@@ -32,17 +36,17 @@ export default function SinglePost() {
   authorContainer.className = "flex flex-wrap items-center gap-2";
 
   const authorIMG = document.createElement("img");
-  authorIMG.setAttribute("data-userId", postAuthor.id);
+  authorIMG.setAttribute("data-userId", author.id);
   authorIMG.className =
     "w-8 h-8 object-cover rounded-full border border-accent-light dark:border-accent-dark";
-  authorIMG.src = postAuthor.avatarSrc;
-  authorIMG.alt = postAuthor.avatarAlt;
+  authorIMG.src = author.avatarSrc;
+  authorIMG.alt = author.avatarAlt;
   authorContainer.appendChild(authorIMG);
 
   const linkTitle = document.createElement("a");
   linkTitle.href = `/user/profile/?id=${post.userId}`;
   const authorName = document.createElement("h5");
-  authorName.setAttribute("data-userId", postAuthor.id);
+  authorName.setAttribute("data-userId", author.id);
   authorName.className = `text-2xl tracking-tight text-gray-900 dark:text-gray-200
   hover:text-accent-light hover:dark:text-accent-dark flex-grow`;
   authorName.textContent = post.username;
