@@ -1,0 +1,3 @@
+- Favicon color in browser tab: black is not so visible, make white?
+- Skeleton loaders - make them match the content more (feed and profile)
+- Footer - make sticky?
