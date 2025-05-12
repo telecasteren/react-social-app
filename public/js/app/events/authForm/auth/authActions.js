@@ -67,8 +67,8 @@ export function handleAuth(isSignup = false) {
       }
 
       user.active = true;
-      console.log("Logged in as user:", user.username);
       window.location.href = `/user/profile/?id=${user.id}`;
+      console.log("Logged in as user:", user.username);
     }
   });
 }
