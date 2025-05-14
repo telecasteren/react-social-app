@@ -7,6 +7,7 @@ import { displayAuthForms } from "/js/app/events/authForm/displayAuthForms.js";
 import { createCards } from "/js/app/routes/feed/createCards.js";
 import { createPostMenuEvents } from "/js/app/events/feed/createPost/createPostMenuEvents.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
+import { likePosts } from "/js/app/events/userActions/likes.js";
 import { createSkeletonCard } from "/js/app/components/loader/skeletonCard.js";
 import { createSkeletonProfile } from "/js/app/components/loader/skeletonProfile.js";
 import { spinner } from "/js/app/components/loader/spinner.js";
@@ -73,6 +74,7 @@ export default function renderContent() {
           setTimeout(() => {
             postContent.innerHTML = "";
             postContent.appendChild(SinglePost());
+            likePosts();
           }, 1000);
         }
         break;

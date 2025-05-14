@@ -3,6 +3,21 @@ import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
 import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
+/**
+ * Generates and returns a DOM element representing a detailed view of a single post.
+ *
+ * @function SinglePost extracts the post ID from the URL query parameters, retrieves the corresponding
+ * post and author data, and dynamically creates a card layout displaying:
+ * - Post image, title, caption, and metadata
+ * - Author's avatar and profile link
+ * - Number of likes (using localStorage if available)
+ * - Comments section (rendered via the `Comments()` component)
+ *
+ * It also applies styling and layout consistent with Tailwind CSS utility classes.
+ *
+ * @returns {HTMLElement} A container <div> element with the complete single post UI,
+ *                        including post details and comments.
+ */
 export default function SinglePost() {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));
@@ -56,13 +71,26 @@ export default function SinglePost() {
   const actionContainer = document.createElement("div");
   actionContainer.className = "flex flex-wrap gap-2 items-center justify-end";
 
+  const LIKES_KEY = "likes";
+  const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+  const usersWhoLiked = allLikes[post.id] || [];
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUserId = currentUser?.id;
+
+  const hasLiked = currentUser && usersWhoLiked.includes(currentUserId);
+  const likeCount = post.likes + usersWhoLiked.length;
+
   const likes = document.createElement("div");
-  likes.className = "cursor-pointer";
-  likes.innerHTML = `<i class="fa-regular fa-heart" style="color: var(--accent)"></i>`;
+  likes.id = "likes-icon";
+  likes.innerHTML = `<i class="${
+    hasLiked ? "fa-solid" : "fa-regular"
+  } fa-heart cursor-pointer" style="color: var(--accent)"></i>`;
   actionContainer.appendChild(likes);
 
   const numbOfLikes = document.createElement("div");
-  numbOfLikes.textContent = post.likes;
+  numbOfLikes.id = "numb-likes";
+  numbOfLikes.textContent = likeCount;
   actionContainer.appendChild(numbOfLikes);
 
   const title = document.createElement("h5");
@@ -102,18 +130,6 @@ export default function SinglePost() {
   card.appendChild(contentDiv);
   cardContainer.appendChild(card);
   cardContainer.appendChild(commentSection);
-
-  const icon = likes.querySelector("i");
-  likes.addEventListener("click", () => {
-    icon.classList.toggle("fa-regular");
-    icon.classList.toggle("fa-solid");
-
-    if (icon.classList.contains("fa-solid")) {
-      numbOfLikes.textContent = post.likes + 1;
-    } else {
-      numbOfLikes.textContent = post.likes;
-    }
-  });
 
   return cardContainer;
 }
