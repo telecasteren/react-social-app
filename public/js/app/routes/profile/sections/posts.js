@@ -43,8 +43,13 @@ export default function Posts() {
     statsWrapper.className =
       "absolute justify-center flex flex-wrap gap-2 bg-white text-black rounded-md p-1";
 
+    const LIKES_KEY = "likes";
+    const likesFromLocalStorage =
+      JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+    const allStoredLikes = likesFromLocalStorage[post.id] || [];
+    const numOfLikes = post.likes + allStoredLikes.length;
+
     const likes = document.createElement("div");
-    const numOfLikes = post.likes ? post.likes : 0;
     likes.innerText = `♥️ ${numOfLikes} Likes`;
     statsWrapper.appendChild(likes);
 

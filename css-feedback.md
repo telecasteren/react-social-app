@@ -1,3 +1,2 @@
 - Skeleton loaders - make them match the content more (feed and profile)
-- Footer - make sticky?
 - Add logo in desktop view throughout the app?
