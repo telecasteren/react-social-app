@@ -11,8 +11,8 @@ Foodiegram is a social media app for "foodies", gathering food lovers from aroun
 ## 🚀 Features
 
 - **Feed & Posts** – View, create and like posts.
-- **Search** – Sort and search in posts. _(In progress)_
-- **User Authentication** – Create an account and log in securely. _(COMING)_
+- **Search** – Sort and search in posts.
+- **User Authentication** – Create an account and log in securely.
 - **Profile Management** – Update your profile and see your list of posts. _(COMING)_
 - **DM's and messaging** – Send and receive messages between users. _(COMING)_
 
