@@ -19,7 +19,7 @@ import { spinner } from "/js/app/components/loader/spinner.js";
  * with skeleton loaders and updates the navigation underline.
  * It listens for 'popstate' events to handle browser navigation (back/forward).
  */
-export default function renderContent() {
+export default async function renderContent() {
   /**
    * Renders the appropriate page content based on the current window location.
    * It identifies content containers and updates their innerHTML with components
@@ -30,19 +30,40 @@ export default function renderContent() {
     const profileContent = document.getElementById("profile-content");
     const postContent = document.getElementById("post-content");
     const feedContent = document.getElementById("feed-content");
+    const path = window.location.pathname;
 
-    if (!authContent && !profileContent && !feedContent && !postContent) return;
+    // if (!authContent && !profileContent && !feedContent && !postContent) return;
 
-    switch (window.location.pathname) {
+    // First hide and clear all
+    if (authContent) {
+      authContent.innerHTML = "";
+      authContent.style.display = "none";
+    }
+    if (profileContent) {
+      profileContent.innerHTML = "";
+      profileContent.style.display = "none";
+    }
+    if (postContent) {
+      postContent.innerHTML = "";
+      postContent.style.display = "none";
+    }
+    if (feedContent) {
+      feedContent.innerHTML = "";
+      feedContent.style.display = "none";
+    }
+
+    switch (path) {
       case "/":
         if (authContent) {
-          authContent.innerHTML = "";
+          // authContent.innerHTML = "";
+          authContent.style.display = "block";
           authContent.appendChild(Dashboard());
           displayAuthForms();
         }
         break;
       case "/user/feed/":
         if (feedContent) {
+          feedContent.style.display = "block";
           for (let i = 0; i < 3; i++) {
             feedContent.appendChild(createSkeletonCard());
           }
@@ -58,17 +79,20 @@ export default function renderContent() {
         break;
       case "/user/profile/":
         if (profileContent) {
+          profileContent.style.display = "block";
           profileContent.appendChild(createSkeletonProfile());
 
-          setTimeout(() => {
+          setTimeout(async () => {
             profileContent.innerHTML = "";
-            profileContent.appendChild(Profile());
+            const profileElement = await Profile();
+            profileContent.appendChild(profileElement);
             openPost();
           }, 1000);
         }
         break;
       case "/user/post/":
         if (postContent) {
+          postContent.style.display = "block";
           postContent.appendChild(spinner());
 
           setTimeout(() => {
@@ -80,7 +104,8 @@ export default function renderContent() {
         break;
       default:
         if (authContent) {
-          authContent.innerHTML = "";
+          // authContent.innerHTML = "";
+          authContent.style.display = "block";
           authContent.appendChild(Dashboard());
           displayAuthForms();
         }

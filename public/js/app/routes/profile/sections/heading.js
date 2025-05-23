@@ -1,11 +1,6 @@
 import { createTitle } from "/js/app/components/titles/title.js";
-import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
-export default function Heading() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = parseInt(urlParams.get("id"));
-  const user = getAllUsers().find((u) => u.id === userId);
-
+export default async function Heading(user) {
   const userHeading = document.createElement("div");
   userHeading.classList.add(
     "flex",
@@ -16,7 +11,7 @@ export default function Heading() {
     "relative"
   );
 
-  let visibleUsername = user.username;
+  let visibleUsername = user.name || "Unknown user";
   let maxLength = 20;
   if (visibleUsername) {
     if (visibleUsername.length > maxLength) {
@@ -39,8 +34,8 @@ export default function Heading() {
 
   const avatar = document.createElement("img");
   avatar.className = "w-32 h-32 object-cover";
-  avatar.src = user.avatarSrc;
-  avatar.alt = user.avatarAlt;
+  avatar.src = user.avatar?.url || "/resources/icons/no-avatar-img.jpg";
+  avatar.alt = user.avatar?.alt || "No image uploaded.";
 
   if (avatar.src != null || "") {
     avatarWrapper.appendChild(avatar);
@@ -55,7 +50,7 @@ export default function Heading() {
   fullUsername.className = `absolute top-[90%] sm:top-[65%] left-1/2 -translate-x-1/2 sm:translate-x-0
   bg-gray-100 text-gray-800 p-2 rounded-md shadow-md text-sm
   opacity-0 transition-opacity duration-200 z-10 pointer-events-none`;
-  fullUsername.textContent = user.username;
+  fullUsername.textContent = user.name || "Unknown user";
   userHeading.appendChild(fullUsername);
 
   username.addEventListener("mouseover", () => {

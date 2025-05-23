@@ -2,7 +2,7 @@ import {
   emailValidation,
   passwordValidation,
 } from "../../events/authForm/auth/validation.js";
-import { handleAuth } from "/js/app/events/authForm/auth/authActions.js";
+import { setAuthFormEvents } from "/js/app/events/authForm/auth/authActions.js";
 
 export default function AuthForm(isSignup = false) {
   const authContainer = document.getElementById("auth-content");
@@ -146,5 +146,5 @@ export default function AuthForm(isSignup = false) {
     if (confirmPassword) passwordValidation(confirmPassword);
   }
 
-  handleAuth(isSignup);
+  setAuthFormEvents(isSignup);
 }

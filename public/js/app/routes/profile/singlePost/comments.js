@@ -1,10 +1,10 @@
 import { posts } from "/js/utils/source/posts/posts.js";
 import { formatDate } from "/js/utils/general/formatDate.js";
-import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
+// import { getAllUsers } from "/js/utils/source/api/users/getAllUsers.js";
 
 export default function Comments() {
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = parseInt(urlParams.get("id"));
+  const postId = urlParams.get("id");
   const post = posts.find((p) => p.id === postId);
 
   const commentsContainer = document.createElement("div");
@@ -26,8 +26,9 @@ export default function Comments() {
     return commentsContainer;
   }
 
-  post.comments.forEach((comment) => {
-    const commentAuthor = getAllUsers().find((u) => u.id === comment.userId);
+  post.comments.forEach(async (comment) => {
+    const commentAuthors = await getAllUsers();
+    const commentAuthor = commentAuthors.find((u) => u.name === comment.userId);
 
     const container = document.createElement("div");
     container.className = "flex flex-wrap items-center gap-x-2";

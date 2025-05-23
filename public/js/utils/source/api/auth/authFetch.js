@@ -1,4 +1,4 @@
-import { headers } from "./headers.js";
+import { headers } from "../general/headers.js";
 
 export async function authFetch(url, options = {}) {
   return fetch(url, {

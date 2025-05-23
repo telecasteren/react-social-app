@@ -1,9 +1,9 @@
+import { loadKey } from "../../../utils/storage/loadKey.js";
 import { initialUnderline } from "/js/app/components/navbar/updateUnderline.js";
+import renderContent from "/js/app/ui/renderContent.js";
 
 export default function Navbar() {
   // DESKTOP MENU
-  const pathname = window.location.pathname;
-
   const desktopNav = document.createElement("nav");
   desktopNav.id = "desktop-nav";
   desktopNav.className = "mt-20 ml-20 hidden md:block";
@@ -24,10 +24,27 @@ export default function Navbar() {
     const a = document.createElement("a");
     a.href = link.href;
     a.textContent = link.text;
+
     a.addEventListener("click", (e) => {
-      if (window.location.pathname !== link.href) {
-        e.preventDefault();
-        window.location.href = link.href;
+      e.preventDefault();
+
+      let targetUrl = link.href;
+
+      if (link.text === "Profile.") {
+        const profile = loadKey("profile");
+        const currentUser = profile?.name;
+
+        if (!currentUser) {
+          console.warn("No profile found in localStorage.");
+          return;
+        }
+
+        targetUrl = `${link.href}?id=${currentUser}`;
+      }
+
+      if (window.location.pathname + window.location.search !== targetUrl) {
+        history.pushState(null, "", targetUrl);
+        renderContent();
       }
     });
 
@@ -68,9 +85,9 @@ export default function Navbar() {
   menuButton.setAttribute("data-collapse-toggle", "navbar-hamburger");
   menuButton.type = "button";
   menuButton.className = `
-  inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg
-  hover:bg-accent focus:outline-none focus:ring-2 focus:ring-gray-200
-  dark:text-gray-400 dark:hover:bg-accent-dark dark:focus:ring-gray-600`;
+    inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg
+    hover:bg-accent focus:outline-none focus:ring-2 focus:ring-gray-200
+    dark:text-gray-400 dark:hover:bg-accent-dark dark:focus:ring-gray-600`;
   menuButton.setAttribute("aria-controls", "navbar-hamburger");
   menuButton.setAttribute("aria-expanded", "false");
 
@@ -115,6 +132,7 @@ export default function Navbar() {
   menuItems.forEach((item) => {
     const li = document.createElement("li");
     li.className = "menuLi";
+
     const a = document.createElement("a");
     a.href = item.href;
     a.className = item.className;
@@ -125,6 +143,31 @@ export default function Navbar() {
     if (window.location.pathname === item.href) {
       a.classList.add("current-mobile-nav-item");
     }
+
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      let targetUrl = item.href;
+
+      if (item.text === "Profile") {
+        const profile = loadKey("profile");
+        const currentUser = profile?.name;
+
+        if (!currentUser) {
+          console.warn("No profile found in localStorage.");
+          return;
+        }
+
+        targetUrl = `${item.href}?id=${currentUser}`;
+      }
+
+      if (window.location.pathname + window.location.search !== targetUrl) {
+        history.pushState(null, "", targetUrl);
+        renderContent();
+      }
+
+      menuContainer.classList.add("hidden");
+    });
   });
 
   menuContainer.appendChild(menuList);
@@ -136,6 +179,7 @@ export default function Navbar() {
   document.body.prepend(mobileNav);
   document.body.prepend(desktopNav);
 
+  // Toggle menu visibility
   menuButton.addEventListener("click", () => {
     menuContainer.classList.toggle("hidden");
   });
@@ -146,9 +190,11 @@ export default function Navbar() {
     }
   });
 
+  // Underline effect
   initialUnderline(links);
   window.addEventListener("resize", () => initialUnderline(links));
 
+  // Show correct nav on resize
   function handleScreenChange() {
     if (window.innerWidth > 767) {
       desktopNav.classList.remove("hidden");
@@ -162,6 +208,7 @@ export default function Navbar() {
   window.addEventListener("resize", handleScreenChange);
   handleScreenChange();
 
+  // Scroll background behavior
   let scrollStarted = false;
   let scrollTimeout;
 
@@ -170,7 +217,6 @@ export default function Navbar() {
 
     if (!scrollStarted) {
       scrollStarted = true;
-
       mobileNav.classList.remove("bg-transparent");
       mobileNav.classList.add("bg-white", "dark:bg-bg-dark3");
     }

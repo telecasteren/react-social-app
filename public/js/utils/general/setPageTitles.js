@@ -1,5 +1,6 @@
-import { posts } from "/js/utils/source/posts/posts.js";
-import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
+// import { posts } from "/js/utils/source/posts/posts.js";
+// import { getAllUsers } from "/js/utils/userData.js";
+import { getAllUsers } from "/js/utils/source/api/users/getAllUsers.js";
 
 function getQueryParams(param) {
   const urlParams = new URLSearchParams(window.location.search);

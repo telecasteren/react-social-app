@@ -1,15 +1,13 @@
-import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
-
-export default function Details() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = parseInt(urlParams.get("id"));
-  const user = getAllUsers().find((u) => u.id === userId);
+export default async function Details(user) {
+  const numberOfPosts = user._count.posts;
+  const numberOfFollowers = user._count.followers;
+  const numberOfFollowing = user._count.following;
 
   const userDetails = document.createElement("div");
   userDetails.className = "flex flex-wrap justify-center mr-0 gap-2 md:ml-24";
 
   const username = document.createElement("p");
-  username.textContent = user.name;
+  username.textContent = user.name || "Unknown user";
   username.className = "text-sm m-4";
 
   const statsWrapper = document.createElement("div");
@@ -38,9 +36,9 @@ export default function Details() {
     return container;
   }
 
-  const postsCircle = createWrapper(user.posts.numberOf, "posts");
-  const followersCircle = createWrapper(user.followers, "followers");
-  const followingCircle = createWrapper(user.following, "following");
+  const postsCircle = createWrapper(numberOfPosts, "posts");
+  const followersCircle = createWrapper(numberOfFollowers, "followers");
+  const followingCircle = createWrapper(numberOfFollowing, "following");
 
   statsWrapper.appendChild(postsCircle);
   statsWrapper.appendChild(followersCircle);

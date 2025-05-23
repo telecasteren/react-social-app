@@ -5,7 +5,7 @@ import {
 import { createSingleCard } from "/js/app/routes/feed/cards/createSingleCard.js";
 import { posts } from "/js/utils/source/posts/posts.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
-import { getCurrentUser } from "/js/app/events/authForm/auth/users/userData.js";
+import { getCurrentUser } from "/js/utils/userData.js";
 
 /**
  * Attaches the submit event listener to the "create new post" form.

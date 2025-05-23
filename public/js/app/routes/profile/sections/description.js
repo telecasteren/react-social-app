@@ -1,17 +1,12 @@
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 import { userMessage } from "/js/utils/messages/userMessage.js";
-import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
 
-export default function Description() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = parseInt(urlParams.get("id"));
-  const user = getAllUsers().find((u) => u.id === userId);
-
+export default async function Description(user) {
   const userDescription = document.createElement("div");
   userDescription.className = "grid grid-cols-1 mt-16";
 
   const description = document.createElement("p");
-  description.innerText = user.description;
+  description.innerText = user.bio || "This user has no bio yet..";
   description.className = "text-sm m-2 justify-self-center";
 
   const followBtn = createButton({
@@ -26,9 +21,9 @@ export default function Description() {
     e.preventDefault();
 
     if (!isFollowing) {
-      userMessage("success", `You started following: ${user.username}`);
+      userMessage("success", `You started following: ${user.name}`);
     } else {
-      userMessage("info", `You stopped following: ${user.username}`);
+      userMessage("info", `You stopped following: ${user.name}`);
     }
 
     isFollowing = !isFollowing;

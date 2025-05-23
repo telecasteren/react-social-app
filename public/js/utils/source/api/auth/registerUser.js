@@ -1,9 +1,9 @@
-import { authFetch } from "../general/authFetch.js";
+import { authFetch } from "./authFetch.js";
 import {
   API_BASE_URL,
   API_AUTH,
   API_REGISTER,
-} from "/js/utils/source/api/constants.js";
+} from "/js/utils/source/api/general/constants.js";
 
 export async function register(name, email, password) {
   const response = await authFetch(API_BASE_URL + API_AUTH + API_REGISTER, {

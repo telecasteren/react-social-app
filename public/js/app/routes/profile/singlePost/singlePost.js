@@ -1,7 +1,8 @@
-import { posts } from "/js/utils/source/posts/posts.js";
+// import { posts } from "/js/utils/source/posts/posts.js";
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
-import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
+// import { getAllUsers } from "/js/utils/source/api/users/getAllUsers.js";
+import { loadKey } from "../../../../utils/storage/loadKey.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -18,13 +19,13 @@ import { getAllUsers } from "/js/app/events/authForm/auth/users/userData.js";
  * @returns {HTMLElement} A container <div> element with the complete single post UI,
  *                        including post details and comments.
  */
-export default function SinglePost() {
+export default async function SinglePost() {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));
   const post = posts.find((p) => p.id == postId);
 
   const userId = post.userId;
-  const users = getAllUsers();
+  const users = await getAllUsers();
   const user = users.find((u) => u.id === userId);
   const author = user;
 
@@ -51,17 +52,17 @@ export default function SinglePost() {
   authorContainer.className = "flex flex-wrap items-center gap-2";
 
   const authorIMG = document.createElement("img");
-  authorIMG.setAttribute("data-userId", author.id);
+  authorIMG.setAttribute("data-userId", author.name);
   authorIMG.className =
     "w-8 h-8 object-cover rounded-full border border-accent-light dark:border-accent-dark";
-  authorIMG.src = author.avatarSrc;
-  authorIMG.alt = author.avatarAlt;
+  authorIMG.src = author.avatar.url;
+  authorIMG.alt = author.avatar.alt;
   authorContainer.appendChild(authorIMG);
 
   const linkTitle = document.createElement("a");
   linkTitle.href = `/user/profile/?id=${post.userId}`;
   const authorName = document.createElement("h5");
-  authorName.setAttribute("data-userId", author.id);
+  authorName.setAttribute("data-userId", author.name);
   authorName.className = `text-2xl tracking-tight text-gray-900 dark:text-gray-200
   hover:text-accent-light hover:dark:text-accent-dark flex-grow`;
   authorName.textContent = post.username;
@@ -75,8 +76,10 @@ export default function SinglePost() {
   const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
   const usersWhoLiked = allLikes[post.id] || [];
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const currentUserId = currentUser?.id;
+  // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  // const currentUserId = currentUser?.id;
+  const currentUser = loadKey("profile");
+  const currentUserId = currentUser?.name;
 
   const hasLiked = currentUser && usersWhoLiked.includes(currentUserId);
   const likeCount = post.likes + usersWhoLiked.length;
