@@ -17,6 +17,23 @@ export async function getPosts() {
   return await response.json();
 }
 
+export async function getSinglePost() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const postId = parseInt(urlParams.get("id"));
+
+  const response = await authFetch(
+    `${API_BASE_URL}${API_POSTS}/${postId}?_author=true&_comments=true&_reactions=true`
+  );
+  console.log(response);
+
+  if (!response.ok) {
+    throw new Error(`Fetching single post failed.`);
+  }
+
+  const { data } = await response.json();
+  return data;
+}
+
 export async function getUserPosts() {
   const activeUser = loadKey("profile");
   const loggedInUsername = activeUser.name;

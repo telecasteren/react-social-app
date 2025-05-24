@@ -96,9 +96,10 @@ export default async function renderContent() {
           postContent.style.display = "block";
           postContent.appendChild(spinner());
 
-          setTimeout(() => {
+          setTimeout(async () => {
             postContent.innerHTML = "";
-            postContent.appendChild(SinglePost());
+            const post = await SinglePost();
+            postContent.appendChild(post);
             likePosts();
           }, 1000);
         }

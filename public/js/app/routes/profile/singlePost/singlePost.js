@@ -1,8 +1,7 @@
-// import { posts } from "/js/utils/source/posts/posts.js";
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
-// import { getAllUsers } from "/js/utils/source/api/users/getAllUsers.js";
 import { loadKey } from "../../../../utils/storage/loadKey.js";
+import { getSinglePost } from "/js/utils/source/api/posts/getPosts.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -20,14 +19,11 @@ import { loadKey } from "../../../../utils/storage/loadKey.js";
  *                        including post details and comments.
  */
 export default async function SinglePost() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const postId = parseInt(urlParams.get("id"));
-  const post = posts.find((p) => p.id == postId);
+  const post = await getSinglePost();
+  console.log(post);
 
-  const userId = post.userId;
-  const users = await getAllUsers();
-  const user = users.find((u) => u.id === userId);
-  const author = user;
+  const userId = post.author.name || "Unknown author";
+  const author = userId;
 
   const cardContainer = document.createElement("div");
   cardContainer.className =
@@ -39,8 +35,10 @@ export default async function SinglePost() {
 
   const image = document.createElement("img");
   image.className = "rounded-l-sm w-full h-68 object-cover";
-  image.src = post.imgSrc;
-  image.alt = post.imgAlt;
+  image.src =
+    post.media?.url ||
+    "/resources/images/posts/cody-chan-BhK9JdaBTvk-unsplash.webp";
+  image.alt = post?.media.url || "Default post image";
 
   const contentDiv = document.createElement("div");
   contentDiv.className = "p-5";
@@ -52,20 +50,20 @@ export default async function SinglePost() {
   authorContainer.className = "flex flex-wrap items-center gap-2";
 
   const authorIMG = document.createElement("img");
-  authorIMG.setAttribute("data-userId", author.name);
+  authorIMG.setAttribute("data-userId", author);
   authorIMG.className =
     "w-8 h-8 object-cover rounded-full border border-accent-light dark:border-accent-dark";
-  authorIMG.src = author.avatar.url;
-  authorIMG.alt = author.avatar.alt;
+  authorIMG.src = post.author.avatar.url;
+  authorIMG.alt = post.author.avatar.alt;
   authorContainer.appendChild(authorIMG);
 
   const linkTitle = document.createElement("a");
-  linkTitle.href = `/user/profile/?id=${post.userId}`;
+  linkTitle.href = `/user/profile/?id=${author}`;
   const authorName = document.createElement("h5");
-  authorName.setAttribute("data-userId", author.name);
+  authorName.setAttribute("data-userId", author);
   authorName.className = `text-2xl tracking-tight text-gray-900 dark:text-gray-200
   hover:text-accent-light hover:dark:text-accent-dark flex-grow`;
-  authorName.textContent = post.username;
+  authorName.textContent = author.name;
   linkTitle.appendChild(authorName);
   authorContainer.appendChild(linkTitle);
 
@@ -76,8 +74,6 @@ export default async function SinglePost() {
   const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
   const usersWhoLiked = allLikes[post.id] || [];
 
-  // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  // const currentUserId = currentUser?.id;
   const currentUser = loadKey("profile");
   const currentUserId = currentUser?.name;
 
@@ -103,7 +99,7 @@ export default async function SinglePost() {
 
   const paragraph = document.createElement("p");
   paragraph.className = "mb-3 font-normal text-gray-700 dark:text-gray-400";
-  paragraph.textContent = post.caption;
+  paragraph.textContent = post.body;
 
   userContainer.appendChild(authorContainer);
   userContainer.appendChild(actionContainer);
