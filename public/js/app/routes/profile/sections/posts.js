@@ -1,5 +1,8 @@
-export default async function Posts(user) {
-  const userPosts = user.posts;
+import { getUserPosts } from "/js/utils/source/api/posts/getPosts.js";
+
+export default async function Posts() {
+  const { data: userPosts } = await getUserPosts();
+  console.log("Posts raw result:", userPosts);
 
   const postsList = document.createElement("div");
   postsList.id = "posts-container";
@@ -50,8 +53,10 @@ export default async function Posts(user) {
     statsWrapper.appendChild(comments);
 
     const postImage = document.createElement("img");
-    postImage.src = post.media.url;
-    postImage.alt = post.media.alt;
+    postImage.src =
+      post.media?.url ||
+      "/resources/images/posts/cody-chan-BhK9JdaBTvk-unsplash.webp";
+    postImage.alt = post.media?.alt || "Default post image";
     postImage.className = `w-full h-full object-cover rounded-sm
       hover:scale-105 md:hover:bg-black md:hover:opacity-50 transition-transform duration-300`;
 

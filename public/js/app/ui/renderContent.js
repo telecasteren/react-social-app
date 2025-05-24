@@ -68,10 +68,11 @@ export default async function renderContent() {
             feedContent.appendChild(createSkeletonCard());
           }
 
-          setTimeout(() => {
+          setTimeout(async () => {
             feedContent.innerHTML = "";
             feedContent.prepend(Feed());
-            feedContent.appendChild(createCards());
+            const Posts = await createCards();
+            feedContent.appendChild(Posts);
             createPostMenuEvents();
             openPost();
           }, 1000);

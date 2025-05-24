@@ -103,7 +103,6 @@ function submitHandler() {
             title ? title.value.trim() : "New Post"
           }`,
           caption: caption.value.trim(),
-          text: 0,
           likes: 0,
           username: currentUser?.username || "Unknown user",
           userId: currentUser?.id,
