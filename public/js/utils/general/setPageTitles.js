@@ -1,4 +1,4 @@
-import { getPosts } from "/js/utils/source/api/posts/getPosts.js";
+import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
 
 function getQueryParams(param) {
   const urlParams = new URLSearchParams(window.location.search);

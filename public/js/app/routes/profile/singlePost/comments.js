@@ -1,5 +1,4 @@
-// import { posts } from "/js/utils/source/posts/posts.js";
-import { getSinglePost } from "/js/utils/source/api/posts/getSinglePost.js";
+import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 import { formatDate } from "/js/utils/general/formatDate.js";
 import { getAllUsersFromApi } from "/js/utils/source/api/users/getAllUsers.js";
 import { getPostId } from "../../../../utils/general/setMetaDesc.js";

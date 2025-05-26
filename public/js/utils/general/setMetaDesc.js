@@ -1,4 +1,4 @@
-import { getPosts } from "/js/utils/source/api/posts/getPosts.js";
+import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
 import {
   defaultPostDesc,
   defaultDescFallback,

@@ -1,4 +1,4 @@
-import AuthForm from "/js/app/components/form/authForm.js";
+import AuthForm from "/js/app/components/forms/authForm.js";
 
 export function displayAuthForms() {
   const loginBtn = document.getElementById("loginBtn");

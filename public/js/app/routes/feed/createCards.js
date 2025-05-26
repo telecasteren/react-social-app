@@ -1,4 +1,4 @@
-import { getPosts } from "/js/utils/source/api/posts/getPosts.js";
+import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
 
 export async function createCards() {
   const { data: posts } = await getPosts();

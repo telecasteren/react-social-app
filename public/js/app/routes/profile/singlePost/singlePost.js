@@ -1,7 +1,7 @@
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
 import { loadKey } from "../../../../utils/storage/loadKey.js";
-import { getSinglePost } from "/js/utils/source/api/posts/getSinglePost.js";
+import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.

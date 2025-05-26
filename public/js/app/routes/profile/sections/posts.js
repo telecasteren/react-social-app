@@ -1,4 +1,4 @@
-import { getUserPosts } from "/js/utils/source/api/posts/getUserPosts.js";
+import { getUserPosts } from "/js/utils/source/api/posts/get/getUserPosts.js";
 
 export default async function Posts() {
   const { data: userPosts } = await getUserPosts();

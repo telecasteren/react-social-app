@@ -1,4 +1,4 @@
-import newPost from "/js/app/components/form/newPostForm.js";
+import newPost from "/js/app/components/forms/newPostForm.js";
 import {
   createModal,
   toggleModal,

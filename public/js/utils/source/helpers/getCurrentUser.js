@@ -1,6 +1,9 @@
-import { loadKey } from "../../../storage/loadKey.js";
-import { authFetch } from "../general/authFetch.js";
-import { API_BASE_URL, API_USERS } from "/js/utils/source/api/constants.js";
+import { loadKey } from "/js/utils/storage/loadKey.js";
+import { authFetch } from "/js/utils/source/api/auth/authFetch.js";
+import {
+  API_BASE_URL,
+  API_USERS,
+} from "/js/utils/source/api/general/constants.js";
 
 export async function getCurrentUser() {
   const currentUser = loadKey("profile");
