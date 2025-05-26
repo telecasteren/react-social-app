@@ -3,15 +3,15 @@ import {
   createModal,
   toggleModal,
 } from "/js/app/components/modal/createModal.js";
-import { submitPost } from "/js/app/events/feed/createPost/submitNewPost.js";
+import { submitPost } from "/js/app/events/newPost/submitEvents/submitNewPost.js";
 
 /**
  * Creates a modal, renders the new post form inside it, and attaches the submit event handler.
- * This function handles the display and setup for the new post form modal.
- * @function CreateModalAndAddSubmitEvent
+ * This function handles the display and setup for the new-post form modal.
+ * @function CreateModalAndAddSubmitListeners
  * @returns {void}
  */
-function CreateModalAndAddSubmitEvent() {
+function CreateModalAndAddSubmitListeners() {
   createModal();
 
   const newPostForm = newPost();
@@ -38,5 +38,7 @@ export function createPostMenuEvents() {
     });
   }
 
-  newPostBtn.addEventListener("click", () => CreateModalAndAddSubmitEvent());
+  newPostBtn.addEventListener("click", () =>
+    CreateModalAndAddSubmitListeners()
+  );
 }

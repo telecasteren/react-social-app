@@ -5,7 +5,7 @@ import SinglePost from "/js/app/routes/profile/singlePost/singlePost.js";
 import { updateUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import { displayAuthForms } from "/js/app/events/authForm/displayAuthForms.js";
 import { createCards } from "/js/app/routes/feed/createCards.js";
-import { createPostMenuEvents } from "/js/app/events/feed/createPost/createPostMenuEvents.js";
+import { createPostMenuEvents } from "/js/app/events/newPost/formMenu/menuHandlers.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 import { likePosts } from "/js/app/events/userActions/likes.js";
 import { createSkeletonCard } from "/js/app/components/loader/skeletonCard.js";
@@ -32,8 +32,6 @@ export default async function renderContent() {
     const feedContent = document.getElementById("feed-content");
     const path = window.location.pathname;
 
-    // if (!authContent && !profileContent && !feedContent && !postContent) return;
-
     // First hide and clear all
     if (authContent) {
       authContent.innerHTML = "";
@@ -55,7 +53,6 @@ export default async function renderContent() {
     switch (path) {
       case "/":
         if (authContent) {
-          // authContent.innerHTML = "";
           authContent.style.display = "block";
           authContent.appendChild(Dashboard());
           displayAuthForms();
@@ -106,7 +103,6 @@ export default async function renderContent() {
         break;
       default:
         if (authContent) {
-          // authContent.innerHTML = "";
           authContent.style.display = "block";
           authContent.appendChild(Dashboard());
           displayAuthForms();

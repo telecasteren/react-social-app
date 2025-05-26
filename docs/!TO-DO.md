@@ -15,3 +15,4 @@
 
 - Navigation instant routing
 - Feed: page pagination
+- Fix NaN issue with reactions

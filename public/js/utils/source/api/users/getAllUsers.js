@@ -1,5 +1,8 @@
-import { authFetch } from "../general/authFetch.js";
-import { API_BASE_URL, API_USERS } from "/js/utils/source/api/constants.js";
+import { authFetch } from "/js/utils/source/api/auth/authFetch.js";
+import {
+  API_BASE_URL,
+  API_USERS,
+} from "/js/utils/source/api/general/constants.js";
 
 export async function getAllUsersFromApi() {
   const response = await authFetch(API_BASE_URL + API_USERS);

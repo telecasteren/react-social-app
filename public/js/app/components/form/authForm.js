@@ -1,8 +1,8 @@
 import {
   emailValidation,
   passwordValidation,
-} from "../../events/authForm/auth/validation.js";
-import { setAuthFormEvents } from "/js/app/events/authForm/auth/authActions.js";
+} from "../../events/authForm/handlers/validation.js";
+import { setAuthFormEvents } from "/js/app/events/authForm/handlers/setAuthEvents.js";
 
 export default function AuthForm(isSignup = false) {
   const authContainer = document.getElementById("auth-content");

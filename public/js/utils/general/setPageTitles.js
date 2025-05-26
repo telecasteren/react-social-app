@@ -1,6 +1,4 @@
-// import { posts } from "/js/utils/source/posts/posts.js";
-// import { getAllUsers } from "/js/utils/userData.js";
-import { getAllUsers } from "/js/utils/source/api/users/getAllUsers.js";
+import { getPosts } from "/js/utils/source/api/posts/getPosts.js";
 
 function getQueryParams(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -9,6 +7,7 @@ function getQueryParams(param) {
 
 export async function setPageTitles() {
   const path = window.location.pathname;
+  const { data: posts } = await getPosts();
 
   const pageTitles = {
     "/user/feed/": "Foodiegram | Explore",
@@ -26,7 +25,7 @@ export async function setPageTitles() {
       let post = posts.find((p) => p.id === numericPostId);
 
       if (post) {
-        pageTitle = `Foodiegram | ${post.title}` || "Foodiegram | Post";
+        pageTitle = `${post.title} | Foodiegram` || "Foodiegram | Post";
       } else {
         pageTitle = "Foodiegram | Post";
         console.warn(
@@ -40,11 +39,10 @@ export async function setPageTitles() {
     const userId = getQueryParams("id");
 
     if (userId) {
-      const numericUserId = Number(userId);
-      let user = getAllUsers().find((u) => u.id === numericUserId);
+      const user = userId;
 
       if (user) {
-        pageTitle = `Foodiegram | ${user.username}` || "Foodiegram | Profile";
+        pageTitle = `${user} | Foodiegram` || "Foodiegram | Profile";
       } else {
         pageTitle = "Foodiegram | Profile";
         console.warn(

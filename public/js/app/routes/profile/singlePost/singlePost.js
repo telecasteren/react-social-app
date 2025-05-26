@@ -1,7 +1,7 @@
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
 import { loadKey } from "../../../../utils/storage/loadKey.js";
-import { getSinglePost } from "/js/utils/source/api/posts/getPosts.js";
+import { getSinglePost } from "/js/utils/source/api/posts/getSinglePost.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -20,7 +20,6 @@ import { getSinglePost } from "/js/utils/source/api/posts/getPosts.js";
  */
 export default async function SinglePost() {
   const post = await getSinglePost();
-  console.log(post);
 
   const userId = post.author.name || "Unknown author";
   const author = userId;
@@ -35,10 +34,8 @@ export default async function SinglePost() {
 
   const image = document.createElement("img");
   image.className = "rounded-l-sm w-full h-68 object-cover";
-  image.src =
-    post.media?.url ||
-    "/resources/images/posts/cody-chan-BhK9JdaBTvk-unsplash.webp";
-  image.alt = post?.media.url || "Default post image";
+  image.src = post.media?.url || "/resources/icons/no-image-icon.webp";
+  image.alt = post.media?.alt || "Default post image";
 
   const contentDiv = document.createElement("div");
   contentDiv.className = "p-5";
@@ -122,7 +119,7 @@ export default async function SinglePost() {
   commentSection.className = `border border-solid border-gray-200 dark:border-[#0f0c29]
   pt-8 pr-5 pb-5 pl-5 w-96 rounded-r-sm`;
 
-  const comment = Comments();
+  const comment = await Comments();
   commentSection.appendChild(comment);
 
   card.appendChild(image);

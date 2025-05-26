@@ -1,15 +1,7 @@
+import { getAuthInputs } from "./getFormInputs.js";
 import { displayFormErrorMessage } from "/js/utils/messages/formMessage.js";
 import { register } from "/js/utils/source/api/auth/registerUser.js";
 import { login } from "/js/utils/source/api/auth/loginUser.js";
-
-function getAuthInputs() {
-  const form = document.getElementById("auth-form");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const confirmPassInput = document.getElementById("confirm-password");
-
-  return { form, emailInput, passwordInput, confirmPassInput };
-}
 
 export async function handleAuth(isSignup = false) {
   const { emailInput, passwordInput, confirmPassInput } = getAuthInputs();
@@ -44,15 +36,5 @@ export async function handleAuth(isSignup = false) {
       displayFormErrorMessage(emailInput, "Login failed.");
       throw new Error(error.message || "Login failed.");
     }
-  }
-}
-
-export function setAuthFormEvents(isSignup) {
-  const { form } = getAuthInputs();
-  if (form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      handleAuth(isSignup);
-    });
   }
 }

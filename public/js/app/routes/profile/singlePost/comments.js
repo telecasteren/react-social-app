@@ -1,11 +1,12 @@
-import { posts } from "/js/utils/source/posts/posts.js";
+// import { posts } from "/js/utils/source/posts/posts.js";
+import { getSinglePost } from "/js/utils/source/api/posts/getSinglePost.js";
 import { formatDate } from "/js/utils/general/formatDate.js";
-// import { getAllUsers } from "/js/utils/source/api/users/getAllUsers.js";
+import { getAllUsersFromApi } from "/js/utils/source/api/users/getAllUsers.js";
+import { getPostId } from "../../../../utils/general/setMetaDesc.js";
 
-export default function Comments() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get("id");
-  const post = posts.find((p) => p.id === postId);
+export default async function Comments() {
+  const postId = getPostId("id");
+  const { data: post } = await getSinglePost(postId);
 
   const commentsContainer = document.createElement("div");
   commentsContainer.className = "flex flex-col gap-4";
@@ -27,7 +28,7 @@ export default function Comments() {
   }
 
   post.comments.forEach(async (comment) => {
-    const commentAuthors = await getAllUsers();
+    const commentAuthors = await getAllUsersFromApi();
     const commentAuthor = commentAuthors.find((u) => u.name === comment.userId);
 
     const container = document.createElement("div");

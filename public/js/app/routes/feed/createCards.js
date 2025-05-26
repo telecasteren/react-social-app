@@ -24,9 +24,7 @@ export async function createCards() {
 
     const image = document.createElement("img");
     image.className = `rounded-t-md w-full h-48 object-cover cursor-pointer`;
-    image.src =
-      post.media?.url ||
-      "/resources/images/posts/cody-chan-BhK9JdaBTvk-unsplash.webp";
+    image.src = post.media?.url || "/resources/icons/no-image-icon.webp";
     image.alt = post.media?.alt || "Default post image";
 
     const contentDiv = document.createElement("div");
