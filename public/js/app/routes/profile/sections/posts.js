@@ -2,7 +2,6 @@ import { getUserPosts } from "/js/utils/source/api/posts/get/getUserPosts.js";
 
 export default async function Posts() {
   const { data: userPosts } = await getUserPosts();
-  console.log("Posts raw result:", userPosts);
 
   const postsList = document.createElement("div");
   postsList.id = "posts-container";
@@ -46,9 +45,7 @@ export default async function Posts() {
     statsWrapper.appendChild(likes);
 
     const comments = document.createElement("div");
-    const numOfComments = post._count.comments
-      ? post._count.comments.length
-      : 0;
+    const numOfComments = post._count.comments ? post._count.comments : 0;
     comments.innerText = `💬 ${numOfComments} Comments`;
     statsWrapper.appendChild(comments);
 

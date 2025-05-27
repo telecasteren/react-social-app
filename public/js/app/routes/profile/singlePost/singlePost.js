@@ -60,7 +60,7 @@ export default async function SinglePost() {
   authorName.setAttribute("data-userId", author);
   authorName.className = `text-2xl tracking-tight text-gray-900 dark:text-gray-200
   hover:text-accent-light hover:dark:text-accent-dark flex-grow`;
-  authorName.textContent = author.name;
+  authorName.textContent = post.author.name;
   linkTitle.appendChild(authorName);
   authorContainer.appendChild(linkTitle);
 
@@ -73,9 +73,8 @@ export default async function SinglePost() {
 
   const currentUser = loadKey("profile");
   const currentUserId = currentUser?.name;
-
   const hasLiked = currentUser && usersWhoLiked.includes(currentUserId);
-  const likeCount = post.likes + usersWhoLiked.length;
+  const likeCount = post._count.reactions;
 
   const likes = document.createElement("div");
   likes.id = "likes-icon";

@@ -1,21 +1,15 @@
 import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 import { formatDate } from "/js/utils/general/formatDate.js";
-import { getAllUsersFromApi } from "/js/utils/source/api/users/getAllUsers.js";
-import { getPostId } from "../../../../utils/general/setMetaDesc.js";
+import { getPostParams } from "/js/utils/source/helpers/getPostParams.js";
 
 export default async function Comments() {
-  const postId = getPostId("id");
-  const { data: post } = await getSinglePost(postId);
+  const postId = getPostParams("id");
+  const post = await getSinglePost(postId);
 
   const commentsContainer = document.createElement("div");
   commentsContainer.className = "flex flex-col gap-4";
 
-  if (
-    !post ||
-    !post.comments ||
-    !post.comments.length ||
-    !Array.isArray(post.comments)
-  ) {
+  if (!post || !Array.isArray(post.comments) || post.comments.length === 0) {
     const info = document.createElement("div");
     info.textContent = "Be the first to comment on this post!";
     info.className =
@@ -27,17 +21,14 @@ export default async function Comments() {
   }
 
   post.comments.forEach(async (comment) => {
-    const commentAuthors = await getAllUsersFromApi();
-    const commentAuthor = commentAuthors.find((u) => u.name === comment.userId);
-
     const container = document.createElement("div");
     container.className = "flex flex-wrap items-center gap-x-2";
 
     const img = document.createElement("img");
     img.className =
       "w-8 h-8 rounded-full object-cover border border-accent-light dark:border-accent-dark";
-    img.src = commentAuthor.avatarSrc;
-    img.alt = commentAuthor.avatarAlt || "No image found.";
+    img.src = comment.author.avatar.url || "/resources/icons/no-avatar-img.jpg";
+    img.alt = comment.author.avatar.alt || "No profile image found.";
 
     const textContainer = document.createElement("div");
     textContainer.className =
@@ -48,18 +39,18 @@ export default async function Comments() {
 
     const nameSpan = document.createElement("span");
     nameSpan.className = "text-sm font-semibold text-gray-900 dark:text-white";
-    nameSpan.textContent = comment.username;
+    nameSpan.textContent = comment.author.name || "Unknown User";
     header.appendChild(nameSpan);
 
     const timeSpan = document.createElement("span");
     timeSpan.className =
       "text-tiny font-normal text-gray-500 dark:text-gray-400";
-    timeSpan.textContent = `Delivered ${formatDate(comment.createdAt)}`;
+    timeSpan.textContent = `Delivered ${formatDate(comment.created)}`;
 
     const message = document.createElement("p");
     message.className =
       "text-sm font-normal py-2 text-gray-900 dark:text-white";
-    message.textContent = comment.text;
+    message.textContent = comment.body;
 
     textContainer.appendChild(message);
     textContainer.appendChild(timeSpan);

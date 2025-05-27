@@ -11,7 +11,6 @@ export async function getUserParams() {
   }
 
   const user = await getSingleUserProfile(username);
-  console.log("Fetched user profile:", user);
 
   return user;
 }

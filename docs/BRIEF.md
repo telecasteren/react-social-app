@@ -6,18 +6,11 @@
 • <s>Must be attractive and responsive (you decide theme/design).</s><br/>
 • <s>Use pure/original JavaScript (no frameworks like React, Vue, etc.).</s><br/>
 • <s>Can use a CSS Framework (e.g., Bootstrap, Tailwind) for UI.</s><br/>
-• Use localStorage (strongly recommended) to store JWT tokens.<br/>
+• <s>Use localStorage (strongly recommended) to store JWT tokens.</s><br/>
 
 ## 🔐 Authentication & API
 
-• Use provided Social API with documentation.<br/>
-• All API routes require:<br/>
-• JWT token<br/>
-• API Key<br/>
-• You must:<br/>
-• <s>Register an account</s><br/>
-• Login to get JWT<br/>
-• <s>Generate API Key via API documentation</s><br/>
+• <s>Use provided Social API with documentation.</s><br/>
 • Use HTTP methods: GET, POST, PUT, DELETE<br/>
 
 ## 📄 Documentation

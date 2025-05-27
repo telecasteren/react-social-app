@@ -1,21 +1,22 @@
-import { posts } from "/js/utils/source/posts/posts.js";
+import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
+import { submitReaction } from "/js/utils/source/api/posts/actions/submitReaction.js";
 
 let LIKES_KEY = "likes";
 
-export function likePosts() {
+export async function likePosts() {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));
-  const post = posts.find((p) => p.id == postId);
+  const post = await getSinglePost(postId);
 
   const currentLikes = document.getElementById("numb-likes");
   const likesIcon = document.getElementById("likes-icon");
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const currentUserId = currentUser?.id;
+  const currentUser = JSON.parse(localStorage.getItem("profile"));
+  const currentUserId = currentUser?.name || "";
   if (!currentUserId) return;
 
   const icon = likesIcon.querySelector("i");
-  likesIcon.addEventListener("click", () => {
+  likesIcon.addEventListener("click", async () => {
     const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
     let usersWhoLiked = allLikes[postId] || [];
 
@@ -29,9 +30,15 @@ export function likePosts() {
       usersWhoLiked.push(currentUserId);
       icon.classList.add("fa-solid");
       icon.classList.remove("fa-regular");
+
+      try {
+        await submitReaction(postId);
+      } catch (error) {
+        console.error("Failed to submit reaction:", error);
+      }
     }
 
-    const previousNumberOfLikes = post.likes;
+    const previousNumberOfLikes = post._count.reactions;
     currentLikes.textContent = previousNumberOfLikes + usersWhoLiked.length;
 
     allLikes[postId] = usersWhoLiked;
