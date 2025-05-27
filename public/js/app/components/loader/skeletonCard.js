@@ -1,7 +1,22 @@
+export function createSkeletonCards() {
+  const container = document.createElement("div");
+  container.className =
+    "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:m-20";
+  container.setAttribute("role", "status");
+  container.setAttribute("aria-busy", "true");
+
+  const cards = [];
+  for (let i = 0; i < 3; i++) {
+    cards.push(createSkeletonCard());
+  }
+  cards.forEach((card) => container.appendChild(card));
+  return container;
+}
+
 export function createSkeletonCard() {
   const loaderContainer = document.createElement("div");
   loaderContainer.setAttribute("role", "status");
-  loaderContainer.className = `max-w-sm p-4 border border-gray-200 rounded-md
+  loaderContainer.className = `justify-self-center w-full max-w-sm p-4 border border-gray-200 rounded-md
   shadow-sm animate-pulse md:p-6 dark:border-gray-700`;
 
   const imagePlaceholder = document.createElement("div");
@@ -50,7 +65,7 @@ export function createSkeletonCard() {
   textPlaceholder4.className = "h-2 bg-gray-200 rounded-full dark:bg-bg-dark3";
 
   const flexContainer = document.createElement("div");
-  flexContainer.className = "flex items-center mt-4";
+  flexContainer.className = "flex items-center mt-4 mb-4";
 
   const svgIcon2 = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -79,12 +94,7 @@ export function createSkeletonCard() {
   textPlaceholder5.className =
     "h-2.5 bg-gray-200 rounded-full dark:bg-bg-dark3 w-32 mb-2";
 
-  const textPlaceholder6 = document.createElement("div");
-  textPlaceholder6.className =
-    "w-48 h-2 bg-gray-200 rounded-full dark:bg-bg-dark3";
-
   textContainer.appendChild(textPlaceholder5);
-  textContainer.appendChild(textPlaceholder6);
 
   flexContainer.appendChild(svgIcon2);
   flexContainer.appendChild(textContainer);
@@ -94,11 +104,12 @@ export function createSkeletonCard() {
   srText.textContent = "Loading...";
 
   loaderContainer.appendChild(imagePlaceholder);
+  loaderContainer.appendChild(flexContainer);
   loaderContainer.appendChild(textPlaceholder1);
   loaderContainer.appendChild(textPlaceholder2);
   loaderContainer.appendChild(textPlaceholder3);
   loaderContainer.appendChild(textPlaceholder4);
-  loaderContainer.appendChild(flexContainer);
+
   loaderContainer.appendChild(srText);
 
   return loaderContainer;

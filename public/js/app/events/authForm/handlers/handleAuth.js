@@ -4,7 +4,8 @@ import { register } from "/js/utils/source/api/auth/registerUser.js";
 import { login } from "/js/utils/source/api/auth/loginUser.js";
 
 export async function handleAuth(isSignup = false) {
-  const { emailInput, passwordInput, confirmPassInput } = getAuthInputs();
+  const { usernameInput, emailInput, passwordInput, confirmPassInput } =
+    getAuthInputs();
 
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
@@ -18,7 +19,7 @@ export async function handleAuth(isSignup = false) {
     }
 
     try {
-      const name = email.split("@")[0];
+      const name = usernameInput.value.trim() || email.split("@")[0];
       const newUser = await register(name, email, password);
       await login(email, password);
 

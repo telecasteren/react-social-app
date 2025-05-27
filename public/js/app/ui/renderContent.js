@@ -8,7 +8,7 @@ import { createCards } from "/js/app/routes/feed/createCards.js";
 import { createPostMenuEvents } from "/js/app/events/newPost/formMenu/menuHandlers.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 import { likePosts } from "/js/app/events/userActions/likes.js";
-import { createSkeletonCard } from "/js/app/components/loader/skeletonCard.js";
+import { createSkeletonCards } from "/js/app/components/loader/skeletonCard.js";
 import { createSkeletonProfile } from "/js/app/components/loader/skeletonProfile.js";
 import { spinner } from "/js/app/components/loader/spinner.js";
 
@@ -61,9 +61,8 @@ export default async function renderContent() {
       case "/user/feed/":
         if (feedContent) {
           feedContent.style.display = "block";
-          for (let i = 0; i < 3; i++) {
-            feedContent.appendChild(createSkeletonCard());
-          }
+          const skeletons = createSkeletonCards();
+          feedContent.appendChild(skeletons);
 
           setTimeout(async () => {
             feedContent.innerHTML = "";

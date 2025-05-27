@@ -10,7 +10,7 @@ export default function AuthForm(isSignup = false) {
 
   const wrapper = document.createElement("div");
   wrapper.className =
-    "w-96 flex min-h-full flex-col justify-center px-6 py-12 lg:px-8";
+    "mx-auto w-96 flex min-h-full flex-col justify-center px-6 py-12 lg:px-8";
 
   const logoContainer = document.createElement("div");
   logoContainer.className = "sm:mx-auto sm:w-full sm:max-w-sm";
@@ -106,6 +106,28 @@ export default function AuthForm(isSignup = false) {
   form.appendChild(submitDiv);
 
   if (isSignup) {
+    const usernameDiv = document.createElement("div");
+    const usernameLabel = document.createElement("label");
+    usernameLabel.className = "block text-sm font-medium";
+    usernameLabel.setAttribute("for", "username");
+    usernameLabel.textContent = "Username.";
+
+    const usernameInputDiv = document.createElement("div");
+    usernameInputDiv.className = "mt-2";
+
+    const usernameInput = document.createElement("input");
+    usernameInput.className = "input-field input-border";
+    usernameInput.setAttribute("type", "text");
+    usernameInput.setAttribute("id", "username");
+    usernameInput.setAttribute("name", "username");
+    usernameInput.setAttribute("autocomplete", "name");
+    usernameInput.setAttribute("required", "false");
+
+    usernameInputDiv.appendChild(usernameInput);
+    usernameDiv.appendChild(usernameLabel);
+    usernameDiv.appendChild(usernameInputDiv);
+    form.insertBefore(usernameDiv, emailDiv);
+
     const confirmPasswordDiv = document.createElement("div");
     const confirmPasswordLabel = document.createElement("label");
     confirmPasswordLabel.className = "block text-sm font-medium";

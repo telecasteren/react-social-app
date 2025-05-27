@@ -2,7 +2,6 @@ import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
 
 export async function createCards() {
   const { data: posts } = await getPosts();
-  console.log("Posts raw result:", posts);
 
   const cardContainer = document.createElement("div");
   cardContainer.id = "posts-container";
