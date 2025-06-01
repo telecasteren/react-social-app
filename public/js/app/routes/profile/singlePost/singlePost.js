@@ -104,9 +104,9 @@ export default async function SinglePost() {
   contentDiv.appendChild(title);
   contentDiv.appendChild(paragraph);
 
-  if (post.createdAt) {
+  if (post.created) {
     const createdDate = dateBadge(
-      new Date(post.createdAt),
+      new Date(post.created),
       "gray-100",
       "gray-100",
       "gray-500"

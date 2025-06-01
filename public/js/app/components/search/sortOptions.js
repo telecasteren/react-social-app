@@ -101,7 +101,7 @@ export function createSortOptions({
  */
 export function sortOptions() {
   const sortWrapper = document.createElement("div");
-  sortWrapper.className = "mt-20 w-full flex flex-wrap justify-center";
+  sortWrapper.className = "mt-20 mb-10 w-full flex flex-wrap justify-center";
 
   const sortingMenu = createSortOptions({
     triggerType: "button",

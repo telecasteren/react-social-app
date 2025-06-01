@@ -47,9 +47,9 @@ export async function submitHandler() {
           }`,
           caption: body.value.trim(),
           likes: 0,
-          username: currentUser?.username || "Unknown user",
+          name: currentUser?.name || "Unknown user",
           userId: currentUser?.id,
-          createdAt: new Date(),
+          created: new Date(),
           comments: [],
         };
 

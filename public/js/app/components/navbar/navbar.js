@@ -1,4 +1,5 @@
 import { loadKey } from "../../../utils/storage/loadKey.js";
+import { userMessage } from "/js/utils/messages/userMessage.js";
 import { initialUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import renderContent from "/js/app/ui/renderContent.js";
 
@@ -35,6 +36,7 @@ export default function Navbar() {
         const currentUser = profile?.name;
 
         if (!currentUser) {
+          userMessage("info", "Login to view your profile.");
           console.warn("No profile found in localStorage.");
           return;
         }

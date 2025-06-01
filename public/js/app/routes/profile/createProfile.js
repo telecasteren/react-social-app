@@ -1,8 +1,8 @@
 import Heading from "/js/app/routes/profile/sections/heading.js";
 import Details from "/js/app/routes/profile/sections/details.js";
 import Description from "/js/app/routes/profile/sections/description.js";
-import { createSortOptions } from "/js/app/components/search/sortOptions.js";
 import Posts from "/js/app/routes/profile/sections/posts.js";
+import { createSortOptions } from "/js/app/components/search/sortOptions.js";
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 
 export default async function Profile() {

@@ -25,6 +25,7 @@ export default async function Details(user) {
     const text = document.createElement("div");
     text.className = "font-medium text-tiny text-gray-600 dark:text-gray-300";
     text.innerText = number;
+    text.setAttribute("data-label", label);
 
     const labelText = document.createElement("div");
     labelText.className = "text-xs text-gray-900 dark:text-gray-400 mt-1";

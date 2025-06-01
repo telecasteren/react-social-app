@@ -4,18 +4,18 @@ import Footer from "/js/app/components/footer/footer.js";
 import renderContent from "/js/app/ui/renderContent.js";
 import { setMetaDescriptions } from "/js/utils/general/setMetaDesc.js";
 import { setPageTitles } from "/js/utils/general/setPageTitles.js";
+import { API_TOKEN } from "/js/utils/source/api/general/constants.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  localStorage.setItem("token", JSON.stringify(API_TOKEN));
+
+  // GENERAL
   setMetaDescriptions();
   setPageTitles();
-
-  // RENDER TOP CONTENT:
   setTheme();
+
+  // CONTENT
   Navbar();
-
-  // RENDER MAIN CONTENT:
   renderContent();
-
-  // RENDER BOTTOM CONTENT:
   Footer();
 });
