@@ -12,7 +12,6 @@
 
 ### General
 
-- Add media input at createPost form - swap to be able to add live https routes
 - Debug sorting number of comments
 - Navigation instant routing
 - Feed: page pagination

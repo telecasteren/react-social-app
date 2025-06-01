@@ -12,10 +12,13 @@ import {
  */
 export async function submitPost(postData) {
   try {
-    const response = await authFetch(API_BASE_URL + API_POSTS, {
-      method: "POST",
-      body: JSON.stringify(postData),
-    });
+    const response = await authFetch(
+      `${API_BASE_URL}${API_POSTS}?_author=true`,
+      {
+        method: "POST",
+        body: JSON.stringify(postData),
+      }
+    );
     console.log("Response from submitPost:", response);
 
     if (!response.ok) {

@@ -11,6 +11,7 @@ import { likePosts } from "/js/app/events/userActions/likes.js";
 import { createSkeletonCards } from "/js/app/components/loader/skeletonCard.js";
 import { createSkeletonProfile } from "/js/app/components/loader/skeletonProfile.js";
 import { spinner } from "/js/app/components/loader/spinner.js";
+import { isAuthenticated } from "/js/utils/source/api/auth/isAuthenticated.js";
 
 /**
  * Renders the content of the page based on the current URL path.
@@ -25,14 +26,13 @@ export default async function renderContent() {
    * It identifies content containers and updates their innerHTML with components
    * based on the URL path. It also manages loading states and navigation highlighting.
    */
-  function renderPage() {
+  async function renderPage() {
     const authContent = document.getElementById("auth-content");
     const profileContent = document.getElementById("profile-content");
     const postContent = document.getElementById("post-content");
     const feedContent = document.getElementById("feed-content");
     const path = window.location.pathname;
 
-    // First hide and clear all
     if (authContent) {
       authContent.innerHTML = "";
       authContent.style.display = "none";
@@ -58,8 +58,17 @@ export default async function renderContent() {
           displayAuthForms();
         }
         break;
+
       case "/user/feed/":
-        if (feedContent) {
+      case "/user/profile/":
+      case "/user/post/":
+        const authenticated = await isAuthenticated();
+        if (!authenticated && path.startsWith("/user/")) {
+          window.location.href = "/";
+          return;
+        }
+
+        if (path === "/user/feed/" && feedContent) {
           feedContent.style.display = "block";
           const skeletons = createSkeletonCards();
           feedContent.appendChild(skeletons);
@@ -73,9 +82,8 @@ export default async function renderContent() {
             openPost();
           }, 1000);
         }
-        break;
-      case "/user/profile/":
-        if (profileContent) {
+
+        if (path === "/user/profile/" && profileContent) {
           profileContent.style.display = "block";
           profileContent.appendChild(createSkeletonProfile());
 
@@ -86,9 +94,8 @@ export default async function renderContent() {
             openPost();
           }, 1000);
         }
-        break;
-      case "/user/post/":
-        if (postContent) {
+
+        if (path === "/user/post/" && postContent) {
           postContent.style.display = "block";
           postContent.appendChild(spinner());
 
@@ -100,12 +107,11 @@ export default async function renderContent() {
           }, 1000);
         }
         break;
+
       default:
-        if (authContent) {
-          authContent.style.display = "block";
-          authContent.appendChild(Dashboard());
-          displayAuthForms();
-        }
+        const notFoundPage = document.body;
+        notFoundPage.innerHTML = `<h1 class="text-center bg-white text-black dark:bg-black dark:text-white">404 - Page Not Found</h1>`;
+        break;
     }
 
     const currentPath = window.location.pathname;

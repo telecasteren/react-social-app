@@ -35,9 +35,9 @@ export function submitPost() {
     }
   });
 
-  const fileInput = document.getElementById("file_input");
-  if (fileInput) {
-    fileInput.addEventListener("change", () => {
+  const imgInput = document.getElementById("image_url");
+  if (imgInput) {
+    imgInput.addEventListener("change", () => {
       error.classList.add("hidden");
     });
   }
@@ -45,7 +45,7 @@ export function submitPost() {
   form.addEventListener("submit", (event) => {
     if (event) event.preventDefault();
 
-    const img = document.getElementById("file_input").value;
+    const img = document.getElementById("image_url").value;
     const title = document.getElementById("title").value;
     const caption = document.getElementById("caption").value;
 

@@ -34,13 +34,8 @@ export default async function Posts() {
     statsWrapper.className =
       "absolute justify-center flex flex-wrap gap-2 bg-white text-black rounded-md p-1";
 
-    const LIKES_KEY = "likes";
-    const likesFromLocalStorage =
-      JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
-    const allStoredLikes = likesFromLocalStorage[post.id] || [];
-    const numOfLikes = post._count.reactions + allStoredLikes.length;
-
     const likes = document.createElement("div");
+    const numOfLikes = post._count.reactions;
     likes.innerText = `♥️ ${numOfLikes} Likes`;
     statsWrapper.appendChild(likes);
 
@@ -52,7 +47,7 @@ export default async function Posts() {
     const postImage = document.createElement("img");
     postImage.src = post.media?.url || "/resources/icons/no-image-icon.webp";
     postImage.alt = post.media?.alt || "Default post image";
-    postImage.className = `w-full h-full object-cover rounded-sm
+    postImage.className = `w-full h-full object-cover rounded-sm border border-gray-300 dark:border-0
       hover:scale-105 md:hover:bg-black md:hover:opacity-50 transition-transform duration-300`;
 
     postContainer.appendChild(postImage);

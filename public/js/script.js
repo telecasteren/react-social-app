@@ -4,18 +4,36 @@ import Footer from "/js/app/components/footer/footer.js";
 import renderContent from "/js/app/ui/renderContent.js";
 import { setMetaDescriptions } from "/js/utils/general/setMetaDesc.js";
 import { setPageTitles } from "/js/utils/general/setPageTitles.js";
-import { API_TOKEN } from "/js/utils/source/api/general/constants.js";
+import { isAuthenticated } from "/js/utils/source/api/auth/isAuthenticated.js";
+import { loadKey } from "/js/utils/storage/loadKey.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  localStorage.setItem("token", JSON.stringify(API_TOKEN));
-
-  // GENERAL
-  setMetaDescriptions();
-  setPageTitles();
+document.addEventListener("DOMContentLoaded", async () => {
   setTheme();
 
+  // AUTH
+  let auth = false;
+  try {
+    auth = await isAuthenticated();
+  } catch (error) {
+    console.warn("Auth check failed:", error);
+  }
+
+  if (auth) {
+    const username = loadKey("profile")?.name;
+    if (window.location.pathname === "/") {
+      history.replaceState(null, "", `/user/profile/${username}`);
+    }
+
+    try {
+      setMetaDescriptions();
+      setPageTitles();
+    } catch (error) {
+      console.warn("Setting up meta failed:", error);
+    }
+  }
+
   // CONTENT
-  Navbar();
-  renderContent();
+  Navbar(auth);
   Footer();
+  renderContent();
 });

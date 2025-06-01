@@ -15,62 +15,46 @@ import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
  * @returns {void}
  */
 export async function submitHandler() {
-  const postImage = document.querySelector("img[alt='New post-image']");
+  const imgUrlInput = document.getElementById("image_url");
   const title = document.getElementById("title");
   const body = document.getElementById("caption");
-  const currentUser = getCurrentUser();
+  const currentUser = await getCurrentUser();
   const posts = await getPosts();
 
   if (!currentUser) {
     userMessage("error", "You must be logged in to post.");
+    return;
   }
 
-  if (!postImage.src || !body.value.trim()) {
+  if (!imgUrlInput.value.trim() || !body.value.trim()) {
     userMessage("warning", "Please upload an image and write a caption!");
     return;
   }
 
-  fetch(postImage.src)
-    .then((res) => res.blob())
-    .then((blob) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onloadend = async () => {
-        const base64Image = reader.result;
+  const newPostCard = {
+    title: title ? title.value.trim() : "New Post",
+    body: body.value.trim(),
+    media: {
+      url: imgUrlInput.value.trim(),
+      alt: `Post image titled: ${title ? title.value.trim() : "New Post"}`,
+    },
+  };
 
-        const newPostCard = {
-          id: posts.length + 1,
-          title: title ? title.value.trim() : "New Post",
-          imgSrc: base64Image,
-          imgAlt: `Post image titled: ${
-            title ? title.value.trim() : "New Post"
-          }`,
-          caption: body.value.trim(),
-          likes: 0,
-          name: currentUser?.name || "Unknown user",
-          userId: currentUser?.id,
-          created: new Date(),
-          comments: [],
-        };
+  try {
+    const createdPost = await submitPost(newPostCard);
+    console.log("Post created:", createdPost);
 
-        try {
-          const createdPost = await submitPost(newPostCard);
-          console.log("Post created:", createdPost);
+    const cardContainer = document.getElementById("card-container");
+    if (!cardContainer) {
+      userMessage("error", "Couldn't create post.");
+      return;
+    }
+    const newPostCardCard = createSingleCard(createdPost);
+    cardContainer.prepend(newPostCardCard);
 
-          const cardContainer = document.getElementById("card-container");
-          if (!cardContainer) {
-            userMessage("error", "Couldn't create post.");
-            return;
-          }
-          const newPostCardCard = createSingleCard(createdPost);
-          cardContainer.prepend(newPostCardCard);
-
-          openPost();
-        } catch (error) {
-          userMessage("error", "Failed to submit post to server.");
-          console.error(error);
-        }
-      };
-    })
-    .catch((error) => console.error("Error when converting image:", error));
+    openPost();
+  } catch (error) {
+    userMessage("error", "Failed to submit post to server.");
+    console.error(error);
+  }
 }

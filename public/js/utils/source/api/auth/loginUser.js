@@ -16,6 +16,7 @@ export async function login(email, password) {
     const { accessToken, ...profile } = (await response.json()).data;
     saveKey("token", accessToken);
     saveKey("profile", profile);
+    console.log("Login successful:", profile);
 
     return profile;
   }

@@ -3,7 +3,7 @@ import { userMessage } from "/js/utils/messages/userMessage.js";
 import { initialUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import renderContent from "/js/app/ui/renderContent.js";
 
-export default function Navbar() {
+export default async function Navbar(auth) {
   // DESKTOP MENU
   const desktopNav = document.createElement("nav");
   desktopNav.id = "desktop-nav";
@@ -52,6 +52,12 @@ export default function Navbar() {
 
     li.appendChild(a);
     desktopUl.appendChild(li);
+
+    if (!auth && ["Profile.", "Feed."].includes(link.text)) {
+      a.classList.add("hidden");
+    } else if (auth && link.text === "Dashboard.") {
+      a.classList.add("hidden");
+    }
   });
 
   desktopNav.appendChild(desktopUl);

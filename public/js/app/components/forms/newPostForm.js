@@ -18,20 +18,23 @@ export default function newPost() {
 
   const label = document.createElement("label");
   label.className = "block mb-2 text-sm font-medium text-gray-900";
-  label.setAttribute("for", "file_input");
+  label.setAttribute("for", "image_url");
   label.textContent = "Upload image:";
 
-  const imgInput = document.createElement("input");
-  imgInput.setAttribute("aria-describedby", "file_input_help");
-  imgInput.id = "file_input";
-  imgInput.type = "file";
-  imgInput.accept = "image/*";
-  imgInput.className = `${sharedStyles} p-1`;
+  const imgUrlInput = document.createElement("input");
+  imgUrlInput.id = "image_url";
+  imgUrlInput.type = "url";
+  imgUrlInput.placeholder = "https://example.com/image.jpg";
+  imgUrlInput.className = `${sharedStyles} p-2`;
+  imgUrlInput.setAttribute("aria-describedby", "image_url_help");
+  imgUrlInput.setAttribute("aria-label", "Image URL");
+  imgUrlInput.setAttribute("aria-required", "true");
+  imgUrlInput.required = true;
 
   const helpText = document.createElement("p");
   helpText.className = "mt-1 text-sm text-gray-500 dark:text-gray-300";
-  helpText.id = "file_input_help";
-  helpText.textContent = "SVG, PNG, JPG or GIF (MAX. 800x400px).";
+  helpText.id = "image_url_help";
+  helpText.textContent = "Valid format: PNG, JPG or GIF.";
 
   const svgPlaceholder = `
   <svg width="100%" height="100%" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -57,20 +60,20 @@ export default function newPost() {
     "absolute rounded-lg object-contain w-full h-full hidden";
   imgContainer.appendChild(postImage);
 
-  imgInput.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      postImage.src = imageUrl;
-      postImage.alt = "New post-image";
+  imgUrlInput.addEventListener("input", () => {
+    const url = imgUrlInput.value.trim();
+    if (url) {
+      postImage.src = url;
       postImage.classList.remove("hidden");
-      imgInput.classList.add("hidden");
       imgContainer.style.backgroundImage = "none";
+    } else {
+      postImage.classList.add("hidden");
+      imgContainer.style.backgroundImage = `url("${encodedSVG}")`;
     }
   });
 
   uploadWrapper.appendChild(label);
-  uploadWrapper.appendChild(imgInput);
+  uploadWrapper.appendChild(imgUrlInput);
   uploadWrapper.appendChild(helpText);
 
   const titleWrapper = document.createElement("div");
