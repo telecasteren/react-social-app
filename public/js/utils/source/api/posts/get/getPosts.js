@@ -5,7 +5,9 @@ import {
 } from "/js/utils/source/api/general/constants.js";
 
 export async function getPosts() {
-  const response = await authFetch(`${API_BASE_URL}${API_POSTS}?_author=true`);
+  const response = await authFetch(
+    `${API_BASE_URL}${API_POSTS}?_author=true&_comments=true`
+  );
 
   if (!response.ok) {
     throw new Error(`Fetching posts failed.`);

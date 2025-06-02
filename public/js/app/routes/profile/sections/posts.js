@@ -26,9 +26,8 @@ export default async function Posts() {
     postContainer.dataset.created = post.created;
     postContainer.dataset.likes =
       typeof post._count.reactions === "number" ? post._count.reactions : 0;
-    postContainer.dataset.comments = Array.isArray(post.comments)
-      ? post._count.comments
-      : 0;
+    postContainer.dataset.comments =
+      typeof post._count.comments === "number" ? post._count.comments : 0;
 
     const statsWrapper = document.createElement("div");
     statsWrapper.className =

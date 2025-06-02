@@ -12,6 +12,5 @@
 
 ### General
 
-- Debug sorting number of comments
 - Navigation instant routing
 - Feed: page pagination

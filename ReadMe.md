@@ -139,9 +139,9 @@ Under no licence p.t.
 
 ## 🫶 Acknowledgments
 
-- ChatGPT for text content in some of the titles and post captions.
+- Noroff Social API for posts and users content
 
-### Under a free licence on Unsplash, images by the creators:
+### Under a free licence on Unsplash, some of the images used are by these creators:
 
 #### **AVATAR IMAGES**
 
