@@ -27,6 +27,7 @@ export default async function Navbar(auth) {
 
     if (window.location.pathname + window.location.search !== href) {
       history.pushState(null, "", href);
+
       renderContent();
     }
   }

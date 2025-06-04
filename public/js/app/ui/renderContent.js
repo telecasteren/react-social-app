@@ -110,7 +110,7 @@ export default async function renderContent() {
 
       default:
         const notFoundPage = document.body;
-        notFoundPage.innerHTML = `<h1 class="text-center bg-white text-black dark:bg-black dark:text-white">404 - Page Not Found</h1>`;
+        notFoundPage.innerHTML = `<h1 class="flex justify-center items-center text-center text-white bg-black">404 - Page Not Found</h1>`;
         break;
     }
 
@@ -126,4 +126,6 @@ export default async function renderContent() {
 
   window.addEventListener("popstate", renderPage);
   renderPage();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }

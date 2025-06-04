@@ -12,6 +12,7 @@ export async function handleAuth(isSignup = false) {
 
   if (isSignup) {
     const confirmPassword = confirmPassInput?.value.trim();
+    const username = usernameInput.value.trim();
 
     if (!confirmPassword || password !== confirmPassword) {
       displayFormErrorMessage(confirmPassInput, "Passwords must match.");
@@ -19,10 +20,10 @@ export async function handleAuth(isSignup = false) {
     }
 
     try {
-      const newUser = await register(name, email, password);
+      const newUser = await register(username, email, password);
       const { name } = (await login(email, password)) || email.split("@")[0];
 
-      window.location.href = `/user/profile?id=${newUser.name || name}`;
+      window.location.href = `/user/profile?id=${newUser.username || name}`;
     } catch (error) {
       displayFormErrorMessage(emailInput, "Registration failed.");
       throw new Error();

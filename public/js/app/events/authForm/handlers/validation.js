@@ -2,15 +2,7 @@ import {
   displayFormErrorMessage,
   clearFormErrorMessage,
 } from "/js/utils/messages/formMessage.js";
-
-function getAuthInputs() {
-  const form = document.getElementById("auth-form");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const confirmPassInput = document.getElementById("confirm-password");
-
-  return { form, emailInput, passwordInput, confirmPassInput };
-}
+import { getAuthInputs } from "./getFormInputs.js";
 
 /**
  * Adds a validation listener to the email input field.
