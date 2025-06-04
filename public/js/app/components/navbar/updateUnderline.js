@@ -31,11 +31,25 @@ export function updateUnderline(targetLi) {
 }
 
 export function initialUnderline(links) {
-  const currentPath = window.location.pathname;
-  const activeIndex = links.findIndex((link) => link.href === currentPath);
-  const liElements = document.querySelectorAll("ul.active li");
+  const currentPath = window.location.pathname.replace(/\/+$/, "");
 
-  if (activeIndex !== -1 && liElements.length > 0) {
-    updateUnderline(liElements[activeIndex]);
+  if (currentPath === "/user/post") return;
+
+  const liElements = Array.from(
+    document.querySelectorAll("ul.active li")
+  ).filter((el) => el.offsetParent !== null);
+
+  for (const li of liElements) {
+    const a = li.querySelector("a");
+    if (!a) continue;
+
+    const linkPath = new URL(a.href, window.location.origin).pathname.replace(
+      /\/+$/,
+      ""
+    );
+    if (linkPath === currentPath) {
+      updateUnderline(li);
+      break;
+    }
   }
 }
