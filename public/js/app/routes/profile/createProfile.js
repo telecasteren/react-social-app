@@ -2,6 +2,7 @@ import Heading from "/js/app/routes/profile/sections/heading.js";
 import Details from "/js/app/routes/profile/sections/details.js";
 import Description from "/js/app/routes/profile/sections/description.js";
 import Posts from "/js/app/routes/profile/sections/posts.js";
+import createPostMenu from "/js/app/routes/feed/newPosts/createPostMenu.js";
 import { createSortOptions } from "/js/app/components/search/sortOptions.js";
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 
@@ -16,6 +17,7 @@ export default async function Profile() {
   const userHeading = await Heading(user);
   const userDetails = await Details(user);
   const userDescription = await Description(user);
+  const newPost = createPostMenu();
   const sortOptions = createSortOptions({
     triggerType: "p",
     triggerText: "Sort posts →",
@@ -31,6 +33,7 @@ export default async function Profile() {
   profileContainer.appendChild(userDetails);
   profileContainer.appendChild(userDescription);
   profileContainer.appendChild(postsContainer);
+  profileContainer.appendChild(newPost);
 
   return profileContainer;
 }

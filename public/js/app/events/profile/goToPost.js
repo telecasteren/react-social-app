@@ -2,9 +2,11 @@ export function openPost() {
   const posts = document.querySelectorAll(".user-post");
 
   posts.forEach((post) => {
-    post.addEventListener("click", () => {
+    post.addEventListener("click", (e) => {
       const postId = post.dataset.id;
-      console.log("Clicked post ID:", postId);
+
+      if (e.target.closest(".edit-post")) return;
+
       if (postId) {
         window.location.href = `/user/post/?id=${postId}`;
       }

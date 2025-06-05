@@ -14,3 +14,4 @@
 
 - Navigation instant routing
 - Feed: page pagination
+- JSDoc every necessary function
