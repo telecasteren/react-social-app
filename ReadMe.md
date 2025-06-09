@@ -12,9 +12,9 @@ Foodiegram is a social media app for "foodies", gathering food lovers from aroun
 
 - **Feed & Posts** – View, create and like posts.
 - **Search** – Sort and search in posts.
-- **User Authentication** – Create an account and log in securely.
-- **Profile Management** – Update your profile and see your list of posts. _(COMING)_
-- **DM's and messaging** – Send and receive messages between users. _(COMING)_
+- **User Authentication** – Create an account and log in securely. (restricted to these domains: @noroff.no, @stud.noroff.no)
+- **Profile Management** – Update your profile and see your list of posts, edit/delete posts.
+- **DM's and messaging** – Send and receive messages between users. _(COMING IN FUTURE)_
 
 ## 🛠 Built With
 
@@ -22,6 +22,11 @@ Foodiegram is a social media app for "foodies", gathering food lovers from aroun
 - **HTML & CSS** – structure and custom styles
 - **JavaScript** – client-side logic
 - **Node.js & Express.js** – backend routing
+
+### Github project
+
+[Click to see Github project board](https://github.com/users/telecasteren/projects/2)<br/>
+[Click to go to Github repo](https://github.com/telecasteren/social-app-noroff)
 
 ## Getting Started
 

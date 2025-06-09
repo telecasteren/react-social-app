@@ -53,7 +53,10 @@ export function submitPost() {
       submitHandler();
       modal.style.display = "none";
       userMessage("success", "Your post was submitted successfully!");
-      setTimeout(clearUserMessage, 3000);
+      setTimeout(() => {
+        clearUserMessage();
+        window.location.href = window.location.href;
+      }, 2000);
     } else {
       error.classList.remove("hidden");
     }

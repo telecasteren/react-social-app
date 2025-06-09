@@ -42,11 +42,10 @@ export async function submitHandler() {
 
   try {
     const createdPost = await submitPost(newPostCard);
-    console.log("Post created:", createdPost);
 
     const cardContainer = document.getElementById("card-container");
     if (!cardContainer) {
-      userMessage("error", "Couldn't create post.");
+      userMessage("error", "Couldn't append post.");
       return;
     }
     const newPostCardCard = createSingleCard(createdPost);

@@ -51,6 +51,16 @@ export function toggleModal(content) {
   modalContent.appendChild(content);
 
   modal.style.display = "block";
+
+  const onCloseClick = () => closeModal();
+  const onClickOutside = (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  closeButton.addEventListener("click", onCloseClick);
+  window.addEventListener("click", onClickOutside);
 }
 
 /**

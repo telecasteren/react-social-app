@@ -35,9 +35,7 @@ export default async function Posts() {
       "user-post relative w-full h-48 flex justify-center items-center cursor-pointer";
     postContainer.setAttribute("data-id", post.id);
     postContainer.dataset.created = post.created;
-
     postContainer.dataset.title = post.title;
-
     postContainer.dataset.likes =
       typeof post._count.reactions === "number" ? post._count.reactions : 0;
     postContainer.dataset.comments =

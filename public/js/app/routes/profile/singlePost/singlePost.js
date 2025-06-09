@@ -2,6 +2,9 @@ import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments.js";
 import { loadKey } from "../../../../utils/storage/loadKey.js";
 import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
+import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
+import { createTitle } from "/js/app/components/titles/title.js";
+import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -20,6 +23,7 @@ import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
  */
 export default async function SinglePost() {
   const post = await getSinglePost();
+  const loggedInUser = await getCurrentUser();
 
   const userId = post.author.name || "Unknown author";
   const author = userId;
@@ -29,7 +33,7 @@ export default async function SinglePost() {
     "flex flex-column flex-wrap justify-center mt-5 w-[100vw]";
 
   const card = document.createElement("div");
-  card.className = `max-w-sm w-full bg-white border border-gray-200 rounded-l-sm
+  card.className = `relative max-w-sm w-full bg-white border border-gray-200 rounded-l-sm
     shadow-sm dark:bg-[#0f0c29] dark:border-none`;
 
   const image = document.createElement("img");
@@ -98,6 +102,24 @@ export default async function SinglePost() {
   paragraph.className = "mb-3 font-normal text-gray-700 dark:text-gray-400";
   paragraph.textContent = post.body;
 
+  const helpText = createTitle("Edit");
+  helpText.className = `ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem]`;
+
+  const editPostIcon = document.createElement("div");
+  editPostIcon.setAttribute("data-id", post.id);
+  editPostIcon.className = `
+  edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10
+  bg-gray-200 hover:bg-gray-400 text-black rounded shadow-md cursor-pointer z-10
+  flex items-center justify-start overflow-hidden transition-all duration-300 group
+`;
+
+  const svgIcon = document.createElement("div");
+  svgIcon.innerHTML = `
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M16.862 3.487a2.125 2.125 0 0 1 3.001 3.001l-1.127 1.127-3.001-3.001 1.127-1.127zM14.993 5.356l3.001 3.001L7.5 18.85H4.5v-3L14.993 5.356z"/>
+</svg>
+`;
+
   userContainer.appendChild(authorContainer);
   userContainer.appendChild(actionContainer);
 
@@ -121,6 +143,27 @@ export default async function SinglePost() {
 
   const comment = await Comments();
   commentSection.appendChild(comment);
+
+  if (loggedInUser.name === post.author.name) {
+    helpText.classList.add("group-hover:opacity-100");
+
+    editPostIcon.appendChild(svgIcon);
+    editPostIcon.appendChild(helpText);
+    card.appendChild(editPostIcon);
+
+    editPostIcon.addEventListener("click", async () => {
+      const postData = {
+        id: post.id,
+        media: {
+          url: post.media?.url || "",
+        },
+        title: post.title || "",
+        body: post.body || "",
+      };
+
+      await editPostMenuEvents(postData);
+    });
+  }
 
   card.appendChild(image);
   card.appendChild(contentDiv);

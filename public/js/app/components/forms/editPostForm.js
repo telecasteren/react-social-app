@@ -1,11 +1,39 @@
-import { userMessage } from "/js/utils/messages/userMessage.js";
-import { submitEditedPost } from "/js/utils/source/api/posts/actions/edit.js";
-import { closeModal } from "/js/app/components/modal/createModal.js";
+import { editPostFormEventHandlers } from "/js/app/events/profile/editPost/submitEvents.js";
 
 const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border 
 border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
 focus:ring-blue-500 focus:border-blue-500`;
 
+/**
+ * Creates and returns a dynamic HTML form for editing an existing post.
+ *
+ * This function:
+ * - Builds a form with pre-filled inputs for image URL, title, and caption.
+ * - Displays a preview image, with support for fallback and live updates on URL input.
+ * - Adds "Save changes" and "Delete post" buttons.
+ * - Includes confirmation UI for deletions.
+ * - Binds submit and delete logic using `editPostFormEventHandlers`.
+ *
+ * @async
+ * @function editPostForm
+ * @param {Object} post - The post data used to populate the form.
+ * @param {number|string} post.id - The unique identifier of the post.
+ * @param {Object} [post.media] - The media object containing the image URL.
+ * @param {string} [post.media.url] - The URL of the image associated with the post.
+ * @param {string} [post.title] - The title of the post.
+ * @param {string} [post.body] - The caption/body content of the post.
+ *
+ * @returns {Promise<HTMLFormElement>} The constructed and event-bound form element for editing the post.
+ *
+ * @example
+ * const form = await editPostForm({
+ *   id: 123,
+ *   media: { url: "https://example.com/photo.jpg" },
+ *   title: "My Post",
+ *   body: "This is my updated caption."
+ * });
+ * document.body.appendChild(form);
+ */
 export default async function editPostForm(post) {
   console.log("post element inside editPostForm:", post);
 
@@ -133,6 +161,35 @@ export default async function editPostForm(post) {
   submitButton.innerHTML =
     '<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> Save changes';
 
+  const deleteButton = document.createElement("button");
+  deleteButton.id = "delete-btn";
+  deleteButton.type = "button";
+  deleteButton.className = `text-white inline-flex items-center ml-2
+  bg-[#181438e3] hover:brightness-150 focus:ring-2 focus:outline-none focus:ring-blue-300
+  font-medium rounded-lg text-sm px-5 py-2.5 text-center`;
+
+  deleteButton.innerHTML =
+    '<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg> Delete post';
+
+  const confirmMessage = document.createElement("div");
+  confirmMessage.className =
+    "hidden w-80 h-20 rounded bg-[#181438e3] m-2 border border-red-600 text-red-600";
+  confirmMessage.textContent = "Are you sure you want to delete this post?";
+
+  const confirmDeletion = document.createElement("p");
+  confirmDeletion.className = "m-2 text-sm text-red-600 hover:underline";
+  confirmDeletion.id = "error-text";
+  confirmDeletion.textContent = "Yes";
+
+  const denyDeletion = document.createElement("p");
+  denyDeletion.className = "m-2 text-sm text-red-600 hover:underline";
+  denyDeletion.id = "error-text";
+  denyDeletion.textContent = "No";
+
+  confirmMessage.appendChild(confirmDeletion);
+  confirmMessage.appendChild(denyDeletion);
+  deleteButton.appendChild(confirmMessage);
+
   const errorText = document.createElement("p");
   errorText.className = "hidden mb-2 text-sm text-red-600";
   errorText.id = "error-text";
@@ -142,27 +199,22 @@ export default async function editPostForm(post) {
   form.appendChild(grid);
   form.appendChild(errorText);
   form.appendChild(submitButton);
+  form.appendChild(deleteButton);
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const postData = {
+    id: post.id,
+    media: { url: imgUrlInput.value.trim() },
+    title: title.value.trim(),
+    body: caption.value.trim(),
+  };
 
-    const postData = {
-      id: post.id,
-      media: { url: imgUrlInput.value.trim() },
-      title: title.value.trim(),
-      body: caption.value.trim(),
-    };
-
-    try {
-      await submitEditedPost(postData);
-      userMessage("success", "Post updated!");
-      closeModal();
-    } catch (error) {
-      userMessage("warning", "Couldn't update post.");
-      console.error(error);
-      throw Error;
-    }
-  });
-
+  editPostFormEventHandlers(
+    form,
+    postData,
+    deleteButton,
+    confirmMessage,
+    confirmDeletion,
+    denyDeletion
+  );
   return form;
 }

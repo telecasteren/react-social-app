@@ -11,7 +11,7 @@
 ## 🔐 Authentication & API
 
 • <s>Use provided Social API with documentation.</s><br/>
-• Use HTTP methods: GET, POST, PUT, DELETE<br/>
+• <s>Use HTTP methods: GET, POST, PUT, DELETE</s><br/>
 
 ## 📄 Documentation
 
@@ -32,8 +32,8 @@ These are mandatory for a passing grade:<br/>
 • <s>✅ User can search the post content feed</s><br/>
 • <s>✅ User can view a post by ID</s><br/>
 • <s>✅ User can create a post</s><br/>
-• ✅ User can update a post<br/>
-• ✅ User can delete a post<br/>
+• <s>✅ User can update a post</s><br/>
+• <s>✅ User can delete a post</s><br/>
 
 ## ✨ Additional (Optional) Features
 

@@ -2,9 +2,6 @@
 
 ### API (required)
 
-- Ability to edit posts
-- Ability to delete posts
-
 ### Bio and avatar (not required)
 
 - Ability to upload avatar + edit
@@ -12,6 +9,6 @@
 
 ### General
 
-- Navigation instant routing
-- Feed: page pagination
-- JSDoc every necessary function
+- Navigation instant routing (in progress)
+- Feed: page pagination / live load on scroll
+- JSDoc every necessary function (in progress)
