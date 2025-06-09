@@ -5,6 +5,7 @@ import {
 import { submitEditedPost } from "/js/utils/source/api/posts/actions/edit.js";
 import { deletePost } from "/js/utils/source/api/posts/actions/delete.js";
 import { closeModal } from "/js/app/components/modal/createModal.js";
+import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 
 /**
  * Attaches event listeners to handle editing and deleting a post.
@@ -53,7 +54,15 @@ export async function editPostFormEventHandlers(
       e.preventDefault();
 
       try {
-        await submitEditedPost(postData);
+        const updatedPost = {
+          id: postData.id,
+          title: form.querySelector("#title").value.trim(),
+          body: form.querySelector("#caption").value.trim(),
+          media: {
+            url: form.querySelector("#image_url").value.trim(),
+          },
+        };
+        await submitEditedPost(updatedPost);
         userMessage("success", "Post updated!");
         closeModal();
 
@@ -84,8 +93,8 @@ export async function editPostFormEventHandlers(
       if (!confirmMessage.contains(denyDeletion)) {
         confirmMessage.appendChild(denyDeletion);
       }
-      if (!deleteButton.contains(confirmMessage)) {
-        deleteButton.appendChild(confirmMessage);
+      if (!form.contains(confirmMessage)) {
+        form.appendChild(confirmMessage);
       }
 
       confirmDeletion.addEventListener("click", async () => {
@@ -97,9 +106,17 @@ export async function editPostFormEventHandlers(
             userMessage("success", "Post deleted.");
             closeModal();
 
-            setTimeout(() => {
+            setTimeout(async () => {
               clearUserMessage();
-              window.location.href = window.location.href;
+
+              const currentUser = await getCurrentUser();
+              const currentPath = window.location.pathname;
+
+              if (currentPath.startsWith("/user/post/")) {
+                window.location.href = `/user/profile?id=${currentUser.name}`;
+              } else {
+                window.location.href = window.location.href;
+              }
             }, 2000);
           }, 1000);
         } catch (error) {

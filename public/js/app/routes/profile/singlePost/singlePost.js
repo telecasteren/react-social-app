@@ -109,7 +109,7 @@ export default async function SinglePost() {
   editPostIcon.setAttribute("data-id", post.id);
   editPostIcon.className = `
   edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10
-  bg-gray-200 hover:bg-gray-400 text-black rounded shadow-md cursor-pointer z-10
+  bg-gray-200 hover:bg-gray-400 text-black rounded shadow-md cursor-pointer
   flex items-center justify-start overflow-hidden transition-all duration-300 group
 `;
 
@@ -160,6 +160,7 @@ export default async function SinglePost() {
         title: post.title || "",
         body: post.body || "",
       };
+      console.log(postData.id);
 
       await editPostMenuEvents(postData);
     });

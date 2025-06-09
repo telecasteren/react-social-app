@@ -49,7 +49,7 @@ export default async function Posts() {
     editPostIcon.className = `
   edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10
   bg-gray-800 dark:bg-[#181438e3] hover:bg-gray-600 hover:dark:bg-[#534ba5e3]
-  rounded shadow-md cursor-pointer z-10 flex items-center justify-start
+  rounded shadow-md cursor-pointer flex items-center justify-start
   overflow-hidden transition-all duration-300 group
 `;
 

@@ -2,6 +2,9 @@ import { loadKey } from "../../../utils/storage/loadKey.js";
 import { userMessage } from "/js/utils/messages/userMessage.js";
 import { initialUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import renderContent from "/js/app/ui/renderContent.js";
+import Logout from "/js/utils/storage/logout.js";
+import { toggleModal } from "/js/app/components/modal/createModal.js";
+import { closeModal } from "../modal/createModal.js";
 
 export default async function Navbar(auth) {
   const links = [
@@ -13,6 +16,23 @@ export default async function Navbar(auth) {
 
   function handleClicks(e, href, isProfile = false) {
     e.preventDefault();
+
+    if (href === "/user/logout/") {
+      const logoutContainer = document.createElement("div");
+      logoutContainer.className = "flex flex-wrap items-center";
+      const logoutMessage = document.createElement("p");
+      logoutMessage.className = "text-black text-medium m-4";
+      logoutMessage.textContent = "Logging out...";
+      logoutContainer.appendChild(logoutMessage);
+
+      toggleModal(logoutContainer);
+
+      setTimeout(() => {
+        Logout();
+        closeModal();
+      }, 3000);
+      return;
+    }
 
     if (isProfile) {
       const profile = loadKey("profile");

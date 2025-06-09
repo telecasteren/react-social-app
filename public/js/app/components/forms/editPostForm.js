@@ -154,7 +154,7 @@ export default async function editPostForm(post) {
   const submitButton = document.createElement("button");
   submitButton.id = "submit-btn";
   submitButton.type = "submit";
-  submitButton.className = `text-text-light inline-flex items-center
+  submitButton.className = `text-text-light inline-flex items-center mb-2
   bg-accent-light dark:bg-accent-dark hover:brightness-110 focus:ring-2 focus:outline-none focus:ring-blue-300
   font-medium rounded-lg text-sm px-5 py-2.5 text-center`;
 
@@ -173,22 +173,23 @@ export default async function editPostForm(post) {
 
   const confirmMessage = document.createElement("div");
   confirmMessage.className =
-    "hidden w-80 h-20 rounded bg-[#181438e3] m-2 border border-red-600 text-red-600";
+    "hidden max-w-96 rounded bg-red-100 mt-2 p-2 border border-red-600 text-red-600";
   confirmMessage.textContent = "Are you sure you want to delete this post?";
 
-  const confirmDeletion = document.createElement("p");
-  confirmDeletion.className = "m-2 text-sm text-red-600 hover:underline";
-  confirmDeletion.id = "error-text";
-  confirmDeletion.textContent = "Yes";
+  function createConfirmationOption(text) {
+    const option = document.createElement("p");
+    option.className =
+      "mt-2 max-w-content text-sm text-red-600 hover:underline hover:font-bold cursor-pointer";
+    option.id = "error-text";
+    option.textContent = text;
+    return option;
+  }
 
-  const denyDeletion = document.createElement("p");
-  denyDeletion.className = "m-2 text-sm text-red-600 hover:underline";
-  denyDeletion.id = "error-text";
-  denyDeletion.textContent = "No";
+  const confirmDeletion = createConfirmationOption("Yes");
+  const denyDeletion = createConfirmationOption("No");
 
   confirmMessage.appendChild(confirmDeletion);
   confirmMessage.appendChild(denyDeletion);
-  deleteButton.appendChild(confirmMessage);
 
   const errorText = document.createElement("p");
   errorText.className = "hidden mb-2 text-sm text-red-600";
@@ -200,6 +201,7 @@ export default async function editPostForm(post) {
   form.appendChild(errorText);
   form.appendChild(submitButton);
   form.appendChild(deleteButton);
+  form.appendChild(confirmMessage);
 
   const postData = {
     id: post.id,
