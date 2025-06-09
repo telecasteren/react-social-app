@@ -3,24 +3,14 @@ import {
   createModal,
   toggleModal,
 } from "/js/app/components/modal/createModal.js";
-// import { submitPost } from "/js/app/events/newPost/submitEvents/submitNewPost.js";
 
-async function CreateModalAndAddSubmitListeners() {
+/**
+ * Opens a modal with the edit post form for the current post
+ * @param {Object} post - post data with id, media, title, and body
+ */
+export async function editPostMenuEvents(post) {
   createModal();
 
-  const editPost = await editPostForm();
-  toggleModal(editPost);
-  // submitPost();
-}
-
-export function editPostMenuEvents() {
-  const editIcons = document.querySelectorAll(".edit-post");
-
-  editIcons.forEach((icon) => {
-    icon.addEventListener("click", async (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      await CreateModalAndAddSubmitListeners();
-    });
-  });
+  const form = await editPostForm(post);
+  toggleModal(form);
 }

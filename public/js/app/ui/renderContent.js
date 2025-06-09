@@ -6,7 +6,6 @@ import { updateUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import { displayAuthForms } from "/js/app/events/authForm/displayAuthForms.js";
 import { createCards } from "/js/app/routes/feed/createCards.js";
 import { createPostMenuEvents } from "/js/app/events/newPost/formMenu/menuHandlers.js";
-import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 import { likePosts } from "/js/app/events/userActions/likes.js";
 import { createSkeletonCards } from "/js/app/components/loader/skeletonCard.js";
@@ -92,7 +91,6 @@ export default async function renderContent() {
             profileContent.innerHTML = "";
             const profileElement = await Profile();
             profileContent.appendChild(profileElement);
-            await editPostMenuEvents();
             createPostMenuEvents();
             openPost();
           }, 1000);

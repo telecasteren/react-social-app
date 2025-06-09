@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (auth) {
     const username = loadKey("profile")?.name;
     if (window.location.pathname === "/") {
-      history.replaceState(null, "", `/user/profile/${username}`);
+      history.replaceState(null, "", `/user/profile?id=${username}`);
     }
 
     try {

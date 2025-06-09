@@ -2,6 +2,7 @@ import { getUserPosts } from "/js/utils/source/api/posts/get/getUserPosts.js";
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 import { createTitle } from "/js/app/components/titles/title.js";
+import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 
 export default async function Posts() {
   const { data: userPosts } = await getUserPosts();
@@ -28,12 +29,15 @@ export default async function Posts() {
     return postsList;
   }
 
-  userPosts.forEach((post) => {
+  userPosts.forEach(async (post) => {
     const postContainer = document.createElement("div");
     postContainer.className =
       "user-post relative w-full h-48 flex justify-center items-center cursor-pointer";
     postContainer.setAttribute("data-id", post.id);
     postContainer.dataset.created = post.created;
+
+    postContainer.dataset.title = post.title;
+
     postContainer.dataset.likes =
       typeof post._count.reactions === "number" ? post._count.reactions : 0;
     postContainer.dataset.comments =
@@ -43,6 +47,7 @@ export default async function Posts() {
     helpText.className = `ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem] text-white`;
 
     const editPostIcon = document.createElement("div");
+    editPostIcon.setAttribute("data-id", post.id);
     editPostIcon.className = `
   edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10
   bg-gray-800 dark:bg-[#181438e3] hover:bg-gray-600 hover:dark:bg-[#534ba5e3]
@@ -85,6 +90,19 @@ export default async function Posts() {
       editPostIcon.appendChild(svgIcon);
       editPostIcon.appendChild(helpText);
       postContainer.appendChild(editPostIcon);
+
+      editPostIcon.addEventListener("click", async () => {
+        const postData = {
+          id: post.id,
+          media: {
+            url: post.media?.url || "",
+          },
+          title: post.title || "",
+          body: post.body || "",
+        };
+
+        await editPostMenuEvents(postData);
+      });
     }
 
     postContainer.appendChild(statsWrapper);

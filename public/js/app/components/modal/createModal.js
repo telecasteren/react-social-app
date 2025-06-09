@@ -1,3 +1,12 @@
+/**
+ * Creates and returns a hidden modal element with a close button.
+ *
+ * The modal consists of a container `div` with class `modal`, a nested
+ * `div` with class `modal-content`, and a `span` element that serves
+ * as the close button.
+ *
+ * @returns {HTMLDivElement} The constructed modal element.
+ */
 export function createModal() {
   const modal = document.createElement("div");
   modal.className = "modal";
@@ -17,6 +26,15 @@ export function createModal() {
   return modal;
 }
 
+/**
+ * Displays a modal with dynamic content. If the modal doesn't exist
+ * in the DOM, it will be created and appended to the body.
+ *
+ * The content passed in will be inserted into the modal, and the modal
+ * will be made visible.
+ *
+ * @param {HTMLElement} content - The content to display inside the modal.
+ */
 export function toggleModal(content) {
   let modal = document.querySelector(".modal");
 
@@ -33,12 +51,20 @@ export function toggleModal(content) {
   modalContent.appendChild(content);
 
   modal.style.display = "block";
+}
 
-  const closeModal = () => {
-    modal.style.display = "none";
-    closeButton.removeEventListener("click", onCloseClick);
-    window.removeEventListener("click", onClickOutside);
-  };
+/**
+ * Hides the modal if it exists, and removes any lingering event listeners
+ * that were set up for closing the modal.
+ *
+ * Intended to close the modal by setting its `display` style to `none`
+ * and detaching event listeners for the close button and outside clicks.
+ */
+export function closeModal() {
+  const modal = document.querySelector(".modal");
+  const closeButton = document.querySelector(".close-modal");
+
+  modal.style.display = "none";
 
   const onCloseClick = (event) => {
     if (event.target === closeButton) {
@@ -52,6 +78,6 @@ export function toggleModal(content) {
     }
   };
 
-  closeButton.addEventListener("click", onCloseClick);
-  window.addEventListener("click", onClickOutside);
+  closeButton.removeEventListener("click", onCloseClick);
+  window.removeEventListener("click", onClickOutside);
 }

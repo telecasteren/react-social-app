@@ -1,11 +1,13 @@
-import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
+import { userMessage } from "/js/utils/messages/userMessage.js";
+import { submitEditedPost } from "/js/utils/source/api/posts/actions/edit.js";
+import { closeModal } from "/js/app/components/modal/createModal.js";
 
 const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border 
 border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
 focus:ring-blue-500 focus:border-blue-500`;
 
-export default async function editPostForm() {
-  const post = await getSinglePost();
+export default async function editPostForm(post) {
+  console.log("post element inside editPostForm:", post);
 
   const form = document.createElement("form");
   form.id = "edit-post-form";
@@ -29,11 +31,8 @@ export default async function editPostForm() {
   imgUrlInput.id = "image_url";
   imgUrlInput.type = "url";
   imgUrlInput.placeholder = "https://example.com/image.jpg";
-  imgUrlInput.value = post.media?.url || "";
+  imgUrlInput.value = post.media?.url || "/resources/icons/no-image-icon.webp";
   imgUrlInput.className = `${sharedStyles} p-2`;
-  imgUrlInput.setAttribute("aria-describedby", "image_url_help");
-  imgUrlInput.setAttribute("aria-label", "Image URL");
-  imgUrlInput.setAttribute("aria-required", "true");
   imgUrlInput.required = true;
 
   const helpText = document.createElement("p");
@@ -66,7 +65,7 @@ export default async function editPostForm() {
   postImage.className =
     "absolute rounded-lg object-contain w-full h-full " +
     (post.media?.url ? "" : "hidden");
-  postImage.src = post.media?.url || "";
+  postImage.src = post.media?.url || "/resources/icons/no-image-icon.webp";
   imgContainer.appendChild(postImage);
 
   imgUrlInput.addEventListener("input", () => {
@@ -103,7 +102,6 @@ export default async function editPostForm() {
   titleWrapper.appendChild(title);
 
   const captionWrapper = document.createElement("div");
-
   const captionLabel = document.createElement("label");
   captionLabel.className = "block mb-2 text-sm font-medium text-gray-900";
   captionLabel.setAttribute("for", "caption");
@@ -144,6 +142,27 @@ export default async function editPostForm() {
   form.appendChild(grid);
   form.appendChild(errorText);
   form.appendChild(submitButton);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const postData = {
+      id: post.id,
+      media: { url: imgUrlInput.value.trim() },
+      title: title.value.trim(),
+      body: caption.value.trim(),
+    };
+
+    try {
+      await submitEditedPost(postData);
+      userMessage("success", "Post updated!");
+      closeModal();
+    } catch (error) {
+      userMessage("warning", "Couldn't update post.");
+      console.error(error);
+      throw Error;
+    }
+  });
 
   return form;
 }
