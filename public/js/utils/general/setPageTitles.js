@@ -10,7 +10,7 @@ export async function setPageTitles() {
   const { data: posts } = await getPosts();
 
   const pageTitles = {
-    "/user/feed/": "Foodiegram | Explore",
+    "/user/feed/": "Explore | Foodiegram",
   };
 
   let pageTitle = Object.keys(pageTitles).find((key) => path.includes(key))
@@ -25,9 +25,9 @@ export async function setPageTitles() {
       let post = posts.find((p) => p.id === numericPostId);
 
       if (post) {
-        pageTitle = `${post.title} | Foodiegram` || "Foodiegram | Post";
+        pageTitle = `${post.title} | Foodiegram` || "Post | Foodiegram";
       } else {
-        pageTitle = "Foodiegram | Post";
+        pageTitle = "Post | Foodiegram";
         console.warn(
           `setPageTitles(): Failed to fetch post with ID ${postId}. Fallback initiated.`
         );
@@ -42,9 +42,9 @@ export async function setPageTitles() {
       const user = userId;
 
       if (user) {
-        pageTitle = `${user} | Foodiegram` || "Foodiegram | Profile";
+        pageTitle = `${user} | Foodiegram` || "Profile | Foodiegram";
       } else {
-        pageTitle = "Foodiegram | Profile";
+        pageTitle = "Profile | Foodiegram";
         console.warn(
           `setPageTitles(): Failed to fetch user with ID ${userId}. Fallback initiated.`
         );
