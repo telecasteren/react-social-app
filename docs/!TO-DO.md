@@ -1,15 +1,11 @@
 ## TO DO
 
-### API (required)
-
-### Bio and avatar (not required)
+### Extra (not required)
 
 - Ability to upload avatar + edit
 
-### General
+### General improvements
 
-- Add logo in menu for desktop
-- Navigation instant routing (in progress)
+- Navigation instant routing
 - Feed: page pagination / live load on scroll
 - JSDoc every necessary function (in progress)
-- Refactor Navbar

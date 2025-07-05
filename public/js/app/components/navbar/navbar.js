@@ -8,10 +8,10 @@ import { closeModal } from "../modal/createModal.js";
 
 export default async function Navbar(auth) {
   const links = [
-    { href: "/", text: "Welcome.", authOnly: false, guestOnly: true },
-    { href: "/user/feed/", text: "Feed.", authOnly: true },
-    { href: "/user/profile/", text: "Profile.", authOnly: true },
-    { href: "/user/logout/", text: "Logout.", authOnly: true },
+    { href: "/", text: "Welcome", authOnly: false, guestOnly: true },
+    { href: "/user/feed/", text: "Feed", authOnly: true },
+    { href: "/user/profile/", text: "Profile", authOnly: true },
+    { href: "/user/logout/", text: "Logout", authOnly: true },
   ];
 
   function handleClicks(e, href, isProfile = false) {
@@ -22,15 +22,28 @@ export default async function Navbar(auth) {
       logoutContainer.className = "flex flex-wrap items-center";
       const logoutMessage = document.createElement("p");
       logoutMessage.className = "text-black text-medium m-4";
-      logoutMessage.textContent = "Logging out...";
+      logoutMessage.textContent = "Logging out";
       logoutContainer.appendChild(logoutMessage);
 
       toggleModal(logoutContainer);
+      if (logoutContainer) {
+        const closeBtn = document.querySelector(".close-modal");
+        closeBtn.style.opacity = "0";
+      }
+
+      let dots = 0;
+      let maxDots = 3;
+      const dotInterval = setInterval(() => {
+        dots = (dots + 1) % (maxDots + 1);
+        logoutMessage.textContent = "Logging out" + " . ".repeat(dots);
+      }, 400);
 
       setTimeout(() => {
+        clearInterval(dotInterval);
         Logout();
         closeModal();
       }, 3000);
+
       return;
     }
 
@@ -55,13 +68,13 @@ export default async function Navbar(auth) {
   function createNavLink({ text, href }, isMobile = false) {
     const a = document.createElement("a");
     a.href = href;
-    a.textContent = text.replace(".", "");
+    a.innerHTML =
+      text + `<span style="color: var(--accent); font-size: 25px;">.</span>`;
     a.className = isMobile ? "mobile-nav-item" : "";
 
     a.addEventListener("click", (e) => {
       handleClicks(e, href, text.includes("Profile."));
     });
-
     return a;
   }
 
@@ -74,7 +87,17 @@ export default async function Navbar(auth) {
   function DesktopNav() {
     const nav = document.createElement("nav");
     nav.id = "desktop-nav";
-    nav.className = "mt-20 ml-20 hidden md:block";
+    nav.className =
+      "hidden md:flex items-center justify-between flex-wrap mt-20 mx-20";
+
+    const logo = document.createElement("div");
+    logo.className = "";
+
+    const logoImg = document.createElement("img");
+    logoImg.className = "w-32 flex justify-end dark:invert";
+    logoImg.src = "/resources/logo/foodiegram-logo.png";
+    logoImg.alt = "Logo: Foodiegram | A slice of life";
+    logo.appendChild(logoImg);
 
     const ul = document.createElement("ul");
     ul.className = "active flex space-x-8 dark:text-dark";
@@ -89,6 +112,7 @@ export default async function Navbar(auth) {
     });
 
     nav.appendChild(ul);
+    nav.appendChild(logo);
     return nav;
   }
 
