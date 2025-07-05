@@ -8,7 +8,7 @@ export default async function Description(user) {
   const followBtn = await toggleFollowing(user);
 
   const userDescription = document.createElement("div");
-  userDescription.className = "grid grid-cols-1 mt-16";
+  userDescription.className = "grid grid-cols-1 mt-16 mb-16";
 
   const bioRow = document.createElement("div");
   bioRow.className = "flex items-center justify-center gap-4";

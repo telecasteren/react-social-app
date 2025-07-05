@@ -1,3 +1,55 @@
-export async function updateUserBio() {}
+import {
+  API_BASE_URL,
+  API_USERS,
+} from "/js/utils/source/api/general/constants.js";
+import { authFetch } from "/js/utils/source/api/auth/authFetch.js";
+import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 
-export async function clearUserBio() {}
+export async function updateUserBio(user) {
+  const form = document.querySelector("#bio-form");
+  if (!form) return;
+
+  const newBio = form.querySelector("#bio").value.trim();
+  const bio = user.bio || newBio;
+
+  const profile = await getUserParams();
+  const userId = profile.name;
+
+  try {
+    const response = await authFetch(`${API_BASE_URL}${API_USERS}/${userId}`, {
+      method: "PUT",
+      body: JSON.stringify({ bio }),
+    });
+    console.log("Response from updateUserBio:", response);
+
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    throw new Error("Updating profile bio failed.");
+  }
+}
+
+export async function clearUserBio() {
+  const profile = await getUserParams();
+  const userId = profile.name;
+
+  try {
+    const response = await authFetch(`${API_BASE_URL}${API_USERS}/${userId}`, {
+      method: "PUT",
+      body: JSON.stringify({ bio: "" }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    if (response.status === 204) {
+      return null;
+    }
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw new Error("Deleting profile bio failed.");
+  }
+}

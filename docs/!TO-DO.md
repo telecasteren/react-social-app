@@ -5,7 +5,6 @@
 ### Bio and avatar (not required)
 
 - Ability to upload avatar + edit
-- Sending updated bio request with api functions
 
 ### General
 
