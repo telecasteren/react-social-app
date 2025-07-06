@@ -48,7 +48,6 @@ export default async function Description(user) {
       userDescription.replaceWith(bioEditForm);
     });
   }
-
   userDescription.appendChild(bioRow);
 
   if (currentUser.name !== user.name && followBtn) {

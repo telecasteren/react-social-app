@@ -2,8 +2,6 @@ import {
   userMessage,
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
-
-// Implement these API functions
 import {
   updateUserBio,
   clearUserBio,

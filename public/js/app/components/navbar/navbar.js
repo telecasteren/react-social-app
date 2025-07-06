@@ -14,6 +14,8 @@ export default async function Navbar(auth) {
     { href: "/user/logout/", text: "Logout", authOnly: true },
   ];
 
+  const endDot = `<span style="color: var(--accent); font-size: 25px;">.</span>`;
+
   function handleClicks(e, href, isProfile = false) {
     e.preventDefault();
 
@@ -68,8 +70,7 @@ export default async function Navbar(auth) {
   function createNavLink({ text, href }, isMobile = false) {
     const a = document.createElement("a");
     a.href = href;
-    a.innerHTML =
-      text + `<span style="color: var(--accent); font-size: 25px;">.</span>`;
+    a.innerHTML = text + endDot;
     a.className = isMobile ? "mobile-nav-item" : "";
 
     a.addEventListener("click", (e) => {
@@ -138,7 +139,7 @@ export default async function Navbar(auth) {
     const logoText = document.createElement("span");
     logoText.className =
       "self-center text-2xl font-200 whitespace-nowrap dark:text-white";
-    logoText.textContent = "Foodiegram.";
+    logoText.innerHTML = "Foodiegram" + endDot;
 
     logoLink.appendChild(logoImg);
     logoLink.appendChild(logoText);
