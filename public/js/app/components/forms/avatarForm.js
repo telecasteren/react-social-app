@@ -3,10 +3,10 @@ import { editAvatarFormEventHandlers } from "/js/app/events/profile/editAvatar/s
 export async function editAvatar(user, originalAvatar) {
   const form = document.createElement("form");
   form.id = "avatar-form";
-  form.className = `
-  grid grid-cols-1 mt-4 mb-4 w-full max-w-[90%] sm:max-w-[75%] md:max-w-[60%] lg:max-w-[40%]
-  justify-self-center
-`;
+  //   form.className = `
+  //   grid grid-cols-1 mt-4 mb-4 w-full max-w-[90%] sm:max-w-[75%] md:max-w-[60%] lg:max-w-[40%]
+  //   justify-self-center
+  // `;
 
   const avatarContainer = document.createElement("div");
   avatarContainer.className = "";
@@ -24,7 +24,7 @@ export async function editAvatar(user, originalAvatar) {
   closeButton.id = "cancel";
   closeButton.innerHTML = "Cancel";
   closeButton.className = `close-modal text-[var(--accent)]
-  text-[28px] font-bold cursor-pointer hover:text-black ml-4`;
+  text-[12px] font-bold cursor-pointer hover:text-black ml-4`;
 
   formContainer.appendChild(avatarLabel);
   formContainer.appendChild(closeButton);
@@ -49,7 +49,7 @@ export async function editAvatar(user, originalAvatar) {
   font-medium rounded-lg text-sm px-5 py-2.5 text-center`;
 
   submitButton.innerHTML =
-    '<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> Save changes';
+    '<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> Save';
 
   avatarContainer.appendChild(formContainer);
   avatarContainer.appendChild(avatar);

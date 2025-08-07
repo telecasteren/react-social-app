@@ -74,7 +74,7 @@ export default async function Navbar(auth) {
     a.className = isMobile ? "mobile-nav-item" : "";
 
     a.addEventListener("click", (e) => {
-      handleClicks(e, href, text.includes("Profile."));
+      handleClicks(e, href, text == "Profile");
     });
     return a;
   }

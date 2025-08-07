@@ -8,10 +8,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
 app.post("/user/profile/", (req, res) => {
   const { email, password } = req.body;
 
@@ -20,6 +16,14 @@ app.post("/user/profile/", (req, res) => {
   } else {
     console.log("Login failed, evaluate route and credentials.");
     res.redirect("/login?error=Invalid credentials");
+  }
+});
+
+app.get("*", (req, res, next) => {
+  if (req.accepts("html")) {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+  } else {
+    res.status(404).send("File not found");
   }
 });
 
