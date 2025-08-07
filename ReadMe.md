@@ -124,6 +124,21 @@ However, for the full experience, I recommend running the full app with concurre
 - npm run frontend – _serves the public/ folder locally with live-server for a static preview_
 - npm run tailwind – _starts Tailwind CSS in watch mode for development (rebuilds on file changes)_
 
+### Testing the app
+
+After cloning the repo and running it, you can test the app from a user perspective:
+
+- Creating a test user within the valid email domain: noroff.no or stud.noroff.no
+- Or by logging in as one of these generic test user:<br/>
+
+```bash
+username: caster@noroff.no
+password: tttttttt
+---
+username: eg95@noroff.no
+password: eeeeeeee
+```
+
 ## ⭐ Contributing
 
 **Right now I'm not looking for contributors, as this is a school project.**</br>

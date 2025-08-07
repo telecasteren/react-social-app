@@ -39,7 +39,7 @@ These are mandatory for a passing grade:<br/>
 
 Recommended, especially for team projects:<br/>
 • 💬 User can create a comment on a post<br/>
-• 🖼️ User can edit profile media<br/>
+• <s>🖼️ User can edit profile media</s><br/>
 • <s>➕/➖ User can follow/unfollow a profile</s><br/>
 • <s>❤️ User can react to a post</s><br/>
 

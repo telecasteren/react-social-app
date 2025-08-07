@@ -2,6 +2,8 @@
 
 ### Extra (not required)
 
+- Create comments on posts
+
 ### General improvements
 
 - Navigation instant routing
