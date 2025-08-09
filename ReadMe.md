@@ -23,6 +23,13 @@ Foodiegram is a social media app for "foodies", gathering food lovers from aroun
 - **JavaScript** – client-side logic
 - **Node.js & Express.js** – backend routing
 
+## Single page application routing (SPA)
+
+This web app implements client-side routing for a smoother user experience.
+The Express.js server is used to serve static files and provide a history fallback, so that direct links like; `/user/feed/`, load neatly without full page reload. The key for this approach is trying to create as smooth as possible experience for the user.
+
+All required functionality — auth, crud, search/filters — are implemented in **pure JavaScript ES6** on the client side, in line with the [brief](docs/BRIEF.md)
+
 ### Github project
 
 [Click to see Github project board](https://github.com/users/telecasteren/projects/2)<br/>
@@ -50,11 +57,10 @@ cd social-app-noroff
 npm install express@4.18.2
 ```
 
-Why Express?<br/>
-This let's us handle routing(navigation) as 'SPA routing'.<br/>
---> 'Single Page Application' routing for updating content and browser URL without having to do a full page reload.<br/>
+This is what's handling the routing(navigation) in the app.<br/>
+[SPA](<#single-page-application-routing-(SPA)>) routing for updating content and browser URL without page reload.<br/>
 
-Instead of navigating to a new HTML page, the routing system intercepts URL changes and dynamically renders different components or views on the same page. The key for my approach is trying to create a smooth experience for the user.
+--> Instead of navigating to a new HTML page, the routing system intercepts URL changes and dynamically renders different components or views on the same page.
 
 **Install the dependencies:**
 
@@ -107,7 +113,7 @@ After cloning the repo and running it, you can test the app from a user perspect
 - Or by logging in as one of these generic test user:<br/>
 
 ```bash
-username: testbrowsers@noroff.no
+username: browser@noroff.no
 password: browsers
 ---
 username: eg95@noroff.no

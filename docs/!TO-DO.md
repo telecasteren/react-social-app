@@ -6,7 +6,6 @@
 
 ### General improvements
 
-- Check routing when clicking profile name from post page + login/signup
 - JSDoc every necessary function (in progress)
 - Refactor navbar.js - separate files for desktopNav and mobileNav
 

@@ -1,82 +1,53 @@
-# ✅ Core Requirements (“What” and “How”)
+# Brief
 
-## 📱 Application Features
+You have been tasked with producing a new JavaScript front-end client for an existing social media platform. The client application must be attractive and responsive, but you have an otherwise blank slate in terms of theme design language.
 
-• <s>Build a JavaScript front-end client for an existing social media platform.</s><br/>
-• <s>Must be attractive and responsive (you decide theme/design).</s><br/>
-• <s>Use pure/original JavaScript (no frameworks like React, Vue, etc.).</s><br/>
-• <s>Can use a CSS Framework (e.g., Bootstrap, Tailwind) for UI.</s><br/>
-• <s>Use localStorage (strongly recommended) to store JWT tokens.</s><br/>
+Using the provided API and API documentation, create a functioning user interface that allows for viewing, posting, editing and deleting social media content.
 
-## 🔐 Authentication & API
+Social API routes require both a JWT token and an API Key. You will need to register an account and login to access your token. To create an API Key, follow the documentation here.
 
-• <s>Use provided Social API with documentation.</s><br/>
-• <s>Use HTTP methods: GET, POST, PUT, DELETE</s><br/>
+**Watch: Video: Noroff API V2 - Using JWT and API Keys**
 
-## 📄 Documentation
+To complete the required features, you will also need to make use of GET, POST, PUT, and DELETE HTTP methods.
 
-• Use JSDoc to document at least one function, including:<br/>
-• Argument types<br/>
-• Return types<br/>
-• Description<br/>
-• Usage example<br/>
-• If time allows, document all functions using JSDoc.<br/>
+You must use JSDocs to document at least one function. The minimum requirement is one example of well written JSDocs for a function that includes argument types, return types, a description and a usage example. If you have remaining time before delivery, you should use this to document all of your remaining functions.
 
-## 🧑‍💻 Required Functionality (User Stories)
+**Using localStorage is highly recommended, especially for storing JWT tokens.**
 
-These are mandatory for a passing grade:<br/>
-• <s>✅ User with @noroff.no or @stud.noroff.no email can register a profile</s><br/>
-• <s>✅ Registered user can login</s><br/>
-• <s>✅ User can view post content feed</s><br/>
-• <s>✅ User can filter the post content feed</s><br/>
-• <s>✅ User can search the post content feed</s><br/>
-• <s>✅ User can view a post by ID</s><br/>
-• <s>✅ User can create a post</s><br/>
-• <s>✅ User can update a post</s><br/>
-• <s>✅ User can delete a post</s><br/>
+A finished project fulfils the requirements below with an easy to use and error-free user interface.
 
-## ✨ Additional (Optional) Features
+## Required features
 
-Recommended, especially for team projects:<br/>
-• 💬 User can create a comment on a post<br/>
-• <s>🖼️ User can edit profile media</s><br/>
-• <s>➕/➖ User can follow/unfollow a profile</s><br/>
-• <s>❤️ User can react to a post</s><br/>
+The following user stories are required for a passing submission:
 
-## 🧰 Development Process Requirements
+- User with @noroff.no or @stud.noroff.no email can register profile
+- Registered user can login
+- User can view a post content feed
+- User can filter the post content feed
+- User can search the post content feed
+- User can view a post content item by ID
+- User can create a post content item
+- User can update a post content item
+- User can delete a post content item
 
-• Create/select a single GitHub repository<br/>
-• Create a js2 branch from default (main or master)<br/>
-• Use Trello or GitHub Projects:<br/>
-• Trello must be public<br/>
-• Link must be in readme.md<br/>
-• Tasks must be detailed, e.g.:<br/>
-• ✅ Good: “Create search form HTML”<br/>
-• ❌ Bad: “Website Styling”<br/>
+## Additional features
 
-## Planning & Workflow
+The following user stories are optional:
 
-• Review API docs and Swagger before coding<br/>
-• Plan:<br/>
-• Desired features<br/>
-• Development strategy<br/>
-• All Pull Requests (PRs) go into js2 branch (not main)<br/>
-• Example: Branch search-functionality → merged into js2
+- User can create a comment on a post
+- User can edit profile media
+- User can follow/unfollow a profile
+- User can react to a post content item
 
-## ✅ Submission Process
+### Team work
 
-1. Submit repo link at correct branch (js2) on Moodle forum<br/>
-2. Review 2 peers’ projects (4 total if in a team)<br/>
-3. Open a PR from js2 → default branch (for feedback)<br/>
-4. Optionally:<br/>
-   • Request peer feedback<br/>
-   • Leave PR open<br/>
-   • Implement feedback<br/>
-5. Submit link to open PR in Moodle<br/>
-6. A passing submission will be approved and merged by reviewer
+This assignment allows for team work in groups of 2 students. Students forming a work group will need to coordinate closely throughout the planning, development and testing processes. By working in a pair, you are expected to implement additional features.
 
-## 🚫 Restrictions
+Commit regularly and use branches to prevent conflicts with your teammate as you work on the same codebase.
 
-• Use original JavaScript only<br/>
-• Include .gitignore (must exclude node_modules)<br/>
-• Be respectful — content posted is public & tied to your identity<br/>
+### Restrictions
+
+Required functionality must be implemented in original, pure JavaScript.
+A CSS Framework may be used to build the application UI.
+A .gitignore file must be provided including node_modules. This folder must be untracked.
+Content posted on the API is public and associated with your identity. Be appropriate and respectful.
