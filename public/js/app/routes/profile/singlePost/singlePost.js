@@ -59,7 +59,7 @@ export default async function SinglePost() {
   authorContainer.appendChild(authorIMG);
 
   const linkTitle = document.createElement("a");
-  linkTitle.href = `/user/profile?id=${author}`;
+  linkTitle.href = `/user/profile/?id=${author}`;
 
   const authorName = document.createElement("h5");
   authorName.setAttribute("data-userId", author);

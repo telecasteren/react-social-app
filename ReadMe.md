@@ -64,7 +64,6 @@ npm install
 
 This will install:
 
-- Express.js (backend server)
 - Tailwind CSS (frontend styles)
 - Live Server (static frontend preview)
 - [Concurrently](https://www.npmjs.com/package/concurrently)

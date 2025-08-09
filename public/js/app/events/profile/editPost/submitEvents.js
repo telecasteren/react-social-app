@@ -113,7 +113,7 @@ export async function editPostFormEventHandlers(
               const currentPath = window.location.pathname;
 
               if (currentPath.startsWith("/user/post/")) {
-                window.location.href = `/user/profile?id=${currentUser.name}`;
+                window.location.href = `/user/profile/?id=${currentUser.name}`;
               } else {
                 window.location.href = window.location.href;
               }

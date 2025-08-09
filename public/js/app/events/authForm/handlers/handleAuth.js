@@ -23,7 +23,7 @@ export async function handleAuth(isSignup = false) {
       const newUser = await register(username, email, password);
       const { name } = (await login(email, password)) || email.split("@")[0];
 
-      window.location.href = `/user/profile?id=${newUser.username || name}`;
+      window.location.href = `/user/profile/?id=${newUser.username || name}`;
     } catch (error) {
       displayFormErrorMessage(emailInput, "Registration failed.");
       throw new Error();
@@ -31,7 +31,7 @@ export async function handleAuth(isSignup = false) {
   } else {
     try {
       const { name } = await login(email, password);
-      window.location.href = `/user/profile?id=${name}`;
+      window.location.href = `/user/profile/?id=${name}`;
     } catch (error) {
       console.error("Login error:", error);
       displayFormErrorMessage(emailInput, "Login failed.");
