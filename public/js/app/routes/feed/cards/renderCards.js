@@ -1,12 +1,12 @@
-import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
+export async function renderCards(posts, container) {
+  // DEBUG
+  console.log("renderCards posts:", posts);
+  console.log("renderCards container exists?", !!container);
 
-export async function createCards() {
-  const { data: posts } = await getPosts();
-
-  const cardContainer = document.createElement("div");
-  cardContainer.id = "posts-container";
-  cardContainer.className =
-    "card-container flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center ml-20 mr-20";
+  if (!container) {
+    console.error("container is undefined");
+    return;
+  }
 
   posts.forEach((post) => {
     const card = document.createElement("div");
@@ -48,8 +48,6 @@ export async function createCards() {
     card.appendChild(image);
     card.appendChild(contentDiv);
 
-    cardContainer.appendChild(card);
+    container.appendChild(card);
   });
-
-  return cardContainer;
 }

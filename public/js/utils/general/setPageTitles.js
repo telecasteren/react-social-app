@@ -1,4 +1,5 @@
 import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
+import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 
 function getQueryParams(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -7,7 +8,7 @@ function getQueryParams(param) {
 
 export async function setPageTitles() {
   const path = window.location.pathname;
-  const { data: posts } = await getPosts();
+  const { data: posts } = await getPosts(POSTS_PER_PAGE, 1);
 
   const pageTitles = {
     "/user/feed/": "Explore | Foodiegram",

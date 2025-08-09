@@ -4,6 +4,7 @@ import {
   defaultDescFallback,
   defaultDescriptions,
 } from "/js/utils/general/constants.js";
+import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 
 export function getPostId(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -12,7 +13,7 @@ export function getPostId(param) {
 
 export async function setMetaDescriptions() {
   const path = window.location.pathname;
-  const { data: posts } = await getPosts();
+  const { data: posts } = await getPosts(POSTS_PER_PAGE, 1);
 
   let matchedKey = Object.keys(defaultDescriptions).find((key) =>
     path.startsWith(key)

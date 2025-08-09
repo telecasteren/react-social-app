@@ -38,7 +38,9 @@ export function createPostMenuEvents() {
     });
   }
 
-  newPostBtn.addEventListener("click", () =>
-    CreateModalAndAddSubmitListeners()
-  );
+  if (newPostBtn) {
+    newPostBtn.addEventListener("click", () =>
+      CreateModalAndAddSubmitListeners()
+    );
+  }
 }

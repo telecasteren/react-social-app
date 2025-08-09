@@ -3,11 +3,12 @@ import { authFetch } from "/js/utils/source/api/auth/authFetch.js";
 import {
   API_BASE_URL,
   API_USERS,
+  POSTS_PER_PAGE,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function getUserPosts() {
-  const activeUser = loadKey("profile");
-  const loggedInUsername = activeUser.name;
+export async function getUserPosts(limit = POSTS_PER_PAGE, page = 1) {
+  const activeUser = loadKey("profile") || {};
+  const loggedInUsername = activeUser.name || "";
 
   const urlParams = new URLSearchParams(window.location.search);
   const currentProfile = urlParams.get("id");
@@ -17,9 +18,8 @@ export async function getUserPosts() {
       ? currentProfile
       : loggedInUsername;
 
-  const response = await authFetch(
-    `${API_BASE_URL}${API_USERS}/${profileName}/posts`
-  );
+  const url = `${API_BASE_URL}${API_USERS}/${profileName}/posts/?limit=${limit}&page=${page}`;
+  const response = await authFetch(url);
 
   if (!response.ok) {
     throw new Error(`Fetching posts for user ${profileName} failed.`);

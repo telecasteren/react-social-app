@@ -4,7 +4,6 @@ import Profile from "/js/app/routes/profile/createProfile.js";
 import SinglePost from "/js/app/routes/profile/singlePost/singlePost.js";
 import { updateUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import { displayAuthForms } from "/js/app/events/authForm/displayAuthForms.js";
-import { createCards } from "/js/app/routes/feed/createCards.js";
 import { createPostMenuEvents } from "/js/app/events/newPost/formMenu/menuHandlers.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 import { likePosts } from "/js/app/events/userActions/likes.js";
@@ -26,6 +25,7 @@ export default async function renderContent() {
    * It identifies content containers and updates their innerHTML with components
    * based on the URL path. It also manages loading states and navigation highlighting.
    */
+
   async function renderPage() {
     const authContent = document.getElementById("auth-content");
     const profileContent = document.getElementById("profile-content");
@@ -75,9 +75,8 @@ export default async function renderContent() {
 
           setTimeout(async () => {
             feedContent.innerHTML = "";
-            feedContent.prepend(Feed());
-            const Posts = await createCards();
-            feedContent.appendChild(Posts);
+            const feedPage = await Feed();
+            feedContent.prepend(feedPage);
             createPostMenuEvents();
             openPost();
           }, 1000);

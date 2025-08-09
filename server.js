@@ -19,7 +19,7 @@ app.post("/user/profile/", (req, res) => {
   }
 });
 
-app.get("*", (req, res, next) => {
+app.get("*", (req, res) => {
   if (req.accepts("html")) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
   } else {

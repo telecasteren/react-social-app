@@ -6,3 +6,6 @@ export const API_LOGIN = "/login";
 export const API_REGISTER = "/register";
 export const API_POSTS = "/social/posts";
 export const API_USERS = "/social/profiles";
+
+// PAGINATION
+export const POSTS_PER_PAGE = 10;
