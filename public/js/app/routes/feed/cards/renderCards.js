@@ -1,8 +1,17 @@
-export async function renderCards(posts, container) {
-  // DEBUG
-  console.log("renderCards posts:", posts);
-  console.log("renderCards container exists?", !!container);
+import { saveKey } from "/js/utils/storage/saveKey.js";
+import { loadKey } from "/js/utils/storage/loadKey.js";
 
+/**
+ * Renders a list of post cards inside a given container.
+ * Each card displays the post's image, author, title, and metadata.
+ * Also updates the stored posts in local storage by merging new posts with existing ones.
+ *
+ * @param {Array<Object>} posts - An array of post objects to render.
+ * @param {HTMLElement} container - The DOM element where the post cards will be appended.
+ *
+ * @returns {void} This function does not return a value.
+ */
+export async function renderCards(posts, container) {
   if (!container) {
     console.error("container is undefined");
     return;
@@ -50,4 +59,14 @@ export async function renderCards(posts, container) {
 
     container.appendChild(card);
   });
+
+  const existingPosts = loadKey("posts") || [];
+  const allPosts = [...existingPosts];
+
+  posts.forEach((post) => {
+    if (!allPosts.some((p) => p.id === post.id)) {
+      allPosts.push(post);
+    }
+  });
+  saveKey("posts", allPosts);
 }

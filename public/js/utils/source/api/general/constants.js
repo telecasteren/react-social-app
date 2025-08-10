@@ -8,4 +8,4 @@ export const API_POSTS = "/social/posts";
 export const API_USERS = "/social/profiles";
 
 // PAGINATION
-export const POSTS_PER_PAGE = 10;
+export const POSTS_PER_PAGE = 80;

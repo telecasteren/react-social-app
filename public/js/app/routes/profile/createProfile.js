@@ -41,6 +41,10 @@ export default async function Profile() {
   });
   const postsList = await Posts(POSTS_PER_PAGE, 1);
 
+  // const postsList = document.createElement("ul");
+  // const initialPosts = await Posts(POSTS_PER_PAGE, 1);
+  // postsList.append(initialPosts);
+
   const postsContainer = document.createElement("div");
   postsContainer.className = "w-[90%] mx-auto";
   postsContainer.appendChild(sortOptions);

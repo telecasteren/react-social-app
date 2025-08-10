@@ -44,6 +44,7 @@ export default function searchInput() {
   input.required = true;
 
   const button = document.createElement("button");
+  button.id = "search-btn";
   button.type = "submit";
   button.className = `text-white absolute
   end-2.5 bottom-2.5 bg-accent-light dark:bg-accent-dark dark:text-black
