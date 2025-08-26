@@ -1,7 +1,11 @@
 import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 import { submitReaction } from "/js/utils/source/api/posts/actions/submitReaction.js";
-
-let LIKES_KEY = "likes";
+import { loadKey } from "/js/utils/storage/loadKey.js";
+import { saveKey } from "/js/utils/storage/saveKey.js";
+import {
+  userMessage,
+  clearUserMessage,
+} from "/js/utils/messages/userMessage.js";
 
 export async function likePosts() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,37 +15,55 @@ export async function likePosts() {
   const currentLikes = document.getElementById("numb-likes");
   const likesIcon = document.getElementById("likes-icon");
 
-  const currentUser = JSON.parse(localStorage.getItem("profile"));
+  const currentUser = loadKey("profile");
   const currentUserId = currentUser?.name || "";
   if (!currentUserId) return;
 
   const icon = likesIcon.querySelector("i");
   likesIcon.addEventListener("click", async () => {
-    const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+    const allLikes = loadKey("likes") || {};
     let usersWhoLiked = allLikes[postId] || [];
-
     const hasLiked = usersWhoLiked.includes(currentUserId);
 
     if (hasLiked) {
       usersWhoLiked = usersWhoLiked.filter((id) => id !== currentUserId);
-      icon.classList.remove("fa-solid");
-      icon.classList.add("fa-regular");
-    } else {
-      usersWhoLiked.push(currentUserId);
-      icon.classList.add("fa-solid");
-      icon.classList.remove("fa-regular");
+      icon.classList.replace("fa-solid", "fa-regular");
 
       try {
-        await submitReaction(postId);
+        await submitReaction(postId, false);
+        userMessage("success", "You have unliked the post.");
       } catch (error) {
-        console.error("Failed to submit reaction:", error);
+        userMessage(
+          "warning",
+          "Something happened when unliking. Please try again."
+        );
+        throw error;
       }
+      currentLikes.textContent = parseInt(currentLikes.textContent, 10) - 1;
+    } else {
+      usersWhoLiked.push(currentUserId);
+      icon.classList.replace("fa-regular", "fa-solid");
+
+      try {
+        await submitReaction(postId, true);
+        userMessage("success", "You have liked the post.");
+      } catch (error) {
+        userMessage(
+          "warning",
+          "Something happened when liking. Please try again."
+        );
+        throw error;
+      }
+      currentLikes.textContent = parseInt(currentLikes.textContent, 10) + 1;
     }
 
-    const previousNumberOfLikes = post._count.reactions;
-    currentLikes.textContent = previousNumberOfLikes + usersWhoLiked.length;
+    if (userMessage) {
+      setTimeout(() => {
+        clearUserMessage();
+      }, 2000);
+    }
 
     allLikes[postId] = usersWhoLiked;
-    localStorage.setItem(LIKES_KEY, JSON.stringify(allLikes));
+    saveKey("likes", allLikes);
   });
 }

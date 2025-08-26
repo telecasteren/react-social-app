@@ -13,10 +13,8 @@ import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers
  * post and author data, and dynamically creates a card layout displaying:
  * - Post image, title, caption, and metadata
  * - Author's avatar and profile link
- * - Number of likes (using localStorage if available)
+ * - Number of likes from API
  * - Comments section (rendered via the `Comments()` component)
- *
- * It also applies styling and layout consistent with Tailwind CSS utility classes.
  *
  * @returns {HTMLElement} A container <div> element with the complete single post UI,
  *                        including post details and comments.
@@ -72,14 +70,12 @@ export default async function SinglePost() {
   const actionContainer = document.createElement("div");
   actionContainer.className = "flex flex-wrap gap-2 items-center justify-end";
 
-  const LIKES_KEY = "likes";
-  const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+  const allLikes = loadKey("likes") || {};
   const usersWhoLiked = allLikes[post.id] || [];
 
   const currentUser = loadKey("profile");
   const currentUserId = currentUser?.name;
   const hasLiked = currentUser && usersWhoLiked.includes(currentUserId);
-  const likeCount = post._count.reactions;
 
   const likes = document.createElement("div");
   likes.id = "likes-icon";
@@ -90,7 +86,9 @@ export default async function SinglePost() {
 
   const numbOfLikes = document.createElement("div");
   numbOfLikes.id = "numb-likes";
-  numbOfLikes.textContent = likeCount;
+
+  const displayedLikes = post._count.reactions;
+  numbOfLikes.textContent = displayedLikes;
   actionContainer.appendChild(numbOfLikes);
 
   const title = document.createElement("h5");
