@@ -20,11 +20,6 @@ export default async function Profile() {
 
   resetPagination();
 
-  // DEBUGGING
-  console.log("Logged in user:", loggedInUser);
-  console.log("Profile visited:", user);
-  //----------
-
   const profileContainer = document.createElement("div");
   profileContainer.className =
     "profile-container w-[100vw] min-h-screen p-8 gap-16";
@@ -40,10 +35,6 @@ export default async function Profile() {
     triggerText: "Sort posts →",
   });
   const postsList = await Posts(POSTS_PER_PAGE, 1);
-
-  // const postsList = document.createElement("ul");
-  // const initialPosts = await Posts(POSTS_PER_PAGE, 1);
-  // postsList.append(initialPosts);
 
   const postsContainer = document.createElement("div");
   postsContainer.className = "w-[90%] mx-auto";

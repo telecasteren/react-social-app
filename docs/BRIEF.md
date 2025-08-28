@@ -39,12 +39,6 @@ The following user stories are optional:
 - User can follow/unfollow a profile
 - User can react to a post content item
 
-### Team work
-
-This assignment allows for team work in groups of 2 students. Students forming a work group will need to coordinate closely throughout the planning, development and testing processes. By working in a pair, you are expected to implement additional features.
-
-Commit regularly and use branches to prevent conflicts with your teammate as you work on the same codebase.
-
 ### Restrictions
 
 Required functionality must be implemented in original, pure JavaScript.

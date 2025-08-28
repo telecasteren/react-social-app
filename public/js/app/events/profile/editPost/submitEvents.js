@@ -73,9 +73,7 @@ export async function editPostFormEventHandlers(
       } catch (error) {
         userMessage("warning", "Couldn't update post.");
 
-        setTimeout(() => {
-          clearUserMessage();
-        }, 3000);
+        setTimeout(clearUserMessage, 3000);
 
         console.error(error);
         throw Error;
@@ -122,9 +120,7 @@ export async function editPostFormEventHandlers(
         } catch (error) {
           userMessage("warning", "Couldn't delete post.");
 
-          setTimeout(() => {
-            clearUserMessage();
-          }, 3000);
+          setTimeout(clearUserMessage, 3000);
 
           console.error(error);
           throw Error;

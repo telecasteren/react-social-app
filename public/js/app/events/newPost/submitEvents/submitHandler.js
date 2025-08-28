@@ -3,8 +3,6 @@ import { createSingleCard } from "/js/app/routes/feed/cards/createSingleCard.js"
 import { openPost } from "/js/app/events/profile/goToPost.js";
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { submitPost } from "/js/utils/source/api/posts/submitPost.js";
-// import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
-// import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 
 /**
  * Retrieves the input values from the "create new post" form,
@@ -20,7 +18,6 @@ export async function submitHandler() {
   const title = document.getElementById("title");
   const body = document.getElementById("caption");
   const currentUser = await getCurrentUser();
-  // const posts = await getPosts(POSTS_PER_PAGE, 1);
 
   if (!currentUser) {
     userMessage("error", "You must be logged in to post.");
@@ -44,17 +41,12 @@ export async function submitHandler() {
   try {
     const createdPost = await submitPost(newPostCard);
 
-    const cardContainer = document.getElementById("card-container");
-    if (!cardContainer) {
-      userMessage("error", "Couldn't append post.");
-      return;
-    }
     const newPostCardCard = createSingleCard(createdPost);
     cardContainer.prepend(newPostCardCard);
 
     openPost();
   } catch (error) {
     userMessage("error", "Failed to submit post to server.");
-    console.error(error);
+    throw error;
   }
 }
