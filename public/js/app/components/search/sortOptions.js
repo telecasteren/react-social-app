@@ -18,7 +18,7 @@ export function createSortOptions({
   triggerType = "button",
   triggerText = "Sort options",
   triggerClasses = "",
-  containerClasses = "sortOptions relative",
+  containerClasses = "sortOptions relative w-fit",
 }) {
   const container = document.createElement("div");
   container.className = containerClasses;

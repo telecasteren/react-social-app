@@ -37,14 +37,14 @@ export function editBioFormEventHandlers(
       setTimeout(() => {
         clearUserMessage();
         window.location.href = window.location.href;
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.error(error);
       userMessage("warning", "Couldn't update bio.");
 
       setTimeout(() => {
         clearUserMessage();
-      }, 3000);
+      }, 1000);
     }
   });
 

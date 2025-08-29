@@ -1,11 +1,15 @@
-import { toggleFollowing } from "/js/app/events/userActions/follows.js";
+import { toggleFollowing } from "/js/app/events/userActions/following/follows.js";
 import { loadKey } from "/js/utils/storage/loadKey.js";
 import { editDescription } from "/js/app/components/forms/bioForm.js";
 import { createTitle } from "/js/app/components/titles/title.js";
 
 export default async function Description(user) {
   const currentUser = loadKey("profile");
-  const followBtn = await toggleFollowing(user);
+
+  let followBtn = null;
+  if (currentUser.name !== user.name) {
+    followBtn = await toggleFollowing(user);
+  }
 
   const userDescription = document.createElement("div");
   userDescription.className = "grid grid-cols-1 mt-16 mb-16";
@@ -50,7 +54,7 @@ export default async function Description(user) {
   }
   userDescription.appendChild(bioRow);
 
-  if (currentUser.name !== user.name && followBtn) {
+  if (followBtn) {
     userDescription.appendChild(followBtn);
   }
 

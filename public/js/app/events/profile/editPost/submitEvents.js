@@ -69,11 +69,11 @@ export async function editPostFormEventHandlers(
         setTimeout(() => {
           clearUserMessage();
           window.location.href = window.location.href;
-        }, 3000);
+        }, 1000);
       } catch (error) {
         userMessage("warning", "Couldn't update post.");
 
-        setTimeout(clearUserMessage, 3000);
+        setTimeout(clearUserMessage, 1000);
 
         console.error(error);
         throw Error;
