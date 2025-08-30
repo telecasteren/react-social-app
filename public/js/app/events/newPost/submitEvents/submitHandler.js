@@ -1,6 +1,5 @@
 import { userMessage } from "/js/utils/messages/userMessage.js";
 import { createSingleCard } from "/js/app/routes/feed/cards/createSingleCard.js";
-import { openPost } from "/js/app/events/profile/goToPost.js";
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { submitPost } from "/js/utils/source/api/posts/submitPost.js";
 
@@ -9,8 +8,8 @@ import { submitPost } from "/js/utils/source/api/posts/submitPost.js";
  * converts the image to a base64 string, creates a new post object,
  * updates the local storage, and uses the {@link createSingleCard}
  * function to render and prepend the new post to the DOM.
+ * Submits the new post to the server using the {@link submitPost} function.
  * @function submitHandler
- * @function openPost - Adds the eventListeners for navigating to the new post.
  * @returns {void}
  */
 export async function submitHandler() {
@@ -25,7 +24,7 @@ export async function submitHandler() {
   }
 
   if (!imgUrlInput.value.trim() || !body.value.trim()) {
-    userMessage("warning", "Please upload an image and write a caption!");
+    userMessage("warning", "Please enter image URL and write a caption.");
     return;
   }
 
@@ -40,11 +39,7 @@ export async function submitHandler() {
 
   try {
     const createdPost = await submitPost(newPostCard);
-
-    const newPostCardCard = createSingleCard(createdPost);
-    cardContainer.prepend(newPostCardCard);
-
-    openPost();
+    createSingleCard(createdPost);
   } catch (error) {
     userMessage("error", "Failed to submit post to server.");
     throw error;

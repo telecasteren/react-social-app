@@ -37,6 +37,7 @@ export default async function Profile() {
   const postsList = await Posts(POSTS_PER_PAGE, 1);
 
   const postsContainer = document.createElement("div");
+  postsContainer.id = "posts-container";
   postsContainer.className = "w-[90%] mx-auto";
   postsContainer.appendChild(sortOptions);
   postsContainer.appendChild(postsList);

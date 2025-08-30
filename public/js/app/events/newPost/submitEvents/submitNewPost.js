@@ -8,7 +8,7 @@ import { submitHandler } from "./submitHandler.js";
  * Attaches the submit event listener to the "create new post" form.
  * When the form is submitted, this function prevents the default submission,
  * calls the {@link submitHandler} function to process the form data
- * and create a new post, and then closes the modal.
+ * and create a new post, closes the modal and then loads the profile with the new post.
  * @function submitPost
  * @returns {void}
  * Displays an error message to user if inputs are empty.

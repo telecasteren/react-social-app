@@ -15,7 +15,7 @@ export function editAvatarFormEventHandlers(form, user) {
       setTimeout(() => {
         clearUserMessage();
         window.location.href = window.location.href;
-      }, 1000);
+      }, 500);
     } catch (error) {
       console.error(error);
       userMessage("warning", "Couldn't update profile image.");
