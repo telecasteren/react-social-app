@@ -1,10 +1,12 @@
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
-import Comments from "/js/app/routes/profile/singlePost/comments.js";
+import Comments from "/js/app/routes/profile/singlePost/comments/displayComments.js";
 import { loadKey } from "../../../../utils/storage/loadKey.js";
 import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { createTitle } from "/js/app/components/titles/title.js";
 import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
+import { toggleCommentFormBtn } from "/js/app/routes/profile/singlePost/comments/toggleCommentFormBtn.js";
+import { commentForm } from "/js/app/components/forms/commentForm.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -15,6 +17,7 @@ import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers
  * - Author's avatar and profile link
  * - Number of likes from API
  * - Comments section (rendered via the `Comments()` component)
+ * - A button that provides the ability to add comments
  *
  * @returns {HTMLElement} A container <div> element with the complete single post UI,
  *                        including post details and comments.
@@ -136,11 +139,25 @@ export default async function SinglePost() {
   }
 
   const commentSection = document.createElement("div");
+  commentSection.id = "comments-section";
   commentSection.className = `border border-solid border-gray-200 dark:border-[#0f0c29]
   pt-8 pr-5 pb-5 pl-5 w-96 rounded-r-sm`;
 
   const comment = await Comments();
   commentSection.appendChild(comment);
+
+  const form = await commentForm();
+  commentSection.prepend(form);
+
+  const commentBtn = toggleCommentFormBtn();
+  commentBtn.classList.remove("hidden");
+  commentSection.prepend(commentBtn);
+
+  commentBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    commentBtn.classList.add("hidden");
+    form.classList.toggle("hidden");
+  });
 
   if (loggedInUser.name === post.author.name) {
     helpText.classList.add("group-hover:opacity-100");

@@ -16,7 +16,6 @@ export async function submitComment(commentData) {
         body: JSON.stringify(commentData),
       }
     );
-    console.log("Response from submitComment:", response);
 
     if (!response.ok) {
       userMessage("Failed to submit comment. Please try again.");
