@@ -21,11 +21,14 @@ export function showTooltip(targetEl, label, content) {
       isMultipleElements = true;
     } else if (content.length === 1) {
       actualContent = content[0];
-    } else {
-      actualContent = "None";
     }
   } else {
     actualContent = content || "None";
+  }
+
+  if (!actualContent) {
+    hideTooltip();
+    return;
   }
 
   tooltip.innerHTML = content.length
