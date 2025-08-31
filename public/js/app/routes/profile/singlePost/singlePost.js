@@ -141,17 +141,27 @@ export default async function SinglePost() {
   const commentSection = document.createElement("div");
   commentSection.id = "comments-section";
   commentSection.className = `border border-solid border-gray-200 dark:border-[#0f0c29]
-  pt-8 pr-5 pb-5 pl-5 w-96 rounded-r-sm`;
+   w-96 rounded-r-sm
+  max-h-[540px] overflow-y-auto flex flex-col`;
 
+  const commentsContainer = document.createElement("div");
+  commentsContainer.className = "p-5 flex-grow";
   const comment = await Comments();
-  commentSection.appendChild(comment);
+  commentsContainer.appendChild(comment);
+
+  const formDiv = document.createElement("div");
+  formDiv.className = "sticky bottom-0 p-5 bg-inherit dark:bg-[#0f0c29]";
 
   const form = await commentForm();
-  commentSection.prepend(form);
+  formDiv.appendChild(form);
 
   const commentBtn = toggleCommentFormBtn();
+  commentBtn.classList.add("mt-2");
   commentBtn.classList.remove("hidden");
-  commentSection.prepend(commentBtn);
+  formDiv.appendChild(commentBtn);
+
+  commentSection.appendChild(commentsContainer);
+  commentSection.appendChild(formDiv);
 
   commentBtn.addEventListener("click", (event) => {
     event.preventDefault();

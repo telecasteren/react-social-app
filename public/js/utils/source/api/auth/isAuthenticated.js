@@ -10,7 +10,7 @@ export async function isAuthenticated() {
     const token = localStorage.getItem("token");
 
     if (!user || !token) {
-      userMessage("info", "Please login to continue.");
+      userMessage("info", "Please login or sign up to continue.");
       setTimeout(clearUserMessage, 2000);
       return false;
     }

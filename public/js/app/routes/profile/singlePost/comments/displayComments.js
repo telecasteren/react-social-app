@@ -12,8 +12,8 @@ export default async function Comments() {
 
   post.comments.forEach(async (comment) => {
     const { block, line } = await commentBlock(comment);
-    commentsContainer.prepend(line);
-    commentsContainer.prepend(block);
+    commentsContainer.appendChild(line);
+    commentsContainer.appendChild(block);
   });
 
   return commentsContainer;

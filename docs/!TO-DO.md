@@ -14,3 +14,10 @@
 ### Additional ideas
 
 - User settings: edit username, name, move logout here
+
+### Testing feedback
+
+- Take me back button
+- Search button in feed reloads page
+- DateBadge on post: remove outline
+- CommentSection order: form at the bottom of the window

@@ -19,6 +19,15 @@ export default async function Navbar(auth) {
   function handleClicks(e, href, isProfile = false) {
     e.preventDefault();
 
+    if (href === "/") {
+      if (window.location.pathname === "/") {
+        window.location.reload();
+        return;
+      }
+      window.location.assign("/");
+      return;
+    }
+
     if (href === "/user/logout/") {
       const logoutContainer = document.createElement("div");
       logoutContainer.className = "flex flex-wrap items-center";
@@ -99,6 +108,10 @@ export default async function Navbar(auth) {
     logoImg.src = "/resources/logo/foodiegram-logo.png";
     logoImg.alt = "Logo: Foodiegram | A slice of life";
     logo.appendChild(logoImg);
+
+    logoImg.addEventListener("click", () => {
+      window.location.assign("/user/feed/");
+    });
 
     const ul = document.createElement("ul");
     ul.className = "active flex space-x-8 dark:text-dark";
