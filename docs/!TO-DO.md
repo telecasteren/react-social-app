@@ -20,4 +20,3 @@
 - Take me back button
 - Search button in feed reloads page
 - DateBadge on post: remove outline
-- CommentSection order: form at the bottom of the window

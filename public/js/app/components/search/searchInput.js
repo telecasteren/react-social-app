@@ -43,17 +43,8 @@ export default function searchInput() {
   input.placeholder = "Search posts..";
   input.required = true;
 
-  const button = document.createElement("button");
-  button.id = "search-btn";
-  button.type = "submit";
-  button.className = `text-white absolute
-  end-2.5 bottom-2.5 bg-accent-light dark:bg-accent-dark dark:text-black
-  hover:brightness-110 font-medium rounded-lg text-sm px-4 py-2`;
-  button.textContent = "Search";
-
   divWrapper.appendChild(divIcon);
   divWrapper.appendChild(input);
-  divWrapper.appendChild(button);
 
   form.appendChild(label);
   form.appendChild(divWrapper);
