@@ -35,8 +35,6 @@ focus:ring-blue-500 focus:border-blue-500`;
  * document.body.appendChild(form);
  */
 export default async function editPostForm(post) {
-  console.log("post element inside editPostForm:", post);
-
   const form = document.createElement("form");
   form.id = "edit-post-form";
   form.className = "p-4 md:p-5 w-full";
