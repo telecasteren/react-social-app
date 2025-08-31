@@ -1,6 +1,10 @@
 import { createTitle } from "/js/app/components/titles/title.js";
 import { editAvatar } from "/js/app/components/forms/avatarForm.js";
 import { loadKey } from "/js/utils/storage/loadKey.js";
+import {
+  showTooltip,
+  hideTooltip,
+} from "/js/app/components/tooltip/tooltip.js";
 
 export default async function Heading(user) {
   const currentUser = loadKey("profile");
@@ -77,24 +81,13 @@ export default async function Heading(user) {
     avatarContainer.appendChild(editAvatarIcon);
     avatarWrapper.appendChild(avatarContainer);
   }
-
   userHeading.appendChild(avatarWrapper);
   userHeading.appendChild(username);
 
-  const fullUsername = document.createElement("div");
-  fullUsername.className = `absolute top-[90%] sm:top-[65%] left-1/2 -translate-x-1/2 sm:translate-x-0
-  bg-gray-100 text-gray-800 p-2 rounded-md shadow-md text-sm
-  opacity-0 transition-opacity duration-200 z-10 pointer-events-none`;
-  fullUsername.textContent = user.name || "Unknown user";
-  userHeading.appendChild(fullUsername);
-
   username.addEventListener("mouseover", () => {
-    fullUsername.classList.remove("opacity-0");
+    showTooltip(username, null, user.name);
   });
-
-  username.addEventListener("mouseout", () => {
-    fullUsername.classList.add("opacity-0");
-  });
+  username.addEventListener("mouseout", hideTooltip);
 
   return userHeading;
 }

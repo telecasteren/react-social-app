@@ -1,3 +1,8 @@
+import {
+  showTooltip,
+  hideTooltip,
+} from "/js/app/components/tooltip/tooltip.js";
+
 export default async function Details(user) {
   const numberOfPosts = user._count.posts;
   const numberOfFollowers = user._count.followers;
@@ -47,6 +52,19 @@ export default async function Details(user) {
 
   userDetails.appendChild(username);
   userDetails.appendChild(statsWrapper);
+
+  const followers = user.followers.map((f) => f.name);
+  const following = user.following.map((f) => f.name);
+
+  followersCircle.addEventListener("mouseover", () => {
+    showTooltip(followersCircle, "Followers", followers);
+  });
+  followersCircle.addEventListener("mouseout", hideTooltip);
+
+  followingCircle.addEventListener("mouseover", () => {
+    showTooltip(followingCircle, "Following", following);
+  });
+  followingCircle.addEventListener("mouseout", hideTooltip);
 
   return userDetails;
 }
