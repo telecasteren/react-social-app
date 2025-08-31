@@ -1,5 +1,5 @@
 import setTheme from "/js/utils/theme/colorMode.js";
-import Navbar from "/js/app/components/navbar/navbar.js";
+import Navbar from "/js/app/components/navbar/Navbar.js";
 import Footer from "/js/app/components/footer/footer.js";
 import renderContent from "/js/app/ui/renderContent.js";
 import { setMetaDescriptions } from "/js/utils/general/setMetaDesc.js";
