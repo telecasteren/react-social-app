@@ -1,6 +1,6 @@
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
-import { createTitle } from "/js/app/components/titles/title.js";
+import { createEditIcon } from "/js/app/components/buttons/editIconBtn.js";
 import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 
 export async function renderPosts(posts, container) {
@@ -45,29 +45,15 @@ export async function renderPosts(posts, container) {
     postContainer.appendChild(postImage);
 
     if (loggedInUser.name === profileVisited.name) {
-      const helpText = createTitle("Edit");
-      helpText.className =
-        "ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem] text-white";
-
-      const editPostIcon = document.createElement("div");
-      editPostIcon.setAttribute("data-id", post.id);
-      editPostIcon.className = `
-        edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10
-        bg-gray-800 dark:bg-[#181438e3] hover:bg-gray-600 hover:dark:bg-[#534ba5e3]
-        rounded shadow-md cursor-pointer flex items-center justify-start
-        overflow-hidden transition-all duration-300 group
-      `;
-
-      const svgIcon = document.createElement("div");
-      svgIcon.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M16.862 3.487a2.125 2.125 0 0 1 3.001 3.001l-1.127 1.127-3.001-3.001 1.127-1.127zM14.993 5.356l3.001 3.001L7.5 18.85H4.5v-3L14.993 5.356z"/>
-        </svg>
-      `;
-
-      helpText.classList.add("group-hover:opacity-100");
-      editPostIcon.appendChild(svgIcon);
-      editPostIcon.appendChild(helpText);
+      const editPostIcon = createEditIcon({
+        label: "Edit",
+        classes: `
+    edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10
+    bg-gray-800 dark:bg-[#181438e3] hover:bg-gray-600 hover:dark:bg-[#534ba5e3]
+    rounded shadow-md cursor-pointer flex items-center justify-start
+    overflow-hidden transition-all duration-300 group
+    `,
+      });
       postContainer.appendChild(editPostIcon);
 
       editPostIcon.addEventListener("click", async () => {

@@ -11,5 +11,4 @@
 
 ### Additional ideas
 
-- Hide edit description trigger until description element is hovered
 - User settings: edit username, name, move logout here
