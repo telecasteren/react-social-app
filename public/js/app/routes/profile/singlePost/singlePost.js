@@ -150,7 +150,8 @@ export default async function SinglePost() {
   commentsContainer.appendChild(comment);
 
   const formDiv = document.createElement("div");
-  formDiv.className = "sticky bottom-0 p-5 bg-inherit dark:bg-[#0f0c29]";
+  formDiv.className =
+    "sticky bottom-0 p-5 bg-inherit bg-white dark:bg-[#0f0c29]";
 
   const form = await commentForm();
   formDiv.appendChild(form);

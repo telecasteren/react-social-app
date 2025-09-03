@@ -8,7 +8,7 @@ import { resetPagination } from "/js/utils/source/api/posts/get/loadMorePosts.js
 import { setScrollHandler } from "/js/utils/source/helpers/setScrollHandler.js";
 import { createScrollHandler } from "/js/app/events/feed/createScrollHandler.js";
 import { renderCards } from "/js/app/routes/feed/cards/renderCards.js";
-import { searchEvents } from "/js/app/events/search/searchEvents.js";
+import { searchPosts } from "/js/app/events/search/queryPosts/searchPosts.js";
 
 export default async function Feed() {
   const container = document.createElement("div");
@@ -32,9 +32,8 @@ export default async function Feed() {
   container.appendChild(Posts);
 
   resetPagination();
-  const scrollHandler = createScrollHandler(getPosts, Posts, renderCards);
-  setScrollHandler(scrollHandler);
-  searchEvents(searchBar, Posts);
+  setScrollHandler(createScrollHandler(getPosts, Posts, renderCards));
+  searchPosts(searchBar, Posts);
 
   return container;
 }
