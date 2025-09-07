@@ -46,7 +46,6 @@ export async function likePosts() {
 
       try {
         await submitReaction(postId, true);
-        userMessage("success", "You have liked the post.");
       } catch (error) {
         userMessage(
           "warning",

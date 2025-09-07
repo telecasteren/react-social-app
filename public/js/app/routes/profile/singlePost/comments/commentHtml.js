@@ -19,10 +19,15 @@ export function commentHtml(comment) {
   const header = document.createElement("div");
   header.className = "flex items-center space-x-2 rtl:space-x-reverse";
 
+  const linkTitle = document.createElement("a");
+  linkTitle.href = `/user/profile/?id=${comment.author.name}`;
+
   const nameSpan = document.createElement("span");
-  nameSpan.className = "text-sm font-semibold text-gray-900 dark:text-white";
+  nameSpan.className =
+    "text-sm font-semibold text-gray-900 dark:text-white hover:text-accent-light hover:dark:text-accent-dark";
   nameSpan.textContent = comment.author.name || "Unknown User";
-  header.appendChild(nameSpan);
+  linkTitle.appendChild(nameSpan);
+  header.appendChild(linkTitle);
 
   const timeSpan = document.createElement("span");
   timeSpan.className = "text-tiny font-normal text-gray-500 dark:text-gray-400";

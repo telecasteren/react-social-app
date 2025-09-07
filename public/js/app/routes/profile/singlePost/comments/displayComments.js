@@ -9,6 +9,7 @@ export default async function Comments() {
   const commentsContainer = document.createElement("div");
   commentsContainer.id = "comments-container";
   commentsContainer.className = "commentsContainer flex flex-col gap-2";
+  commentsContainer.setAttribute("data-post-id", postId);
 
   post.comments.forEach(async (comment) => {
     const { block, line } = await commentBlock(comment);

@@ -1,6 +1,6 @@
 import { dateBadge } from "/js/app/routes/profile/singlePost/createBadge.js";
 import Comments from "/js/app/routes/profile/singlePost/comments/displayComments.js";
-import { loadKey } from "../../../../utils/storage/loadKey.js";
+import { loadKey } from "/js/utils/storage/loadKey.js";
 import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { createTitle } from "/js/app/components/titles/title.js";
@@ -20,7 +20,7 @@ import { commentForm } from "/js/app/components/forms/commentForm.js";
  * - A button that provides the ability to add comments
  *
  * @returns {HTMLElement} A container <div> element with the complete single post UI,
- *                        including post details and comments.
+ * including post details and comments.
  */
 export default async function SinglePost() {
   const post = await getSinglePost();
@@ -31,19 +31,19 @@ export default async function SinglePost() {
 
   const cardContainer = document.createElement("div");
   cardContainer.className =
-    "flex flex-column flex-wrap justify-center mt-5 w-[100vw]";
+    "grid grid-cols-1 md:grid-cols-[2fr,1.5fr] justify-self-center mt-5 max-w-full md:max-w-[60vw]";
 
   const card = document.createElement("div");
-  card.className = `relative max-w-sm w-full bg-white border border-gray-200 rounded-l-sm
+  card.className = `relative flex flex-col bg-white border border-gray-200 rounded-l-sm
     shadow-sm dark:bg-[#0f0c29] dark:border-none`;
 
   const image = document.createElement("img");
-  image.className = "rounded-l-sm w-full h-68 object-cover";
+  image.className = "rounded-l-sm w-full h-[500px] object-cover";
   image.src = post.media?.url || "/resources/icons/no-image-icon.webp";
   image.alt = post.media?.alt || "Default post image";
 
   const contentDiv = document.createElement("div");
-  contentDiv.className = "p-5";
+  contentDiv.className = "p-5 flex-1 overflow-y-auto";
 
   const userContainer = document.createElement("div");
   userContainer.className = "flex flex-wrap items-center justify-between mb-2";
@@ -140,18 +140,16 @@ export default async function SinglePost() {
 
   const commentSection = document.createElement("div");
   commentSection.id = "comments-section";
-  commentSection.className = `border border-solid border-gray-200 dark:border-[#0f0c29]
-   w-96 rounded-r-sm
-  max-h-[540px] overflow-y-auto flex flex-col`;
+  commentSection.className = `flex flex-col w-96 rounded-r-sm
+  border border-solid border-gray-200 dark:border-[#0f0c29]`;
 
   const commentsContainer = document.createElement("div");
-  commentsContainer.className = "p-5 flex-grow";
+  commentsContainer.className = "max-h-[80vh] min-h-[80vh] p-5 overflow-y-auto";
   const comment = await Comments();
   commentsContainer.appendChild(comment);
 
   const formDiv = document.createElement("div");
-  formDiv.className =
-    "sticky bottom-0 p-5 bg-inherit bg-white dark:bg-[#0f0c29]";
+  formDiv.className = "relative bottom-0 p-5 bg-white dark:bg-[#0f0c29]";
 
   const form = await commentForm();
   formDiv.appendChild(form);
