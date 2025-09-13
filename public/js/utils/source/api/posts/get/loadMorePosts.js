@@ -21,7 +21,7 @@ export async function loadMorePosts(fetchMorePosts, container, renderCallback) {
 
     await renderCallback(morePosts, container);
   } catch (error) {
-    console.error("Failed to load more posts:", error);
+    throw error;
   } finally {
     isLoading = false;
   }

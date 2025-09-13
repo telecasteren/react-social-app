@@ -29,9 +29,13 @@ export default async function SinglePost() {
   const userId = post.author.name || "Unknown author";
   const author = userId;
 
+  const backBtn = document.createElement("div");
+  backBtn.className = `text-md mt-2 underline hover:underline-none hover:text-[var(--accent)]`;
+  backBtn.textContent = "← Go back";
+
   const cardContainer = document.createElement("div");
   cardContainer.className =
-    "grid grid-cols-1 md:grid-cols-[2fr,1.5fr] justify-self-center mt-5 max-w-full md:max-w-[60vw]";
+    "grid grid-cols-1 xl:grid-cols-[2fr,1.5fr] justify-self-center mt-5 max-w-[95vw] md:max-w-[60vw]";
 
   const card = document.createElement("div");
   card.className = `relative flex flex-col bg-white border border-gray-200 rounded-l-sm
@@ -140,16 +144,17 @@ export default async function SinglePost() {
 
   const commentSection = document.createElement("div");
   commentSection.id = "comments-section";
-  commentSection.className = `flex flex-col w-96 rounded-r-sm
-  border border-solid border-gray-200 dark:border-[#0f0c29]`;
+  commentSection.className = `flex flex-col xl:w-96 rounded-r-sm
+  border border-solid border-gray-200 dark:border-[#0f0c29] p-0`;
 
   const commentsContainer = document.createElement("div");
-  commentsContainer.className = "max-h-[80vh] min-h-[80vh] p-5 overflow-y-auto";
+  commentsContainer.className =
+    "sm:max-h-[40vh] sm:min-h-[20vh] xl:max-h-[80vh] xl:min-h-[80vh] p-5 overflow-y-auto";
   const comment = await Comments();
   commentsContainer.appendChild(comment);
 
   const formDiv = document.createElement("div");
-  formDiv.className = "relative bottom-0 p-5 bg-white dark:bg-[#0f0c29]";
+  formDiv.className = "relative bottom-0 p-5 m-0 bg-white dark:bg-[#0f0c29]";
 
   const form = await commentForm();
   formDiv.appendChild(form);
@@ -190,10 +195,28 @@ export default async function SinglePost() {
     });
   }
 
+  backBtn.addEventListener("click", () => {
+    const data = JSON.parse(sessionStorage.getItem("previousPage") || "{}");
+    const cameFrom = data.cameFrom || "";
+
+    if (
+      cameFrom?.startsWith("/user/feed/") ||
+      cameFrom?.startsWith("/user/profile/")
+    ) {
+      sessionStorage.setItem("restoreScroll", data.scrollY);
+    }
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "/user/feed/";
+    }
+  });
+
   card.appendChild(image);
   card.appendChild(contentDiv);
   cardContainer.appendChild(card);
   cardContainer.appendChild(commentSection);
+  cardContainer.appendChild(backBtn);
 
   return cardContainer;
 }

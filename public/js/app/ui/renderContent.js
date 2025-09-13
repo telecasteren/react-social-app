@@ -79,6 +79,16 @@ export default async function renderContent() {
             feedContent.prepend(feedPage);
             createPostMenuEvents();
             openPost();
+
+            const scrollY = sessionStorage.getItem("restoreScroll");
+            if (scrollY !== null) {
+              requestAnimationFrame(() => {
+                window.scrollTo(0, parseInt(scrollY, 10));
+                sessionStorage.removeItem("restoreScroll");
+              });
+            } else {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
           }, 1000);
         }
 
@@ -126,6 +136,4 @@ export default async function renderContent() {
 
   window.addEventListener("popstate", renderPage);
   renderPage();
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }

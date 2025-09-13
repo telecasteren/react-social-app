@@ -32,24 +32,33 @@ export async function renderCards(posts, container) {
 
     const image = document.createElement("img");
     image.className = `rounded-t-md w-full h-48 object-cover cursor-pointer`;
-    image.src = post.media?.url || "/resources/icons/no-image-icon.webp";
-    image.alt = post.media?.alt || "Default post image";
+    image.src = post?.media?.url || "/resources/icons/no-image-icon.webp";
+    image.alt = post?.media?.alt || "Default post image";
+    image.loading = "lazy";
+    image.onerror = () => {
+      image.src = "/resources/icons/no-image-icon.webp";
+      image.alt = "Image not available";
+    };
 
     const contentDiv = document.createElement("div");
     contentDiv.className = "p-5";
 
     const linkTitle = document.createElement("a");
-    linkTitle.href = `/user/profile/?id=${post.author?.name || "unknown"}`;
+    linkTitle.href = `/user/profile/?id=${post?.author?.name || "unknown"}`;
     const authorName = document.createElement("h2");
     authorName.className = `mb-2 text-2xl font-bold tracking-tight text-accent-light
     dark:text-accent-dark hover:text-gray-900 hover:dark:text-gray-200`;
-    authorName.textContent = post.author?.name || "Unknown author";
+    authorName.textContent = post?.author?.name || "Unknown author";
     linkTitle.appendChild(authorName);
 
     const title = document.createElement("h3");
     title.className =
       "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white";
-    title.textContent = post.title;
+    title.textContent = post?.title;
+
+    if (post.title.length > 30) {
+      title.textContent = post.title.slice(0, 30) + "...";
+    }
 
     contentDiv.appendChild(linkTitle);
     contentDiv.appendChild(title);

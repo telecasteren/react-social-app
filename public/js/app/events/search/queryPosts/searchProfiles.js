@@ -1,6 +1,7 @@
 import { loadKey } from "/js/utils/storage/loadKey.js";
 import { renderCards } from "/js/app/routes/feed/cards/renderCards.js";
-import { queryPosts } from "/js/utils/source/api/posts/search/queryPosts.js";
+import { queryProfiles } from "/js/utils/source/api/users/search/queryProfiles.js";
+import { returnProfileList } from "/js/app/components/search/returnProfileList.js";
 import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 import {
@@ -13,7 +14,7 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-export async function searchPosts(searchBar, container) {
+export async function searchProfiles(searchBar, container) {
   const searchBox = searchBar.querySelector("#default-search");
   const button = searchBar.querySelector("#search-btn");
   const posts = loadKey("posts");
@@ -36,13 +37,14 @@ export async function searchPosts(searchBar, container) {
     }
 
     try {
-      const results = await queryPosts(query);
-      const postsData = results.data;
+      const results = await queryProfiles(query);
+      const profileData = results.data;
 
-      if (Array.isArray(postsData) && postsData.length > 0) {
+      if (Array.isArray(profileData) && profileData.length > 0) {
+        const profiles = await returnProfileList(profileData);
+
         container.innerHTML = "";
-        renderCards(postsData, container);
-        openPost();
+        container.appendChild(profiles);
       } else {
         container.innerHTML = "";
         userMessage("info", "That search returned no results.");
@@ -54,7 +56,7 @@ export async function searchPosts(searchBar, container) {
         }, 5000);
       }
     } catch (error) {
-      userMessage("error", "Failed to search posts. Please try again.");
+      userMessage("error", "Failed to search profiles. Please try again.");
       throw error;
     } finally {
       setTimeout(() => clearUserMessage(), 3000);

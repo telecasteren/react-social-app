@@ -9,6 +9,8 @@ import { setScrollHandler } from "/js/utils/source/helpers/setScrollHandler.js";
 import { createScrollHandler } from "/js/app/events/feed/createScrollHandler.js";
 import { renderCards } from "/js/app/routes/feed/cards/renderCards.js";
 import { searchPosts } from "/js/app/events/search/queryPosts/searchPosts.js";
+import { openPost } from "/js/app/events/profile/goToPost.js";
+// import { searchProfiles } from "/js/app/events/search/queryPosts/searchProfiles.js";
 
 export default async function Feed() {
   const container = document.createElement("div");
@@ -34,6 +36,16 @@ export default async function Feed() {
   resetPagination();
   setScrollHandler(createScrollHandler(getPosts, Posts, renderCards));
   searchPosts(searchBar, Posts);
+  openPost();
+  // searchProfiles(searchBar, Posts);
+
+  requestAnimationFrame(() => {
+    const scrollY = sessionStorage.getItem("restoreScroll");
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY, 10));
+      sessionStorage.removeItem("restoreScroll");
+    }
+  });
 
   return container;
 }
