@@ -6,7 +6,7 @@ import {
   API_POSTS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function submitReaction() {
+export const submitReaction = async () => {
   const postId = await getPostParams();
 
   try {
@@ -34,4 +34,4 @@ export async function submitReaction() {
     console.error("Error submitting reaction:", error);
     throw error;
   }
-}
+};

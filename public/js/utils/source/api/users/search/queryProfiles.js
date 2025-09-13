@@ -4,7 +4,7 @@ import {
   API_USERS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function queryProfiles(query) {
+export const queryProfiles = async (query) => {
   const response = await authFetch(
     `${API_BASE_URL}${API_USERS}/search?q=${query}&_posts=true`
   );
@@ -14,4 +14,4 @@ export async function queryProfiles(query) {
   }
 
   return await response.json();
-}
+};

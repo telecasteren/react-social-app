@@ -2,7 +2,7 @@ import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
 import { renderCards } from "/js/app/routes/feed/cards/renderCards.js";
 import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 
-export async function createCards() {
+export const createCards = async () => {
   const { data: posts } = await getPosts(POSTS_PER_PAGE, 1);
 
   const cardContainer = document.createElement("div");
@@ -12,4 +12,4 @@ export async function createCards() {
 
   await renderCards(posts, cardContainer);
   return cardContainer;
-}
+};

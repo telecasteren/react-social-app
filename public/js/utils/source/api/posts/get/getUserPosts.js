@@ -6,7 +6,7 @@ import {
   POSTS_PER_PAGE,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function getUserPosts(limit = POSTS_PER_PAGE, page = 1) {
+export const getUserPosts = async (limit = POSTS_PER_PAGE, page = 1) => {
   const activeUser = loadKey("profile") || {};
   const loggedInUsername = activeUser.name || "";
 
@@ -26,4 +26,4 @@ export async function getUserPosts(limit = POSTS_PER_PAGE, page = 1) {
   }
 
   return await response.json();
-}
+};

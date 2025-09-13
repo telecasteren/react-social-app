@@ -7,7 +7,7 @@ import {
   closeModal,
 } from "/js/app/components/modal/createModal.js";
 
-export function handleClicks(e, href, isProfile = false) {
+export const handleClicks = (e, href, isProfile = false) => {
   e.preventDefault();
 
   if (href === "/") {
@@ -65,4 +65,4 @@ export function handleClicks(e, href, isProfile = false) {
 
     renderContent();
   }
-}
+};

@@ -7,7 +7,7 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-export async function likePosts() {
+export const likePosts = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));
   const post = await getSinglePost(postId);
@@ -65,4 +65,4 @@ export async function likePosts() {
     allLikes[postId] = usersWhoLiked;
     saveKey("likes", allLikes);
   });
-}
+};

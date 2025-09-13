@@ -6,10 +6,10 @@
  * @function clearUserMessage
  * @returns {void}
  */
-export function clearUserMessage() {
+export const clearUserMessage = () => {
   const existingAlert = document.querySelector(".user-message");
   if (existingAlert) existingAlert.remove();
-}
+};
 
 /**
  * Displays a custom user message alert at the top of the screen.
@@ -23,7 +23,7 @@ export function clearUserMessage() {
  * @example
  * userMessage("success", "Your post was submitted successfully!");
  */
-export function userMessage(type, message) {
+export const userMessage = (type, message) => {
   clearUserMessage();
 
   const alertTypes = {
@@ -69,14 +69,14 @@ export function userMessage(type, message) {
   div.appendChild(document.createTextNode(message));
   document.body.prepend(div);
 
-  function closeAlert(event) {
+  const closeAlert = (event) => {
     if (!div.contains(event.target)) {
       div.remove();
       document.removeEventListener("click", closeAlert);
     }
-  }
+  };
 
   setTimeout(() => {
     document.addEventListener("click", closeAlert);
   }, 500);
-}
+};

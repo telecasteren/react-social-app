@@ -1,4 +1,4 @@
-export function typeTitle(text) {
+export const typeTitle = (text) => {
   const title = document.createElement("h1");
   title.className = "text-center font-brand";
 
@@ -7,7 +7,7 @@ export function typeTitle(text) {
   dot.textContent = ".";
 
   let index = 0;
-  function typeLetters() {
+  const typeLetters = () => {
     if (index < text.length) {
       title.textContent += text.charAt(index);
       index++;
@@ -15,7 +15,7 @@ export function typeTitle(text) {
     } else if (index === text.length) {
       title.appendChild(dot);
     }
-  }
+  };
 
   typeLetters();
 
@@ -24,9 +24,9 @@ export function typeTitle(text) {
   }, 3000);
 
   return title;
-}
+};
 
-export function typeText() {
+export const typeText = () => {
   const title = document.createElement("h2");
   title.className = "text-center font-typewriter typewriter";
 
@@ -40,7 +40,7 @@ export function typeText() {
   let charIndex = 0;
   let isErasing = false;
 
-  function typeEffect() {
+  const typeEffect = () => {
     const currentText = texts[textIndex];
     const visibleText = currentText.slice(0, charIndex);
 
@@ -68,8 +68,8 @@ export function typeText() {
         setTimeout(typeEffect, 400);
       }
     }
-  }
+  };
 
   typeEffect();
   return title;
-}
+};

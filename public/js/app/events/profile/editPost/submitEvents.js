@@ -41,15 +41,15 @@ import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
  *   document.getElementById("confirm-no")
  * );
  */
-export async function editPostFormEventHandlers(
+export const editPostFormEventHandlers = async (
   form,
   postData,
   deleteButton,
   confirmMessage,
   confirmDeletion,
   denyDeletion
-) {
-  function submitEditedPostEvents() {
+) => {
+  const submitEditedPostEvents = () => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -79,9 +79,9 @@ export async function editPostFormEventHandlers(
         throw Error;
       }
     });
-  }
+  };
 
-  function deleteBtnEvents() {
+  const deleteBtnEvents = () => {
     deleteButton.addEventListener("click", async () => {
       confirmMessage.classList.remove("hidden");
 
@@ -131,8 +131,8 @@ export async function editPostFormEventHandlers(
         if (e.target === denyDeletion) confirmMessage.classList.add("hidden");
       });
     });
-  }
+  };
 
   submitEditedPostEvents();
   deleteBtnEvents();
-}
+};

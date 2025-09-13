@@ -1,4 +1,4 @@
-export function getAuthInputs() {
+export const getAuthInputs = () => {
   const form = document.getElementById("auth-form");
   const usernameInput = document.getElementById("username");
   const emailInput = document.getElementById("email");
@@ -6,4 +6,4 @@ export function getAuthInputs() {
   const confirmPassInput = document.getElementById("confirm-password");
 
   return { form, usernameInput, emailInput, passwordInput, confirmPassInput };
-}
+};

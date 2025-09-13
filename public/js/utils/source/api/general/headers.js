@@ -1,7 +1,7 @@
 import { loadKey } from "../../../storage/loadKey.js";
 import { API_KEY } from "/js/utils/source/api/general/constants.js";
 
-export function headers(hasBody = false) {
+export const headers = (hasBody = false) => {
   const headers = new Headers();
 
   const token = loadKey("token");
@@ -19,4 +19,4 @@ export function headers(hasBody = false) {
   }
 
   return headers;
-}
+};

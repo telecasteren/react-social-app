@@ -1,7 +1,7 @@
 import { typeTitle, typeText } from "/js/app/components/titles/typewriter.js";
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const dashboardContainer = document.createElement("div");
   dashboardContainer.className =
     "dashboard-container justify-items-center min-h-screen p-8 gap-16";
@@ -58,4 +58,5 @@ export default function Dashboard() {
   dashboardContainer.appendChild(signupBtn);
 
   return dashboardContainer;
-}
+};
+export default Dashboard;

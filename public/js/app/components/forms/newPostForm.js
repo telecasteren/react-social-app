@@ -2,7 +2,7 @@ const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border
 border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
 focus:ring-blue-500 focus:border-blue-500`;
 
-export default function newPost() {
+const newPost = () => {
   const form = document.createElement("form");
   form.id = "new-post-form";
   form.className = "p-4 md:p-5 w-full";
@@ -133,4 +133,5 @@ export default function newPost() {
   form.appendChild(submitButton);
 
   return form;
-}
+};
+export default newPost;

@@ -9,7 +9,7 @@ import {
   API_POSTS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function deleteComment(commentId) {
+export const deleteComment = async (commentId) => {
   const postId = getPostParams();
   console.log("Deleting comment for post: ", postId, "Comment Id: ", commentId);
 
@@ -41,4 +41,4 @@ export async function deleteComment(commentId) {
     );
     return;
   }
-}
+};

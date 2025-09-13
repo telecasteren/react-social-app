@@ -7,7 +7,7 @@
  *
  * @returns {HTMLDivElement} The constructed modal element.
  */
-export function createModal() {
+export const createModal = () => {
   const modal = document.createElement("div");
   modal.className = "modal";
   modal.style.display = "none";
@@ -24,7 +24,7 @@ export function createModal() {
   modal.appendChild(modalContent);
 
   return modal;
-}
+};
 
 /**
  * Displays a modal with dynamic content. If the modal doesn't exist
@@ -35,7 +35,7 @@ export function createModal() {
  *
  * @param {HTMLElement} content - The content to display inside the modal.
  */
-export function toggleModal(content) {
+export const toggleModal = (content) => {
   let modal = document.querySelector(".modal");
 
   if (!modal) {
@@ -61,7 +61,7 @@ export function toggleModal(content) {
 
   closeButton.addEventListener("click", onCloseClick);
   window.addEventListener("click", onClickOutside);
-}
+};
 
 /**
  * Hides the modal if it exists, and removes any lingering event listeners
@@ -70,7 +70,7 @@ export function toggleModal(content) {
  * Intended to close the modal by setting its `display` style to `none`
  * and detaching event listeners for the close button and outside clicks.
  */
-export function closeModal() {
+export const closeModal = () => {
   const modal = document.querySelector(".modal");
   const closeButton = document.querySelector(".close-modal");
 
@@ -90,4 +90,4 @@ export function closeModal() {
 
   closeButton.removeEventListener("click", onCloseClick);
   window.removeEventListener("click", onClickOutside);
-}
+};

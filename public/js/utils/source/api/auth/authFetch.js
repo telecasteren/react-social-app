@@ -1,8 +1,8 @@
 import { headers } from "../general/headers.js";
 
-export async function authFetch(url, options = {}) {
+export const authFetch = (url, options = {}) => {
   return fetch(url, {
     ...options,
     headers: headers(Boolean(options.body)),
   });
-}
+};

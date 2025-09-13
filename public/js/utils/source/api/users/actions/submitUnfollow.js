@@ -5,7 +5,7 @@ import {
   API_USERS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function submitUnfollow(user) {
+export const submitUnfollow = async (user) => {
   const username = user.name;
 
   try {
@@ -40,4 +40,4 @@ export async function submitUnfollow(user) {
 
     throw error;
   }
-}
+};

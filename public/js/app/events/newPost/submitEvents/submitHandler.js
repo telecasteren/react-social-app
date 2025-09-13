@@ -12,7 +12,7 @@ import { submitPost } from "/js/utils/source/api/posts/submitPost.js";
  * @function submitHandler
  * @returns {void}
  */
-export async function submitHandler() {
+export const submitHandler = async () => {
   const imgUrlInput = document.getElementById("image_url");
   const title = document.getElementById("title");
   const body = document.getElementById("caption");
@@ -44,4 +44,4 @@ export async function submitHandler() {
     userMessage("error", "Failed to submit post to server.");
     throw error;
   }
-}
+};

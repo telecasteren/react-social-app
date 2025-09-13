@@ -4,7 +4,7 @@ import {
 } from "../../events/authForm/handlers/validation.js";
 import { setAuthFormEvents } from "/js/app/events/authForm/handlers/setAuthEvents.js";
 
-export default function AuthForm(isSignup = false) {
+const AuthForm = (isSignup = false) => {
   const authContainer = document.getElementById("auth-content");
   authContainer.innerHTML = "";
 
@@ -169,4 +169,5 @@ export default function AuthForm(isSignup = false) {
   }
 
   setAuthFormEvents(isSignup);
-}
+};
+export default AuthForm;

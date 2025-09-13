@@ -4,7 +4,7 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-export async function isAuthenticated() {
+export const isAuthenticated = async () => {
   try {
     const user = await getCurrentUser();
     const token = localStorage.getItem("token");
@@ -20,4 +20,4 @@ export async function isAuthenticated() {
     userMessage("error", "An error occurred while authenticating.");
     throw error;
   }
-}
+};

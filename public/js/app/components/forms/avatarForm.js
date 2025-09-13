@@ -1,12 +1,8 @@
 import { editAvatarFormEventHandlers } from "/js/app/events/profile/editAvatar/submitHandlers.js";
 
-export async function editAvatar(user, originalAvatar) {
+export const editAvatar = async (user, originalAvatar) => {
   const form = document.createElement("form");
   form.id = "avatar-form";
-  //   form.className = `
-  //   grid grid-cols-1 mt-4 mb-4 w-full max-w-[90%] sm:max-w-[75%] md:max-w-[60%] lg:max-w-[40%]
-  //   justify-self-center
-  // `;
 
   const avatarContainer = document.createElement("div");
   avatarContainer.className = "";
@@ -64,4 +60,4 @@ export async function editAvatar(user, originalAvatar) {
   editAvatarFormEventHandlers(form, user);
 
   return form;
-}
+};

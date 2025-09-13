@@ -1,7 +1,7 @@
 import { getAuthInputs } from "./getFormInputs.js";
 import { handleAuth } from "./handleAuth.js";
 
-export function setAuthFormEvents(isSignup) {
+export const setAuthFormEvents = (isSignup) => {
   const { form } = getAuthInputs();
   if (form) {
     form.addEventListener("submit", (event) => {
@@ -9,4 +9,4 @@ export function setAuthFormEvents(isSignup) {
       handleAuth(isSignup);
     });
   }
-}
+};

@@ -2,7 +2,7 @@ import { initialUnderline } from "/js/app/components/navbar/updateUnderline.js";
 import { MobileNav } from "/js/app/components/navbar/MobileNav.js";
 import { DesktopNav } from "/js/app/components/navbar/DesktopNav.js";
 
-export default async function Navbar(auth) {
+const Navbar = async (auth) => {
   const links = [
     { href: "/", text: "Welcome", authOnly: false, guestOnly: true },
     { href: "/user/feed/", text: "Feed", authOnly: true },
@@ -19,7 +19,7 @@ export default async function Navbar(auth) {
   initialUnderline(links);
   window.addEventListener("resize", () => initialUnderline(links));
 
-  function handleScreenChange() {
+  const handleScreenChange = () => {
     if (window.innerWidth > 767) {
       desktopNav.classList.remove("hidden");
       mobileNav.classList.add("hidden");
@@ -27,7 +27,7 @@ export default async function Navbar(auth) {
       desktopNav.classList.add("hidden");
       mobileNav.classList.remove("hidden");
     }
-  }
+  };
   window.addEventListener("resize", handleScreenChange);
   handleScreenChange();
 
@@ -52,4 +52,5 @@ export default async function Navbar(auth) {
       }
     }, 100);
   });
-}
+};
+export default Navbar;

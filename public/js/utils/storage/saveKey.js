@@ -1,3 +1,3 @@
-export function saveKey(key, value) {
+export const saveKey = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
-}
+};

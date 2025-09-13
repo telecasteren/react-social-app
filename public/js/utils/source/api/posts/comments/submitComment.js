@@ -5,7 +5,7 @@ import {
   API_POSTS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function submitComment(commentData) {
+export const submitComment = async (commentData) => {
   try {
     const postId = getPostParams();
 
@@ -26,4 +26,4 @@ export async function submitComment(commentData) {
   } catch (error) {
     throw error;
   }
-}
+};

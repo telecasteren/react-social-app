@@ -4,7 +4,7 @@ import {
   API_USERS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function getAllUsersFromApi() {
+export const getAllUsersFromApi = async () => {
   const response = await authFetch(API_BASE_URL + API_USERS);
 
   if (!response.ok) {
@@ -13,4 +13,4 @@ export async function getAllUsersFromApi() {
 
   const users = await response.json();
   return users;
-}
+};

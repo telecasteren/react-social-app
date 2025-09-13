@@ -15,7 +15,7 @@ import { submitHandler } from "./submitHandler.js";
  * @example
  * errorText: Missing image, title or caption.;
  */
-export function submitPost() {
+export const submitPost = () => {
   const form = document.getElementById("new-post-form");
   const modal = document.querySelector(".modal");
 
@@ -61,4 +61,4 @@ export function submitPost() {
       error.classList.remove("hidden");
     }
   });
-}
+};

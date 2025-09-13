@@ -4,7 +4,7 @@ import {
 } from "/js/utils/messages/userMessage.js";
 import { updateUserAvatar } from "/js/utils/source/api/users/avatar/updateAvatar.js";
 
-export function editAvatarFormEventHandlers(form, user) {
+export const editAvatarFormEventHandlers = (form, user) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -23,4 +23,4 @@ export function editAvatarFormEventHandlers(form, user) {
       setTimeout(clearUserMessage, 1000);
     }
   });
-}
+};

@@ -9,7 +9,7 @@ tooltip.className = `absolute w-fit max-w-xs
  *
  * @function hideTooltip hides the tooltip again when user stops hovering the target element.
  */
-export function showTooltip(targetEl, label, content) {
+export const showTooltip = (targetEl, label, content) => {
   tooltip.classList.remove("opacity-0");
 
   let actualContent = "";
@@ -38,8 +38,8 @@ export function showTooltip(targetEl, label, content) {
     : [];
 
   targetEl.appendChild(tooltip);
-}
+};
 
-export function hideTooltip() {
+export const hideTooltip = () => {
   tooltip.classList.add("opacity-0");
-}
+};

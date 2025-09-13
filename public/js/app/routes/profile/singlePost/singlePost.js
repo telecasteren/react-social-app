@@ -22,7 +22,7 @@ import { commentForm } from "/js/app/components/forms/commentForm.js";
  * @returns {HTMLElement} A container <div> element with the complete single post UI,
  * including post details and comments.
  */
-export default async function SinglePost() {
+const SinglePost = async () => {
   const post = await getSinglePost();
   const loggedInUser = await getCurrentUser();
 
@@ -219,4 +219,5 @@ export default async function SinglePost() {
   cardContainer.appendChild(backBtn);
 
   return cardContainer;
-}
+};
+export default SinglePost;

@@ -1,7 +1,7 @@
 import { getUserPosts } from "/js/utils/source/api/posts/get/getUserPosts.js";
 import { renderPosts } from "/js/app/routes/profile/sections/posts/renderPosts.js";
 
-export default async function Posts(limit, page = 1) {
+const Posts = async (limit, page = 1) => {
   const { data: userPosts } = await getUserPosts(limit, page);
 
   const postsList = document.createElement("div");
@@ -21,4 +21,5 @@ export default async function Posts(limit, page = 1) {
 
   await renderPosts(userPosts, postsList);
   return postsList;
-}
+};
+export default Posts;

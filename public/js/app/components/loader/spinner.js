@@ -1,4 +1,4 @@
-export function spinner() {
+export const spinner = () => {
   const container = document.createElement("div");
   container.className = "text-center";
 
@@ -47,4 +47,4 @@ export function spinner() {
   document.body.appendChild(container);
 
   return container;
-}
+};

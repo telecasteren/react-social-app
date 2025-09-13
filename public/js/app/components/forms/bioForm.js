@@ -1,7 +1,7 @@
 import { editBioFormEventHandlers } from "/js/app/events/profile/editBio/submitEvents.js";
 import Description from "/js/app/routes/profile/sections/description.js";
 
-export async function editDescription(user) {
+export const editDescription = async (user) => {
   const form = document.createElement("form");
   form.id = "bio-form";
   form.className = `
@@ -67,14 +67,14 @@ export async function editDescription(user) {
     "hidden max-w-[100%] rounded bg-red-100 mt-2 p-2 border border-red-600 text-red-600";
   confirmMessage.textContent = "Are you sure you want to delete this bio?";
 
-  function createConfirmationOption(text) {
+  const createConfirmationOption = (text) => {
     const option = document.createElement("p");
     option.className =
       "mt-2 max-w-content text-sm text-red-600 hover:underline hover:font-bold cursor-pointer";
     option.id = "error-text";
     option.textContent = text;
     return option;
-  }
+  };
 
   const confirmDeletion = createConfirmationOption("Yes");
   const denyDeletion = createConfirmationOption("No");
@@ -98,10 +98,10 @@ export async function editDescription(user) {
     denyDeletion
   );
 
-  closeButton.addEventListener("click", async (event) => {
+  closeButton.addEventListener("click", async () => {
     const bio = await Description(user);
     form.replaceWith(bio);
   });
 
   return form;
-}
+};

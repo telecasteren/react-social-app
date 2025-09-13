@@ -1,4 +1,4 @@
-export default function Footer() {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footer = document.createElement("footer");
@@ -20,4 +20,5 @@ export default function Footer() {
   footer.appendChild(img);
 
   document.body.appendChild(footer);
-}
+};
+export default Footer;

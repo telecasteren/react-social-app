@@ -1,4 +1,4 @@
-export function createTitle(text) {
+export const createTitle = (text) => {
   const title = document.createElement("h1");
   title.className = "text-center";
   title.textContent = text;
@@ -9,4 +9,4 @@ export function createTitle(text) {
   title.appendChild(dot);
 
   return title;
-}
+};

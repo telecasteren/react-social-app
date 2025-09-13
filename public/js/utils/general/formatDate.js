@@ -1,4 +1,4 @@
-export function formatDate(isoDateString) {
+export const formatDate = (isoDateString) => {
   const date = new Date(isoDateString);
 
   const day = date.getDate().toString().padStart(2, "0");
@@ -6,4 +6,4 @@ export function formatDate(isoDateString) {
   const year = date.getFullYear().toString().slice(-2);
 
   return `${day}.${month}.${year}`;
-}
+};

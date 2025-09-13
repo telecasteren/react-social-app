@@ -5,7 +5,7 @@ import {
 import { authFetch } from "/js/utils/source/api/auth/authFetch.js";
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 
-export async function updateUserBio(user) {
+export const updateUserBio = async (user) => {
   const form = document.querySelector("#bio-form");
   if (!form) return;
 
@@ -28,9 +28,9 @@ export async function updateUserBio(user) {
   } catch (error) {
     throw new Error("Updating profile bio failed.");
   }
-}
+};
 
-export async function clearUserBio() {
+export const clearUserBio = async () => {
   const profile = await getUserParams();
   const userId = profile.name;
 
@@ -52,4 +52,4 @@ export async function clearUserBio() {
   } catch (error) {
     throw new Error("Deleting profile bio failed.");
   }
-}
+};

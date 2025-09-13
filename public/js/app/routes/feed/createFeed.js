@@ -12,7 +12,7 @@ import { searchPosts } from "/js/app/events/search/queryPosts/searchPosts.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 // import { searchProfiles } from "/js/app/events/search/queryPosts/searchProfiles.js";
 
-export default async function Feed() {
+const Feed = async () => {
   const container = document.createElement("div");
   const headerContent = document.createElement("div");
   headerContent.className = "feed-header justify-items-center pt-8 gap-16";
@@ -48,4 +48,5 @@ export default async function Feed() {
   });
 
   return container;
-}
+};
+export default Feed;

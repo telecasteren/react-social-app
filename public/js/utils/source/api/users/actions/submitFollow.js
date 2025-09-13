@@ -5,7 +5,7 @@ import {
   API_USERS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function submitFollow(user) {
+export const submitFollow = async (user) => {
   const username = user.name;
 
   try {
@@ -39,4 +39,4 @@ export async function submitFollow(user) {
     );
     throw error;
   }
-}
+};

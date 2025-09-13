@@ -3,7 +3,7 @@ import {
   showLink,
 } from "/js/app/components/navbar/utils/createAndShowLink.js";
 
-export function DesktopNav(auth, links) {
+export const DesktopNav = (auth, links) => {
   const nav = document.createElement("nav");
   nav.id = "desktop-nav";
   nav.className =
@@ -38,4 +38,4 @@ export function DesktopNav(auth, links) {
   nav.appendChild(logo);
 
   return nav;
-}
+};

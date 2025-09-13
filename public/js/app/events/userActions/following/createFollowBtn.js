@@ -1,6 +1,6 @@
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 
-export function createFollowButton() {
+export const createFollowButton = () => {
   const followBtn = createButton({
     text: "Follow",
     href: "#",
@@ -8,4 +8,4 @@ export function createFollowButton() {
   });
   followBtn.classList.add("follow-btn", "btn-secondary", "justify-self-center");
   return followBtn;
-}
+};

@@ -5,7 +5,7 @@ import {
   API_REGISTER,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function register(name, email, password) {
+export const register = async (name, email, password) => {
   const response = await authFetch(API_BASE_URL + API_AUTH + API_REGISTER, {
     method: "POST",
     body: JSON.stringify({ name, email, password }),
@@ -16,4 +16,4 @@ export async function register(name, email, password) {
   }
 
   throw new Error("Registering account failed.");
-}
+};

@@ -6,12 +6,12 @@ import {
 } from "/js/utils/general/constants.js";
 import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 
-export function getPostId(param) {
+export const getPostId = (param) => {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
-}
+};
 
-export async function setMetaDescriptions() {
+export const setMetaDescriptions = async () => {
   const path = window.location.pathname;
   const { data: posts } = await getPosts(POSTS_PER_PAGE, 1);
 
@@ -49,4 +49,4 @@ export async function setMetaDescriptions() {
     document.head.appendChild(metaTag);
   }
   metaTag.setAttribute("content", metaDescription);
-}
+};

@@ -8,9 +8,9 @@ import { getAuthInputs } from "./getFormInputs.js";
  * Adds a validation listener to the email input field.
  * Checks for proper email format and ensures it ends with
  * either "@noroff.no" or "@stud.noroff.no".
- * * @returns {string} A message indicating whether the email format is valid or not.
+ * @returns {string} A message indicating whether the email format is valid or not.
  */
-export function emailValidation() {
+export const emailValidation = () => {
   const { emailInput } = getAuthInputs();
   const validDomains = ["@noroff.no", "@stud.noroff.no"];
 
@@ -44,7 +44,7 @@ export function emailValidation() {
       clearFormErrorMessage(emailInput);
     });
   }
-}
+};
 
 /**
  * Validates user password with these criteria:
@@ -55,7 +55,7 @@ export function emailValidation() {
  *
  * @returns {string} A message indicating whether the password is valid or what criteria are missing.
  */
-export function passwordValidation() {
+export const passwordValidation = () => {
   const { passwordInput, confirmPassInput } = getAuthInputs();
 
   if (!passwordInput) {
@@ -94,4 +94,4 @@ export function passwordValidation() {
 
     return "The password is valid";
   }
-}
+};

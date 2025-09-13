@@ -1,4 +1,4 @@
-function timeAgo(date) {
+const timeAgo = (date) => {
   if (!date) return "Unknown";
 
   const now = new Date();
@@ -20,9 +20,9 @@ function timeAgo(date) {
     }
   }
   return "just now";
-}
+};
 
-export function dateBadge(createdAt, bgColor, textColor, borderColor) {
+export const dateBadge = (createdAt, bgColor, textColor, borderColor) => {
   const span = document.createElement("span");
   span.className = `bg-${bgColor} text-${textColor} text-xs font-medium inline-flex items-center
   px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-${textColor} border border-${borderColor}`;
@@ -30,4 +30,4 @@ export function dateBadge(createdAt, bgColor, textColor, borderColor) {
   span.appendChild(document.createTextNode(timeAgo(createdAt)));
 
   return span;
-}
+};

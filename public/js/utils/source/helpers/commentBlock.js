@@ -2,7 +2,7 @@ import { commentHtml } from "/js/app/routes/profile/singlePost/comments/commentH
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { deleteComment } from "/js/utils/source/api/posts/comments/deleteComment.js";
 
-export async function commentBlock(comment) {
+export const commentBlock = async (comment) => {
   const currentUser = await getCurrentUser();
 
   const lineEl = document.createElement("hr");
@@ -34,4 +34,4 @@ export async function commentBlock(comment) {
   }
 
   return { block: singleCommentContainer, line: lineEl };
-}
+};

@@ -3,7 +3,7 @@ import { loadKey } from "/js/utils/storage/loadKey.js";
 import { editDescription } from "/js/app/components/forms/bioForm.js";
 import { createEditIcon } from "/js/app/components/buttons/editIconBtn.js";
 
-export default async function Description(user) {
+const Description = async (user) => {
   const currentUser = loadKey("profile");
 
   let followBtn = null;
@@ -46,4 +46,5 @@ export default async function Description(user) {
   }
 
   return userDescription;
-}
+};
+export default Description;

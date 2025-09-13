@@ -5,14 +5,14 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-function toggleCommentBtn() {
+const toggleCommentBtn = () => {
   const commentBtn = document.getElementById("toggle-comment-form-btn");
   if (commentBtn) {
     commentBtn.classList.remove("hidden");
   }
-}
+};
 
-export async function commentForm() {
+export const commentForm = async () => {
   const currentUser = await getCurrentUser();
 
   const commentForm = document.createElement("div");
@@ -86,4 +86,4 @@ export async function commentForm() {
   commentForm.appendChild(commentContainer);
 
   return commentForm;
-}
+};

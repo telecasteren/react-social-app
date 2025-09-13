@@ -10,7 +10,7 @@
       );
       ```
  */
-export function displayFormErrorMessage(field, message) {
+export const displayFormErrorMessage = (field, message) => {
   let isExistingError = field.nextElementSibling;
   if (isExistingError && isExistingError.classList.contains("formError")) {
     isExistingError.innerText = message;
@@ -21,7 +21,7 @@ export function displayFormErrorMessage(field, message) {
 
     field.parentNode.insertBefore(errorDiv, field.nextSibling);
   }
-}
+};
 
 /**
  * Removes an existing error message from an input field.
@@ -31,9 +31,9 @@ export function displayFormErrorMessage(field, message) {
  clearFormErrorMessage(emailInput);
       ```
  */
-export function clearFormErrorMessage(field) {
+export const clearFormErrorMessage = (field) => {
   const existingError = field.nextElementSibling;
   if (existingError && existingError.classList.contains("formError")) {
     existingError.remove();
   }
-}
+};

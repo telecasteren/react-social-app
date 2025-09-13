@@ -5,7 +5,7 @@ import {
   API_POSTS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function deletePost(post) {
+export const deletePost = async (post) => {
   try {
     const response = await authFetch(`${API_BASE_URL}${API_POSTS}/${post.id}`, {
       method: "DELETE",
@@ -25,4 +25,4 @@ export async function deletePost(post) {
     console.error(`Error when deleting post with ID: ${post.id}`, error);
     throw error;
   }
-}
+};

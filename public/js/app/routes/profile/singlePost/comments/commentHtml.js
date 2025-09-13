@@ -1,6 +1,6 @@
 import { formatDate } from "/js/utils/general/formatDate.js";
 
-export function commentHtml(comment) {
+export const commentHtml = (comment) => {
   const container = document.createElement("div");
   container.id = "comment-container";
   container.setAttribute("data-comment-id", comment.id);
@@ -45,4 +45,4 @@ export function commentHtml(comment) {
   container.appendChild(textContainer);
 
   return container;
-}
+};

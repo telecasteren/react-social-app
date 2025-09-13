@@ -5,7 +5,7 @@ import {
   API_USERS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function getCurrentUser() {
+export const getCurrentUser = async () => {
   try {
     const currentUser = loadKey("profile");
     const userName = currentUser.name;
@@ -33,4 +33,4 @@ export async function getCurrentUser() {
     console.error("getCurrentUser() failed:", error);
     return null;
   }
-}
+};

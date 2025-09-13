@@ -1,6 +1,6 @@
 import { userMessage } from "/js/utils/messages/userMessage.js";
 
-export function getPostParams() {
+export const getPostParams = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = urlParams.get("id");
 
@@ -10,4 +10,4 @@ export function getPostParams() {
   }
 
   return postId;
-}
+};

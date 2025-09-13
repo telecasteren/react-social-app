@@ -1,7 +1,7 @@
 import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
 export const endDot = `<span style="color: var(--accent); font-size: 25px;">.</span>`;
 
-export function createNavLink({ text, href }, isMobile = false) {
+export const createNavLink = ({ text, href }, isMobile = false) => {
   const a = document.createElement("a");
   a.href = href;
   a.innerHTML = text + endDot;
@@ -11,10 +11,10 @@ export function createNavLink({ text, href }, isMobile = false) {
     handleClicks(e, href, text == "Profile");
   });
   return a;
-}
+};
 
-export function showLink(link, auth) {
+export const showLink = (link, auth) => {
   if (link.authOnly && !auth) return false;
   if (link.guestOnly && auth) return false;
   return true;
-}
+};

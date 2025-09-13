@@ -11,7 +11,7 @@ import { loadKey } from "/js/utils/storage/loadKey.js";
  *
  * @returns {void} This function does not return a value.
  */
-export async function renderCards(posts, container) {
+export const renderCards = async (posts, container) => {
   if (!container) {
     console.error("container is undefined");
     return;
@@ -78,4 +78,4 @@ export async function renderCards(posts, container) {
     }
   });
   saveKey("posts", allPosts);
-}
+};

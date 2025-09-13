@@ -14,7 +14,7 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-export async function searchProfiles(searchBar, container) {
+export const searchProfiles = (searchBar, container) => {
   const searchBox = searchBar.querySelector("#default-search");
   const button = searchBar.querySelector("#search-btn");
   const posts = loadKey("posts");
@@ -64,4 +64,4 @@ export async function searchProfiles(searchBar, container) {
   });
 
   setScrollHandler(createScrollHandler(getPosts, container, renderCards));
-}
+};

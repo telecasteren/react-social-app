@@ -6,7 +6,7 @@ import {
   hideTooltip,
 } from "/js/app/components/tooltip/tooltip.js";
 
-export default async function Heading(user) {
+const Heading = async (user) => {
   const currentUser = loadKey("profile");
 
   const userHeading = document.createElement("div");
@@ -23,7 +23,7 @@ export default async function Heading(user) {
   let maxLength = 20;
   if (visibleUsername) {
     if (visibleUsername.length > maxLength) {
-      visibleUsername = visibleUsername.substring(0, maxLength) + "..";
+      visibleUsername = visibleUsername.substring(0, maxLength) + "...";
     }
   }
 
@@ -90,4 +90,5 @@ export default async function Heading(user) {
   username.addEventListener("mouseout", hideTooltip);
 
   return userHeading;
-}
+};
+export default Heading;

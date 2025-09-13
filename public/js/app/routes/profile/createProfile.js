@@ -13,7 +13,7 @@ import { renderPosts } from "/js/app/routes/profile/sections/posts/renderPosts.j
 import { setScrollHandler } from "/js/utils/source/helpers/setScrollHandler.js";
 import { createScrollHandler } from "/js/app/events/feed/createScrollHandler.js";
 
-export default async function Profile() {
+const Profile = async () => {
   const loggedInUser = await getCurrentUser();
   const user = await getUserParams();
   if (!user) return;
@@ -59,4 +59,5 @@ export default async function Profile() {
   }
 
   return profileContainer;
-}
+};
+export default Profile;

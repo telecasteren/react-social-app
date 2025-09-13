@@ -13,13 +13,12 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-export async function searchPosts(searchBar, container) {
+export const searchPosts = (searchBar, container) => {
   const searchBox = searchBar.querySelector("#default-search");
   const button = searchBar.querySelector("#search-btn");
   const posts = loadKey("posts");
 
   if (!searchBox || !button || !container) {
-    console.error("Search elements not found"); // ===== DEBUGGING
     return;
   }
 
@@ -62,4 +61,4 @@ export async function searchPosts(searchBar, container) {
   });
 
   setScrollHandler(createScrollHandler(getPosts, container, renderCards));
-}
+};

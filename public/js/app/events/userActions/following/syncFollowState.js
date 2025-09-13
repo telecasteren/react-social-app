@@ -1,6 +1,6 @@
 import { getSingleUserProfile } from "/js/utils/source/api/users/getSingleUser.js";
 
-export async function syncFollowState(user, currentUser, followBtn) {
+export const syncFollowState = async (user, currentUser, followBtn) => {
   const updatedUser = await getSingleUserProfile(user.name);
 
   const isFollowing = updatedUser.followers.some(
@@ -17,4 +17,4 @@ export async function syncFollowState(user, currentUser, followBtn) {
   }
 
   return isFollowing;
-}
+};

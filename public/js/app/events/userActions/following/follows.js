@@ -8,7 +8,7 @@ import { submitUnfollow } from "/js/utils/source/api/users/actions/submitUnfollo
 import { syncFollowState } from "/js/app/events/userActions/following/syncFollowState.js";
 import { createFollowButton } from "/js/app/events/userActions/following/createFollowBtn.js";
 
-export async function toggleFollowing(user) {
+export const toggleFollowing = async (user) => {
   const followBtn = createFollowButton();
   const currentUser = loadKey("profile");
 
@@ -40,4 +40,4 @@ export async function toggleFollowing(user) {
   });
 
   return followBtn;
-}
+};

@@ -19,14 +19,14 @@ import { isAuthenticated } from "/js/utils/source/api/auth/isAuthenticated.js";
  * with skeleton loaders and updates the navigation underline.
  * It listens for 'popstate' events to handle browser navigation (back/forward).
  */
-export default async function renderContent() {
+const renderContent = () => {
   /**
    * Renders the appropriate page content based on the current window location.
    * It identifies content containers and updates their innerHTML with components
    * based on the URL path. It also manages loading states and navigation highlighting.
    */
 
-  async function renderPage() {
+  const renderPage = async () => {
     const authContent = document.getElementById("auth-content");
     const profileContent = document.getElementById("profile-content");
     const postContent = document.getElementById("post-content");
@@ -132,8 +132,9 @@ export default async function renderContent() {
     }`;
     const currentNavEl = document.getElementById(navId);
     if (currentNavEl) updateUnderline(currentNavEl);
-  }
+  };
 
   window.addEventListener("popstate", renderPage);
   renderPage();
-}
+};
+export default renderContent;

@@ -5,7 +5,7 @@ import {
   API_POSTS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function submitEditedPost(post) {
+export const submitEditedPost = async (post) => {
   try {
     const response = await authFetch(`${API_BASE_URL}${API_POSTS}/${post.id}`, {
       method: "PUT",
@@ -35,4 +35,4 @@ export async function submitEditedPost(post) {
     console.error("Error submitting updated post:", error);
     throw error;
   }
-}
+};

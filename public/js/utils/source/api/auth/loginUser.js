@@ -6,7 +6,7 @@ import {
   API_LOGIN,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function login(email, password) {
+export const login = async (email, password) => {
   const response = await authFetch(API_BASE_URL + API_AUTH + API_LOGIN, {
     method: "POST",
     body: JSON.stringify({ email, password }),
@@ -22,4 +22,4 @@ export async function login(email, password) {
   }
 
   throw new Error("Login failed.");
-}
+};

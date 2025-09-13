@@ -3,7 +3,7 @@ import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 import { createEditIcon } from "/js/app/components/buttons/editIconBtn.js";
 import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 
-export async function renderPosts(posts, container) {
+export const renderPosts = async (posts, container) => {
   if (!container) {
     console.error("container is undefined");
     return;
@@ -72,4 +72,4 @@ export async function renderPosts(posts, container) {
     postContainer.appendChild(statsWrapper);
     container.appendChild(postContainer);
   });
-}
+};

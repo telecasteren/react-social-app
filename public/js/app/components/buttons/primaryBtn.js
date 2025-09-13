@@ -1,4 +1,4 @@
-function createButton({ text, href, newTab = false }) {
+const createButton = ({ text, href, newTab = false }) => {
   const button = document.createElement("a");
   button.className = "btn";
 
@@ -12,5 +12,5 @@ function createButton({ text, href, newTab = false }) {
   button.textContent = text;
 
   return button;
-}
+};
 export default createButton;

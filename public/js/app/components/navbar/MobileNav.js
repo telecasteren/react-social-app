@@ -4,7 +4,7 @@ import {
   endDot,
 } from "/js/app/components/navbar/utils/createAndShowLink.js";
 
-export function MobileNav(auth, links) {
+export const MobileNav = (auth, links) => {
   const nav = document.createElement("nav");
   nav.id = "mobile-nav";
   nav.className =
@@ -97,4 +97,4 @@ export function MobileNav(auth, links) {
   });
 
   return nav;
-}
+};

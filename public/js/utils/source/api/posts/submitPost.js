@@ -10,7 +10,7 @@ import {
  * @param {Object} postData - The post data to send.
  * @returns {Promise<Object>} - The created post from the API.
  */
-export async function submitPost(postData) {
+export const submitPost = async (postData) => {
   try {
     const response = await authFetch(
       `${API_BASE_URL}${API_POSTS}?_author=true`,
@@ -30,4 +30,4 @@ export async function submitPost(postData) {
   } catch (error) {
     throw error;
   }
-}
+};

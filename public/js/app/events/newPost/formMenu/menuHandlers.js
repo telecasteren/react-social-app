@@ -11,13 +11,13 @@ import { submitPost } from "/js/app/events/newPost/submitEvents/submitNewPost.js
  * @function CreateModalAndAddSubmitListeners
  * @returns {void}
  */
-function CreateModalAndAddSubmitListeners() {
+const CreateModalAndAddSubmitListeners = () => {
   createModal();
 
   const newPostForm = newPost();
   toggleModal(newPostForm);
   submitPost();
-}
+};
 
 /**
  * Sets up event listeners for the "create-post" button for displaying the modal.
@@ -25,7 +25,7 @@ function CreateModalAndAddSubmitListeners() {
  * @function createPostMenuEvents
  * @returns {void}
  */
-export function createPostMenuEvents() {
+export const createPostMenuEvents = () => {
   const newPostBtn = document.getElementById("create-post");
   const menu = document.getElementById("speed-dial-menu-dropdown");
 
@@ -43,4 +43,4 @@ export function createPostMenuEvents() {
       CreateModalAndAddSubmitListeners()
     );
   }
-}
+};

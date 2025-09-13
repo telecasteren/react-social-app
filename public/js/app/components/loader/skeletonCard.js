@@ -1,4 +1,4 @@
-export function createSkeletonCards() {
+export const createSkeletonCards = () => {
   const container = document.createElement("div");
   container.className =
     "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:m-20";
@@ -11,9 +11,9 @@ export function createSkeletonCards() {
   }
   cards.forEach((card) => container.appendChild(card));
   return container;
-}
+};
 
-export function createSkeletonCard() {
+export const createSkeletonCard = () => {
   const loaderContainer = document.createElement("div");
   loaderContainer.setAttribute("role", "status");
   loaderContainer.className = `justify-self-center w-full max-w-sm p-4 border border-gray-200 rounded-md
@@ -113,4 +113,4 @@ export function createSkeletonCard() {
   loaderContainer.appendChild(srText);
 
   return loaderContainer;
-}
+};

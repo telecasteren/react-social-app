@@ -3,7 +3,7 @@ import {
   hideTooltip,
 } from "/js/app/components/tooltip/tooltip.js";
 
-export default async function Details(user) {
+const Details = async (user) => {
   const numberOfPosts = user._count.posts;
   const numberOfFollowers = user._count.followers;
   const numberOfFollowing = user._count.following;
@@ -18,7 +18,7 @@ export default async function Details(user) {
   const statsWrapper = document.createElement("div");
   statsWrapper.className = "flex flex-wrap gap-2";
 
-  function createWrapper(number, label) {
+  const createWrapper = (number, label) => {
     const container = document.createElement("div");
     container.className = "flex flex-col items-center";
 
@@ -40,7 +40,7 @@ export default async function Details(user) {
     container.appendChild(wrapper);
     container.appendChild(labelText);
     return container;
-  }
+  };
 
   const postsCircle = createWrapper(numberOfPosts, "posts");
   const followersCircle = createWrapper(numberOfFollowers, "followers");
@@ -67,4 +67,5 @@ export default async function Details(user) {
   followingCircle.addEventListener("mouseout", hideTooltip);
 
   return userDetails;
-}
+};
+export default Details;

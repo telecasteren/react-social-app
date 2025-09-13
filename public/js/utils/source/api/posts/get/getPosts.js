@@ -5,7 +5,7 @@ import {
   POSTS_PER_PAGE,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function getPosts(limit = POSTS_PER_PAGE, page = 1) {
+export const getPosts = async (limit = POSTS_PER_PAGE, page = 1) => {
   const response = await authFetch(
     `${API_BASE_URL}${API_POSTS}?_author=true&_comments=true&limit=${limit}&page=${page}`
   );
@@ -15,4 +15,4 @@ export async function getPosts(limit = POSTS_PER_PAGE, page = 1) {
   }
 
   return await response.json();
-}
+};

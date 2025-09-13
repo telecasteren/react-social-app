@@ -1,4 +1,4 @@
-export function createSkeletonProfile() {
+export const createSkeletonProfile = () => {
   const loaderContainer = document.createElement("div");
   loaderContainer.setAttribute("role", "status");
   loaderContainer.className = "animate-pulse w-full p-5 mt-20 md:mt-40";
@@ -53,4 +53,4 @@ export function createSkeletonProfile() {
   loaderContainer.appendChild(srText);
 
   return loaderContainer;
-}
+};

@@ -1,4 +1,4 @@
-export async function returnProfileList(users) {
+export const returnProfileList = (users) => {
   const wrapper = document.createElement("div");
 
   console.log("returnProfileList(users): ", users); // ===== DEBUGGING
@@ -24,4 +24,4 @@ export async function returnProfileList(users) {
 
   wrapper.appendChild(listUl);
   return wrapper;
-}
+};

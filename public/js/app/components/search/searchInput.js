@@ -1,4 +1,4 @@
-export default function searchInput() {
+const searchInput = () => {
   const form = document.createElement("form");
   form.className = "max-w-md";
 
@@ -58,4 +58,5 @@ export default function searchInput() {
   form.appendChild(divWrapper);
 
   return form;
-}
+};
+export default searchInput;

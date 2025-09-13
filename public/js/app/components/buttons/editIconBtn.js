@@ -1,11 +1,11 @@
 import { createTitle } from "/js/app/components/titles/title.js";
 
-export function createEditIcon({
+export const createEditIcon = ({
   label = "Edit",
   classes = "",
   dataId = null,
   onClick = null,
-}) {
+}) => {
   const helpText = createTitle(label);
   helpText.className = `ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem] text-white`;
 
@@ -30,4 +30,4 @@ export function createEditIcon({
   }
 
   return container;
-}
+};

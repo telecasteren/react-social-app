@@ -2,7 +2,7 @@ import { getSinglePost } from "/js/utils/source/api/posts/get/getSinglePost.js";
 import { getPostParams } from "/js/utils/source/helpers/getPostParams.js";
 import { commentBlock } from "/js/utils/source/helpers/commentBlock.js";
 
-export default async function Comments() {
+const Comments = async () => {
   const postId = getPostParams("id");
   const post = await getSinglePost(postId);
 
@@ -18,4 +18,5 @@ export default async function Comments() {
   });
 
   return commentsContainer;
-}
+};
+export default Comments;

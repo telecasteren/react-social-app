@@ -1,4 +1,4 @@
-export function openPost() {
+export const openPost = () => {
   const posts = document.querySelectorAll(".user-post");
 
   posts.forEach((post) => {
@@ -22,4 +22,4 @@ export function openPost() {
       }
     });
   });
-}
+};

@@ -3,7 +3,7 @@ import { displayFormErrorMessage } from "/js/utils/messages/formMessage.js";
 import { register } from "/js/utils/source/api/auth/registerUser.js";
 import { login } from "/js/utils/source/api/auth/loginUser.js";
 
-export async function handleAuth(isSignup = false) {
+export const handleAuth = async (isSignup = false) => {
   const { usernameInput, emailInput, passwordInput, confirmPassInput } =
     getAuthInputs();
 
@@ -38,4 +38,4 @@ export async function handleAuth(isSignup = false) {
       throw new Error(error.message || "Login failed.");
     }
   }
-}
+};

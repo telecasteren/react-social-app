@@ -8,9 +8,9 @@ import {
  * Opens a modal with the edit post form for the current post
  * @param {Object} post - post data with id, media, title, and body
  */
-export async function editPostMenuEvents(post) {
+export const editPostMenuEvents = async (post) => {
   createModal();
 
   const form = await editPostForm(post);
   toggleModal(form);
-}
+};

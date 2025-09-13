@@ -17,14 +17,14 @@ import {
  * @param {HTMLElement} confirmDeletion - Element the user clicks to confirm deletion.
  * @param {HTMLElement} denyDeletion - Element to cancel deletion.
  */
-export function editBioFormEventHandlers(
+export const editBioFormEventHandlers = (
   form,
   user,
   deleteButton,
   confirmMessage,
   confirmDeletion,
   denyDeletion
-) {
+) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -83,4 +83,4 @@ export function editBioFormEventHandlers(
       if (e.target === denyDeletion) confirmMessage.classList.add("hidden");
     });
   });
-}
+};

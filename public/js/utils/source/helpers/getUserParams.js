@@ -1,7 +1,7 @@
 import { userMessage } from "../../messages/userMessage.js";
 import { getSingleUserProfile } from "../api/users/getSingleUser.js";
 
-export async function getUserParams() {
+export const getUserParams = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const username = urlParams.get("id");
 
@@ -13,4 +13,4 @@ export async function getUserParams() {
   const user = await getSingleUserProfile(username);
 
   return user;
-}
+};

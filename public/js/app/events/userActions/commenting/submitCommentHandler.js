@@ -2,7 +2,7 @@ import { submitComment } from "/js/utils/source/api/posts/comments/submitComment
 import { userMessage } from "/js/utils/messages/userMessage.js";
 import { getPostParams } from "/js/utils/source/helpers/getPostParams.js";
 
-export async function submitCommentHandler() {
+export const submitCommentHandler = async () => {
   const postId = getPostParams();
   const post = Number(postId);
 
@@ -27,4 +27,4 @@ export async function submitCommentHandler() {
     userMessage("error", "Failed to create comment.");
     throw new Error("Submitting comment failed");
   }
-}
+};

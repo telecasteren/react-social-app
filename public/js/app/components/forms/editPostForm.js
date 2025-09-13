@@ -34,7 +34,7 @@ focus:ring-blue-500 focus:border-blue-500`;
  * });
  * document.body.appendChild(form);
  */
-export default async function editPostForm(post) {
+const editPostForm = async (post) => {
   const form = document.createElement("form");
   form.id = "edit-post-form";
   form.className = "p-4 md:p-5 w-full";
@@ -174,14 +174,14 @@ export default async function editPostForm(post) {
     "hidden max-w-96 rounded bg-red-100 mt-2 p-2 border border-red-600 text-red-600";
   confirmMessage.textContent = "Are you sure you want to delete this post?";
 
-  function createConfirmationOption(text) {
+  const createConfirmationOption = (text) => {
     const option = document.createElement("p");
     option.className =
       "mt-2 max-w-content text-sm text-red-600 hover:underline hover:font-bold cursor-pointer";
     option.id = "error-text";
     option.textContent = text;
     return option;
-  }
+  };
 
   const confirmDeletion = createConfirmationOption("Yes");
   const denyDeletion = createConfirmationOption("No");
@@ -217,4 +217,6 @@ export default async function editPostForm(post) {
     denyDeletion
   );
   return form;
-}
+};
+
+export default editPostForm;

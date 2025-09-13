@@ -14,12 +14,12 @@ import {
  * @param {string} [options.containerClasses="sortOptions relative"] - CSS classes to apply to the main container of the sort options
  * @returns {HTMLDivElement} The container holding the sort options dropdown
  */
-export function createSortOptions({
+export const createSortOptions = ({
   triggerType = "button",
   triggerText = "Sort options",
   triggerClasses = "",
   containerClasses = "sortOptions relative w-fit",
-}) {
+}) => {
   const container = document.createElement("div");
   container.className = containerClasses;
 
@@ -92,14 +92,14 @@ export function createSortOptions({
   });
 
   return container;
-}
+};
 
 /**
  * Creates a wrapper containing the sort options
  *
  * @returns {HTMLDivElement} It's the wrapper for the sort options throughout the app
  */
-export function sortOptions() {
+export const sortOptions = () => {
   const sortWrapper = document.createElement("div");
   sortWrapper.className = "mt-20 mb-10 w-full flex flex-wrap justify-center";
 
@@ -110,4 +110,4 @@ export function sortOptions() {
   sortWrapper.appendChild(sortingMenu);
 
   return sortWrapper;
-}
+};

@@ -1,4 +1,4 @@
-export function updateUnderline(targetLi) {
+export const updateUnderline = (targetLi) => {
   const ulEl = document.querySelector("ul.active");
   if (!ulEl) return;
 
@@ -12,7 +12,7 @@ export function updateUnderline(targetLi) {
   const { offsetLeft: targetLeft, offsetWidth: targetWidth } = targetLi;
 
   let startTime = null;
-  function steps(timestamp) {
+  const steps = (timestamp) => {
     if (!startTime) startTime = timestamp;
     const progress = Math.min((timestamp - startTime) / 300, 1);
 
@@ -25,12 +25,12 @@ export function updateUnderline(targetLi) {
     if (progress < 1) {
       requestAnimationFrame(steps);
     }
-  }
+  };
 
   requestAnimationFrame(steps);
-}
+};
 
-export function initialUnderline(links) {
+export const initialUnderline = (links) => {
   const currentPath = window.location.pathname.replace(/\/+$/, "");
 
   if (currentPath === "/user/post") return;
@@ -52,4 +52,4 @@ export function initialUnderline(links) {
       break;
     }
   }
-}
+};

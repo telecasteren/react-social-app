@@ -4,7 +4,7 @@ import {
   API_POSTS,
 } from "/js/utils/source/api/general/constants.js";
 
-export async function getSinglePost() {
+export const getSinglePost = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));
 
@@ -18,4 +18,4 @@ export async function getSinglePost() {
 
   const { data } = await response.json();
   return data;
-}
+};

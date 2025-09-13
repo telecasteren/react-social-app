@@ -1,6 +1,6 @@
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 
-export function toggleCommentFormBtn() {
+export const toggleCommentFormBtn = () => {
   const button = createButton({ text: "Add Comment", href: "#" });
   button.id = "toggle-comment-form-btn";
   button.classList.add(
@@ -17,4 +17,4 @@ export function toggleCommentFormBtn() {
     "ease-in-out"
   );
   return button;
-}
+};
