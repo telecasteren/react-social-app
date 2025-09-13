@@ -7,6 +7,7 @@ import { createTitle } from "/js/app/components/titles/title.js";
 import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 import { toggleCommentFormBtn } from "/js/app/routes/profile/singlePost/comments/toggleCommentFormBtn.js";
 import { commentForm } from "/js/app/components/forms/commentForm.js";
+import { goBackBtn } from "/js/app/components/buttons/goBackBtn.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -29,9 +30,7 @@ const SinglePost = async () => {
   const userId = post.author.name || "Unknown author";
   const author = userId;
 
-  const backBtn = document.createElement("div");
-  backBtn.className = `text-md mt-2 underline hover:underline-none hover:text-[var(--accent)]`;
-  backBtn.textContent = "← Go back";
+  const backBtn = goBackBtn();
 
   const cardContainer = document.createElement("div");
   cardContainer.className =
@@ -192,23 +191,6 @@ const SinglePost = async () => {
       await editPostMenuEvents(postData);
     });
   }
-
-  backBtn.addEventListener("click", () => {
-    const data = JSON.parse(sessionStorage.getItem("previousPage") || "{}");
-    const cameFrom = data.cameFrom || "";
-
-    if (
-      cameFrom?.startsWith("/user/feed/") ||
-      cameFrom?.startsWith("/user/profile/")
-    ) {
-      sessionStorage.setItem("restoreScroll", data.scrollY);
-    }
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = "/user/feed/";
-    }
-  });
 
   card.appendChild(image);
   card.appendChild(contentDiv);

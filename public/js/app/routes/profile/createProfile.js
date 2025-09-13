@@ -12,6 +12,7 @@ import { getUserPosts } from "/js/utils/source/api/posts/get/getUserPosts.js";
 import { renderPosts } from "/js/app/routes/profile/sections/posts/renderPosts.js";
 import { setScrollHandler } from "/js/utils/source/helpers/setScrollHandler.js";
 import { createScrollHandler } from "/js/app/events/feed/createScrollHandler.js";
+import { goBackBtn } from "/js/app/components/buttons/goBackBtn.js";
 
 const Profile = async () => {
   const loggedInUser = await getCurrentUser();
@@ -19,6 +20,8 @@ const Profile = async () => {
   if (!user) return;
 
   resetPagination();
+
+  const backBtn = goBackBtn();
 
   const profileContainer = document.createElement("div");
   profileContainer.className =
@@ -41,6 +44,7 @@ const Profile = async () => {
   postsContainer.className = "w-[90%] mx-auto";
   postsContainer.appendChild(sortOptions);
   postsContainer.appendChild(postsList);
+  postsContainer.appendChild(backBtn);
 
   profileContainer.appendChild(userHeading);
   profileContainer.appendChild(userDetails);
