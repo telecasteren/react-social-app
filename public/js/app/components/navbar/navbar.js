@@ -7,7 +7,7 @@ const Navbar = async (auth) => {
     { href: "/", text: "Welcome", authOnly: false, guestOnly: true },
     { href: "/user/feed/", text: "Feed", authOnly: true },
     { href: "/user/profile/", text: "Profile", authOnly: true },
-    { href: "/user/logout/", text: "Logout", authOnly: true },
+    { text: "Settings", authOnly: true, isDropdown: true },
   ];
 
   const desktopNav = DesktopNav(auth, links);

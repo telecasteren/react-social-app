@@ -3,6 +3,8 @@ import {
   showLink,
   endDot,
 } from "/js/app/components/navbar/utils/createAndShowLink.js";
+import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
+import { settingsOptions } from "/js/app/components/navbar/utils/settingsItems.js";
 
 export const MobileNav = (auth, links) => {
   const nav = document.createElement("nav");
@@ -66,17 +68,36 @@ export const MobileNav = (auth, links) => {
     const li = document.createElement("li");
     li.className = "menuLi";
 
-    const a = createNavLink(link, true);
+    if (link.isDropdown) {
+      const settingsItems = settingsOptions();
 
-    if (window.location.pathname === link.href) {
-      a.classList.add("current-mobile-nav-item");
+      settingsItems.forEach(({ text, action }) => {
+        const item = document.createElement("a");
+        item.className =
+          "mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer";
+        item.innerHTML = text + endDot;
+
+        if (!action) {
+          item.addEventListener("click", (e) => {
+            handleClicks(e, "/user/logout/", false);
+            menuContainer.classList.add("hidden");
+          });
+        }
+        li.appendChild(item);
+      });
+    } else {
+      const a = createNavLink(link, true);
+
+      if (window.location.pathname === link.href) {
+        a.classList.add("current-mobile-nav-item");
+      }
+
+      a.addEventListener("click", () => {
+        menuContainer.classList.add("hidden");
+      });
+      li.appendChild(a);
     }
 
-    a.addEventListener("click", () => {
-      menuContainer.classList.add("hidden");
-    });
-
-    li.appendChild(a);
     menuList.appendChild(li);
   });
 
