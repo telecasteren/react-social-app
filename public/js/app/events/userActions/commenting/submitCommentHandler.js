@@ -3,7 +3,7 @@ import { userMessage } from "/js/utils/messages/userMessage.js";
 import { getPostParams } from "/js/utils/source/helpers/getPostParams.js";
 
 export const submitCommentHandler = async () => {
-  const postId = getPostParams();
+  const { id: postId } = getPostParams();
   const post = Number(postId);
 
   const authorName = document.getElementById("author-name");

@@ -7,7 +7,7 @@ import {
 } from "/js/utils/source/api/general/constants.js";
 
 export const submitReaction = async () => {
-  const postId = await getPostParams();
+  const { id: postId } = await getPostParams();
 
   try {
     const response = await authFetch(

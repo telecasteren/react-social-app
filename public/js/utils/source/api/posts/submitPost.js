@@ -19,7 +19,6 @@ export const submitPost = async (postData) => {
         body: JSON.stringify(postData),
       }
     );
-    console.log("Response from submitPost:", response);
 
     if (!response.ok) {
       userMessage("Failed to submit post. Please try again.");

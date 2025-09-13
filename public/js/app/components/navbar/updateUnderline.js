@@ -1,4 +1,25 @@
-export const updateUnderline = (targetLi) => {
+import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
+import { loadKey } from "/js/utils/storage/loadKey.js";
+
+export const updateUnderline = async (targetLi) => {
+  const currentUrl = window.location.pathname;
+  let showUnderline = true;
+
+  if (currentUrl.includes("/user/profile")) {
+    const currentUser = loadKey("profile")?.name;
+    let visitedProfile;
+    try {
+      const profileData = await getUserParams();
+      visitedProfile = profileData?.name;
+    } catch (error) {
+      showUnderline = false;
+    }
+    if (visitedProfile !== currentUser) {
+      showUnderline = false;
+    }
+  }
+  if (!showUnderline) return;
+
   const ulEl = document.querySelector("ul.active");
   if (!ulEl) return;
 

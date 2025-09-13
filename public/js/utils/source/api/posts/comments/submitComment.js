@@ -7,7 +7,7 @@ import {
 
 export const submitComment = async (commentData) => {
   try {
-    const postId = getPostParams();
+    const { id: postId } = getPostParams();
 
     const response = await authFetch(
       `${API_BASE_URL}${API_POSTS}/${postId}/comment`,

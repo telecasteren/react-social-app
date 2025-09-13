@@ -189,8 +189,6 @@ const SinglePost = async () => {
         title: post.title || "",
         body: post.body || "",
       };
-      console.log(postData.id);
-
       await editPostMenuEvents(postData);
     });
   }

@@ -20,7 +20,6 @@ export const updateUserBio = async (user) => {
       method: "PUT",
       body: JSON.stringify({ bio }),
     });
-    console.log("Response from updateUserBio:", response);
 
     if (response.ok) {
       return await response.json();

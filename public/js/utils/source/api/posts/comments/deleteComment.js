@@ -10,8 +10,7 @@ import {
 } from "/js/utils/source/api/general/constants.js";
 
 export const deleteComment = async (commentId) => {
-  const postId = getPostParams();
-  console.log("Deleting comment for post: ", postId, "Comment Id: ", commentId);
+  const { id: postId } = getPostParams();
 
   try {
     const response = await authFetch(

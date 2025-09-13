@@ -23,7 +23,6 @@ export const updateUserAvatar = async (user) => {
       method: "PUT",
       body: JSON.stringify({ avatar }),
     });
-    console.log("Response from updateUserAvatar:", response);
 
     if (response.ok) {
       return await response.json();
