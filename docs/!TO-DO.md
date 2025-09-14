@@ -1,8 +1,9 @@
 ## TO DO
 
-### General improvements
+### Bugs
 
-- Fix bug in color theme not rendering light theme
+- Color theme not toggling theme against system preferences
+  - displays dark when called, light when commented out, setTheme()
 
 ### Additional ideas
 

@@ -20,11 +20,11 @@ export const createUserSettings = ({
 
   const dropdown = document.createElement("div");
   dropdown.id = "dropdownInformation";
-  dropdown.className = `z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg
-   shadow-sm w-44 dark:bg-[#0f0c29] dark:divide-gray-600`;
+  dropdown.className = `z-10 absolute hidden bg-white divide-y divide-gray-200 rounded-lg
+   shadow-lg w-44 dark:bg-[#0f0c29] dark:divide-gray-600`;
 
   const userInfo = document.createElement("div");
-  userInfo.className = "px-4 py-3 text-sm text-gray-900 dark:text-gray-400";
+  userInfo.className = "px-4 py-3 text-sm text-gray-600 dark:text-gray-400";
   userInfo.innerHTML = `<div class="font-medium truncate">${
     loadKey("profile")?.name || "Guest"
   }<br/>

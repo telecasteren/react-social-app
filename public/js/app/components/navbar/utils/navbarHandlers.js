@@ -21,7 +21,8 @@ export const handleClicks = (e, href, isProfile = false) => {
 
   if (href === "/user/logout/") {
     const logoutContainer = document.createElement("div");
-    logoutContainer.className = "flex flex-wrap items-center";
+    logoutContainer.className =
+      "flex flex-wrap items-center justify-self-center w-[200px]";
     const logoutMessage = document.createElement("p");
     logoutMessage.className = "text-black text-medium m-4";
     logoutMessage.textContent = "Logging out";
@@ -30,7 +31,9 @@ export const handleClicks = (e, href, isProfile = false) => {
     toggleModal(logoutContainer);
     if (logoutContainer) {
       const closeBtn = document.querySelector(".close-modal");
+      const modalContent = document.querySelector(".modal-content");
       closeBtn.style.opacity = "0";
+      modalContent.style.width = "40%";
     }
 
     let dots = 0;
