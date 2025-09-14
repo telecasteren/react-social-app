@@ -6,8 +6,8 @@ import {
 export const DesktopNav = (auth, links) => {
   const nav = document.createElement("nav");
   nav.id = "desktop-nav";
-  nav.className =
-    "hidden md:flex items-center justify-between flex-wrap mt-20 mx-20";
+  nav.className = `fixed md:flex items-center justify-between flex-wrap
+  p-[2.5rem] z-40 w-full bg-transparent transition-background-color duration-300`;
 
   const logo = document.createElement("div");
   logo.className = "";

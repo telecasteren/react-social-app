@@ -4,7 +4,7 @@ import {
   endDot,
 } from "/js/app/components/navbar/utils/createAndShowLink.js";
 import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
-import { settingsOptions } from "/js/app/components/navbar/utils/settingsItems.js";
+import { settingsOptions } from "/js/app/components/navbar/utils/dropdownItems.js";
 
 export const MobileNav = (auth, links) => {
   const nav = document.createElement("nav");

@@ -41,6 +41,10 @@ const Navbar = async (auth) => {
       scrollStarted = true;
       mobileNav.classList.remove("bg-transparent");
       mobileNav.classList.add("bg-white", "dark:bg-bg-dark3");
+
+      // TEST
+      desktopNav.classList.remove("bg-transparent");
+      desktopNav.classList.add("bg-white", "dark:bg-bg-dark3");
     }
 
     clearTimeout(scrollTimeout);
@@ -49,6 +53,10 @@ const Navbar = async (auth) => {
       if (scrollPosition === 0) {
         mobileNav.classList.remove("bg-white", "dark:bg-bg-dark3");
         mobileNav.classList.add("bg-transparent");
+
+        /// TEST
+        desktopNav.classList.remove("bg-white", "dark:bg-bg-dark3");
+        desktopNav.classList.add("bg-transparent");
       }
     }, 100);
   });
