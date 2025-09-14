@@ -15,7 +15,7 @@ export const createUserSettings = ({
   const trigger = document.createElement(triggerType);
   trigger.id = "dropdownInformationButton";
   trigger.setAttribute("data-dropdown-toggle", "dropdownInformation");
-  trigger.className = `cursor-pointer text-black dark:text-white ${triggerClasses}`;
+  trigger.className = `nav-hover-bg cursor-pointer text-black dark:text-white ${triggerClasses}`;
   trigger.innerHTML = triggerText + endDot;
 
   const dropdown = document.createElement("div");

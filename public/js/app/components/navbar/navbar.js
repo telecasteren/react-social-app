@@ -1,4 +1,4 @@
-import { initialUnderline } from "/js/app/components/navbar/updateUnderline.js";
+import { initialUnderline } from "/js/app/components/navbar/utils/updateUnderline.js";
 import { MobileNav } from "/js/app/components/navbar/MobileNav.js";
 import { DesktopNav } from "/js/app/components/navbar/DesktopNav.js";
 

@@ -15,7 +15,8 @@
   transition: left 0.2s ease-in-out, width 0.4s ease-in-out;
 }
 
-li {
+li,
+li .nav-hover-bg {
   position: relative;
   display: inline-block;
   background-image: linear-gradient(
@@ -30,7 +31,8 @@ li {
   transition: background-size 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-li:hover {
+li:hover,
+li .nav-hover-bg:hover {
   background-size: 100% 100%;
   color: transparent;
 }

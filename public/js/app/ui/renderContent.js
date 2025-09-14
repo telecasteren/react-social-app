@@ -2,7 +2,7 @@ import Dashboard from "/js/app/routes/dashboard/createDashboard.js";
 import Feed from "/js/app/routes/feed/createFeed.js";
 import Profile from "/js/app/routes/profile/createProfile.js";
 import SinglePost from "/js/app/routes/profile/singlePost/singlePost.js";
-import { updateUnderline } from "/js/app/components/navbar/updateUnderline.js";
+import { updateUnderline } from "/js/app/components/navbar/utils/updateUnderline.js";
 import { displayAuthForms } from "/js/app/events/authForm/displayAuthForms.js";
 import { createPostMenuEvents } from "/js/app/events/newPost/formMenu/menuHandlers.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
