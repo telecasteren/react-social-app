@@ -11,6 +11,7 @@ import { createFollowButton } from "/js/app/events/userActions/following/createF
 export const toggleFollowing = async (user) => {
   const followBtn = createFollowButton();
   const currentUser = loadKey("profile");
+  const visitedUserName = user.name;
 
   let isFollowing = await syncFollowState(user, currentUser, followBtn);
 
@@ -21,10 +22,10 @@ export const toggleFollowing = async (user) => {
     try {
       if (!isFollowing) {
         await submitFollow(user);
-        userMessage("success", `Started following: ${user.name}`);
+        userMessage("success", `Started following: ${visitedUserName}`);
       } else {
         await submitUnfollow(user);
-        userMessage("info", `Stopped following: ${user.name}`);
+        userMessage("info", `Stopped following: ${visitedUserName}`);
       }
 
       isFollowing = await syncFollowState(user, currentUser, followBtn);

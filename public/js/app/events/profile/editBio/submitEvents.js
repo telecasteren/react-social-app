@@ -30,21 +30,22 @@ export const editBioFormEventHandlers = (
 
     try {
       const newBio = form.querySelector("#bio").value.trim();
+      const username = user.name;
 
-      await updateUserBio(user.name, newBio);
-      userMessage("success", "Bio updated!");
+      await updateUserBio(username, newBio);
+      userMessage("success", "Bio updated. Great job!");
 
       setTimeout(() => {
         clearUserMessage();
         window.location.href = window.location.href;
       }, 1000);
     } catch (error) {
-      console.error(error);
-      userMessage("warning", "Couldn't update bio.");
-
+      userMessage("warning", "Couldn't update bio..");
       setTimeout(() => {
         clearUserMessage();
       }, 1000);
+
+      throw error;
     }
   });
 
@@ -63,19 +64,19 @@ export const editBioFormEventHandlers = (
 
     confirmDeletion.addEventListener("click", async () => {
       try {
-        await clearUserBio(user.name);
-        userMessage("success", "Bio deleted.");
+        await clearUserBio(username);
+        userMessage("success", "Bio deleted. You can start a fresh one!");
 
         setTimeout(() => {
           clearUserMessage();
           window.location.href = window.location.href;
         }, 2000);
       } catch (error) {
-        console.error(error);
-        userMessage("warning", "Couldn't delete bio.");
+        userMessage("warning", "Couldn't delete bio..");
         setTimeout(() => {
           clearUserMessage();
         }, 3000);
+        throw error;
       }
     });
 

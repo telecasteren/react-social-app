@@ -12,7 +12,7 @@ export const handleAuth = async (isSignup = false) => {
 
   if (isSignup) {
     const confirmPassword = confirmPassInput?.value.trim();
-    const username = usernameInput.value.trim();
+    const username = usernameInput.value.replace(/\s+/g, "_").toLowerCase();
 
     if (!confirmPassword || password !== confirmPassword) {
       displayFormErrorMessage(confirmPassInput, "Passwords must match.");
@@ -25,7 +25,10 @@ export const handleAuth = async (isSignup = false) => {
 
       window.location.href = `/user/profile/?id=${newUser.username || name}`;
     } catch (error) {
-      displayFormErrorMessage(emailInput, "Registration failed.");
+      displayFormErrorMessage(
+        emailInput,
+        "Registration failed. Email may be in use."
+      );
       throw new Error();
     }
   } else {
@@ -33,9 +36,11 @@ export const handleAuth = async (isSignup = false) => {
       const { name } = await login(email, password);
       window.location.href = `/user/profile/?id=${name}`;
     } catch (error) {
-      console.error("Login error:", error);
-      displayFormErrorMessage(emailInput, "Login failed.");
-      throw new Error(error.message || "Login failed.");
+      displayFormErrorMessage(
+        emailInput,
+        "Login failed. Invalid email or password."
+      );
+      throw new Error(error.message || "Login failed. Invalid credentials.");
     }
   }
 };

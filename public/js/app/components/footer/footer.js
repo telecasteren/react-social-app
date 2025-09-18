@@ -1,3 +1,5 @@
+import { SITE_LOGO_NAME, SITE_NAME } from "/js/utils/general/constants.js";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -11,8 +13,8 @@ const Footer = () => {
 
   const img = document.createElement("img");
   img.className = "dark:invert";
-  img.src = "/resources/logo/foodiegram-logo.png";
-  img.alt = "";
+  img.src = SITE_LOGO_NAME;
+  img.alt = `${SITE_NAME} logo`;
   img.width = 80;
   img.height = 80;
 

@@ -1,5 +1,6 @@
 import { typeTitle, typeText } from "/js/app/components/titles/typewriter.js";
 import createButton from "/js/app/components/buttons/primaryBtn.js";
+import { SITE_NAME, SITE_LOGO_PIZZA } from "/js/utils/general/constants.js";
 
 const Dashboard = () => {
   const dashboardContainer = document.createElement("div");
@@ -7,7 +8,7 @@ const Dashboard = () => {
     "dashboard-container justify-items-center min-h-screen p-8 gap-16";
 
   const header = document.createElement("header");
-  const title = typeTitle("FOODIEGRAM");
+  const title = typeTitle(SITE_NAME);
   title.classList.add("text-bigger", "md:text-[4.5rem]", "typewriter");
   header.appendChild(title);
 
@@ -16,7 +17,7 @@ const Dashboard = () => {
 
   const logoIcon = document.createElement("img");
   logoIcon.className = "w-18 h-18 dark:invert";
-  logoIcon.src = "/resources/logo/logo-pizza.png";
+  logoIcon.src = SITE_LOGO_PIZZA;
   logoIcon.alt = "Logo icon of a Pizza character";
 
   setTimeout(() => {

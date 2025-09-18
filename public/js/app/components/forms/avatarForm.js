@@ -1,6 +1,13 @@
 import { editAvatarFormEventHandlers } from "/js/app/events/profile/editAvatar/submitHandlers.js";
+import { NO_IMG_URL } from "/js/utils/general/constants.js";
 
 export const editAvatar = async (user, originalAvatar) => {
+  const avatarUrl = user.avatar?.url || NO_IMG_URL;
+
+  if (!user) {
+    throw new Error("User data is required to display profile img form.");
+  }
+
   const form = document.createElement("form");
   form.id = "avatar-form";
 
@@ -35,7 +42,7 @@ export const editAvatar = async (user, originalAvatar) => {
   avatar.name = "avatar";
   avatar.id = "avatar";
   avatar.placeholder = "No image uploaded";
-  avatar.value = user.avatar?.url || "";
+  avatar.value = avatarUrl;
 
   const submitButton = document.createElement("button");
   submitButton.id = "submit-btn";

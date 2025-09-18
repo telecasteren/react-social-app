@@ -1,8 +1,9 @@
 import {
   emailValidation,
   passwordValidation,
-} from "../../events/authForm/handlers/validation.js";
+} from "/js/app/events/authForm/handlers/validation.js";
 import { setAuthFormEvents } from "/js/app/events/authForm/handlers/setAuthEvents.js";
+import { SITE_NAME } from "/js/utils/general/constants.js";
 
 const AuthForm = (isSignup = false) => {
   const authContainer = document.getElementById("auth-content");
@@ -18,7 +19,7 @@ const AuthForm = (isSignup = false) => {
   const logo = document.createElement("img");
   logo.className = "mx-auto h-10 w-auto dark:invert";
   logo.src = "/resources/logo/logo-pizza.png";
-  logo.alt = "Foodiegram logo";
+  logo.alt = `${SITE_NAME} logo`;
 
   const title = document.createElement("h2");
   title.className = "auth-title mt-10 text-center text-bigger tracking-tight";

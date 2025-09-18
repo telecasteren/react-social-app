@@ -1,5 +1,5 @@
 import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
-export const endDot = `<span style="color: var(--accent); font-size: 25px;">.</span>`;
+import { endDot } from "/js/utils/general/constants.js";
 import { userSettings } from "/js/app/components/settings/userSettings.js";
 
 export const createNavLink = ({ text, href }, isMobile = false) => {

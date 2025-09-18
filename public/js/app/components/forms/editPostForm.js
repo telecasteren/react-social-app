@@ -1,4 +1,5 @@
 import { editPostFormEventHandlers } from "/js/app/events/profile/editPost/submitEvents.js";
+import { NO_IMG_URL } from "/js/utils/general/constants.js";
 
 const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border 
 border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
@@ -57,7 +58,7 @@ const editPostForm = async (post) => {
   imgUrlInput.id = "image_url";
   imgUrlInput.type = "url";
   imgUrlInput.placeholder = "https://example.com/image.jpg";
-  imgUrlInput.value = post.media?.url || "/resources/icons/no-image-icon.webp";
+  imgUrlInput.value = post.media?.url || NO_IMG_URL;
   imgUrlInput.className = `${sharedStyles} p-2`;
   imgUrlInput.required = true;
 
@@ -91,7 +92,7 @@ const editPostForm = async (post) => {
   postImage.className =
     "absolute rounded-lg object-contain w-full h-full " +
     (post.media?.url ? "" : "hidden");
-  postImage.src = post.media?.url || "/resources/icons/no-image-icon.webp";
+  postImage.src = post.media?.url || NO_IMG_URL;
   imgContainer.appendChild(postImage);
 
   imgUrlInput.addEventListener("input", () => {

@@ -20,7 +20,7 @@ export const searchProfiles = (searchBar, container) => {
   const posts = loadKey("posts");
 
   if (!searchBox || !button || !container) {
-    console.error("Search elements not found"); // ===== DEBUGGING
+    console.error("Search box, button, or container not found.");
     return;
   }
 

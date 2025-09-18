@@ -2,6 +2,7 @@ import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 import { createEditIcon } from "/js/app/components/buttons/editIconBtn.js";
 import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
+import { NO_IMG_URL } from "/js/utils/general/constants.js";
 
 export const renderPosts = async (posts, container) => {
   if (!container) {
@@ -10,41 +11,56 @@ export const renderPosts = async (posts, container) => {
   }
 
   const loggedInUser = await getCurrentUser();
+  const activeUsername = loggedInUser.name;
   const profileVisited = await getUserParams();
+  const profileUsername = profileVisited.name;
 
   posts.forEach(async (post) => {
+    const postId = post.id;
+    const created = post.created;
+    const title = post.title || "No title";
+    const reactionsCount = post._count.reactions;
+    const commentsCount = post._count.comments;
+    const postImgSrc = post.media?.url || NO_IMG_URL;
+    const postImgAlt = post.media?.alt || "Default post image";
+    const postBody = post.body || "";
+
     const postContainer = document.createElement("div");
     postContainer.className =
       "user-post relative w-full h-48 flex justify-center items-center cursor-pointer";
-    postContainer.setAttribute("data-id", post.id);
-    postContainer.dataset.created = post.created;
-    postContainer.dataset.title = post.title;
+    postContainer.setAttribute("data-id", postId);
+    postContainer.dataset.created = created;
+    postContainer.dataset.title = title;
     postContainer.dataset.likes =
-      typeof post._count.reactions === "number" ? post._count.reactions : 0;
+      typeof reactionsCount === "number" ? reactionsCount : 0;
     postContainer.dataset.comments =
-      typeof post._count.comments === "number" ? post._count.comments : 0;
+      typeof commentsCount === "number" ? commentsCount : 0;
 
     const postImage = document.createElement("img");
-    postImage.src = post.media?.url || "/resources/icons/no-image-icon.webp";
-    postImage.alt = post.media?.alt || "Default post image";
+    postImage.src = postImgSrc;
+    postImage.alt = postImgAlt;
     postImage.className = `w-full h-full object-cover rounded-sm border border-gray-300 dark:border-0
       hover:scale-105 md:hover:bg-black md:hover:opacity-50 transition-transform duration-300`;
+    postImage.onerror = () => {
+      postImage.src = NO_IMG_URL;
+      postImage.alt = "Image not available";
+    };
 
     const statsWrapper = document.createElement("div");
     statsWrapper.className =
       "absolute justify-center flex flex-wrap gap-2 bg-white text-black rounded-md p-1";
 
     const likes = document.createElement("div");
-    likes.innerText = `♥️ ${post._count.reactions || 0} Likes`;
+    likes.innerText = `♥️ ${reactionsCount || 0} Likes`;
 
     const comments = document.createElement("div");
-    comments.innerText = `💬 ${post._count.comments || 0} Comments`;
+    comments.innerText = `💬 ${commentsCount || 0} Comments`;
 
     statsWrapper.appendChild(likes);
     statsWrapper.appendChild(comments);
     postContainer.appendChild(postImage);
 
-    if (loggedInUser.name === profileVisited.name) {
+    if (activeUsername === profileUsername) {
       const editPostIcon = createEditIcon({
         label: "Edit",
         classes: `
@@ -58,12 +74,12 @@ export const renderPosts = async (posts, container) => {
 
       editPostIcon.addEventListener("click", async () => {
         const postData = {
-          id: post.id,
+          id: postId,
           media: {
-            url: post.media?.url || "",
+            url: postImgSrc || "",
           },
-          title: post.title || "",
-          body: post.body || "",
+          title: title,
+          body: postBody,
         };
         await editPostMenuEvents(postData);
       });

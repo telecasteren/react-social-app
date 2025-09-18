@@ -3,7 +3,10 @@ import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { deleteComment } from "/js/utils/source/api/posts/comments/deleteComment.js";
 
 export const commentBlock = async (comment) => {
+  const commentId = comment.id;
+  const commentAuthorName = comment.author.name;
   const currentUser = await getCurrentUser();
+  const currentUserName = currentUser.name;
 
   const lineEl = document.createElement("hr");
   lineEl.className = "border-solid border-gray-200 dark:border-[#0f0c29] my-2";
@@ -14,7 +17,7 @@ export const commentBlock = async (comment) => {
   const commentEl = commentHtml(comment);
   singleCommentContainer.appendChild(commentEl);
 
-  if (currentUser.name === comment.author.name) {
+  if (currentUserName === commentAuthorName) {
     const deleteCommentBtn = document.createElement("button");
     deleteCommentBtn.className =
       "bg-red-500 text-white text-xs px-2 py-1 m-0 rounded-md self-end";
@@ -22,7 +25,7 @@ export const commentBlock = async (comment) => {
 
     deleteCommentBtn.addEventListener("click", async () => {
       try {
-        await deleteComment(comment.id);
+        await deleteComment(commentId);
         singleCommentContainer.remove();
         lineEl.remove();
       } catch (error) {

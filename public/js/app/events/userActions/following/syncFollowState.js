@@ -1,10 +1,14 @@
 import { getSingleUserProfile } from "/js/utils/source/api/users/getSingleUser.js";
 
 export const syncFollowState = async (user, currentUser, followBtn) => {
-  const updatedUser = await getSingleUserProfile(user.name);
+  const username = user.name;
+  const currentUsername = currentUser.name;
+  const updatedUser = await getSingleUserProfile(username);
+  const updatedUsersFollowers = updatedUser.followers;
+  const amountOfFollowers = updatedUsersFollowers.length;
 
-  const isFollowing = updatedUser.followers.some(
-    (f) => f.name === currentUser.name
+  const isFollowing = updatedUsersFollowers.some(
+    (f) => f.name === currentUsername
   );
 
   if (followBtn) {
@@ -13,7 +17,7 @@ export const syncFollowState = async (user, currentUser, followBtn) => {
 
   const numberOfFollowers = document.querySelector('[data-label="followers"]');
   if (numberOfFollowers) {
-    numberOfFollowers.textContent = updatedUser.followers.length;
+    numberOfFollowers.textContent = amountOfFollowers;
   }
 
   return isFollowing;

@@ -1,6 +1,6 @@
 import { loadKey } from "/js/utils/storage/loadKey.js";
 import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
-import { endDot } from "/js/app/components/navbar/utils/createAndShowLink.js";
+import { endDot } from "/js/utils/general/constants.js";
 import { settingsOptions } from "/js/app/components/navbar/utils/dropdownItems.js";
 
 export const createUserSettings = ({

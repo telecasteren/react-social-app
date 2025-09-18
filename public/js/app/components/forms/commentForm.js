@@ -14,6 +14,9 @@ const toggleCommentBtn = () => {
 
 export const commentForm = async () => {
   const currentUser = await getCurrentUser();
+  const currentUserName = currentUser.name || "Unknown user";
+  const avatarSrc = currentUser.avatar.url || {};
+  const avatarAlt = currentUser.avatar.alt || "No profile image found.";
 
   const commentForm = document.createElement("div");
   commentForm.id = "comment-form";
@@ -25,8 +28,8 @@ export const commentForm = async () => {
   const img = document.createElement("img");
   img.className =
     "w-8 h-8 rounded-full object-cover border border-accent-light dark:border-accent-dark";
-  img.src = currentUser.avatar.url || "/resources/icons/no-avatar-img.jpg";
-  img.alt = currentUser.avatar.alt || "No profile image found.";
+  img.src = avatarSrc;
+  img.alt = avatarAlt;
 
   const commentContainer = document.createElement("div");
   commentContainer.id = "comment-form-container";
@@ -36,7 +39,7 @@ export const commentForm = async () => {
   authorName.setAttribute("required", "");
   authorName.id = "author-name";
   authorName.className = "text-sm font-semibold text-gray-900 dark:text-white";
-  authorName.textContent = currentUser.name;
+  authorName.textContent = currentUserName;
 
   const commentTextarea = document.createElement("textarea");
   commentTextarea.rows = 3;

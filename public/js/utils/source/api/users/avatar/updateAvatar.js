@@ -8,13 +8,14 @@ import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 export const updateUserAvatar = async (user) => {
   const profile = await getUserParams();
   const userId = profile.name;
+  const userAvatar = user.avatar?.url;
 
   const form = document.querySelector("#avatar-form");
   if (!form) return;
 
   const newAvatar = form.querySelector("#avatar").value.trim();
   const avatar = {
-    url: newAvatar || user.avatar?.url,
+    url: newAvatar || userAvatar,
     alt: `Profile image for user: ${userId}`,
   };
 

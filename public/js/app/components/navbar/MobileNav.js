@@ -1,10 +1,15 @@
 import {
   createNavLink,
   showLink,
-  endDot,
 } from "/js/app/components/navbar/utils/createAndShowLink.js";
+import { endDot } from "/js/utils/general/constants.js";
 import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
 import { settingsOptions } from "/js/app/components/navbar/utils/dropdownItems.js";
+import {
+  SITE_NAME,
+  SITE_LOGO_PIZZA,
+  MENU_ICON,
+} from "/js/utils/general/constants.js";
 
 export const MobileNav = (auth, links) => {
   const nav = document.createElement("nav");
@@ -21,14 +26,14 @@ export const MobileNav = (auth, links) => {
   logoLink.className = "flex items-center space-x-3 rtl:space-x-reverse";
 
   const logoImg = document.createElement("img");
-  logoImg.src = "/resources/logo/logo-pizza.png";
+  logoImg.src = SITE_LOGO_PIZZA;
   logoImg.className = "h-8 dark:invert";
-  logoImg.alt = "Foodiegram logo";
+  logoImg.alt = `${SITE_NAME} logo`;
 
   const logoText = document.createElement("span");
   logoText.className =
     "self-center text-2xl font-200 whitespace-nowrap dark:text-white";
-  logoText.innerHTML = "Foodiegram" + endDot;
+  logoText.innerHTML = SITE_NAME + endDot;
 
   logoLink.appendChild(logoImg);
   logoLink.appendChild(logoText);
@@ -49,7 +54,7 @@ export const MobileNav = (auth, links) => {
 
   const menuIcon = document.createElement("img");
   menuIcon.className = "dark:invert dark:hover:invert-0";
-  menuIcon.src = "/resources/icons/hamburger-icon-f.png";
+  menuIcon.src = MENU_ICON;
   menuIcon.alt = "Navigation menu";
 
   menuButton.appendChild(srText);

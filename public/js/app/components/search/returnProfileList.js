@@ -1,14 +1,11 @@
 export const returnProfileList = (users) => {
   const wrapper = document.createElement("div");
 
-  console.log("returnProfileList(users): ", users); // ===== DEBUGGING
-
   const listUl = document.createElement("ul");
   listUl.className = "flex flex-row justify-self-center justify-center gap-4";
 
   users.forEach((user) => {
     const username = user.name;
-    console.log("Username: ", username); // ===== DEBUGGING
 
     const link = document.createElement("a");
     link.href = `/user/profile/?id=${username}`;

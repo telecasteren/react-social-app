@@ -3,6 +3,7 @@ import {
   defaultPostDesc,
   defaultDescFallback,
   defaultDescriptions,
+  SITE_NAME,
 } from "/js/utils/general/constants.js";
 import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 
@@ -33,8 +34,7 @@ export const setMetaDescriptions = async () => {
       if (post) {
         metaDescription = `${post.title} - ${defaultPostDesc}`;
       } else {
-        metaDescription =
-          "Foodiegram: The spot to connect with fellow Foodies.";
+        metaDescription = `${SITE_NAME}: The spot to connect with fellow Foodies.`;
         console.warn(
           `setMetaDescriptions(): Failed to fetch post with ID ${postId}. Fallback initiated.`
         );

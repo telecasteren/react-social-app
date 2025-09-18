@@ -8,6 +8,10 @@ import {
 
 const Heading = async (user) => {
   const currentUser = loadKey("profile");
+  const currentUsername = currentUser?.name || "Unknown user";
+  const userNameParam = user?.name || "Unknown user";
+  const userAvatarSrc = user.avatar?.url;
+  const userAvatarAlt = user.avatar?.alt;
 
   const userHeading = document.createElement("div");
   userHeading.classList.add(
@@ -44,8 +48,8 @@ const Heading = async (user) => {
   avatar.id = "avatar-img";
   avatar.className =
     "w-32 h-32 object-cover transition duration-300 ease-in-out group-hover:blur-sm";
-  avatar.src = user.avatar?.url || "/resources/icons/no-avatar-img.jpg";
-  avatar.alt = user.avatar?.alt || "No image uploaded.";
+  avatar.src = userAvatarSrc;
+  avatar.alt = userAvatarAlt || "No image uploaded.";
 
   if (avatar.src != null || "") {
     avatarWrapper.appendChild(avatar);
@@ -76,7 +80,7 @@ const Heading = async (user) => {
     avatarWrapper.replaceWith(avatarEditForm);
   });
 
-  if (currentUser.name === user.name) {
+  if (currentUsername === userNameParam) {
     avatarContainer.appendChild(avatar);
     avatarContainer.appendChild(editAvatarIcon);
     avatarWrapper.appendChild(avatarContainer);

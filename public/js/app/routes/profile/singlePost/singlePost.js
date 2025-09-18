@@ -8,6 +8,7 @@ import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers
 import { toggleCommentFormBtn } from "/js/app/routes/profile/singlePost/comments/toggleCommentFormBtn.js";
 import { commentForm } from "/js/app/components/forms/commentForm.js";
 import { goBackBtn } from "/js/app/components/buttons/goBackBtn.js";
+import { NO_IMG_URL } from "/js/utils/general/constants.js";
 
 /**
  * Generates and returns a DOM element representing a detailed view of a single post.
@@ -26,9 +27,11 @@ import { goBackBtn } from "/js/app/components/buttons/goBackBtn.js";
 const SinglePost = async () => {
   const post = await getSinglePost();
   const loggedInUser = await getCurrentUser();
+  const loggedInUserName = loggedInUser.name || "Unknown user";
 
-  const userId = post.author.name || "Unknown author";
-  const author = userId;
+  const author = post.author.name || "Unknown author";
+  const postImgUrl = post.media?.url || NO_IMG_URL;
+  const postImgAlt = post.media?.alt || "Default post image";
 
   const backBtn = goBackBtn();
 
@@ -42,8 +45,8 @@ const SinglePost = async () => {
 
   const image = document.createElement("img");
   image.className = "rounded-l-sm w-full h-[500px] object-cover";
-  image.src = post.media?.url || "/resources/icons/no-image-icon.webp";
-  image.alt = post.media?.alt || "Default post image";
+  image.src = postImgUrl;
+  image.alt = postImgAlt;
 
   const contentDiv = document.createElement("div");
   contentDiv.className = "p-5 flex-1 overflow-y-auto";
@@ -69,7 +72,7 @@ const SinglePost = async () => {
   authorName.setAttribute("data-userId", author);
   authorName.className = `text-2xl tracking-tight text-gray-900 dark:text-gray-200
   hover:text-accent-light hover:dark:text-accent-dark flex-grow`;
-  authorName.textContent = post.author.name;
+  authorName.textContent = author;
   linkTitle.appendChild(authorName);
   authorContainer.appendChild(linkTitle);
 
@@ -172,7 +175,7 @@ const SinglePost = async () => {
     form.classList.toggle("hidden");
   });
 
-  if (loggedInUser.name === post.author.name) {
+  if (loggedInUserName === author) {
     helpText.classList.add("group-hover:opacity-100");
 
     editPostIcon.appendChild(svgIcon);

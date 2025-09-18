@@ -2,6 +2,7 @@ import {
   createNavLink,
   showLink,
 } from "/js/app/components/navbar/utils/createAndShowLink.js";
+import { SITE_NAME, SITE_LOGO_NAME } from "/js/utils/general/constants.js";
 
 export const DesktopNav = (auth, links) => {
   const nav = document.createElement("nav");
@@ -14,8 +15,8 @@ export const DesktopNav = (auth, links) => {
 
   const logoImg = document.createElement("img");
   logoImg.className = "w-32 flex justify-end dark:invert";
-  logoImg.src = "/resources/logo/foodiegram-logo.png";
-  logoImg.alt = "Logo: Foodiegram | A slice of life";
+  logoImg.src = SITE_LOGO_NAME;
+  logoImg.alt = `Logo: ${SITE_NAME} | A slice of life`;
   logo.appendChild(logoImg);
 
   logoImg.addEventListener("click", () => {

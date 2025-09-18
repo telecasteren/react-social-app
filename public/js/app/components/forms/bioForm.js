@@ -2,6 +2,8 @@ import { editBioFormEventHandlers } from "/js/app/events/profile/editBio/submitE
 import Description from "/js/app/routes/profile/sections/description.js";
 
 export const editDescription = async (user) => {
+  const userBio = user.bio || "";
+
   const form = document.createElement("form");
   form.id = "bio-form";
   form.className = `
@@ -40,7 +42,7 @@ export const editDescription = async (user) => {
   bio.maxLength = "180";
   bio.rows = 4;
   bio.placeholder = "No bio here yet";
-  bio.innerText = user.bio || "";
+  bio.innerText = userBio;
 
   const submitButton = document.createElement("button");
   submitButton.id = "submit-btn";

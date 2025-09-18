@@ -108,10 +108,11 @@ export const editPostFormEventHandlers = async (
               clearUserMessage();
 
               const currentUser = await getCurrentUser();
+              const username = currentUser.name;
               const currentPath = window.location.pathname;
 
               if (currentPath.startsWith("/user/post/")) {
-                window.location.href = `/user/profile/?id=${currentUser.name}`;
+                window.location.href = `/user/profile/?id=${username}`;
               } else {
                 window.location.href = window.location.href;
               }
