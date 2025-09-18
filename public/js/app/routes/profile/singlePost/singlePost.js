@@ -40,7 +40,7 @@ const SinglePost = async () => {
     "grid grid-cols-1 xl:grid-cols-[2fr,1.5fr] justify-self-center mt-5 max-w-[95vw] md:max-w-[60vw]";
 
   const card = document.createElement("div");
-  card.className = `relative flex flex-col bg-white border border-gray-200 rounded-l-sm
+  card.className = `relative flex flex-col bg-stone-50 border border-gray-200 rounded-l-sm
     shadow-sm dark:bg-[#0f0c29] dark:border-none`;
 
   const image = document.createElement("img");
@@ -156,7 +156,7 @@ const SinglePost = async () => {
   commentsContainer.appendChild(comment);
 
   const formDiv = document.createElement("div");
-  formDiv.className = "relative bottom-0 p-5 m-0 bg-white dark:bg-[#0f0c29]";
+  formDiv.className = "relative bottom-0 p-5 m-0 bg-stone-50 dark:bg-[#0f0c29]";
 
   const form = await commentForm();
   formDiv.appendChild(form);

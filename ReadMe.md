@@ -1,8 +1,12 @@
 # 🍕 Foodiegram
 
-![image](public/resources/images/screenshot.webp)
-
 **A social media application.**
+
+![image](public/resources/images/foodiegram_profile_lightmode.webp)
+_Lightmode_
+
+![image](public/resources/images/foodiegram_profile_darkmode.webp)
+_Darkmode_
 
 ## Description
 
@@ -10,11 +14,10 @@ Foodiegram is a social media app for "foodies", gathering food lovers from aroun
 
 ## 🚀 Features
 
-- **Feed & Posts** – View, create and like posts.
-- **Search** – Sort and search in posts.
+- **Feed** – View, create and like posts.
+- **Search** – Sort and search in posts title/body.
+- **Profile** – Follow other users profiles. Update your own profile, create posts and edit/delete your posts.
 - **User Authentication** – Create an account and log in securely. (restricted to these domains: @noroff.no, @stud.noroff.no)
-- **Profile Management** – Update your profile and see your list of posts, edit/delete posts.
-- **DM's and messaging** – Send and receive messages between users. _(COMING IN FUTURE)_
 
 ## 🛠 Built With
 
@@ -110,15 +113,6 @@ npm install
 After cloning the repo and running it, you can test the app from a user perspective:
 
 - Creating a test user within the valid email domain: noroff.no or stud.noroff.no
-- Or by logging in as one of these generic test user:<br/>
-
-```bash
-username: browser@noroff.no
-password: browsers
----
-username: eg95@noroff.no
-password: eeeeeeee
-```
 
 ## ⭐ Contributing
 
@@ -128,7 +122,7 @@ When contributing becomes available, see guidelines and more about it here:
 
 ## 👨🏼‍💻 Contact me
 
-Portfolio [telecasteren.github.io](https://telecasteren.github.io/)
+Portfolio [telecasteren.com](https://telecasternilsen.com)
 
 Github [@telecasteren](https://github.com/telecasteren)
 

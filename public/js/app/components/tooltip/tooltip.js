@@ -31,6 +31,10 @@ export const showTooltip = (targetEl, label, content) => {
     return;
   }
 
+  if (actualContent) {
+    actualContent = DOMPurify.sanitize(actualContent);
+  }
+
   tooltip.innerHTML = content.length
     ? `<span class="font-medium">${label ? label + ": " : ""}</span>${
         isMultipleElements ? "<br />" : ""

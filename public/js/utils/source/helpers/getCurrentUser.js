@@ -30,7 +30,6 @@ export const getCurrentUser = async () => {
     const data = await response.json();
     return data.data ?? null;
   } catch (error) {
-    console.error("getCurrentUser() failed:", error);
     return null;
   }
 };

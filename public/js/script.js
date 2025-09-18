@@ -10,7 +10,7 @@ import { loadKey } from "/js/utils/storage/loadKey.js";
 document.addEventListener("DOMContentLoaded", async () => {
   setTheme();
 
-  // AUTH
+  // AUTH - check if user is logged in
   let auth = false;
   try {
     auth = await isAuthenticated();
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // CONTENT
+  // CONTENT - render main content
   Navbar(auth);
   Footer();
   renderContent();
