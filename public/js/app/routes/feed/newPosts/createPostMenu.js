@@ -5,7 +5,7 @@
 
 const createPostMenu = () => {
   const menuWrapper = document.createElement("div");
-  menuWrapper.className = "fixed bottom-6 right-24 group";
+  menuWrapper.className = "fixed bottom-6 right-24 group z-50";
 
   const menu = document.createElement("div");
   menu.id = "speed-dial-menu-dropdown";

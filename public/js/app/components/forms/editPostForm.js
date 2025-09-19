@@ -137,7 +137,7 @@ const editPostForm = async (post) => {
   const caption = document.createElement("textarea");
   caption.name = "caption";
   caption.id = "caption";
-  caption.className = `${sharedStyles} p-4 ps-10`;
+  caption.className = `${sharedStyles} p-4`;
   caption.maxLength = "180";
   caption.rows = 4;
   caption.textContent = post.body || "";

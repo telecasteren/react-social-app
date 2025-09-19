@@ -8,7 +8,7 @@ export const createCards = async () => {
   const cardContainer = document.createElement("div");
   cardContainer.id = "posts-container";
   cardContainer.className =
-    "card-container flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center ml-20 mr-20";
+    "card-container flex flex-column flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center md:ml-20 md:mr-20";
 
   await renderCards(posts, cardContainer);
   return cardContainer;

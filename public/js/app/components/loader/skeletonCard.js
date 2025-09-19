@@ -1,7 +1,7 @@
 export const createSkeletonCards = () => {
   const container = document.createElement("div");
   container.className =
-    "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:m-20";
+    "grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 md:m-20";
   container.setAttribute("role", "status");
   container.setAttribute("aria-busy", "true");
 
