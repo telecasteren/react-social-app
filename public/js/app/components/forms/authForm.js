@@ -4,6 +4,7 @@ import {
 } from "/js/app/events/authForm/handlers/validation.js";
 import { setAuthFormEvents } from "/js/app/events/authForm/handlers/setAuthEvents.js";
 import { SITE_NAME } from "/js/utils/general/constants.js";
+import { forgotPasswordRoute } from "/js/app/events/authForm/forgotPassword/forgotPasswordRoute.js";
 
 /**
  * Renders an authentication form (login or signup) inside the `#auth-content` container.
@@ -193,6 +194,11 @@ const AuthForm = (isSignup = false) => {
     const confirmPassword = document.getElementById("confirm-password");
     if (confirmPassword) passwordValidation(confirmPassword);
   }
+
+  forgotPassword.addEventListener(
+    "click",
+    forgotPasswordRoute(AuthForm, authContainer)
+  );
 
   setAuthFormEvents(isSignup);
 };
