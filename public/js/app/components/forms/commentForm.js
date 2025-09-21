@@ -1,17 +1,35 @@
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 import { submitCommentHandler } from "/js/app/events/userActions/commenting/submitCommentHandler.js";
+import { toggleCommentBtn } from "/js/app/events/userActions/commenting/toggleCommentBtn.js";
 import {
   userMessage,
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
-const toggleCommentBtn = () => {
-  const commentBtn = document.getElementById("toggle-comment-form-btn");
-  if (commentBtn) {
-    commentBtn.classList.remove("hidden");
-  }
-};
-
+/**
+ * Creates and returns a comment form element for the current user.
+ *
+ * The form includes:
+ * - The current user's avatar and display name.
+ * - A textarea for writing a comment.
+ * - A submit button that triggers `submitCommentHandler`, displays status messages,
+ *   hides the form, and re-enables the toggle button.
+ * - A cancel button that hides the form and restores the toggle button.
+ *
+ * @async
+ * @function commentForm
+ * @returns {Promise<HTMLDivElement>} A form container element for submitting a comment.
+ *
+ * @requires getCurrentUser
+ * @requires submitCommentHandler
+ * @requires userMessage
+ * @requires clearUserMessage
+ *
+ * @sideeffects
+ * - Attaches event listeners for submitting and canceling comments.
+ * - Displays and hides UI messages using `userMessage` and `clearUserMessage`.
+ * - Toggles visibility of the comment form and toggle button.
+ */
 export const commentForm = async () => {
   const currentUser = await getCurrentUser();
   const currentUserName = currentUser.name || "Unknown user";

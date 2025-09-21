@@ -12,6 +12,19 @@ import { searchPosts } from "/js/app/events/search/queryPosts/searchPosts.js";
 import { openPost } from "/js/app/events/profile/goToPost.js";
 // import { searchProfiles } from "/js/app/events/search/queryPosts/searchProfiles.js";
 
+/**
+ * Creates and returns the main Feed page container.
+ *
+ * This function:
+ * - Generates the feed header with a title, search bar, sort menu, and new post button.
+ * - Fetches and renders post cards.
+ * - Initializes scroll handling, search functionality, and post interaction events.
+ * - Restores scroll position if previously saved in `sessionStorage`.
+ *
+ * @async
+ * @function
+ * @returns {Promise<HTMLElement>} A container element representing the Feed page.
+ */
 const Feed = async () => {
   const container = document.createElement("div");
   const headerContent = document.createElement("div");

@@ -4,7 +4,7 @@ import {
 } from "/js/utils/messages/userMessage.js";
 import { submitEditedPost } from "/js/utils/source/api/posts/actions/edit.js";
 import { deletePost } from "/js/utils/source/api/posts/actions/delete.js";
-import { closeModal } from "/js/app/components/modal/createModal.js";
+import { closeModal } from "/js/app/components/modal/closeModal.js";
 import { getCurrentUser } from "/js/utils/source/helpers/getCurrentUser.js";
 
 /**
@@ -114,9 +114,12 @@ export const editPostFormEventHandlers = async (
               if (currentPath.startsWith("/user/post/")) {
                 window.location.href = `/user/profile/?id=${username}`;
               } else {
-                window.location.href = window.location.href;
+                const deletedPostToHide = document.querySelector(
+                  `[data-id='${postData.id}']`
+                );
+                deletedPostToHide.classList.add("hidden");
               }
-            }, 2000);
+            }, 1500);
           }, 1000);
         } catch (error) {
           userMessage("warning", "Couldn't delete post.");

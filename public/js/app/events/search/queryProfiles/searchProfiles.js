@@ -14,6 +14,12 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
+/**
+ * Not in use. Function to handle searching profiles and rendering results. Will be implemented in future updates.
+ * @param {HTMLElement} searchBar - The search bar element containing the input and button.
+ * @param {HTMLElement} container - The container element where search results will be rendered.
+ * @returns {void}
+ */
 export const searchProfiles = (searchBar, container) => {
   const searchBox = searchBar.querySelector("#default-search");
   const button = searchBar.querySelector("#search-btn");

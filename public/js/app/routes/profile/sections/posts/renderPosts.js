@@ -4,6 +4,30 @@ import { createEditIcon } from "/js/app/components/buttons/editIconBtn.js";
 import { editPostMenuEvents } from "/js/app/events/profile/editPost/menuHandlers.js";
 import { NO_IMG_URL } from "/js/utils/general/constants.js";
 
+/**
+ * Renders a list of posts into a specified container element.
+ *
+ * Each post is displayed with its image, like count, comment count, and optionally
+ * an edit button if the current logged-in user matches the profile being viewed.
+ * Handles missing images gracefully by replacing them with a default placeholder.
+ *
+ * @async
+ * @function
+ * @param {Array<Object>} posts - Array of post objects to render. Each post should have:
+ *   - id: Unique identifier of the post.
+ *   - created: Timestamp of post creation.
+ *   - title: Title of the post.
+ *   - body: Body/content of the post.
+ *   - _count: Object containing counts for reactions and comments.
+ *   - media: Object containing optional `url` and `alt` for the post image.
+ * @param {HTMLElement} container - The container element where posts will be appended.
+ * @returns {Promise<void>} Resolves once all posts are rendered into the container.
+ *
+ * @throws Will log an error if the container is undefined.
+ *
+ * @fires createEditIcon Creates an edit icon for posts if the logged-in user is the profile owner.
+ * @fires editPostMenuEvents Opens the post edit menu for editable posts.
+ */
 export const renderPosts = async (posts, container) => {
   if (!container) {
     console.error("container is undefined");

@@ -1,3 +1,21 @@
+/**
+ * Creates and appends a spinning loader (spinner) to the document body.
+ *
+ * The spinner includes:
+ * - An SVG animated with `animate-spin` to indicate loading.
+ * - ARIA attributes (`role="status"` and `sr-only` text) for accessibility.
+ *
+ * @function spinner
+ * @returns {HTMLDivElement} The container element holding the spinner.
+ *
+ * @sideeffects
+ * - Appends the spinner element directly to `document.body`.
+ * - Constructs DOM elements with CSS classes for animation and styling.
+ *
+ * @example
+ * const loader = spinner();
+ * // Later, you can remove it with loader.remove();
+ */
 export const spinner = () => {
   const container = document.createElement("div");
   container.className = "text-center";

@@ -2,6 +2,18 @@ import { typeTitle, typeText } from "/js/app/components/titles/typewriter.js";
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 import { SITE_NAME, SITE_LOGO_PIZZA } from "/js/utils/general/constants.js";
 
+/**
+ * Creates the main dashboard page for the application.
+ *
+ * This function dynamically generates the dashboard layout, including:
+ * - A header with the site title animated via `typeTitle`.
+ * - A content container displaying a caption with a typewriter effect using `typeText`.
+ * - A logo image for branding.
+ * - "Log in" and "Sign up" buttons with basic click prevention (to be hooked with auth handlers).
+ *
+ * @function
+ * @returns {HTMLElement} The fully constructed dashboard container element, ready to be appended to the DOM.
+ */
 const Dashboard = () => {
   const dashboardContainer = document.createElement("div");
   dashboardContainer.className =

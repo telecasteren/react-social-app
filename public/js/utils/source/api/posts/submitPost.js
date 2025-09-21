@@ -21,7 +21,7 @@ export const submitPost = async (postData) => {
     );
 
     if (!response.ok) {
-      userMessage("Failed to submit post. Please try again.");
+      userMessage("error", "Failed to submit post. Please try again.");
       throw new Error("Failed to submit post");
     }
 

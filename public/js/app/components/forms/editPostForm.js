@@ -1,9 +1,5 @@
 import { editPostFormEventHandlers } from "/js/app/events/profile/editPost/submitEvents.js";
-import { NO_IMG_URL } from "/js/utils/general/constants.js";
-
-const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border 
-border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
-focus:ring-blue-500 focus:border-blue-500`;
+import { NO_IMG_URL, sharedStyles } from "/js/utils/general/constants.js";
 
 /**
  * Creates and returns a dynamic HTML form for editing an existing post.

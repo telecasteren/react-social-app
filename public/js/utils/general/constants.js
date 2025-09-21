@@ -8,6 +8,11 @@ export const NO_IMG_URL = "/resources/icons/no-image-icon.webp";
 export const MENU_ICON = "/resources/icons/hamburger-icon-f.png";
 export const endDot = `<span style="color: var(--accent); font-size: 25px;">.</span>`;
 
+// Styles
+export const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border 
+border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
+focus:ring-blue-500 focus:border-blue-500`;
+
 // Meta descriptions
 export const defaultPostDesc = `${SITE_NAME}: stories from the cultural corners of the world!`;
 export const defaultDescFallback =

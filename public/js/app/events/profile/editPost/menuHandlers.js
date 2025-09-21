@@ -1,8 +1,6 @@
 import editPostForm from "/js/app/components/forms/editPostForm.js";
-import {
-  createModal,
-  toggleModal,
-} from "/js/app/components/modal/createModal.js";
+import { createModal } from "/js/app/components/modal/createModal.js";
+import { toggleModal } from "/js/app/components/modal/toggleModal.js";
 
 /**
  * Opens a modal with the edit post form for the current post

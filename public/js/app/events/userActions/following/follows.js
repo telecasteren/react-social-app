@@ -8,6 +8,25 @@ import { submitUnfollow } from "/js/utils/source/api/users/actions/submitUnfollo
 import { syncFollowState } from "/js/app/events/userActions/following/syncFollowState.js";
 import { createFollowButton } from "/js/app/events/userActions/following/createFollowBtn.js";
 
+/**
+ * Creates and manages a follow/unfollow button for a given user.
+ *
+ * This function generates a follow button, synchronizes its initial state
+ * based on whether the current user is already following the target user,
+ * and attaches click event handlers to toggle the following state.
+ *
+ * Behavior:
+ * - If the user is not being followed, clicking the button will submit a follow request.
+ * - If the user is already being followed, clicking the button will submit an unfollow request.
+ * - Displays appropriate success, info, or warning messages.
+ * - Disables the button during the async operation to prevent multiple clicks.
+ *
+ * @async
+ * @param {Object} user - The user object representing the target user to follow/unfollow.
+ * @param {string} user.name - The username of the target user.
+ * @returns {Promise<HTMLButtonElement>} The follow/unfollow button element with its event listeners attached.
+ * @throws {Error} Throws an error if the follow/unfollow operation fails.
+ */
 export const toggleFollowing = async (user) => {
   const followBtn = createFollowButton();
   const currentUser = loadKey("profile");

@@ -1,18 +1,20 @@
-export const createSkeletonCards = () => {
-  const container = document.createElement("div");
-  container.className =
-    "grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 md:m-20";
-  container.setAttribute("role", "status");
-  container.setAttribute("aria-busy", "true");
-
-  const cards = [];
-  for (let i = 0; i < 3; i++) {
-    cards.push(createSkeletonCard());
-  }
-  cards.forEach((card) => container.appendChild(card));
-  return container;
-};
-
+/**
+ * Creates a single skeleton card element to display a placeholder for a post or content item.
+ *
+ * The card includes:
+ * - A placeholder for the image with a simple SVG illustration.
+ * - Multiple text line placeholders representing title, description, or content.
+ * - A placeholder for avatar and username.
+ * - ARIA attributes to indicate loading status.
+ *
+ * The card uses CSS classes for the pulse animation and dark mode support.
+ *
+ * @function createSkeletonCard
+ * @returns {HTMLDivElement} A skeleton card element for loading states.
+ *
+ * @sideeffects
+ * - Constructs DOM elements with placeholder content and ARIA attributes.
+ */
 export const createSkeletonCard = () => {
   const loaderContainer = document.createElement("div");
   loaderContainer.setAttribute("role", "status");

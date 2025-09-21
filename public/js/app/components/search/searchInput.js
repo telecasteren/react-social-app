@@ -1,3 +1,14 @@
+/**
+ * Creates and returns a search input form for posts.
+ *
+ * - Includes a visually hidden label for accessibility.
+ * - Contains a search icon inside the input field.
+ * - Input field is styled for both light and dark modes.
+ * - Includes a submit button to trigger the search.
+ *
+ * @function searchInput
+ * @returns {HTMLFormElement} A form element containing a search input and submit button.
+ */
 const searchInput = () => {
   const form = document.createElement("form");
   form.className = "max-w-md";

@@ -1,11 +1,31 @@
 import { createTitle } from "/js/app/components/titles/title.js";
 import { editAvatar } from "/js/app/components/forms/avatarForm.js";
 import { loadKey } from "/js/utils/storage/loadKey.js";
-import {
-  showTooltip,
-  hideTooltip,
-} from "/js/app/components/tooltip/tooltip.js";
+import { showTooltip } from "/js/app/components/tooltip/tooltip.js";
+import { hideTooltip } from "/js/app/components/tooltip/hideTooltip.js";
 
+/**
+ * Creates a user heading section with avatar and truncated username.
+ *
+ * This component displays the user's profile picture (or a placeholder),
+ * the username (truncated if longer than 20 characters), and allows
+ * the current user to edit their avatar by showing an overlay edit icon on hover.
+ * Tooltips are displayed when hovering over the username.
+ *
+ * @async
+ * @function
+ * @param {Object} user - The user whose heading is being rendered.
+ * @param {string} user.name - The username of the profile owner.
+ * @param {Object} [user.avatar] - Optional avatar object containing URL and alt text.
+ * @param {string} [user.avatar.url] - URL of the user's avatar image.
+ * @param {string} [user.avatar.alt] - Alt text for the avatar image.
+ * @returns {Promise<HTMLElement>} A container `<div>` element containing the avatar,
+ *                                 editable overlay (if current user), and username with tooltip.
+ *
+ * @fires editAvatar Opens avatar edit form when the edit icon is clicked.
+ * @fires showTooltip Displays a tooltip with the full username on hover.
+ * @fires hideTooltip Hides the tooltip when the mouse leaves the username.
+ */
 const Heading = async (user) => {
   const currentUser = loadKey("profile");
   const currentUsername = currentUser?.name || "Unknown user";

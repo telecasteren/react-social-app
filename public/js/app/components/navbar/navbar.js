@@ -1,7 +1,21 @@
-import { initialUnderline } from "/js/app/components/navbar/utils/updateUnderline.js";
+import { initialUnderline } from "/js/app/components/navbar/utils/initialUnderline.js";
 import { MobileNav } from "/js/app/components/navbar/MobileNav.js";
 import { DesktopNav } from "/js/app/components/navbar/DesktopNav.js";
 
+/**
+ * Initializes and renders the website's navigation bars (desktop and mobile) based on the user's authentication status.
+ *
+ * - Dynamically creates desktop and mobile navigation bars using `DesktopNav` and `MobileNav`.
+ * - Prepends both navigation elements to the document body.
+ * - Sets up link underlines for the current page and updates them on window resize.
+ * - Toggles visibility of desktop vs mobile nav depending on screen width.
+ * - Changes nav background on scroll for visual feedback, reverting to transparent at the top.
+ *
+ * @async
+ * @function Navbar
+ * @param {boolean} auth - Indicates whether the user is authenticated.
+ * @returns {Promise<void>} Resolves when navigation bars are created and event listeners are attached.
+ */
 const Navbar = async (auth) => {
   const links = [
     { href: "/", text: "Welcome", authOnly: false, guestOnly: true },

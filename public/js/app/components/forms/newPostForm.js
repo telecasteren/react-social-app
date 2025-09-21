@@ -1,7 +1,27 @@
-const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 border 
-border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
-focus:ring-blue-500 focus:border-blue-500`;
-
+import { sharedStyles } from "/js/utils/general/constants.js";
+/**
+ * Creates and returns a form for creating a new post with an image, title, and caption.
+ *
+ * The form includes:
+ * - An **image upload field** (URL input) with live preview (or placeholder SVG if empty).
+ * - A **title input** with a max length of 30 characters.
+ * - A **caption textarea** with a max length of 180 characters.
+ * - A **submit button** styled with an inline SVG icon.
+ * - An **error message element** for validation feedback.
+ *
+ * Image preview updates dynamically as the user types into the URL input.
+ *
+ * @function newPost
+ * @returns {HTMLFormElement} A fully constructed form element for creating a post.
+ *
+ * @sideeffects
+ * - Attaches an input listener to the image URL field to toggle between
+ *   showing a live preview and the placeholder image.
+ *
+ * @example
+ * const form = newPost();
+ * document.body.appendChild(form);
+ */
 const newPost = () => {
   const form = document.createElement("form");
   form.id = "new-post-form";

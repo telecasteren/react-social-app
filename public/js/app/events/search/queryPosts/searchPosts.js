@@ -13,6 +13,19 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
+/**
+ * Attaches search functionality to a search bar for filtering posts and rendering results.
+ *
+ * @param {HTMLElement} searchBar - The container element of the search input and button.
+ * @param {HTMLElement} container - The container element where search results (post cards) will be rendered.
+ *
+ * @fires userMessage Displays informational, error, or success messages to the user.
+ * @fires clearUserMessage Clears messages after a delay.
+ * @fires renderCards Renders post cards in the container based on search results.
+ * @fires openPost Initializes click handlers or functionality for individual posts.
+ * @fires setScrollHandler Sets up infinite scrolling to load more posts dynamically.
+ * @fires removeScrollHandler Removes any previously attached scroll handlers to prevent duplicate loads.
+ */
 export const searchPosts = (searchBar, container) => {
   const searchBox = searchBar.querySelector("#default-search");
   const button = searchBar.querySelector("#search-btn");

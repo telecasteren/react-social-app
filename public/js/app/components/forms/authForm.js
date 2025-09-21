@@ -5,6 +5,31 @@ import {
 import { setAuthFormEvents } from "/js/app/events/authForm/handlers/setAuthEvents.js";
 import { SITE_NAME } from "/js/utils/general/constants.js";
 
+/**
+ * Renders an authentication form (login or signup) inside the `#auth-content` container.
+ *
+ * The form dynamically adapts depending on whether it is used for signup or login:
+ * - **Login form**: Includes email, password, and "Forgot password?" link.
+ * - **Signup form**: Includes username, email, password, confirm password, and hides the "Forgot password?" link.
+ *
+ * Input fields are validated using the imported `emailValidation` and `passwordValidation` utilities,
+ * and event handlers are attached via `setAuthFormEvents`.
+ *
+ * @function AuthForm
+ * @param {boolean} [isSignup=false] - Determines whether to render a signup form (`true`) or a login form (`false`).
+ *
+ * @returns {void} This function does not return a value; it directly modifies the DOM.
+ *
+ * @requires emailValidation
+ * @requires passwordValidation
+ * @requires setAuthFormEvents
+ * @requires SITE_NAME
+ *
+ * @sideeffects
+ * - Clears and re-renders the content of the `#auth-content` container.
+ * - Injects a new form and associated elements into the DOM.
+ * - Attaches input validation and form event listeners.
+ */
 const AuthForm = (isSignup = false) => {
   const authContainer = document.getElementById("auth-content");
   authContainer.innerHTML = "";

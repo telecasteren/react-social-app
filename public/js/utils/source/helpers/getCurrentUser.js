@@ -5,6 +5,25 @@ import {
   API_USERS,
 } from "/js/utils/source/api/general/constants.js";
 
+/**
+ * Fetches the currently logged-in user's profile from the API.
+ *
+ * Retrieves the user profile stored in local storage, checks for a valid
+ * authentication token, and fetches the user's full data from the backend,
+ * including their posts. Returns `null` if no token is found, the fetch fails,
+ * or an error occurs.
+ *
+ * @async
+ * @returns {Promise<Object|null>} The current user's data object if available, otherwise `null`.
+ *
+ * @example
+ * const user = await getCurrentUser();
+ * if (user) {
+ *   console.log(`Logged in as: ${user.name}`);
+ * } else {
+ *   console.log("No user logged in.");
+ * }
+ */
 export const getCurrentUser = async () => {
   try {
     const currentUser = loadKey("profile");

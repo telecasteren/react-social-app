@@ -41,7 +41,6 @@ export const submitHandler = async () => {
     const createdPost = await submitPost(newPostCard);
     createSingleCard(createdPost);
   } catch (error) {
-    userMessage("error", "Failed to submit post to server.");
     throw error;
   }
 };

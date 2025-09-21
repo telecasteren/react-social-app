@@ -3,6 +3,23 @@ import { displayFormErrorMessage } from "/js/utils/messages/formMessage.js";
 import { register } from "/js/utils/source/api/auth/registerUser.js";
 import { login } from "/js/utils/source/api/auth/loginUser.js";
 
+/**
+ * Handles user authentication, supporting both login and signup flows.
+ *
+ * For signup:
+ *  - Validates password confirmation.
+ *  - Registers a new user.
+ *  - Logs in the new user and redirects to their profile page.
+ *
+ * For login:
+ *  - Authenticates an existing user.
+ *  - Redirects to the user's profile page upon successful login.
+ *
+ * Displays appropriate error messages if registration or login fails.
+ *
+ * @param {boolean} [isSignup=false] - If true, performs user registration; otherwise, performs login.
+ * @returns {Promise<void>} Resolves when the authentication process completes, or throws an error on failure.
+ */
 export const handleAuth = async (isSignup = false) => {
   const { usernameInput, emailInput, passwordInput, confirmPassInput } =
     getAuthInputs();

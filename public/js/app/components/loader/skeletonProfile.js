@@ -1,3 +1,18 @@
+/**
+ * Creates and returns a skeleton loader for a user profile page.
+ *
+ * The loader includes:
+ * - Pulsing bars representing profile content placeholders.
+ * - A circular SVG placeholder for the profile avatar.
+ * - ARIA attributes to indicate loading status for accessibility.
+ *
+ * @function createSkeletonProfile
+ * @returns {HTMLDivElement} A skeleton loader element representing a user profile.
+ *
+ * @sideeffects
+ * - Constructs DOM elements styled for a loading animation.
+ * - Adds ARIA attributes for accessibility (`role="status"` and `aria-hidden` elements).
+ */
 export const createSkeletonProfile = () => {
   const loaderContainer = document.createElement("div");
   loaderContainer.setAttribute("role", "status");

@@ -7,6 +7,20 @@ import {
   clearUserMessage,
 } from "/js/utils/messages/userMessage.js";
 
+/**
+ * Attaches like/unlike functionality to a post for the current user.
+ *
+ * This function:
+ * - Retrieves the current post based on the URL query parameter.
+ * - Checks if a user is logged in and exits early if not.
+ * - Updates the likes count and icon visually when the user clicks the like button.
+ * - Sends the like/unlike action to the backend via `submitReaction`.
+ * - Stores and updates the likes state in local storage.
+ * - Displays temporary success or warning messages to the user.
+ *
+ * @async
+ * @returns {Promise<void>} Resolves after event listeners have been attached.
+ */
 export const likePosts = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const postId = parseInt(urlParams.get("id"));

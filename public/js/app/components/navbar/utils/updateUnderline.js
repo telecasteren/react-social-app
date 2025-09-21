@@ -1,6 +1,18 @@
 import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 import { loadKey } from "/js/utils/storage/loadKey.js";
 
+/**
+ * Animates the underline of a navigation menu to align with the target list item.
+ *
+ * - Only shows the underline for the current user's profile if on `/user/profile`.
+ * - Retrieves the current and target positions and widths of the underline.
+ * - Smoothly transitions the underline to the target using `requestAnimationFrame`.
+ *
+ * @async
+ * @function updateUnderline
+ * @param {HTMLLIElement} targetLi - The list item element to which the underline should move.
+ * @returns {Promise<void>} Resolves when the animation is complete.
+ */
 export const updateUnderline = async (targetLi) => {
   const currentUrl = window.location.pathname;
   let showUnderline = true;
@@ -49,28 +61,4 @@ export const updateUnderline = async (targetLi) => {
   };
 
   requestAnimationFrame(steps);
-};
-
-export const initialUnderline = (links) => {
-  const currentPath = window.location.pathname.replace(/\/+$/, "");
-
-  if (currentPath === "/user/post") return;
-
-  const liElements = Array.from(
-    document.querySelectorAll("ul.active li")
-  ).filter((el) => el.offsetParent !== null);
-
-  for (const li of liElements) {
-    const a = li.querySelector("a");
-    if (!a) continue;
-
-    const linkPath = new URL(a.href, window.location.origin).pathname.replace(
-      /\/+$/,
-      ""
-    );
-    if (linkPath === currentPath) {
-      updateUnderline(li);
-      break;
-    }
-  }
 };

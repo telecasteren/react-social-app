@@ -1,12 +1,11 @@
 ## TO DO
 
-### Bugs
+### Improvements
 
-- Back button displays upon any history
-  - should only display if user comes from feed, post, profile
-  - if from login - hidden
+- Bug in Go back btn renders twice in profile page
+- UX flow: Forgot password routing
 
 ### Additional ideas
 
-- Searching for profiles - returning profile links ? (ongoing attempt)
-- A feed page for posts by following profiles only ?
+- Searching for specific profiles - returning profile links ? (ongoing attempt)
+- A version of the feed page where only posts by following are returned.

@@ -1,6 +1,32 @@
 import { editBioFormEventHandlers } from "/js/app/events/profile/editBio/submitEvents.js";
 import Description from "/js/app/routes/profile/sections/description.js";
 
+/**
+ * Creates and returns a form for editing a user's biography (bio).
+ *
+ * The form includes:
+ * - A textarea pre-filled with the user's current bio.
+ * - A "Save changes" button to submit updates.
+ * - A "Delete bio" button with a confirmation step ("Yes" / "No").
+ * - A close button to cancel editing and restore the original description view.
+ *
+ * The form is initialized with `editBioFormEventHandlers` to handle submission,
+ * deletion, and confirmation logic.
+ *
+ * @async
+ * @function editDescription
+ * @param {Object} user - The user object containing bio data.
+ * @param {string} [user.bio=""] - The current biography text of the user.
+ *
+ * @returns {Promise<HTMLFormElement>} A form element for editing the user’s bio.
+ *
+ * @requires editBioFormEventHandlers
+ * @requires Description
+ *
+ * @sideeffects
+ * - Attaches event listeners for form submission, deletion, and cancel actions.
+ * - Replaces the bio section in the DOM while editing is active.
+ */
 export const editDescription = async (user) => {
   const userBio = user.bio || "";
 

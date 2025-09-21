@@ -1,9 +1,20 @@
-import {
-  createNavLink,
-  showLink,
-} from "/js/app/components/navbar/utils/createAndShowLink.js";
+import { createNavLink } from "/js/app/components/navbar/utils/createNavLink.js";
+import { showLink } from "/js/app/components/navbar/utils/showLink.js";
 import { SITE_NAME, SITE_LOGO_NAME } from "/js/utils/general/constants.js";
 
+/**
+ * Creates a desktop navigation bar element.
+ *
+ * - Includes the site logo on the right, which navigates to the feed page on click.
+ * - Dynamically generates navigation links based on the provided `links` array and authentication status.
+ * - Only shows links that pass the `showLink` visibility check.
+ * - Applies styling and classes for desktop layout, including dark mode support.
+ *
+ * @function DesktopNav
+ * @param {boolean} auth - Indicates whether the user is authenticated.
+ * @param {Array<Object>} links - Array of link objects with properties like `text`, `href`, `authOnly`, `guestOnly`.
+ * @returns {HTMLElement} The constructed `<nav>` element for the desktop navigation.
+ */
 export const DesktopNav = (auth, links) => {
   const nav = document.createElement("nav");
   nav.id = "desktop-nav";

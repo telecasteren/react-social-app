@@ -1,5 +1,10 @@
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 
+/**
+ * Creates a follow button element using the primaryBtn utility createButton.
+ *
+ * @returns {HTMLAnchorElement} - The follow button element.
+ */
 export const createFollowButton = () => {
   const followBtn = createButton({
     text: "Follow",

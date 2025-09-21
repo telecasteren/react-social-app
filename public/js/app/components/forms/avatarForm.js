@@ -1,6 +1,33 @@
 import { editAvatarFormEventHandlers } from "/js/app/events/profile/editAvatar/submitHandlers.js";
 import { NO_IMG_URL } from "/js/utils/general/constants.js";
 
+/**
+ * Creates and returns an avatar editing form for a user profile.
+ *
+ * The form includes:
+ * - A text input pre-filled with the user’s current avatar URL (or a fallback image).
+ * - A label, cancel button, and save button with an inline SVG icon.
+ * - A cancel action that restores the original avatar element.
+ *
+ * The form is wired up with `editAvatarFormEventHandlers` to handle submission logic.
+ *
+ * @async
+ * @function editAvatar
+ * @param {Object} user - The user object containing avatar data.
+ * @param {Object} [user.avatar] - Avatar object for the user.
+ * @param {string} [user.avatar.url] - The URL of the user’s avatar.
+ * @param {HTMLElement} originalAvatar - The original avatar element to restore when canceling.
+ *
+ * @returns {Promise<HTMLFormElement>} A form element for editing the user’s avatar.
+ *
+ * @throws {Error} If `user` is not provided.
+ *
+ * @requires editAvatarFormEventHandlers
+ *
+ * @sideeffects
+ * - Attaches event listeners to the cancel button and form submission.
+ * - Replaces the avatar element in the DOM when the form is active.
+ */
 export const editAvatar = async (user, originalAvatar) => {
   const avatarUrl = user.avatar?.url || NO_IMG_URL;
 

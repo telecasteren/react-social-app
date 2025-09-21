@@ -49,6 +49,12 @@ git clone https://github.com/telecasteren/social-app-noroff.git
 cd social-app-noroff
 ```
 
+#### Switch to the correct branch (js2)
+
+```bash
+git switch js2
+```
+
 ### 2. Prerequisites
 
 - Node.js latest version -
@@ -65,7 +71,7 @@ This is what's handling the routing(navigation) in the app.<br/>
 
 --> Instead of navigating to a new HTML page, the routing system intercepts URL changes and dynamically renders different components or views on the same page.
 
-**Install the dependencies:**
+**Then install the dependencies:**
 
 ```bash
 npm install
@@ -93,13 +99,24 @@ Now, open it in your preferred browser and get to testing!
 
 ### Issues when running
 
-If you're experiencing any issue running the app, try running the following:
+If you're experiencing any issue running the app, check the following:
+
+- You are on the correct repository branch (js2)
+- That port 5500 is not occupied ( localhost:5500 )
+- You've installed Express.js v4
+- You've run `npm install`
+
+**--> If you still have issues, try running:**
 
 ```bash
 npm install express@4.18.2
 rm -rf node_modules package-lock.json
 npm install
 ```
+
+**Then run the app and server with** `npm run dev`
+
+---
 
 ### All available scripts
 

@@ -1,3 +1,10 @@
+/**
+ * Creates an <h1> element with a typing animation for the provided text.
+ * Appends a colored dot at the end after typing is complete.
+ *
+ * @param {string} text - The text to type out in the title.
+ * @returns {HTMLHeadingElement} The <h1> element with the typing animation applied.
+ */
 export const typeTitle = (text) => {
   const title = document.createElement("h1");
   title.className = "text-center font-brand";
@@ -26,6 +33,12 @@ export const typeTitle = (text) => {
   return title;
 };
 
+/**
+ * Creates an <h2> element that cycles through an array of texts with a typewriter animation.
+ * Each text is typed out character by character and then erased before moving to the next text.
+ *
+ * @returns {HTMLHeadingElement} The <h2> element with the typewriter animation applied.
+ */
 export const typeText = () => {
   const title = document.createElement("h2");
   title.className = "text-center font-typewriter typewriter";

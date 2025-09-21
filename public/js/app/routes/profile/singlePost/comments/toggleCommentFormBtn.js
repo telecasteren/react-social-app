@@ -1,5 +1,16 @@
 import createButton from "/js/app/components/buttons/primaryBtn.js";
 
+/**
+ * Creates and returns a button element for toggling the comment form.
+ * The button is styled with utility classes for layout and hover effects.
+ * @function
+ * @returns {HTMLButtonElement} The styled button element for toggling
+ *  the comment form.
+ *
+ * @example
+ * const commentBtn = toggleCommentFormBtn();
+ * document.body.appendChild(commentBtn);
+ */
 export const toggleCommentFormBtn = () => {
   const button = createButton({ text: "Add Comment", href: "#" });
   button.id = "toggle-comment-form-btn";

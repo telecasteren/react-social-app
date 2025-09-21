@@ -1,6 +1,25 @@
-import { NO_IMG_URL } from "/js/utils/general/constants.js";
 import { formatDate } from "/js/utils/general/formatDate.js";
 
+/**
+ * Creates an HTML element representing a single comment.
+ *
+ * This function generates a comment container including the author's avatar,
+ * name (linked to their profile), the comment body, and a formatted timestamp.
+ *
+ * @function
+ * @param {Object} comment - The comment object to render.
+ * @param {number|string} comment.id - Unique identifier of the comment.
+ * @param {string} comment.created - ISO string representing the creation date.
+ * @param {string} comment.body - The text content of the comment.
+ * @param {Object} comment.author - The author of the comment.
+ * @param {string} comment.author.name - The display name of the author.
+ * @param {Object} comment.author.avatar - Avatar information for the author.
+ * @param {string} comment.author.avatar.url - URL of the author's avatar image.
+ * @param {string} [comment.author.avatar.alt] - Alt text for the avatar image.
+ * @returns {HTMLElement} A `<div>` element containing the formatted comment HTML.
+ *
+ * @fires formatDate Formats the comment's creation date for display.
+ */
 export const commentHtml = (comment) => {
   const commentId = comment.id;
   const createdAt = comment.created;

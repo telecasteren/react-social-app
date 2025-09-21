@@ -1,8 +1,6 @@
 import newPost from "/js/app/components/forms/newPostForm.js";
-import {
-  createModal,
-  toggleModal,
-} from "/js/app/components/modal/createModal.js";
+import { createModal } from "/js/app/components/modal/createModal.js";
+import { toggleModal } from "/js/app/components/modal/toggleModal.js";
 import { submitPost } from "/js/app/events/newPost/submitEvents/submitNewPost.js";
 
 /**

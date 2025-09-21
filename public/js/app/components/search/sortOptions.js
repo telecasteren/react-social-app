@@ -97,7 +97,7 @@ export const createSortOptions = ({
 /**
  * Creates a wrapper containing the sort options
  *
- * @returns {HTMLDivElement} It's the wrapper for the sort options throughout the app
+ * @returns {HTMLDivElement} It's the wrapper for the sort options in Feed and Profile pages.
  */
 export const sortOptions = () => {
   const sortWrapper = document.createElement("div");

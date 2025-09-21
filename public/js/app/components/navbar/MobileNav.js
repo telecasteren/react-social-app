@@ -1,7 +1,5 @@
-import {
-  createNavLink,
-  showLink,
-} from "/js/app/components/navbar/utils/createAndShowLink.js";
+import { createNavLink } from "/js/app/components/navbar/utils/createNavLink.js";
+import { showLink } from "/js/app/components/navbar/utils/showLink.js";
 import { endDot } from "/js/utils/general/constants.js";
 import { handleClicks } from "/js/app/components/navbar/utils/navbarHandlers.js";
 import { settingsOptions } from "/js/app/components/navbar/utils/dropdownItems.js";
@@ -11,6 +9,21 @@ import {
   MENU_ICON,
 } from "/js/utils/general/constants.js";
 
+/**
+ * Creates a mobile navigation bar element with a collapsible hamburger menu.
+ *
+ * - Displays the site logo and name.
+ * - Hamburger button toggles the visibility of the mobile menu.
+ * - Dynamically generates navigation links based on the provided `links` array and authentication status.
+ * - Supports dropdown items (e.g., Settings, Logout) with custom actions.
+ * - Automatically hides the menu when clicking outside the nav or selecting a link.
+ * - Applies styling and classes for mobile layout, including dark mode support.
+ *
+ * @function MobileNav
+ * @param {boolean} auth - Indicates whether the user is authenticated.
+ * @param {Array<Object>} links - Array of link objects with properties like `text`, `href`, `authOnly`, `guestOnly`, `isDropdown`.
+ * @returns {HTMLElement} The constructed `<nav>` element for the mobile navigation.
+ */
 export const MobileNav = (auth, links) => {
   const nav = document.createElement("nav");
   nav.id = "mobile-nav";

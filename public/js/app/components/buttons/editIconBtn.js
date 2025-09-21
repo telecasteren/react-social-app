@@ -1,5 +1,24 @@
 import { createTitle } from "/js/app/components/titles/title.js";
 
+/**
+ * Creates and returns an editable icon component with an optional label, CSS classes,
+ * dataset attribute, and click handler.
+ *
+ * The component consists of:
+ * - An SVG edit icon.
+ * - A help text label that becomes visible on hover.
+ *
+ * @function createEditIcon
+ * @param {Object} options - Configuration options for the edit icon.
+ * @param {string} [options.label="Edit"] - Text label displayed as hover help text.
+ * @param {string} [options.classes=""] - Additional CSS classes to apply to the container element.
+ * @param {string|null} [options.dataId=null] - Optional `data-id` attribute value for the container.
+ * @param {Function|null} [options.onClick=null] - Optional callback to execute on click.
+ *
+ * @returns {HTMLDivElement} A container element with the edit icon and hoverable label.
+ *
+ * @requires createTitle
+ */
 export const createEditIcon = ({
   label = "Edit",
   classes = "",

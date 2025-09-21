@@ -13,7 +13,29 @@ import { renderPosts } from "/js/app/routes/profile/sections/posts/renderPosts.j
 import { setScrollHandler } from "/js/utils/source/helpers/setScrollHandler.js";
 import { createScrollHandler } from "/js/app/events/feed/createScrollHandler.js";
 import { goBackBtn } from "/js/app/components/buttons/goBackBtn.js";
+import { addNavTracking } from "/js/utils/source/helpers/navigationTracking.js";
 
+/**
+ * Renders the full profile page for a user, including their heading, stats,
+ * bio/description, posts, and interactive features.
+ *
+ * This function handles:
+ * - Fetching the currently logged-in user and the profile user.
+ * - Resetting pagination and setting up infinite scroll for posts.
+ * - Rendering the profile heading (avatar and username), details (posts, followers, following),
+ *   and description (bio and follow button).
+ * - Displaying the user's posts with sorting options.
+ * - Adding navigation and back button functionality.
+ * - Conditionally showing the "create post" menu if the logged-in user is viewing their own profile.
+ *
+ * @async
+ * @function
+ * @returns {Promise<HTMLDivElement>} A container div element representing the complete user profile page.
+ *
+ * @example
+ * const profilePage = await Profile();
+ * document.body.appendChild(profilePage);
+ */
 const Profile = async () => {
   const loggedInUser = await getCurrentUser();
   const user = await getUserParams();
@@ -46,6 +68,12 @@ const Profile = async () => {
   postsContainer.appendChild(postsList);
   postsContainer.appendChild(backBtn);
 
+  const cameFrom = sessionStorage.getItem("previousPage");
+  if (cameFrom) {
+    const backBtn = goBackBtn();
+    postsContainer.appendChild(backBtn);
+  }
+
   profileContainer.appendChild(userHeading);
   profileContainer.appendChild(userDetails);
   profileContainer.appendChild(userDescription);
@@ -61,6 +89,10 @@ const Profile = async () => {
   if (loggedInUser?.name === user?.name) {
     profileContainer.appendChild(newPost);
   }
+
+  setTimeout(() => {
+    addNavTracking();
+  }, 100);
 
   return profileContainer;
 };

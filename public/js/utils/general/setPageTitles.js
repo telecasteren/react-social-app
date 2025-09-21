@@ -1,12 +1,24 @@
 import { getPosts } from "/js/utils/source/api/posts/get/getPosts.js";
+import { getPostParams } from "/js/utils/source/helpers/getPostParams.js";
+import { getUserParams } from "/js/utils/source/helpers/getUserParams.js";
 import { POSTS_PER_PAGE } from "/js/utils/source/api/general/constants.js";
 import { SITE_NAME } from "/js/utils/general/constants.js";
 
-const getQueryParams = (param) => {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-};
-
+/**
+ * Dynamically sets the page's <title> based on the current path and query parameters.
+ *
+ * - Uses predefined titles for recognized routes (e.g., feed page).
+ * - For post pages (`/post/`), uses the post title if available.
+ * - For profile pages (`/profile/`), uses the username if available.
+ * - Falls back to default titles if no specific match is found.
+ *
+ * @async
+ * @function
+ * @returns {Promise<void>} Resolves after the document title has been updated.
+ *
+ * @example
+ * await setPageTitles();
+ */
 export const setPageTitles = async () => {
   const path = window.location.pathname;
   const { data: posts } = await getPosts(POSTS_PER_PAGE, 1);
@@ -20,7 +32,7 @@ export const setPageTitles = async () => {
     : `${SITE_NAME} | Dashboard`;
 
   if (path.includes("/post/")) {
-    const postId = getQueryParams("id");
+    const { id: postId } = getPostParams();
 
     if (postId) {
       const numericPostId = Number(postId);
@@ -38,7 +50,8 @@ export const setPageTitles = async () => {
   }
 
   if (path.includes("/profile/")) {
-    const userId = getQueryParams("id");
+    const user = await getUserParams();
+    const userId = user.name;
 
     if (userId) {
       const user = userId;
