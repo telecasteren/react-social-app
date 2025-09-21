@@ -102,6 +102,7 @@ export const renderPage = async () => {
       if (path === "/user/post/" && postContent) {
         postContent.style.display = "block";
         const spinnerElement = spinner();
+        spinnerElement.classList.add("mt-48");
         postContent.appendChild(spinnerElement);
 
         setTimeout(async () => {
