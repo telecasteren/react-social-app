@@ -35,7 +35,7 @@ export const renderCards = async (posts, container) => {
     const postId = post.id;
     const created = post.created;
     const postTitle =
-      post.title.length > 20 ? post.title.slice(0, 20) + "..." : post.title;
+      post.title.length > 30 ? post.title.slice(0, 30) + "..." : post.title;
     const reactionsCount = post._count.reactions;
     const comments = post.comments || [];
     const commentsCount = post._count.comments;

@@ -4,6 +4,7 @@ import Logout from "/js/utils/storage/logout.js";
 import { userMessage } from "/js/utils/messages/userMessage.js";
 import { closeModal } from "/js/app/components/modal/closeModal.js";
 import { toggleModal } from "/js/app/components/modal/toggleModal.js";
+import { setPageTitles } from "/js/utils/general/setPageTitles.js";
 
 /**
  * Handles navigation and special click behavior for links within the app.
@@ -86,5 +87,6 @@ export const handleClicks = (e, href, isProfile = false) => {
     history.pushState(null, "", href);
 
     renderContent();
+    setPageTitles();
   }
 };
