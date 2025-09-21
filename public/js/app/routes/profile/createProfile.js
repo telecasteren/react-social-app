@@ -43,13 +43,9 @@ const Profile = async () => {
 
   resetPagination();
 
-  const backBtn = goBackBtn();
-
   const profileContainer = document.createElement("div");
   profileContainer.className =
     "profile-container w-[100vw] min-h-screen p-8 gap-16";
-
-  resetPagination();
 
   const userHeading = await Heading(user);
   const userDetails = await Details(user);
@@ -66,7 +62,6 @@ const Profile = async () => {
   postsContainer.className = "w-[90%] mx-auto";
   postsContainer.appendChild(sortOptions);
   postsContainer.appendChild(postsList);
-  postsContainer.appendChild(backBtn);
 
   const cameFrom = sessionStorage.getItem("previousPage");
   if (cameFrom) {
