@@ -68,6 +68,8 @@ export const createUserSettings = ({
         handleClicks(e, "/user/logout/", false);
         dropdown.classList.add("hidden");
       });
+    } else {
+      action(li);
     }
   });
 

@@ -1,3 +1,7 @@
+import {
+  userMessage,
+  clearUserMessage,
+} from "/js/utils/messages/userMessage.js";
 /**
  * Returns an array of options for a user's settings menu.
  *
@@ -17,8 +21,12 @@ export const settingsOptions = () => {
   const items = [
     {
       text: "Edit profile",
-      action: () => {
-        /* handle edit username, email, avatar, etc. */
+      action: (e) => {
+        /* will later handle editing username, name, avatar, email, etc. */
+        e.addEventListener("click", () => {
+          userMessage("alert", "This feature is coming soon.");
+          setTimeout(() => clearUserMessage(), 2000);
+        });
       },
     },
     {
