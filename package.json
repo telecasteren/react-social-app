@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "npx playwright test"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
