@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-       
-      </div>
-      <h1>FOODIEGRAM</h1>
+      <div></div>
+      <a>
+        <img src="/logo/foodiegram-logo.png" className="logo" alt="app logo" />
+      </a>
+      <h1 className="sr-only">FOODIEGRAM</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -22,7 +22,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
