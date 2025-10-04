@@ -1,11 +1,16 @@
 # FOODIEGRAM in React
 
-A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScript.
-This project includes linting, formatting, testing, and end-to-end testing out of the box.
+A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScript.<br/>
+--> The original project in vanilla JS can be found at main branch in this repo for reference.
 
 ---
 
-Tools - Vitest for unit testing - Playwright for end-to-end testing - ESLint + Prettier + Husky + lint-staged for code quality
+### Tools
+
+- Vitest for unit testing
+- Playwright for end-to-end testing
+- ESLint + Prettier
+- Husky + lint-staged
 
 ---
 
@@ -19,7 +24,7 @@ cd <your-project-name>
 npm install
 ```
 
-## 🏃‍♂️ Running the Project
+## Running the Project
 
 Start the development server
 
@@ -45,7 +50,7 @@ Serve with Live-Server on port 5500
 npm run start
 ```
 
-## 🧹 Code Quality
+## Formatting and linting
 
 Lint the codebase
 
@@ -59,7 +64,7 @@ Format with Prettier
 npm run format
 ```
 
-**Husky and lint-staged automatically check and format staged files before commits.**
+**NOTE! Husky and lint-staged automatically check and format staged files before commits.**
 
 ---
 
@@ -90,9 +95,12 @@ npm run test:e2e
  └── styles/         # Tailwind and custom CSS
  └── utils/          # Utilities
    └── tests/        # Unit & e2e tests
-   └── types/
+   └── types/        # Typescript types
 ├──
 ├── package.json
 ├── tsconfig.json
+├── tailwind.config.ts
+├── playwright.config.ts
+├── vitest.config.ts
 └── vite.config.ts
 ```
