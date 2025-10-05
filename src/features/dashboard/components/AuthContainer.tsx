@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import AuthForm from "./AuthForm";
 import ForgotPasswordRoute from "@/features/dashboard/helpers/forgotPasswordRoute";
 import type { AuthContainerProps } from "@/features/dashboard/helpers/types";
@@ -9,6 +9,14 @@ const AuthContainer: React.FC<AuthContainerProps> = ({
   const [authMode, setAuthMode] = useState<"login" | "signup" | "forgot">(
     initialMode,
   );
+
+  const handleAuthChange = useCallback((isSignup: boolean) => {
+    setAuthMode(isSignup ? "signup" : "login");
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setAuthMode("login");
+  }, []);
 
   const authContent = () => {
     switch (authMode) {
@@ -24,10 +32,8 @@ const AuthContainer: React.FC<AuthContainerProps> = ({
       case "forgot":
         return (
           <ForgotPasswordRoute
-            onAuthTypeChange={(isSignup) =>
-              setAuthMode(isSignup ? "signup" : "login")
-            }
-            onClose={() => setAuthMode("login")}
+            onAuthTypeChange={handleAuthChange}
+            onClose={handleClose}
           />
         );
       default:
