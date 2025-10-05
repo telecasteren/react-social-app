@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className="footer mt-10 mb-10 text-tiny flex gap-6 flex-wrap items-center justify-center dark:text-dark">
       <p id="footer-copyright">{`2025-${currentYear}`}</p>
       <img
-        // className="dark:invert"
+        className="dark:invert"
         src={SITE_LOGO_NAME}
         alt={`${SITE_NAME} logo`}
         width={80}

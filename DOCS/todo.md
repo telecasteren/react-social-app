@@ -4,16 +4,17 @@ Continue to rewrite all components from main branch to React and Typescript in t
 
 Missing:
 
-- Tooltip
-- Forms (install and use react-hook-form)
+- Navbar (NEXT UP)
+- Non auth forms (use react-hook-form)
 - Settings (consider moving location)
-- Navbar
 - Search (consider moving location)
 
 Next up:
 
 - Pages
-- Auth
+  - Profile
+  - Feed
+  - Single post
 - API calls
 - Events and linking/routes
 
@@ -23,5 +24,5 @@ Next up:
 - <s> Install Tailwind</s>
 - Tanstack Query Api stuff
 - react router or tanstack router
-- react hook forms
+- <s> react hook forms </s>
 - zod for validation - same schema for frontend / backend (relevance?)

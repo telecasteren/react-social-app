@@ -1,1 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap");
+@import "@/styles/globals.css";
+@import "@/styles/custom/nav-underline.css";
+@import "@/styles/custom/typeLetters.css";
+
 @import "tailwindcss";
+
+@theme {
+  --dark-mode: class;
+
+  /* colors */
+  --color-bg-dark1: #24243e;
+  --color-bg-dark2: #302b63;
+  --color-bg-dark3: #0f0c29;
+  --color-accent-dark: #33e94e;
+  --color-text-dark: #ffffff;
+  --color-accent-light: #e9b61c;
+  --color-text-light: #000000;
+
+  /* fonts and text */
+  --font-body: "Poppins", sans-serif;
+  --font-brand: "Quicksand", "Poppins", sans-serif;
+  --font-typewriter: "Geist Mono", sans-serif;
+
+  --text-xs: 0.7rem;
+  --text-sm: 0.9rem;
+  --text-lg: 1.3rem;
+  --text-xl: 1.5rem;
+
+  /* custom font sizes */
+  --text-tiny: 0.625rem;
+  --text-medium: 1.4rem;
+  --text-bigger: 2.8rem;
+  --text-huge: 3.5rem;
+  --text-massive: 5rem;
+
+  /* letter spacing */
+  --tracking-custom: 0.2rem;
+}
+
+/* SET UP DARKMODE HERE */
+.dark {
+  /*colors*/
+  --color-bg-dark1: #24243e;
+  --color-bg-dark2: #302b63;
+  --color-bg-dark3: #0f0c29;
+  --color-accent-dark: #33e94e;
+  --color-text-dark: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply font-body flex flex-col items-center justify-center min-h-screen py-2 transition-colors duration-300;
+    @apply bg-gradient-to-r from-bg-dark1 via-bg-dark2 to-bg-dark3 text-text-light;
+  }
+
+  .dark body {
+    @apply bg-gradient-to-r from-bg-dark1 via-bg-dark2 to-bg-dark3 text-text-dark;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply cursor-pointer rounded-full flex items-center justify-center text-sm h-10 sm:h-12 m-8 px-8 sm:px-5 sm:min-w-44;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--accent)] text-black hover:brightness-110 transition-colors duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-black text-white hover:bg-[var(--accent)] hover:text-black transition-colors duration-300;
+  }
+
+  .input-field {
+    @apply block w-full cursor-pointer rounded-md bg-white px-3 py-1.5 outline-1 text-black placeholder:text-black sm:text-sm;
+  }
+
+  .input-border {
+    @apply border border-solid border-black dark:border-none dark:focus:ring-blue-500;
+  }
+
+  .submit-btn {
+    @apply flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold;
+  }
+
+  .modal {
+    @apply fixed inset-0 z-[1000] overflow-auto gap-20 bg-black/50;
+  }
+  .modal-content {
+    @apply sm:flex bg-white m-[15%] mx-auto p-2 w-[80%] md:w-[60%] md:justify-center
+         h-fit rounded-lg z-[1100] relative shadow-lg;
+  }
+
+  .mobile-nav-item {
+    @apply block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white;
+  }
+
+  .current-mobile-nav-item {
+    @apply text-black bg-accent-light dark:text-black dark:bg-accent-dark;
+  }
+}

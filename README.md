@@ -19,8 +19,9 @@ A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScr
 Clone the repo and install dependencies:
 
 ```bash
-git clone <your-repo-url>
-cd <your-project-name>
+git clone https://github.com/telecasteren/react-social-app.git
+cd react-social-app
+git switch v2
 npm install
 ```
 
@@ -104,3 +105,14 @@ npm run test:e2e
 ├── vitest.config.ts
 └── vite.config.ts
 ```
+
+## Resources
+
+[dangerouslysetinnerhtml - logrocket](https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/)<br/>
+[dangerouslysetinnerhtml - stackoverflow](https://stackoverflow.com/questions/37337289/react-js-set-innerhtml-vs-dangerouslysetinnerhtml)<br/>
+[position with useState](https://stackoverflow.com/questions/61794260/react-native-how-to-use-usestate-in-another-function)<br/>
+[toggle components with useState](https://stackoverflow.com/questions/65238595/how-do-i-hide-and-show-components-with-usestate-or-conditional-rendering-in-reac)<br/>
+[folder structures in react](https://www.robinwieruch.de/react-folder-structure/)<br/>
+[react-hook-form](https://react-hook-form.com/get-started)<br/>
+[use of @theme in tailwind v4 - reddit](https://www.reddit.com/r/tailwindcss/comments/1m828qr/how_to_use_tailwind_config_now/)<br/>
+[use of @theme in tailwind v4 - tailwind docs](https://tailwindcss.com/docs/adding-custom-styles)<br/>
