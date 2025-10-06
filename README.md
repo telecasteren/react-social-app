@@ -7,6 +7,7 @@ A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScr
 
 ### Tools
 
+- TanStack Router for routing
 - Vitest for unit testing
 - Playwright for end-to-end testing
 - ESLint + Prettier
@@ -116,3 +117,5 @@ npm run test:e2e
 [react-hook-form](https://react-hook-form.com/get-started)<br/>
 [use of @theme in tailwind v4 - reddit](https://www.reddit.com/r/tailwindcss/comments/1m828qr/how_to_use_tailwind_config_now/)<br/>
 [use of @theme in tailwind v4 - tailwind docs](https://tailwindcss.com/docs/adding-custom-styles)<br/>
+[tanstack router docs](https://tanstack.com/router/latest/docs/framework/react/quick-start)
+[tanstack router vs react router](https://www.reddit.com/r/reactjs/comments/1afzhm9/react_router_or_tanstack_router/)
