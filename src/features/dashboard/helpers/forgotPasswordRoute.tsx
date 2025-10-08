@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Spinner from "@/components/loaders/Spinner";
-import { userMessage } from "@/utils/messages/SimpleUserMessage";
-import { clearUserMessage } from "@/utils/messages/clearUserMessage";
+import toast from "react-hot-toast";
 
 interface ForgotPasswordRouteProps {
   onAuthTypeChange?: (isSignup: boolean) => void;
@@ -13,11 +12,16 @@ const ForgotPasswordRoute: React.FC<ForgotPasswordRouteProps> = ({
   onComplete,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const toastShown = useRef(false);
 
   const handleForgotPassword = React.useCallback(() => {
-    setIsLoading(true);
+    if (toastShown.current) return;
+    toastShown.current = true;
 
-    userMessage("info", "Forgot your password? Please signup again.");
+    setIsLoading(true);
+    toast("Forgot your password? Please signup again.", {
+      icon: "ℹ️",
+    });
 
     setTimeout(() => {
       setIsLoading(false);
@@ -28,10 +32,6 @@ const ForgotPasswordRoute: React.FC<ForgotPasswordRouteProps> = ({
         onComplete();
       }
     }, 1000);
-
-    setTimeout(() => {
-      clearUserMessage();
-    }, 3000);
   }, [onAuthTypeChange, onComplete]);
 
   useEffect(() => {

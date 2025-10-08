@@ -12,6 +12,8 @@ A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScr
 - Playwright for end-to-end testing
 - ESLint + Prettier
 - Husky + lint-staged
+- react-hook-form
+- react-hot-toast
 
 ---
 
@@ -119,3 +121,4 @@ npm run test:e2e
 [use of @theme in tailwind v4 - tailwind docs](https://tailwindcss.com/docs/adding-custom-styles)<br/>
 [tanstack router docs](https://tanstack.com/router/latest/docs/framework/react/quick-start)
 [tanstack router vs react router](https://www.reddit.com/r/reactjs/comments/1afzhm9/react_router_or_tanstack_router/)
+[react-hot-toast](https://react-hot-toast.com)

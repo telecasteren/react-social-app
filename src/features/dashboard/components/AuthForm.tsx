@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { SITE_NAME } from "@/utils/general/config";
 import type { SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
 import type {
   AuthFormProps,
   FormData,
@@ -33,6 +34,20 @@ const AuthForm: React.FC<AuthFormProps> = ({
       onSubmit(data);
       console.log("Submitted data:", data);
     }
+    toast.loading(isSignup ? "Signing you up..." : "Logging you in...", {
+      duration: 2000,
+    });
+
+    setTimeout(() => {
+      toast.dismiss();
+    }, 2000);
+
+    setTimeout(() => {
+      toast.success(
+        isSignup ? "Signed up successfully!" : "Logged in successfully!",
+        { duration: 3000 },
+      );
+    }, 2010);
   };
 
   return (
@@ -103,9 +118,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
                   },
 
                   validate: (value) => {
-                    const noroffPattern = /@(noroff\.no|stud\.noroff\.no)$/;
+                    const domainPattern = /@(noroff\.no|stud\.noroff\.no)$/;
                     return (
-                      noroffPattern.test(value) ||
+                      domainPattern.test(value) ||
                       "Email must be noroff.no or stud.noroff.no"
                     );
                   },
