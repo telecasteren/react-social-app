@@ -1,25 +1,29 @@
-// import { updateUnderline } from "/js/app/components/navbar/utils/updateUnderline.js";
+// import { updateUnderline } from "./updateUnderline";
 
-// export const initialUnderline = (links) => {
-//   const currentPath = window.location.pathname.replace(/\/+$/, "");
+const isHTMLElement = (element: Element): element is HTMLElement => {
+  return element instanceof HTMLElement;
+};
 
-//   if (currentPath === "/user/post") return;
+export const initialUnderline = () => {
+  const currentPath = window.location.pathname.replace(/\/+$/, "");
 
-//   const liElements = Array.from(
-//     document.querySelectorAll("ul.active li")
-//   ).filter((el) => el.offsetParent !== null);
+  if (currentPath === "/user/post") return;
 
-//   for (const li of liElements) {
-//     const a = li.querySelector("a");
-//     if (!a) continue;
+  const liElements = Array.from(document.querySelectorAll("ul.active li"))
+    .filter(isHTMLElement)
+    .filter((el) => el.offsetParent !== null);
 
-//     const linkPath = new URL(a.href, window.location.origin).pathname.replace(
-//       /\/+$/,
-//       ""
-//     );
-//     if (linkPath === currentPath) {
-//       updateUnderline(li);
-//       break;
-//     }
-//   }
-// };
+  for (const li of liElements) {
+    const a = li.querySelector("a");
+    if (!a) continue;
+
+    const linkPath = new URL(a.href, window.location.origin).pathname.replace(
+      /\/+$/,
+      "",
+    );
+    if (linkPath === currentPath) {
+      updateUnderline(li);
+      break;
+    }
+  }
+};

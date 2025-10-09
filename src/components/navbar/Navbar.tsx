@@ -1,14 +1,14 @@
-// import { initialUnderline } from "/js/app/components/navbar/utils/initialUnderline.js";
+// import { initialUnderline } from "@/components/navbar/utils/initialUnderline";
 
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import DesktopNavContent from "@/components/navbar/components/DesktopNavContent";
-// import MobileNavContent from "@/components/navbar/components/MobileNavContent";
+import MobileNavContent from "@/components/navbar/components/MobileNavContent";
 import type { NavLink } from "./types/types";
 import { useNavScrollEffect } from "@/hooks/useNavScrollEffect";
 
 const Navbar = () => {
-  // const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const { isAuthenticated } = useAuth();
 
   const isScrolled = useNavScrollEffect();
@@ -23,24 +23,27 @@ const Navbar = () => {
     { href: "#", text: "Settings", authOnly: true, isDropdown: true },
   ];
 
-  // useEffect(() => {
-  //   const handleSizeChange = () => setIsMobile(window.innerWidth <= 767);
-  //   window.addEventListener("resize", handleSizeChange);
-  //   return () => window.removeEventListener("resize", handleSizeChange);
-  // }, []);
+  useEffect(() => {
+    const handleSizeChange = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleSizeChange);
+    return () => window.removeEventListener("resize", handleSizeChange);
+  }, []);
 
   return (
     <nav className="fixed top-0 w-full z-40">
-      {/* {isMobile ? (
-        <MobileNavContent className={bgColorChange} auth={isAuthenticated} links={links} />
+      {isMobile ? (
+        <MobileNavContent
+          className={bgColorChange}
+          auth={isAuthenticated}
+          links={links}
+        />
       ) : (
-        <DesktopNavContent className={bgColorChange} auth={isAuthenticated} links={links} />
-      )} */}
-      <DesktopNavContent
-        className={bgColorChange}
-        auth={isAuthenticated}
-        links={links}
-      />
+        <DesktopNavContent
+          className={bgColorChange}
+          auth={isAuthenticated}
+          links={links}
+        />
+      )}
     </nav>
   );
 };
