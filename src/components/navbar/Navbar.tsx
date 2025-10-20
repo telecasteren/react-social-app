@@ -1,4 +1,4 @@
-import { useInitialUnderline } from "@/components/navbar/utils/initialUnderline";
+import { useInitialUnderline } from "@/components/navbar/helpers/useInitialUnderline";
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";

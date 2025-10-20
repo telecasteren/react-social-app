@@ -3,14 +3,14 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/useAuth";
 // import toast from "react-hot-toast";
 import type { NavContentProps } from "@/components/navbar/types/types";
-import { showLink } from "@/components/navbar/utils/showLink";
-import { settingsOptions } from "@/components/navbar/utils/dropdownItems";
+import { showLink } from "@/components/navbar/helpers/showLink";
+import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
 import {
   endDot,
   MENU_ICON,
   SITE_NAME,
   SITE_LOGO_PIZZA,
-} from "@/utils/general/config";
+} from "@/utils/branding/config";
 
 const MobileNavContent: React.FC<NavContentProps> = ({
   auth,

@@ -1,5 +1,5 @@
 import React from "react";
-import { SITE_LOGO_NAME, SITE_NAME } from "@/utils/general/config";
+import { SITE_LOGO_NAME, SITE_NAME } from "@/utils/branding/config";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();

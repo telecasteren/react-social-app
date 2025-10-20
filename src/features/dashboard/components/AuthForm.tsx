@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { SITE_NAME } from "@/utils/general/config";
+import { SITE_NAME } from "@/utils/branding/config";
 import type { SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import type {

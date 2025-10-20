@@ -1,5 +1,5 @@
 import { loadKey } from "@/services/helpers/storage";
-import { API_KEY } from "./constants";
+import { NOROFF_API_KEY } from "./constants";
 
 export const headers = (hasBody = false) => {
   const headers = new Headers();
@@ -10,8 +10,8 @@ export const headers = (hasBody = false) => {
     headers.append("Authorization", `Bearer ${token}`);
   }
 
-  if (API_KEY) {
-    headers.append("X-Noroff-API-Key", API_KEY);
+  if (NOROFF_API_KEY) {
+    headers.append("X-Noroff-API-Key", NOROFF_API_KEY);
   }
 
   if (hasBody) {

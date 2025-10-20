@@ -20,9 +20,8 @@ Continue to rewrite all components from main branch to React and Typescript in t
 
 Missing:
 
-- Navbar (ONGOING) --> fix dropdown settings feature + mobile nav content
 - Non auth forms (use react-hook-form)
-- Settings (consider moving location)
+- Settings (consider moving location + fix feature for nav)
 - Search (consider moving location)
 
 Next up:
@@ -34,7 +33,11 @@ Next up:
 - API calls
 - Events and linking/routes
 
-## Overview
+## New stuff
 
-- Tanstack Query Api stuff
+- branding config, centralise branding and custom tailwind styles:
+  [branding config](src/utils/branding/config.ts)
+
+## Other
+
 - zod for validation - same schema for frontend / backend (relevance?)

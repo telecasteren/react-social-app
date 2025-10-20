@@ -5,6 +5,7 @@ export const API_LOGIN = "/login";
 export const API_REGISTER = "/register";
 export const API_POSTS = "/social/posts";
 export const API_USERS = "/social/profiles";
+export const NOROFF_API_KEY = "12183d5e-8861-45ce-8540-8afb0a537119";
 
 // PAGINATION
 export const POSTS_PER_PAGE = 80;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import TypeText from "@/components/titles/TypeText";
 import TypeTitle from "@/components/titles/TypeTitle";
-import { SITE_LOGO_PIZZA, SITE_NAME } from "@/utils/general/config";
+import { SITE_LOGO_PIZZA, SITE_NAME } from "@/utils/branding/config";
 import AuthContainer from "@/features/dashboard/components/AuthContainer";
 
 const Dashboard = () => {

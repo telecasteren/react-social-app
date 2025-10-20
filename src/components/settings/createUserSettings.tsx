@@ -1,7 +1,7 @@
 import { loadKey } from "@/services/helpers/storage";
 import { handleClicks } from "";
 import { endDot } from "";
-import { settingsOptions } from "@/components/navbar/utils/dropdownItems";
+import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
 
 /**
  * Creates a user settings dropdown component.

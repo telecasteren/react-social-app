@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import NavLink from "./NavLink";
-import { showLink } from "@/components/navbar/utils/showLink";
-import { SITE_LOGO_NAME, SITE_NAME } from "@/utils/general/config";
+import { showLink } from "@/components/navbar/helpers/showLink";
+import { SITE_LOGO_NAME, SITE_NAME } from "@/utils/branding/config";
 import type { NavContentProps } from "@/components/navbar/types/types";
 
 const DesktopNavContent: React.FC<NavContentProps> = ({
