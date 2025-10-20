@@ -10,4 +10,5 @@ export interface NavContentProps {
   auth: boolean;
   links: NavLink[];
   className?: string;
+  navRef?: React.RefObject<HTMLUListElement | null>;
 }
