@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { createTitle } from "@/components/titles/Title";
+import React from "react";
+import Title from "@/components/titles/Title";
 
 interface EditIconProps {
   label: string;
@@ -14,19 +14,6 @@ export const EditIcon: React.FC<EditIconProps> = ({
   dataId = null,
   onClick = null,
 }) => {
-  const helpTextRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (helpTextRef.current) {
-      const helpText = createTitle({ text: label });
-      helpText.className =
-        "ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem] text-white";
-
-      helpTextRef.current.innerHTML = "";
-      helpTextRef.current.appendChild(helpText);
-    }
-  }, [label]);
-
   return (
     <div
       className={classes}
@@ -42,7 +29,10 @@ export const EditIcon: React.FC<EditIconProps> = ({
         <path d="M16.862 3.487a2.125 2.125 0 0 1 3.001 3.001l-1.127 1.127-3.001-3.001 1.127-1.127zM14.993 5.356l3.001 3.001L7.5 18.85H4.5v-3L14.993 5.356z" />
       </svg>
       {/* Help text */}
-      <div ref={helpTextRef}></div>
+      <Title
+        text={label}
+        className="ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem] text-white"
+      />
     </div>
   );
 };

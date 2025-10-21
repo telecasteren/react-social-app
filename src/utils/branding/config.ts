@@ -24,7 +24,7 @@ export const defaultDescriptions = {
 };
 
 //========================
-// BRANDING CONFIG
+// BRANDING CONFIG - not in use currently
 //========================
 
 interface BrandingConfig {

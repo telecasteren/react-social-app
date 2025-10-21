@@ -3,6 +3,7 @@ import TypeText from "@/components/titles/TypeText";
 import TypeTitle from "@/components/titles/TypeTitle";
 import { SITE_LOGO_PIZZA, SITE_NAME } from "@/utils/branding/config";
 import AuthContainer from "@/features/dashboard/components/AuthContainer";
+import PrimaryButton from "@/components/buttons/PrimaryButton";
 
 const Dashboard = () => {
   const [showAuth, setShowAuth] = useState(false);
@@ -49,7 +50,23 @@ const Dashboard = () => {
           <div ref={subHeaderRef}></div>
 
           <div className="flex gap-4">
-            <button
+            <PrimaryButton
+              text="Log in."
+              className="btn-primary"
+              onClick={() => {
+                setAuthMode("login");
+                setShowAuth(true);
+              }}
+            />
+            <PrimaryButton
+              text="Sign up."
+              className="btn-secondary"
+              onClick={() => {
+                setAuthMode("signup");
+                setShowAuth(true);
+              }}
+            />
+            {/* <button
               className="btn btn-primary"
               onClick={() => {
                 setAuthMode("login");
@@ -58,6 +75,7 @@ const Dashboard = () => {
             >
               Log in.
             </button>
+
             <button
               className="btn btn-secondary"
               onClick={() => {
@@ -66,7 +84,7 @@ const Dashboard = () => {
               }}
             >
               Sign up.
-            </button>
+            </button> */}
           </div>
         </>
       ) : (

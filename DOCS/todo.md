@@ -12,22 +12,30 @@ if (headerRef.current) {
 ```
 
 - that nav-underline file has non-Tailwind CSS stuff. Gotta follow one pattern.
-- I wouldn't put all that code in utils, I wouldn't have any components in there, just functions
 
 ## Project
 
-Continue to rewrite all components from main branch to React and Typescript in this branch.
+Continue to rewrite all components from main branch to React and Typescript in
+this branch.
+
+Ongoing:
+
+- Profile:
+  - <s>Heading</s>
+  - <s>Details</s>
+  - Description --> finish up toggling follow state sync!
+  - Posts
+  - Edit avatar, edit post, create new post, sort-options
 
 Missing:
 
 - Non auth forms (use react-hook-form)
-- Settings (consider moving location + fix feature for nav)
+- Settings (fix feature for nav)
 - Search (consider moving location)
 
 Next up:
 
 - Pages
-  - Profile
   - Feed
   - Single post
 - API calls

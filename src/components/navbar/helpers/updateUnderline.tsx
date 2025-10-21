@@ -1,12 +1,13 @@
 import { getUserParams } from "@/services/helpers/getUserParams";
 import { loadKey } from "@/services/helpers/storage";
+import type { Profile } from "@/services/api/user/types/profile";
 
 export const updateUnderline = async (targetLi: HTMLLIElement) => {
   const currentUrl = window.location.pathname;
   let showUnderline = true;
 
   if (currentUrl.includes("/user/profile")) {
-    const currentUser = loadKey("profile")?.name;
+    const currentUser = (loadKey("profile") as Profile | null)?.name;
     let visitedProfile;
     try {
       const profileData = await getUserParams();

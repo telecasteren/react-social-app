@@ -2,25 +2,28 @@ interface ButtonProps {
   text: string;
   href?: string;
   newTab?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
-const createButton = ({
+const PrimaryButton: React.FC<ButtonProps> = ({
   text,
-  href,
-  newTab = false,
-}: ButtonProps): HTMLAnchorElement => {
-  const button = document.createElement("a");
-  button.className = "btn";
-
-  button.href = href || "#";
-  button.target = newTab ? "_blank" : "_self";
-
-  if (newTab) {
-    button.rel = "noopener noreferrer";
-  }
-
-  button.textContent = text;
-
-  return button;
+  className,
+  onClick,
+  children,
+  disabled,
+}) => {
+  return (
+    <button
+      className={`btn ${className || ""}`}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+    >
+      {text}
+      {children}
+    </button>
+  );
 };
-export default createButton;
+export default PrimaryButton;
