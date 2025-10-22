@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import TypeText from "@/components/titles/TypeText";
 import TypeTitle from "@/components/titles/TypeTitle";
 import { SITE_LOGO_PIZZA, SITE_NAME } from "@/utils/branding/config";
@@ -6,6 +7,7 @@ import AuthContainer from "@/features/dashboard/components/AuthContainer";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 
 const Dashboard = () => {
+  const { isAuthenticated } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
 
@@ -37,6 +39,16 @@ const Dashboard = () => {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      return;
+    }
+  }, [isAuthenticated]);
+
+  if (isAuthenticated) {
+    return null;
+  }
+
   return (
     <div className="dashboard-container justify-items-center min-h-screen p-8 gap-16">
       {!showAuth ? (
@@ -66,25 +78,6 @@ const Dashboard = () => {
                 setShowAuth(true);
               }}
             />
-            {/* <button
-              className="btn btn-primary"
-              onClick={() => {
-                setAuthMode("login");
-                setShowAuth(true);
-              }}
-            >
-              Log in.
-            </button>
-
-            <button
-              className="btn btn-secondary"
-              onClick={() => {
-                setAuthMode("signup");
-                setShowAuth(true);
-              }}
-            >
-              Sign up.
-            </button> */}
           </div>
         </>
       ) : (

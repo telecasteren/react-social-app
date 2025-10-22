@@ -89,7 +89,7 @@ const BioForm: React.FC<BioFormProps> = ({
           placeholder="No bio here yet"
           value={bio}
           onChange={(e) => setBio(e.target.value)}
-          className="w-full sm:w-[320px] md:w-[360px] lg:w-[100%] rounded p-2 text-black text-sm mt-2 mb-2 justify-self-center border border-gray-800"
+          className="w-full sm:w-[320px] md:w-[360px] lg:w-[100%] rounded p-2 bg-gray-100 text-black text-sm mt-2 mb-2 justify-self-center border border-gray-800"
           disabled={isSubmitting}
         />
       </div>

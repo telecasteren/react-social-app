@@ -5,9 +5,9 @@ export interface AuthFormProps {
 }
 
 export interface FormData {
+  username?: string;
   email: string;
   password: string;
-  username?: string;
   confirmPassword?: string;
 }
 

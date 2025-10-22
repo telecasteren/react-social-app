@@ -8,7 +8,7 @@ interface EditIconProps {
   onClick?: (() => void) | null;
 }
 
-export const EditIcon: React.FC<EditIconProps> = ({
+const EditIcon: React.FC<EditIconProps> = ({
   label = "Edit",
   classes = "",
   dataId = null,

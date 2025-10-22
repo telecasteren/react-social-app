@@ -10,53 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as UserProfileRouteImport } from './routes/user/profile'
-import { Route as UserFeedRouteImport } from './routes/user/feed'
+import { Route as PostIndexRouteImport } from './routes/post/index'
+import { Route as UserProfileIndexRouteImport } from './routes/user/profile/index'
+import { Route as UserFeedIndexRouteImport } from './routes/user/feed/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UserProfileRoute = UserProfileRouteImport.update({
-  id: '/user/profile',
-  path: '/user/profile',
+const PostIndexRoute = PostIndexRouteImport.update({
+  id: '/post/',
+  path: '/post/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UserFeedRoute = UserFeedRouteImport.update({
-  id: '/user/feed',
-  path: '/user/feed',
+const UserProfileIndexRoute = UserProfileIndexRouteImport.update({
+  id: '/user/profile/',
+  path: '/user/profile/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserFeedIndexRoute = UserFeedIndexRouteImport.update({
+  id: '/user/feed/',
+  path: '/user/feed/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/user/feed': typeof UserFeedRoute
-  '/user/profile': typeof UserProfileRoute
+  '/post': typeof PostIndexRoute
+  '/user/feed': typeof UserFeedIndexRoute
+  '/user/profile': typeof UserProfileIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/user/feed': typeof UserFeedRoute
-  '/user/profile': typeof UserProfileRoute
+  '/post': typeof PostIndexRoute
+  '/user/feed': typeof UserFeedIndexRoute
+  '/user/profile': typeof UserProfileIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/user/feed': typeof UserFeedRoute
-  '/user/profile': typeof UserProfileRoute
+  '/post/': typeof PostIndexRoute
+  '/user/feed/': typeof UserFeedIndexRoute
+  '/user/profile/': typeof UserProfileIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/user/feed' | '/user/profile'
+  fullPaths: '/' | '/post' | '/user/feed' | '/user/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/user/feed' | '/user/profile'
-  id: '__root__' | '/' | '/user/feed' | '/user/profile'
+  to: '/' | '/post' | '/user/feed' | '/user/profile'
+  id: '__root__' | '/' | '/post/' | '/user/feed/' | '/user/profile/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  UserFeedRoute: typeof UserFeedRoute
-  UserProfileRoute: typeof UserProfileRoute
+  PostIndexRoute: typeof PostIndexRoute
+  UserFeedIndexRoute: typeof UserFeedIndexRoute
+  UserProfileIndexRoute: typeof UserProfileIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,18 +78,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/user/profile': {
-      id: '/user/profile'
-      path: '/user/profile'
-      fullPath: '/user/profile'
-      preLoaderRoute: typeof UserProfileRouteImport
+    '/post/': {
+      id: '/post/'
+      path: '/post'
+      fullPath: '/post'
+      preLoaderRoute: typeof PostIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/user/feed': {
-      id: '/user/feed'
+    '/user/profile/': {
+      id: '/user/profile/'
+      path: '/user/profile'
+      fullPath: '/user/profile'
+      preLoaderRoute: typeof UserProfileIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/feed/': {
+      id: '/user/feed/'
       path: '/user/feed'
       fullPath: '/user/feed'
-      preLoaderRoute: typeof UserFeedRouteImport
+      preLoaderRoute: typeof UserFeedIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -87,8 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  UserFeedRoute: UserFeedRoute,
-  UserProfileRoute: UserProfileRoute,
+  PostIndexRoute: PostIndexRoute,
+  UserFeedIndexRoute: UserFeedIndexRoute,
+  UserProfileIndexRoute: UserProfileIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

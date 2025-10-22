@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { SITE_NAME } from "@/utils/branding/config";
 import type { SubmitHandler } from "react-hook-form";
+import { useAuth } from "@/hooks/useAuth";
+import { SITE_NAME, SITE_LOGO_PIZZA } from "@/utils/branding/config";
 import toast from "react-hot-toast";
+import { useNavigate } from "@tanstack/react-router";
 import type {
   AuthFormProps,
   FormData,
@@ -11,15 +13,18 @@ import type {
 const AuthForm: React.FC<AuthFormProps> = ({
   isSignup = false,
   onForgotPassword,
-  onSubmit,
 }) => {
   const {
     watch,
-    register,
+    register: registerField,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+  const navigate = useNavigate();
+  const [justLoggedIn, setJustLoggedIn] = useState(false);
+
   const password = watch("password");
+  const { login, register: registerUser, isAuthenticated } = useAuth();
 
   const handleForgotPassword = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -28,26 +33,44 @@ const AuthForm: React.FC<AuthFormProps> = ({
     }
   };
 
-  const handleFormSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    if (onSubmit) {
-      onSubmit(data);
-      console.log("Submitted data:", data);
+  useEffect(() => {
+    if (isAuthenticated && justLoggedIn) {
+      navigate({ to: "/user/profile/" });
+      setJustLoggedIn(false);
     }
-    toast.loading(isSignup ? "Signing you up..." : "Logging you in...", {
-      duration: 2000,
-    });
+  }, [isAuthenticated, justLoggedIn, navigate]);
 
-    setTimeout(() => {
+  const handleFormSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      toast.loading(isSignup ? "Signing you up..." : "Logging you in...");
+
+      if (isSignup) {
+        await registerUser(data.username!, data.email, data.password);
+        toast.dismiss();
+        toast.success("Signed up successfully!", { duration: 3000 });
+      } else {
+        await login(data.email, data.password);
+        setJustLoggedIn(true);
+        toast.dismiss();
+        toast.success("Logged in successfully!", { duration: 3000 });
+      }
+    } catch (error) {
       toast.dismiss();
-    }, 2000);
 
-    setTimeout(() => {
-      toast.success(
-        isSignup ? "Signed up successfully!" : "Logged in successfully!",
-        { duration: 3000 },
-      );
-    }, 2010);
+      let errorMessage = "An error occurred. Please try again.";
+
+      if (error instanceof Error) {
+        if (error.message.includes("401")) {
+          errorMessage = "Invalid email or password.";
+        } else if (error.message.includes("409")) {
+          errorMessage = "User already exists.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -56,7 +79,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         <a href="/">
           <img
             className="mx-auto h-10 w-auto dark:invert"
-            src="/logo/logo-pizza.png"
+            src={SITE_LOGO_PIZZA}
             alt={`${SITE_NAME} logo`}
           />
         </a>
@@ -79,7 +102,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
               <div className="mt-2">
                 <input
                   id="username"
-                  {...register("username", {
+                  {...registerField("username", {
                     required: isSignup ? "This field is required" : false,
                     minLength: {
                       value: 3,
@@ -110,7 +133,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             <div className="mt-2">
               <input
                 id="email"
-                {...register("email", {
+                {...registerField("email", {
                   required: "This field is required",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -155,7 +178,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             <div className="mt-2">
               <input
                 id="password"
-                {...register("password", {
+                {...registerField("password", {
                   required: "This field is required",
                   minLength: {
                     value: 8,
@@ -185,7 +208,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
               <div className="mt-2">
                 <input
                   id="confirmPassword"
-                  {...register("confirmPassword", {
+                  {...registerField("confirmPassword", {
                     required: "Please confirm your password",
                     minLength: {
                       value: 8,
