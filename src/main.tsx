@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { AuthProvider } from "@/context/auth/AuthProvider";
-import * as AuthTypes from "@/context/auth/types";
+import * as AuthTypes from "@/utils/types/auth/types";
 import { useAuth } from "@/hooks/useAuth";
 import "@/styles/index.css";
 

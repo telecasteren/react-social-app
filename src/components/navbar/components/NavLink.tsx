@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import type { NavLink as NavLinkType } from "@/components/navbar/types/types";
+import type { NavLink as NavLinkType } from "@/utils/types/navbar/types";
 
 interface NavLinkProps {
   link: NavLinkType;

@@ -9,6 +9,8 @@ import type {
   AuthFormProps,
   FormData,
 } from "@/features/dashboard/helpers/types";
+import { loadKey } from "@/services/helpers/storage";
+import type { Profile } from "@/utils/types/user/profile";
 
 const AuthForm: React.FC<AuthFormProps> = ({
   isSignup = false,
@@ -20,6 +22,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+
   const navigate = useNavigate();
   const [justLoggedIn, setJustLoggedIn] = useState(false);
 
@@ -35,9 +38,18 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   useEffect(() => {
     if (isAuthenticated && justLoggedIn) {
-      navigate({ to: "/user/profile/" });
-      setJustLoggedIn(false);
+      const currentUser = loadKey("profile") as Profile;
+      if (currentUser?.name) {
+        navigate({
+          to: "/user/profile/$username",
+          params: { username: currentUser.name },
+        });
+      }
+    } else {
+      navigate({ to: "/user/feed" });
     }
+
+    setJustLoggedIn(false);
   }, [isAuthenticated, justLoggedIn, navigate]);
 
   const handleFormSubmit: SubmitHandler<FormData> = async (data) => {

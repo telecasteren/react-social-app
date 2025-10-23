@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/useAuth";
-// import toast from "react-hot-toast";
-import type { NavContentProps } from "@/components/navbar/types/types";
+import toast from "react-hot-toast";
+import type { NavContentProps } from "@/utils/types/navbar/types";
 import { showLink } from "@/components/navbar/helpers/showLink";
 import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
 import {
@@ -30,7 +30,7 @@ const MobileNavContent: React.FC<NavContentProps> = ({
       logout();
     }
     // else if (text === "Edit profile") {
-    //   toast("This feature is coming soon.", { icon: "ℹ️" });
+    toast("This feature is coming soon.", { icon: "ℹ️" });
     // }
     closeMenu();
   };

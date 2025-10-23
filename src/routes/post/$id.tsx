@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/post/")({
+export const Route = createFileRoute("/post/$id")({
   beforeLoad: ({ context }) => {
     // Add auth check if needed
     if (!context.auth.isAuthenticated) {

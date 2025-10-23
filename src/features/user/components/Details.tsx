@@ -1,5 +1,5 @@
 import Tooltip from "@/components/tooltip/Tooltip";
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 
 interface DetailsProps {
   user: Profile;

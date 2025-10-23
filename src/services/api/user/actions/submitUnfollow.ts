@@ -1,7 +1,7 @@
 import { authFetch } from "@/services/api/auth/authFetch";
 import { API_BASE_URL, API_USERS } from "@/services/api/auth/config/constants";
 import { toast } from "react-hot-toast";
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 
 export const submitUnfollow = async (user: Profile) => {
   const username = user.name;

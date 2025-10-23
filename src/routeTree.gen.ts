@@ -10,23 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PostIndexRouteImport } from './routes/post/index'
-import { Route as UserProfileIndexRouteImport } from './routes/user/profile/index'
+import { Route as PostIdRouteImport } from './routes/post/$id'
 import { Route as UserFeedIndexRouteImport } from './routes/user/feed/index'
+import { Route as UserProfileUsernameRouteImport } from './routes/user/profile/$username'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PostIndexRoute = PostIndexRouteImport.update({
-  id: '/post/',
-  path: '/post/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UserProfileIndexRoute = UserProfileIndexRouteImport.update({
-  id: '/user/profile/',
-  path: '/user/profile/',
+const PostIdRoute = PostIdRouteImport.update({
+  id: '/post/$id',
+  path: '/post/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UserFeedIndexRoute = UserFeedIndexRouteImport.update({
@@ -34,39 +29,44 @@ const UserFeedIndexRoute = UserFeedIndexRouteImport.update({
   path: '/user/feed/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserProfileUsernameRoute = UserProfileUsernameRouteImport.update({
+  id: '/user/profile/$username',
+  path: '/user/profile/$username',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/post': typeof PostIndexRoute
+  '/post/$id': typeof PostIdRoute
+  '/user/profile/$username': typeof UserProfileUsernameRoute
   '/user/feed': typeof UserFeedIndexRoute
-  '/user/profile': typeof UserProfileIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/post': typeof PostIndexRoute
+  '/post/$id': typeof PostIdRoute
+  '/user/profile/$username': typeof UserProfileUsernameRoute
   '/user/feed': typeof UserFeedIndexRoute
-  '/user/profile': typeof UserProfileIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/post/': typeof PostIndexRoute
+  '/post/$id': typeof PostIdRoute
+  '/user/profile/$username': typeof UserProfileUsernameRoute
   '/user/feed/': typeof UserFeedIndexRoute
-  '/user/profile/': typeof UserProfileIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/post' | '/user/feed' | '/user/profile'
+  fullPaths: '/' | '/post/$id' | '/user/profile/$username' | '/user/feed'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/post' | '/user/feed' | '/user/profile'
-  id: '__root__' | '/' | '/post/' | '/user/feed/' | '/user/profile/'
+  to: '/' | '/post/$id' | '/user/profile/$username' | '/user/feed'
+  id: '__root__' | '/' | '/post/$id' | '/user/profile/$username' | '/user/feed/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PostIndexRoute: typeof PostIndexRoute
+  PostIdRoute: typeof PostIdRoute
+  UserProfileUsernameRoute: typeof UserProfileUsernameRoute
   UserFeedIndexRoute: typeof UserFeedIndexRoute
-  UserProfileIndexRoute: typeof UserProfileIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -78,18 +78,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/post/': {
-      id: '/post/'
-      path: '/post'
-      fullPath: '/post'
-      preLoaderRoute: typeof PostIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/user/profile/': {
-      id: '/user/profile/'
-      path: '/user/profile'
-      fullPath: '/user/profile'
-      preLoaderRoute: typeof UserProfileIndexRouteImport
+    '/post/$id': {
+      id: '/post/$id'
+      path: '/post/$id'
+      fullPath: '/post/$id'
+      preLoaderRoute: typeof PostIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/user/feed/': {
@@ -99,14 +92,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserFeedIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/profile/$username': {
+      id: '/user/profile/$username'
+      path: '/user/profile/$username'
+      fullPath: '/user/profile/$username'
+      preLoaderRoute: typeof UserProfileUsernameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PostIndexRoute: PostIndexRoute,
+  PostIdRoute: PostIdRoute,
+  UserProfileUsernameRoute: UserProfileUsernameRoute,
   UserFeedIndexRoute: UserFeedIndexRoute,
-  UserProfileIndexRoute: UserProfileIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

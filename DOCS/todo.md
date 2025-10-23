@@ -5,18 +5,18 @@ this branch.
 
 Ongoing:
 
+- <s>Auth</s>
+- <s>Dashboard</s>
+- <s>Navbar</s>
+
+- Links/routes (from feed to single post page)
+
 - Profile:
   - <s>Heading</s>
   - <s>Details</s>
   - <s> Posts </s>
-  - Description --> finish up toggling follow state sync!
+  - <s> Description </s> --> double check follow state
   - Edit avatar, edit post, create new post, sort-options
-
-Missing:
-
-- Non auth forms (use react-hook-form)
-- Settings (fix feature for nav)
-- Search (consider moving location)
 
 Next up:
 
@@ -24,7 +24,13 @@ Next up:
   - Feed with posts
   - Single post
 - API calls
-- Events and linking/routes
+- Events
+
+Missing:
+
+- Non auth forms (use react-hook-form)
+- Settings (fix feature for nav)
+- Search (consider moving location)
 
 ## New stuff
 

@@ -1,4 +1,4 @@
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 
 export interface Post {
   id: number;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { API_BASE_URL, API_USERS } from "@/services/api/auth/config/constants";
 import { authFetch } from "@/services/api/auth/authFetch";
 import { getUserParams } from "@/services/helpers/getUserParams";
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 
 export const useUpdateUserAvatar = () => {
   const [error, setError] = useState<string | null>(null);

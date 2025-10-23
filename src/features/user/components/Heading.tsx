@@ -1,7 +1,7 @@
 import React from "react";
 // import { editAvatar } from "/js/app/components/forms/avatarForm.js";
 import { loadKey } from "@/services/helpers/storage";
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 import Tooltip from "@/components/tooltip/Tooltip";
 import Title from "@/components/titles/Title";
 

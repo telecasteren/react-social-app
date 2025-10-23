@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { submitFollow } from "@/services/api/user/actions/submitFollow";
 import { submitUnfollow } from "@/services/api/user/actions/submitUnfollow";
-import { checkIfAlreadyFollowing } from "@/services/api/user/checkIfAlreadyFollowing";
-import type { Profile } from "@/services/api/user/types/profile";
+// import { checkIfAlreadyFollowing } from "@/services/api/user/checkIfAlreadyFollowing";
+import type { Profile } from "@/utils/types/user/profile";
 import { loadKey } from "@/services/helpers/storage";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 import { toast } from "react-hot-toast";
@@ -19,29 +19,29 @@ const FollowButton: React.FC<FollowButtonProps> = ({ user }) => {
   const currentUser = loadKey("profile") as Profile | null;
   const visitedUserName = user.name;
 
-  useEffect(() => {
-    const checkFollowingStatus = async () => {
-      if (!currentUser) {
-        setIsLoading(false);
-        return;
-      }
+  // useEffect(() => {
+  //   const checkFollowingStatus = async () => {
+  //     if (!currentUser) {
+  //       setIsLoading(false);
+  //       return;
+  //     }
 
-      try {
-        const followingStatus = await checkIfAlreadyFollowing(user.name);
-        setIsFollowing(followingStatus);
-      } catch (error) {
-        const errorMessage =
-          error instanceof Error
-            ? error.message
-            : "Failed to check follow status";
-        setError(errorMessage);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  //     try {
+  //       const followingStatus = await checkIfAlreadyFollowing(user.name);
+  //       setIsFollowing(followingStatus);
+  //     } catch (error) {
+  //       const errorMessage =
+  //         error instanceof Error
+  //           ? error.message
+  //           : "Failed to check follow status";
+  //       setError(errorMessage);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    checkFollowingStatus();
-  }, [currentUser, visitedUserName, user.name]);
+  //   checkFollowingStatus();
+  // }, [currentUser, visitedUserName, user.name]);
 
   const handleToggleFollow = async () => {
     if (!currentUser || isLoading) return;

@@ -1,6 +1,6 @@
 import { getUserParams } from "@/services/helpers/getUserParams";
 import { loadKey } from "@/services/helpers/storage";
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 
 export const updateUnderline = async (targetLi: HTMLLIElement) => {
   const currentUrl = window.location.pathname;

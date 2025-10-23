@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { clearUserBio } from "@/services/api/user/bio/clearUserBio";
 import { updateUserBio } from "@/services/api/user/bio/updateBio";
-import type { Profile } from "@/services/api/user/types/profile";
+import type { Profile } from "@/utils/types/user/profile";
 
 interface BioFormProps {
   user: Profile;

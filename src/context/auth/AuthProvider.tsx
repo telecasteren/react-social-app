@@ -3,16 +3,21 @@ import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import { login as loginApi } from "@/services/api/auth/loginUser";
 import { register as registerApi } from "@/services/api/auth/registerUser";
+import type { Profile } from "@/utils/types/user/profile";
+
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<Profile | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Checking for token and logged in user in localStorage
   useEffect(() => {
     const token = loadKey("token");
-    const profile = loadKey("profile");
+    const profile = loadKey("profile") as Profile;
     setUser(profile);
     setIsAuthenticated(!!token);
     setLoading(false);
@@ -45,7 +50,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, loading, login, register, logout }}
+      value={{
+        auth: { user, isAuthenticated, loading, login, register, logout },
+      }}
     >
       {children}
     </AuthContext.Provider>

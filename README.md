@@ -93,16 +93,21 @@ npm run test:e2e
 ├── public/          # Static assets
 ├── src/             # Application source code
  └── assets
- └── components      # Global reusable bits
+ └── components      # Global reusable components
+ └── context
+ └── hooks
  └── features        # UI and feature specific components
+ └── routes          # Pages
  └── services/       # API and helpers
  └── styles/         # Tailwind and custom CSS
- └── utils/          # Utilities
+ └── utils/
+   └── branding/     # Branding config
    └── tests/        # Unit & e2e tests
    └── types/        # Typescript types
 ├──
 ├── package.json
 ├── tsconfig.json
+├── tsr.config.json
 ├── tailwind.config.ts
 ├── playwright.config.ts
 ├── vitest.config.ts
@@ -122,3 +127,4 @@ npm run test:e2e
 [tanstack router docs](https://tanstack.com/router/latest/docs/framework/react/quick-start)
 [tanstack router vs react router](https://www.reddit.com/r/reactjs/comments/1afzhm9/react_router_or_tanstack_router/)
 [react-hot-toast](https://react-hot-toast.com)
+[tanstack router Link navigation](https://tanstack.com/router/v1/docs/framework/react/guide/navigation)

@@ -4,12 +4,17 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import DesktopNavContent from "@/components/navbar/components/DesktopNavContent";
 import MobileNavContent from "@/components/navbar/components/MobileNavContent";
-import type { NavLink } from "./types/types";
+import type { NavLink } from "../../utils/types/navbar/types";
 import { useNavScrollEffect } from "@/hooks/useNavScrollEffect";
+import { loadKey } from "@/services/helpers/storage";
+import type { Profile } from "@/utils/types/user/profile";
 
 const Navbar = () => {
+  const currentUser = loadKey("profile") as Profile;
+  const username = currentUser?.name || "";
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-  const { isAuthenticated } = useAuth();
+  const { auth } = useAuth();
   const navRef = useInitialUnderline();
 
   const isScrolled = useNavScrollEffect();
@@ -20,7 +25,7 @@ const Navbar = () => {
   const links: NavLink[] = [
     { href: "/", text: "Welcome", authOnly: false, guestOnly: true },
     { href: "/user/feed", text: "Feed", authOnly: true },
-    { href: "/user/profile", text: "Profile", authOnly: true },
+    { href: `/user/profile/${username}`, text: "Profile", authOnly: true },
     { href: "#", text: "Settings", authOnly: true, isDropdown: true },
   ];
 
@@ -35,13 +40,13 @@ const Navbar = () => {
       {isMobile ? (
         <MobileNavContent
           className={bgColorChange}
-          auth={isAuthenticated}
+          auth={auth.isAuthenticated}
           links={links}
         />
       ) : (
         <DesktopNavContent
           className={bgColorChange}
-          auth={isAuthenticated}
+          auth={auth.isAuthenticated}
           links={links}
           navRef={navRef}
         />
