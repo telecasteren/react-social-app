@@ -3,6 +3,10 @@
 Continue to rewrite all components from main branch to React and Typescript in
 this branch.
 
+Issues:
+
+- getUserParams in updateUnderline function runs on screen change causing "Missing username in URL" toast
+
 Ongoing:
 
 - <s>Auth</s>
@@ -44,6 +48,7 @@ Missing:
 ### Feedback from Connor
 
 - a library like react-helmet-async can be used to update <head>:
+  [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 
 ```js
 if (headerRef.current) {
