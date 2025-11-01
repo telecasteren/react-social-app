@@ -14,7 +14,10 @@ const DesktopNavContent: React.FC<NavContentProps> = ({
     <div
       className={`fixed md:flex items-center justify-between flex-wrap p-[2.5rem] z-40 w-full transition-background-color duration-300 ${className}`}
     >
-      <ul ref={navRef} className="active flex space-x-8 dark:text-dark">
+      <ul
+        ref={navRef}
+        className="active flex items-center space-x-8 dark:text-dark"
+      >
         {links
           .filter((link) => showLink(link, auth))
           .map((link) => (

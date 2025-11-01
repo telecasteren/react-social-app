@@ -2,19 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { loadKey } from "@/services/helpers/storage";
 import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
 import type { Profile } from "@/utils/types/user/profile";
+import { Link } from "@tanstack/react-router";
 
 interface UserSettingsProps {
   className?: string;
   children: React.ReactNode;
 }
 
-export const UserSettings: React.FC<UserSettingsProps> = ({
-  className = "",
-  children,
-}) => {
+export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLAnchorElement>(null);
 
   const profile = loadKey("profile") as Profile;
   const userName = profile?.name || "John Doe";
@@ -54,13 +52,18 @@ export const UserSettings: React.FC<UserSettingsProps> = ({
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative items-center ${className}`}>
-      <button
-        onClick={toggleDropdown}
-        className="cursor-pointer text-black dark:text-white hover:text-[var(--accent)] transition-colors duration-200"
+    <>
+      <Link
+        ref={containerRef}
+        to="/"
+        onClick={(e) => {
+          e.preventDefault();
+          toggleDropdown();
+        }}
+        className="text-black dark:text-white hover:text-[var(--accent)] transition-colors duration-200 [&.active]:text-[var(--accent)]"
       >
         {children}
-      </button>
+      </Link>
 
       {isOpen && (
         <div
@@ -89,6 +92,6 @@ export const UserSettings: React.FC<UserSettingsProps> = ({
           </ul>
         </div>
       )}
-    </div>
+    </>
   );
 };

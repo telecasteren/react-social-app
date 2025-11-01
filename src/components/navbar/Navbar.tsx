@@ -23,7 +23,7 @@ const Navbar = () => {
     { href: "/", text: "Welcome", authOnly: false, guestOnly: true },
     { href: "/user/feed/explore", text: "Feed", authOnly: true },
     { href: `/user/profile/${username}`, text: "Profile", authOnly: true },
-    { href: "#", text: "Settings", authOnly: true, isDropdown: true },
+    { href: "", text: "Settings", authOnly: true, isDropdown: true },
   ];
 
   useEffect(() => {
