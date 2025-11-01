@@ -3,16 +3,13 @@
 Continue to rewrite all components from main branch to React and Typescript in
 this branch.
 
-Issues:
-
-- getUserParams in updateUnderline function runs on screen change causing "Missing username in URL" toast
-
 Ongoing:
 
 - <s>Auth</s>
 - <s>Dashboard</s>
 - <s>Navbar</s>
 
+- Settings (feature for nav): fix positioning and actions
 - Links/routes (from feed to single post page)
 
 - Profile:
@@ -26,6 +23,7 @@ Next up:
 
 - Pages
   - Feed with posts
+    - Feed with posts from following only
   - Single post
 - API calls
 - Events
@@ -33,7 +31,6 @@ Next up:
 Missing:
 
 - Non auth forms (use react-hook-form)
-- Settings (fix feature for nav)
 - Search (consider moving location)
 
 ## New stuff
@@ -48,7 +45,6 @@ Missing:
 ### Feedback from Connor
 
 - a library like react-helmet-async can be used to update <head>:
-  [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 
 ```js
 if (headerRef.current) {

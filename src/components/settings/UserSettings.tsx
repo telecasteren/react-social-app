@@ -1,8 +1,13 @@
-import { createUserSettings } from "";
+import { UserSettings } from "@/components/settings/createUserSettings";
+import { endDot } from "@/utils/branding/config";
 
-export const userSettings = () => {
-  return createUserSettings({
-    triggerType: "button",
-    triggerText: "Settings",
-  });
+const SettingsComponent = () => {
+  return (
+    <UserSettings>
+      Settings
+      <span dangerouslySetInnerHTML={{ __html: endDot }} />
+    </UserSettings>
+  );
 };
+
+export default SettingsComponent;

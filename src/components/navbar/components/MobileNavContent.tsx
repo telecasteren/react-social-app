@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/useAuth";
 import toast from "react-hot-toast";
 import type { NavContentProps } from "@/utils/types/navbar/types";
@@ -18,8 +18,9 @@ const MobileNavContent: React.FC<NavContentProps> = ({
   className,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
-  const { logout } = useAuth();
+  const {
+    auth: { logout },
+  } = useAuth();
   const navRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -59,7 +60,7 @@ const MobileNavContent: React.FC<NavContentProps> = ({
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
-          to="/user/feed"
+          to="/user/feed/explore"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img
@@ -112,11 +113,11 @@ const MobileNavContent: React.FC<NavContentProps> = ({
                   ) : (
                     <Link
                       to={link.href}
-                      className={`mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer ${
-                        location.pathname === link.href
-                          ? "current-mobile-nav-item"
-                          : ""
-                      }`}
+                      className="mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                      activeProps={{
+                        className:
+                          "mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer current-mobile-nav-item",
+                      }}
                       onClick={closeMenu}
                     >
                       {link.text}

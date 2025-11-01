@@ -27,7 +27,7 @@ const DesktopNavContent: React.FC<NavContentProps> = ({
           ))}
       </ul>
 
-      <Link to="/user/feed" className="nav-logo">
+      <Link to="/user/feed/explore" className="nav-logo">
         <img
           className="w-32 flex justify-end dark:invert"
           src={SITE_LOGO_NAME}

@@ -27,7 +27,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const [justLoggedIn, setJustLoggedIn] = useState(false);
 
   const password = watch("password");
-  const { login, register: registerUser, isAuthenticated } = useAuth();
+  const {
+    auth: { login, register: registerUser, isAuthenticated },
+  } = useAuth();
 
   const handleForgotPassword = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -44,9 +46,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
           to: "/user/profile/$username",
           params: { username: currentUser.name },
         });
+      } else {
+        navigate({ to: "/user/feed/explore" });
       }
-    } else {
-      navigate({ to: "/user/feed" });
     }
 
     setJustLoggedIn(false);

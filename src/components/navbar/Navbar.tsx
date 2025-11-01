@@ -1,5 +1,3 @@
-// import { useInitialUnderline } from "@/components/navbar/helpers/useInitialUnderline";
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import DesktopNavContent from "@/components/navbar/components/DesktopNavContent";
@@ -15,7 +13,6 @@ const Navbar = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const { auth } = useAuth();
-  // const navRef = useInitialUnderline();
 
   const isScrolled = useNavScrollEffect();
   const bgColorChange = isScrolled
@@ -24,7 +21,7 @@ const Navbar = () => {
 
   const links: NavLink[] = [
     { href: "/", text: "Welcome", authOnly: false, guestOnly: true },
-    { href: "/user/feed", text: "Feed", authOnly: true },
+    { href: "/user/feed/explore", text: "Feed", authOnly: true },
     { href: `/user/profile/${username}`, text: "Profile", authOnly: true },
     { href: "#", text: "Settings", authOnly: true, isDropdown: true },
   ];
@@ -48,7 +45,6 @@ const Navbar = () => {
           className={bgColorChange}
           auth={auth.isAuthenticated}
           links={links}
-          // navRef={navRef}
         />
       )}
     </nav>

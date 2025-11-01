@@ -1,92 +1,94 @@
+import React, { useState, useEffect, useRef } from "react";
 import { loadKey } from "@/services/helpers/storage";
-import { handleClicks } from "";
-import { endDot } from "";
 import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
+import type { Profile } from "@/utils/types/user/profile";
 
-/**
- * Creates a user settings dropdown component.
- *
- * The dropdown includes:
- * - A trigger element (button or other) that toggles visibility.
- * - User information (name and email) retrieved from local storage.
- * - A list of settings options (e.g., "Edit profile", "Logout").
- * - Automatic handling for hiding the dropdown when clicking outside.
- *
- * @param {Object} [options] - Configuration options for the user settings dropdown.
- * @param {string} [options.triggerType="button"] - The HTML element type for the trigger (e.g., "button", "a").
- * @param {string} [options.triggerText="Settings"] - The text content for the trigger element.
- * @param {string} [options.triggerClasses=""] - Additional CSS classes to apply to the trigger element.
- * @param {string} [options.containerClasses=""] - Additional CSS classes to apply to the container.
- * @returns {HTMLDivElement} The container div element containing the user settings dropdown.
- */
-export const createUserSettings = ({
-  triggerType = "button",
-  triggerText = "Settings",
-  triggerClasses = "",
-  containerClasses = "",
+interface UserSettingsProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const UserSettings: React.FC<UserSettingsProps> = ({
+  className = "",
+  children,
 }) => {
-  const container = document.createElement("div");
-  container.className = `relative inline-block ${containerClasses}`;
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const trigger = document.createElement(triggerType);
-  trigger.id = "dropdownInformationButton";
-  trigger.setAttribute("data-dropdown-toggle", "dropdownInformation");
-  trigger.className = `nav-hover-bg cursor-pointer text-black dark:text-white ${triggerClasses}`;
-  trigger.innerHTML = triggerText + endDot;
+  const profile = loadKey("profile") as Profile;
+  const userName = profile?.name || "John Doe";
+  const userEmail = profile?.email || "Inactive";
 
-  const dropdown = document.createElement("div");
-  dropdown.id = "dropdownInformation";
-  dropdown.className = `z-10 absolute hidden bg-white divide-y divide-gray-200 rounded-lg
-   shadow-lg w-44 dark:bg-[#0f0c29] dark:divide-gray-600`;
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
-  const userInfo = document.createElement("div");
-  userInfo.className = "px-4 py-3 text-sm text-gray-600 dark:text-gray-400";
-  const unsafeHTML = `<div class="font-medium truncate">${
-    loadKey("profile")?.name || "Guest"
-  }<br/>
-  ${loadKey("profile")?.email || "Inactive"}</div>`;
-  userInfo.innerHTML = DOMPurify.sanitize(unsafeHTML);
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
 
-  const menuList = document.createElement("ul");
-  menuList.className = "py-2 text-sm text-gray-700 dark:text-gray-200";
-  menuList.setAttribute("aria-labelledby", "dropdownInformationButton");
-
-  const items = settingsOptions();
-  items.forEach(({ text, action }, index) => {
-    const li = document.createElement("li");
-    li.id = `settings-option-${index}`;
-    li.className =
-      "w-full text-black hover:text-accent-light dark:text-white dark:hover:text-accent-dark";
-    const a = document.createElement("a");
-    a.className =
-      "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer";
-    a.textContent = text;
-    li.appendChild(a);
-    menuList.appendChild(li);
-    if (!action) {
-      li.addEventListener("click", (e) => {
-        handleClicks(e, "/user/logout/", false);
-        dropdown.classList.add("hidden");
-      });
-    } else {
-      action(li);
+  const handleMenuItemClick = (action?: () => void) => {
+    if (action) {
+      action();
     }
-  });
+    closeDropdown();
+  };
 
-  dropdown.appendChild(userInfo);
-  dropdown.appendChild(menuList);
-  container.appendChild(trigger);
-  container.appendChild(dropdown);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        containerRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        closeDropdown();
+      }
+    };
 
-  trigger.addEventListener("click", () => {
-    dropdown.classList.toggle("hidden");
-  });
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-  document.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target) && !container.contains(e.target)) {
-      dropdown.classList.add("hidden");
-    }
-  });
+  return (
+    <div ref={containerRef} className={`relative items-center ${className}`}>
+      <button
+        onClick={toggleDropdown}
+        className="cursor-pointer text-black dark:text-white hover:text-[var(--accent)] transition-colors duration-200"
+      >
+        {children}
+      </button>
 
-  return container;
+      {isOpen && (
+        <div
+          ref={dropdownRef}
+          className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-lg w-44 dark:bg-[#0f0c29] dark:divide-gray-600"
+        >
+          <div className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
+            <div className="font-medium truncate">
+              {userName}
+              <br />
+              {userEmail}
+            </div>
+          </div>
+
+          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+            {settingsOptions().map(({ text, action }, index) => (
+              <li key={index}>
+                <button
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                  onClick={() => handleMenuItemClick(action)}
+                >
+                  {text}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 };
