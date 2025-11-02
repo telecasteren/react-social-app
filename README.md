@@ -8,6 +8,7 @@ A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScr
 ### Tools
 
 - TanStack Router for routing
+- Tanstack query
 - Vitest for unit testing
 - Playwright for end-to-end testing
 - ESLint + Prettier
@@ -131,3 +132,4 @@ npm run test:e2e
 [tanstack query docs](https://tanstack.com/query/v5/docs/framework/react/typescript)<br/>
 [tanstack query dependant query(ex. username/id)](https://tanstack.com/query/v5/docs/framework/react/guides/dependent-queries)<br/>
 [tanstack query cache and garbage collection](https://tanstack.com/query/v5/docs/framework/react/guides/important-defaults)<br/>
+[unhead react](https://unhead.unjs.io/docs/react/head/guides/get-started/installation)

@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/meta/usePageMeta";
 import { useEffect, useState } from "react";
 import type { Profile } from "@/utils/types/user/profile";
 // import { loadKey } from "@/services/helpers/storage";
 import { fetchUserPosts } from "@/services/api/posts/fetchUserPosts";
 import { getSingleUserProfile } from "@/services/api/user/getSingleUserProfile";
 import { POSTS_PER_PAGE } from "@/services/api/auth/config/constants";
+import { PROFILE_DESC_FALLBACK } from "@/utils/branding/config";
 import Heading from "@/features/user/components/Heading";
 import Details from "@/features/user/components/Details";
 import Description from "@/features/user/components/Description";
@@ -19,11 +21,15 @@ function Profile() {
   const { username } = Route.useParams();
   const profileUser = Route.useLoaderData();
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const [showNewPost, setShowNewPost] = useState(false);
   // const currentUser = loadKey("profile") as Profile;
   // const isCurrentUser = username === currentUser?.name;
-
-  const [loading, setLoading] = useState(true);
+  usePageMeta(
+    profileUser?.name || PROFILE_DESC_FALLBACK,
+    profileUser?.description ||
+      `Follow ${profileUser?.name} and you might make a new friend.`,
+  );
 
   useScrollRestore(`/user/profile/${username}`);
 

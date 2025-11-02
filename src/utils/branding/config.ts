@@ -13,15 +13,11 @@ export const sharedStyles = `block w-[80%] cursor-pointer text-sm text-gray-900 
 border-gray-300 rounded-lg bg-gray-50 placeholder-gray-800
 focus:ring-blue-500 focus:border-blue-500`;
 
-// Meta descriptions
-export const defaultPostDesc = `${SITE_NAME}: stories from the cultural corners of the world!`;
-export const defaultDescFallback =
-  "Login or create you account to connect with fellow Foodies.";
-export const defaultDescriptions = {
-  "/user/profile/": "Follow and you might make a new friend.",
-  "/user/post/": "Post. Like and comment.",
-  "/user/feed/": "Explore for tips and recommendations.",
-};
+// Meta defaults
+export const POST_DESC_FALLBACK = `Post. Like and comment on this delicious post at ${SITE_NAME}`;
+export const PROFILE_DESC_FALLBACK = `Explore the profile of ${SITE_NAME} user`;
+export const FEED_DESC_FALLBACK = `Explore for tips and recommendations at ${SITE_NAME}`;
+export const FEED_TITLE_FALLBACK = "Explore";
 
 //========================
 // BRANDING CONFIG - not in use currently

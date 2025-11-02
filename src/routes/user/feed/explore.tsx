@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { usePageMeta } from "@/hooks/meta/usePageMeta";
 import { useScrollRestore } from "@/hooks/scroll/useScrollRestore";
 import { loadKey } from "@/services/helpers/storage";
 import { getSingleUserProfile } from "@/services/api/user/getSingleUserProfile";
 import type { Profile } from "@/utils/types/user/profile";
 import { POSTS_PER_PAGE } from "@/services/api/auth/config/constants";
+import {
+  FEED_TITLE_FALLBACK,
+  FEED_DESC_FALLBACK,
+} from "@/utils/branding/config";
 import Posts from "@/features/post/Posts";
 import { fetchAllPosts } from "@/services/api/posts/fetchAllPosts";
 import SkeletonCard from "@/components/loaders/SkeletonCard";
@@ -22,6 +27,7 @@ function Feed() {
   const { results: searchResults, hasResults } = searchHook;
   const postsToRender = hasResults ? searchResults : posts;
 
+  usePageMeta(FEED_TITLE_FALLBACK, FEED_DESC_FALLBACK);
   useScrollRestore(`/user/feed/explore`);
 
   if (isCurrentUser) {

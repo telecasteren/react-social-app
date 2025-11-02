@@ -33,18 +33,3 @@ Next up:
 ## Other
 
 - zod for validation - same schema for frontend / backend (relevance?)
-
-### Feedback from Connor
-
-- a library like react-helmet-async can be used to update <head>:
-
-```js
-if (headerRef.current) {
-  headerRef.current.innerHTML = "";
-  const title = TypeTitle({ text: SITE_NAME });
-  title.classList.add("text-bigger", "md:text-[4.5rem]", "typewriter");
-  headerRef.current.appendChild(title);
-}
-```
-
-- that nav-underline file has non-Tailwind CSS stuff. Gotta follow one pattern.

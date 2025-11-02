@@ -1,9 +1,12 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createHead, UnheadProvider } from "@unhead/react/client";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { AuthProvider } from "@/context/auth/AuthProvider";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { Toaster } from "react-hot-toast";
+
+const head = createHead();
 
 const RootLayout = () => (
   <AuthProvider>
@@ -33,13 +36,16 @@ const RootLayout = () => (
           },
         }}
       />
-      <header>
-        <Navbar />
-      </header>
-      <main className="pt-20">
-        <Outlet />
-      </main>
-      <Footer />
+
+      <UnheadProvider head={head}>
+        <header>
+          <Navbar />
+        </header>
+        <main className="pt-20">
+          <Outlet />
+        </main>
+        <Footer />
+      </UnheadProvider>
       <TanStackRouterDevtools />
     </div>
   </AuthProvider>
