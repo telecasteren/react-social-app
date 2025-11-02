@@ -8,6 +8,7 @@ import { POSTS_PER_PAGE } from "@/services/api/auth/config/constants";
 import Posts from "@/features/post/Posts";
 import { fetchAllPosts } from "@/services/api/posts/fetchAllPosts";
 import SkeletonCard from "@/components/loaders/SkeletonCard";
+import Title from "@/components/titles/Title";
 
 function Feed() {
   const isCurrentUser = Route.useLoaderData();
@@ -42,7 +43,7 @@ function Feed() {
 
   return (
     <div className="flex flex-col gap-20 mt-10 items-center">
-      <h2 className="text-bigger m-4 text-center">Feed me</h2>
+      <Title text="Feed me" className="text-bigger m-4 text-center" />
       <div className="justify-self-center">Search input will be put here</div>
       <Posts posts={posts} loading={loading} />
       {/* {showNewPost && setShowNewPost(isCurrentUser)} */}
