@@ -1,15 +1,19 @@
 ## Project
 
-Continue to rewrite all components from main branch to React and Typescript in
-this branch.
-
 Ongoing:
 
-- Settings (feature for nav): fix positioning and actions
 - Links/routes (from feed to single post page)
+- Nav items positioning (settings)
 
 - Profile:
-  - <s> Description </s> --> double check follow state
+  - edit avatar logic
+  - create new post form
+  - sort events
+
+  - Feed:
+    - create new post form
+    - sort events
+    - search events
 
 Next up:
 
@@ -19,6 +23,7 @@ Next up:
   - Edit post: Profile & SinglePost
   - Edit avatar: Profile
 - Search events
+- Sort events
 
 ## New stuff
 

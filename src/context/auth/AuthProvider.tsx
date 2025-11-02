@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log("Resolving login promise with:", profile);
         resolve(profile);
       }, 10);
     });

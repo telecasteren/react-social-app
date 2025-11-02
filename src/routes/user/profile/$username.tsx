@@ -43,7 +43,7 @@ function Profile() {
   }, [username]);
 
   if (!profileUser) {
-    return <div>Loading profile...</div>;
+    return;
   }
 
   if (loading) {
@@ -51,7 +51,7 @@ function Profile() {
   }
 
   return (
-    <div className="profile-container w-[100vw] min-h-screen p-8 gap-16">
+    <div className="profile-container w-[90vw] justify-self-center min-h-screen p-8 gap-16">
       <Heading user={profileUser} />
       <Details user={profileUser} />
       <Description user={profileUser} />

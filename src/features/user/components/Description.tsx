@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { loadKey } from "@/services/helpers/storage";
 import type { Profile } from "@/utils/types/user/profile";
 import FollowButton from "@/components/buttons/FollowBtn";
-import BioForm from "./forms/BioForm";
+import BioForm from "@/features/user/forms/BioForm";
 import EditIconButton from "@/components/buttons/EditIconBtn";
 
 interface DescriptionProps {

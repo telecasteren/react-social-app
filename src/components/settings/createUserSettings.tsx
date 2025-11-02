@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { loadKey } from "@/services/helpers/storage";
-import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
+import { getSettingsDropdownItems } from "@/components/settings/helpers/getSettingsDropdownItems";
 import type { Profile } from "@/utils/types/user/profile";
 import type { UserSettingsProps } from "@/utils/types/settings/UserSettings";
 import { Link } from "@tanstack/react-router";
@@ -75,7 +75,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
           </div>
 
           <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-            {settingsOptions().map(({ text, action }, index) => (
+            {getSettingsDropdownItems().map(({ text, action }, index) => (
               <li key={index}>
                 <button
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer hover:text-accent-light dark:hover:text-accent-dark transition-colors duration-200 [&.active]:text-accent-light dark:[&.active]:text-accent-dark"

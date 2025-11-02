@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import toast from "react-hot-toast";
 import type { NavContentProps } from "@/utils/types/navbar/types";
 import { showLink } from "@/components/navbar/helpers/showLink";
-import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
+import { getSettingsDropdownItems } from "@/components/settings/helpers/getSettingsDropdownItems";
 import {
   endDot,
   MENU_ICON,
@@ -101,7 +101,7 @@ const MobileNavContent: React.FC<NavContentProps> = ({
                 <li key={link.text} className="menuLi">
                   {link.isDropdown ? (
                     <>
-                      {settingsOptions().map(({ text }) => (
+                      {getSettingsDropdownItems().map(({ text }) => (
                         <button
                           key={text}
                           className="mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer w-full text-left"

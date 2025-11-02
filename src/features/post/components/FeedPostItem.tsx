@@ -33,11 +33,11 @@ const FeedPostItem: React.FC<FeedPostItemProps> = ({ post }) => {
           to="/user/profile/$username"
           params={{ username: author?.name || "unknown" }}
         >
-          <h2 className="mb-2 text-2xl font-bold tracking-tight text-accent-light dark:text-accent-dark hover:text-gray-900 hover:dark:text-gray-200">
+          <h2 className="mb-2 text-sm font-bold tracking-tight text-accent-light dark:text-accent-dark hover:text-gray-900 hover:dark:text-gray-200">
             {userName}
           </h2>
         </Link>
-        <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h3 className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
           {postTitle}
         </h3>
       </div>
