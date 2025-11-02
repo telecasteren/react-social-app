@@ -5,7 +5,7 @@ export interface Post {
   title: string;
   body: string;
   tags: Array<string>;
-  media: {
+  media?: {
     url: string;
     alt: string;
   };

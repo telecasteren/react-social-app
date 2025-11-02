@@ -103,4 +103,12 @@
   .current-mobile-nav-item {
     @apply text-black bg-accent-light dark:text-black dark:bg-accent-dark;
   }
+
+  .feed-post {
+    @apply flex flex-row flex-wrap gap-4 sm:gap-6 lg:gap-12 justify-center md:ml-20 md:mr-20;
+  }
+
+  .profile-post {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5;
+  }
 }

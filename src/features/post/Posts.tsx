@@ -1,6 +1,6 @@
 import type { Post } from "@/utils/types/post/post";
-import ProfilePostItem from "./ProfilePostItem";
-import FeedPostItem from "./FeedPostItem";
+import ProfilePostItem from "./components/ProfilePostItem";
+import FeedPostItem from "./components/FeedPostItem";
 import { useRouter } from "@tanstack/react-router";
 
 interface PostsProps {
@@ -29,12 +29,11 @@ const Posts = ({ posts, loading, page }: PostsProps) => {
   }
 
   const PostComponent = pageType === "profile" ? ProfilePostItem : FeedPostItem;
+  const postContainerClass =
+    pageType === "profile" ? "profile-post" : "feed-post";
 
   return (
-    <div
-      id="posts-container"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5"
-    >
+    <div id="posts-container" className={postContainerClass}>
       {posts.map((post) => (
         <PostComponent key={post.id} post={post} />
       ))}

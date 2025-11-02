@@ -5,8 +5,9 @@ import { loadKey } from "@/services/helpers/storage";
 import { getSingleUserProfile } from "@/services/api/user/getSingleUserProfile";
 import type { Profile } from "@/utils/types/user/profile";
 import { POSTS_PER_PAGE } from "@/services/api/auth/config/constants";
-import Posts from "@/features/user/components/posts/Posts";
+import Posts from "@/features/post/Posts";
 import { fetchAllPosts } from "@/services/api/posts/fetchAllPosts";
+import SkeletonCard from "@/components/loaders/SkeletonCard";
 
 function Feed() {
   const isCurrentUser = Route.useLoaderData();
@@ -24,7 +25,7 @@ function Feed() {
     const loadPosts = async () => {
       try {
         const postsData = await fetchAllPosts(POSTS_PER_PAGE, 1);
-        setPosts(postsData);
+        setPosts(postsData.data);
       } catch (error) {
         console.error("Error loading posts:", error);
       } finally {
@@ -35,10 +36,15 @@ function Feed() {
     loadPosts();
   }, []);
 
+  if (loading) {
+    return <SkeletonCard count={6} />;
+  }
+
   return (
-    <div>
+    <div className="flex flex-col gap-20 mt-10 items-center">
+      <h2 className="text-bigger m-4 text-center">Feed me</h2>
+      <div className="justify-self-center">Search input will be put here</div>
       <Posts posts={posts} loading={loading} />
-      <div className="p-2">Hello from Feed!</div>
       {/* {showNewPost && setShowNewPost(isCurrentUser)} */}
     </div>
   );

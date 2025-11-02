@@ -8,9 +8,10 @@ import { POSTS_PER_PAGE } from "@/services/api/auth/config/constants";
 import Heading from "@/features/user/components/Heading";
 import Details from "@/features/user/components/Details";
 import Description from "@/features/user/components/Description";
-import Posts from "@/features/user/components/posts/Posts";
+import Posts from "@/features/post/Posts";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
 import { useScrollRestore } from "@/hooks/useScrollRestore";
+import SkeletonProfile from "@/components/loaders/SkeletonProfile";
 // import { getUserParams } from "@/services/helpers/getUserParams";
 
 function Profile() {
@@ -42,6 +43,10 @@ function Profile() {
 
   if (!profileUser) {
     return <div>Loading profile...</div>;
+  }
+
+  if (loading) {
+    return <SkeletonProfile />;
   }
 
   return (
