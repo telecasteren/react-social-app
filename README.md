@@ -15,6 +15,7 @@ A rewrite of vanilla js project, social-app-noroff, with React, Vite and TypeScr
 - Husky + lint-staged
 - react-hook-form
 - react-hot-toast
+- unhead/react for meta tags
 
 ---
 
