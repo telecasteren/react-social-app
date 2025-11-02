@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Profile } from "@/utils/types/user/profile";
 import { NO_IMG_URL } from "@/utils/branding/config";
-import { useUpdateUserAvatar } from "@/hooks/useUpdateUserAvatar";
+import { useUpdateUserAvatar } from "@/hooks/user/useUpdateUserAvatar";
 
 interface AvatarFormProps {
   user: Profile;

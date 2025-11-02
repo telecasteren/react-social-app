@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useUserProfile } from "@/hooks/useUserProfile";
+import { useUserProfile } from "@/hooks/user/useUserProfile";
 import { submitFollow } from "@/services/api/user/actions/submitFollow";
 import { submitUnfollow } from "@/services/api/user/actions/submitUnfollow";
 import type { Profile } from "@/utils/types/user/profile";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import toast from "react-hot-toast";
 import type { NavContentProps } from "@/utils/types/navbar/types";
 import { showLink } from "@/components/navbar/helpers/showLink";

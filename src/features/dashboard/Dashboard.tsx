@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import TypeText from "@/components/titles/TypeText";
 import TypeTitle from "@/components/titles/TypeTitle";
 import { SITE_LOGO_PIZZA, SITE_NAME } from "@/utils/branding/config";

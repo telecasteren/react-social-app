@@ -13,7 +13,6 @@ Ongoing:
   - Feed:
     - create new post form
     - sort events
-    - search events
 
 Next up:
 
@@ -22,8 +21,8 @@ Next up:
   - Create new post form: Feed & Profile
   - Edit post: Profile & SinglePost
   - Edit avatar: Profile
-- Search events
 - Sort events
+- Spinner in loading state (searching, sorting)
 
 ## New stuff
 

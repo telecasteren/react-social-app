@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import DesktopNavContent from "@/components/navbar/components/DesktopNavContent";
 import MobileNavContent from "@/components/navbar/components/MobileNavContent";
 import type { NavLink } from "../../utils/types/navbar/types";
-import { useNavScrollEffect } from "@/hooks/useNavScrollEffect";
+import { useNavScrollEffect } from "@/hooks/scroll/useNavScrollEffect";
 import { loadKey } from "@/services/helpers/storage";
 import type { Profile } from "@/utils/types/user/profile";
 

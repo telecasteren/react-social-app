@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routeTree } from "./routeTree.gen";
 import { AuthProvider } from "@/context/auth/AuthProvider";
 import * as AuthTypes from "@/utils/types/auth/types";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import "@/styles/index.css";
 
 const queryClient = new QueryClient();

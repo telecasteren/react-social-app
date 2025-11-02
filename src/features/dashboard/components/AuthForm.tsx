@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { SITE_NAME, SITE_LOGO_PIZZA } from "@/utils/branding/config";
 import toast from "react-hot-toast";
 import { useNavigate } from "@tanstack/react-router";

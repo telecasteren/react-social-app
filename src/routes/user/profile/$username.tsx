@@ -10,7 +10,7 @@ import Details from "@/features/user/components/Details";
 import Description from "@/features/user/components/Description";
 import Posts from "@/features/post/Posts";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
-import { useScrollRestore } from "@/hooks/useScrollRestore";
+import { useScrollRestore } from "@/hooks/scroll/useScrollRestore";
 import SkeletonProfile from "@/components/loaders/SkeletonProfile";
 import SortOptions from "@/components/search/SortOptions";
 // import { getUserParams } from "@/services/helpers/getUserParams";
