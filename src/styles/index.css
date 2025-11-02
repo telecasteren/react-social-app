@@ -64,11 +64,11 @@
   }
 
   .btn-primary {
-    @apply bg-[var(--accent)] text-black hover:brightness-110 transition-colors duration-300;
+    @apply bg-accent-light dark:bg-accent-dark text-black hover:brightness-110 transition-colors duration-300;
   }
 
   .btn-secondary {
-    @apply bg-black text-white hover:bg-[var(--accent)] hover:text-black transition-colors duration-300;
+    @apply bg-black text-white hover:bg-accent-light dark:hover:bg-accent-dark hover:text-black transition-colors duration-300;
   }
 
   .input-field {
@@ -93,7 +93,7 @@
   }
 
   .active {
-    @apply text-[var(--accent)];
+    @apply text-accent-light dark:text-accent-dark;
   }
 
   .mobile-nav-item {

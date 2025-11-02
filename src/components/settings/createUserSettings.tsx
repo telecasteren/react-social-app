@@ -2,12 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { loadKey } from "@/services/helpers/storage";
 import { settingsOptions } from "@/components/navbar/helpers/dropdownItems";
 import type { Profile } from "@/utils/types/user/profile";
+import type { UserSettingsProps } from "@/utils/types/settings/UserSettings";
 import { Link } from "@tanstack/react-router";
-
-interface UserSettingsProps {
-  className?: string;
-  children: React.ReactNode;
-}
 
 export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +48,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
   }, []);
 
   return (
-    <>
+    <div className="relative inline-block">
       <Link
         ref={containerRef}
         to="/"
@@ -60,7 +56,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
           e.preventDefault();
           toggleDropdown();
         }}
-        className="text-black dark:text-white hover:text-[var(--accent)] transition-colors duration-200 [&.active]:text-[var(--accent)]"
+        className="text-black dark:text-white hover:text-accent-light dark:hover:text-accent-dark transition-colors duration-200 [&.active]:text-accent-light dark:[&.active]:text-accent-dark"
       >
         {children}
       </Link>
@@ -68,7 +64,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-lg w-44 dark:bg-[#0f0c29] dark:divide-gray-600"
+          className="z-10 absolute top-full left-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-lg w-44 dark:bg-[#0f0c29] dark:divide-gray-600"
         >
           <div className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
             <div className="font-medium truncate">
@@ -82,7 +78,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
             {settingsOptions().map(({ text, action }, index) => (
               <li key={index}>
                 <button
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer hover:text-accent-light dark:hover:text-accent-dark transition-colors duration-200 [&.active]:text-accent-light dark:[&.active]:text-accent-dark"
                   onClick={() => handleMenuItemClick(action)}
                 >
                   {text}
@@ -92,6 +88,6 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
           </ul>
         </div>
       )}
-    </>
+    </div>
   );
 };

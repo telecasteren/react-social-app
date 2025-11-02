@@ -9,6 +9,8 @@ import Posts from "@/features/post/Posts";
 import { fetchAllPosts } from "@/services/api/posts/fetchAllPosts";
 import SkeletonCard from "@/components/loaders/SkeletonCard";
 import Title from "@/components/titles/Title";
+import SearchInput from "@/components/search/SearchInput";
+import SortOptions from "@/components/search/SortOptions";
 
 function Feed() {
   const isCurrentUser = Route.useLoaderData();
@@ -42,9 +44,15 @@ function Feed() {
   }
 
   return (
-    <div className="flex flex-col gap-20 mt-10 items-center">
-      <Title text="Feed me" className="text-bigger m-4 text-center" />
-      <div className="justify-self-center">Search input will be put here</div>
+    <div className="flex flex-col mt-10 items-center">
+      <Title text="Feed me" className="text-bigger mb-10 text-center" />
+      <SearchInput />
+      <SortOptions
+        containerClasses="justify-center mb-10 mt-10"
+        onSortByComments={() => console.log("Sort by comments")}
+        onSortByCreated={() => console.log("Sort by created")}
+        onSortByLikes={() => console.log("Sort by likes")}
+      />
       <Posts posts={posts} loading={loading} />
       {/* {showNewPost && setShowNewPost(isCurrentUser)} */}
     </div>

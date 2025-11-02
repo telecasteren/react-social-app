@@ -20,7 +20,7 @@ const GoBackBtn: React.FC = () => {
 
   return (
     <div
-      className="back-btn text-md mt-4 underline hover:underline-none hover:text-[var(--accent)] cursor-pointer"
+      className="back-btn text-md mt-4 underline hover:underline-none hover:text-accent-light dark:hover:text-accent-dark cursor-pointer"
       onClick={handleGoBack}
     >
       ← Go back

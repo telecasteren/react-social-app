@@ -14,7 +14,7 @@ const NavLink: React.FC<NavLinkProps> = ({ link }) => {
   return (
     <Link
       to={link.href}
-      className="text-black dark:text-white hover:text-[var(--accent)] transition-colors duration-200 [&.active]:text-[var(--accent)]"
+      className="text-black dark:text-white hover:text-accent-light dark:hover:text-accent-dark transition-colors duration-200 [&.active]:text-accent-light dark:[&.active]:text-accent-dark"
     >
       {link.text}
     </Link>

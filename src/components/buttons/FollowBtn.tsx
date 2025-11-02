@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { submitFollow } from "@/services/api/user/actions/submitFollow";
 import { submitUnfollow } from "@/services/api/user/actions/submitUnfollow";
-// import { checkIfAlreadyFollowing } from "@/services/api/user/checkIfAlreadyFollowing";
 import type { Profile } from "@/utils/types/user/profile";
 import { loadKey } from "@/services/helpers/storage";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
@@ -12,39 +12,26 @@ interface FollowButtonProps {
 }
 
 const FollowButton: React.FC<FollowButtonProps> = ({ user }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const currentUser = loadKey("profile") as Profile | null;
   const visitedUserName = user.name;
 
-  // useEffect(() => {
-  //   const checkFollowingStatus = async () => {
-  //     if (!currentUser) {
-  //       setIsLoading(false);
-  //       return;
-  //     }
+  const currentUser = loadKey("profile") as Profile;
+  const {
+    data: visitedUser,
+    refetch,
+    isLoading: isLoadingProfile,
+  } = useUserProfile(user.name);
 
-  //     try {
-  //       const followingStatus = await checkIfAlreadyFollowing(user.name);
-  //       setIsFollowing(followingStatus);
-  //     } catch (error) {
-  //       const errorMessage =
-  //         error instanceof Error
-  //           ? error.message
-  //           : "Failed to check follow status";
-  //       setError(errorMessage);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
+  if (!currentUser || !visitedUser) return null;
 
-  //   checkFollowingStatus();
-  // }, [currentUser, visitedUserName, user.name]);
+  const isFollowing =
+    visitedUser.followers?.some(
+      (follower: Profile) => follower.name === currentUser.name,
+    ) || false;
 
   const handleToggleFollow = async () => {
-    if (!currentUser || isLoading) return;
+    if (isLoadingProfile) return;
 
     setIsLoading(true);
     setError(null);
@@ -52,13 +39,13 @@ const FollowButton: React.FC<FollowButtonProps> = ({ user }) => {
     try {
       if (!isFollowing) {
         await submitFollow(user);
-        setIsFollowing(true);
         toast.success(`Started following: ${visitedUserName}`);
       } else {
         await submitUnfollow(user);
-        setIsFollowing(false);
         toast(`Stopped following: ${visitedUserName}`);
       }
+
+      await refetch();
     } catch (error) {
       toast.error("There was an error updating the follow state.");
       const errorMessage =
@@ -68,10 +55,6 @@ const FollowButton: React.FC<FollowButtonProps> = ({ user }) => {
       setIsLoading(false);
     }
   };
-
-  if (!currentUser) {
-    return null;
-  }
 
   const buttonText = () => {
     if (isLoading) return "...";

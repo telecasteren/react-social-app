@@ -12,6 +12,7 @@ import Posts from "@/features/post/Posts";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
 import { useScrollRestore } from "@/hooks/useScrollRestore";
 import SkeletonProfile from "@/components/loaders/SkeletonProfile";
+import SortOptions from "@/components/search/SortOptions";
 // import { getUserParams } from "@/services/helpers/getUserParams";
 
 function Profile() {
@@ -54,6 +55,12 @@ function Profile() {
       <Heading user={profileUser} />
       <Details user={profileUser} />
       <Description user={profileUser} />
+      <SortOptions
+        containerClasses="justify-start mt-10 mb-10"
+        onSortByComments={() => console.log("Sort by comments")}
+        onSortByCreated={() => console.log("Sort by created")}
+        onSortByLikes={() => console.log("Sort by likes")}
+      />
       <Posts posts={posts} loading={loading} />
       {/* {showNewPost && setShowNewPost(isCurrentUser)} */}
       <GoBackBtn />

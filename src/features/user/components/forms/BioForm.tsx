@@ -75,7 +75,7 @@ const BioForm: React.FC<BioFormProps> = ({
 
           <span
             onClick={onCancel}
-            className="close-modal text-[var(--accent)] text-[28px] font-bold cursor-pointer hover:text-black ml-4"
+            className="close-modal text-accent-light dark:text-accent-dark text-[28px] font-bold cursor-pointer hover:text-black dark:hover:text-white ml-4"
           >
             &times;
           </span>

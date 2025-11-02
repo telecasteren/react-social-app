@@ -5,36 +5,24 @@ this branch.
 
 Ongoing:
 
-- <s>Auth</s>
-- <s>Dashboard</s>
-- <s>Navbar</s>
-
 - Settings (feature for nav): fix positioning and actions
 - Links/routes (from feed to single post page)
 
 - Profile:
-  - <s>Heading</s>
-  - <s>Details</s>
-  - <s> Posts </s>
   - <s> Description </s> --> double check follow state
-  - Edit avatar, edit post, create new post, sort-options
 
 Next up:
 
-- Pages
-  - Feed with posts
-    - Feed with posts from following only
+- Overview
   - Single post
-- API calls
-- Events
-
-Missing:
-
-- Non auth forms (use react-hook-form)
-- Search (consider moving location)
+  - Create new post form: Feed & Profile
+  - Edit post: Profile & SinglePost
+  - Edit avatar: Profile
+- Search events
 
 ## New stuff
 
+- Feed with posts from following only
 - branding config, centralise branding and custom tailwind styles:
   [branding config](src/utils/branding/config.ts)
 

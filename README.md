@@ -124,7 +124,10 @@ npm run test:e2e
 [react-hook-form](https://react-hook-form.com/get-started)<br/>
 [use of @theme in tailwind v4 - reddit](https://www.reddit.com/r/tailwindcss/comments/1m828qr/how_to_use_tailwind_config_now/)<br/>
 [use of @theme in tailwind v4 - tailwind docs](https://tailwindcss.com/docs/adding-custom-styles)<br/>
-[tanstack router docs](https://tanstack.com/router/latest/docs/framework/react/quick-start)
-[tanstack router vs react router](https://www.reddit.com/r/reactjs/comments/1afzhm9/react_router_or_tanstack_router/)
-[react-hot-toast](https://react-hot-toast.com)
-[tanstack router Link navigation](https://tanstack.com/router/v1/docs/framework/react/guide/navigation)
+[tanstack router docs](https://tanstack.com/router/latest/docs/framework/react/quick-start)<br/>
+[tanstack router vs react router](https://www.reddit.com/r/reactjs/comments/1afzhm9/react_router_or_tanstack_router/)<br/>
+[react-hot-toast](https://react-hot-toast.com)<br/>
+[tanstack router Link navigation](https://tanstack.com/router/v1/docs/framework/react/guide/navigation)<br/>
+[tanstack query docs](https://tanstack.com/query/v5/docs/framework/react/typescript)<br/>
+[tanstack query dependant query(ex. username/id)](https://tanstack.com/query/v5/docs/framework/react/guides/dependent-queries)<br/>
+[tanstack query cache and garbage collection](https://tanstack.com/query/v5/docs/framework/react/guides/important-defaults)<br/>
