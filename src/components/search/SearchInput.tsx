@@ -4,20 +4,35 @@ import type { SearchInputProps } from "@/utils/types/search/SearchInput";
 
 const SearchInput: React.FC<SearchInputProps> = ({
   onSearch,
+  onClear,
   placeholder = "Search posts..",
   disabled = false,
 }) => {
   const [searchValue, setSearchValue] = useState<string>("");
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (searchValue.trim() && onSearch) {
+    // if (searchValue.trim() && onSearch) {
+    //   onSearch(searchValue.trim());
+    // }
+    if (hasSearched && onClear) {
+      setSearchValue("");
+      setHasSearched(false);
+      onClear();
+    } else if (searchValue.trim() && onSearch) {
       onSearch(searchValue.trim());
+      setHasSearched(true);
     }
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
+    const value = event.target.value;
+    setSearchValue(value);
+
+    if (!value.trim()) {
+      setHasSearched(false);
+    }
   };
 
   return (
@@ -65,7 +80,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           disabled={disabled}
           className="absolute inset-y-0 end-0 flex items-center m-2 pl-2 pr-2 bg-accent-light dark:bg-accent-dark hover:brightness-110 text-sm text-black rounded-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Search
+          {hasSearched ? "Clear" : "Search"}
         </button>
       </div>
     </form>

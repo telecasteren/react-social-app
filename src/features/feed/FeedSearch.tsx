@@ -11,6 +11,7 @@ export const FeedSearch = ({ searchHook }: FeedSearchProps) => {
     hasResults,
     query,
     search,
+    clearSearch,
     isLoading,
   } = searchHook;
 
@@ -18,6 +19,7 @@ export const FeedSearch = ({ searchHook }: FeedSearchProps) => {
     <>
       <SearchInput
         onSearch={search}
+        onClear={clearSearch}
         placeholder={"Search posts..."}
         disabled={isLoading}
       />
