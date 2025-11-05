@@ -24,7 +24,7 @@ const EditIcon: React.FC<EditIconProps> = ({
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-5 h-5 text-white"
+        className="w-5 h-5 text-white opacity-100 flex-shrink-0"
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -33,7 +33,7 @@ const EditIcon: React.FC<EditIconProps> = ({
       {/* Help text */}
       <Title
         text={label}
-        className="ml-2 whitespace-nowrap opacity-0 transition-opacity duration-300 text-[0.8rem] text-white"
+        className="ml-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[0.8rem] text-white"
       />
     </div>
   );

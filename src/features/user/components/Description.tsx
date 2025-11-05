@@ -54,7 +54,7 @@ const Description: React.FC<DescriptionProps> = ({ user }) => {
           <EditIconButton
             onClick={handleEditBio}
             label="Edit"
-            className="edit-post pl-2 pr-2 w-10 hover:w-24 h-10 bg-gray-800 dark:bg-[#181438e3] hover:bg-gray-600 hover:dark:bg-[#534ba5e3] rounded shadow-md cursor-pointer flex items-center justify-start overflow-hidden transition-all duration-300 group"
+            className="edit-post pl-2 pr-2 w-12 hover:w-28 h-10 bg-gray-800 dark:bg-[#181438e3] hover:bg-gray-600 hover:dark:bg-[#534ba5e3] rounded shadow-md cursor-pointer flex items-center justify-start overflow-hidden transition-all duration-300 group"
           />
         )}
       </div>
