@@ -7,7 +7,9 @@ import AuthContainer from "@/features/dashboard/components/AuthContainer";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 
 const Dashboard = () => {
-  const { isAuthenticated } = useAuth();
+  const {
+    auth: { isAuthenticated },
+  } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
 

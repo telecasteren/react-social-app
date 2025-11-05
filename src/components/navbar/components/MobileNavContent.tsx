@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { useAuth } from "@/hooks/auth/useAuth";
-import toast from "react-hot-toast";
+import { useTheme } from "@/hooks/theme/useTheme";
 import type { NavContentProps } from "@/utils/types/navbar/types";
 import { showLink } from "@/components/navbar/helpers/showLink";
 import { getSettingsDropdownItems } from "@/components/settings/helpers/getSettingsDropdownItems";
@@ -18,23 +17,11 @@ const MobileNavContent: React.FC<NavContentProps> = ({
   className,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {
-    auth: { logout },
-  } = useAuth();
+  const { isLightTheme } = useTheme();
   const navRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-
-  const handleSettingsItemClick = (text: string) => {
-    if (text === "Logout") {
-      logout();
-    }
-    // else if (text === "Edit profile") {
-    toast("This feature is coming soon.", { icon: "ℹ️" });
-    // }
-    closeMenu();
-  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -101,14 +88,19 @@ const MobileNavContent: React.FC<NavContentProps> = ({
                 <li key={link.text} className="menuLi">
                   {link.isDropdown ? (
                     <>
-                      {getSettingsDropdownItems().map(({ text }) => (
-                        <button
-                          key={text}
-                          className="mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer w-full text-left"
-                          onClick={() => handleSettingsItemClick(text)}
-                          dangerouslySetInnerHTML={{ __html: text + endDot }}
-                        />
-                      ))}
+                      {getSettingsDropdownItems(isLightTheme).map(
+                        ({ text, action }) => (
+                          <button
+                            key={text}
+                            className="mobile-nav-item block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer w-full text-left"
+                            onClick={() => {
+                              action();
+                              closeMenu();
+                            }}
+                            dangerouslySetInnerHTML={{ __html: text + endDot }}
+                          />
+                        ),
+                      )}
                     </>
                   ) : (
                     <Link

@@ -46,7 +46,7 @@ const Description: React.FC<DescriptionProps> = ({ user }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 mt-16 mb-16">
+    <div className="grid grid-cols-1 mt-16 mb-16 max-w-[600px] mx-auto">
       <div className="flex items-center justify-center gap-4">
         <p className="text-sm m-2">{currentBio}</p>
 
