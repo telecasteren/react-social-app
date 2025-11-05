@@ -3,20 +3,22 @@ import Title from "@/components/titles/Title";
 
 interface EditIconProps {
   label: string;
-  classes: string;
   dataId?: string | null;
+  classes?: string;
+  className?: string;
   onClick?: (() => void) | null;
 }
 
 const EditIcon: React.FC<EditIconProps> = ({
   label = "Edit",
-  classes = "",
   dataId = null,
+  classes = "",
+  className = "",
   onClick = null,
 }) => {
   return (
     <div
-      className={classes}
+      className={`${classes} ${className}`}
       data-id={dataId || undefined}
       onClick={onClick || undefined}
     >

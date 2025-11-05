@@ -16,11 +16,9 @@ Ongoing:
 
 Next up:
 
-- Overview
-  - Single post
-  - Create new post form: Feed & Profile
-  - Edit post: Profile & SinglePost
-  - Edit avatar: Profile
+- Create new post form: Feed & Profile
+- Edit post: Profile & SinglePost
+- Edit avatar: Profile
 - Sort events
 - Spinner in loading state (searching, sorting)
 
