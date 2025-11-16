@@ -2,9 +2,6 @@
 
 Ongoing:
 
-- Links/routes (from feed to single post page)
-- Nav items positioning (settings)
-
 - Profile:
   - edit avatar logic
   - create new post form

@@ -50,7 +50,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
   }, []);
 
   return (
-    <div className="relative inline-block">
+    <>
       <Link
         ref={containerRef}
         to="/"
@@ -58,7 +58,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
           e.preventDefault();
           toggleDropdown();
         }}
-        className="text-black dark:text-white hover:text-accent-light dark:hover:text-accent-dark transition-colors duration-200 [&.active]:text-accent-light dark:[&.active]:text-accent-dark"
+        className="text-black dark:text-white hover:text-accent-light dark:hover:text-accent-dark transition-colors duration-200 [&.active]:text-accent-light dark:[&.active]:text-accent-dark inline-flex items-center"
       >
         {children}
       </Link>
@@ -92,6 +92,6 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ children }) => {
           </ul>
         </div>
       )}
-    </div>
+    </>
   );
 };

@@ -8,13 +8,13 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const PrimaryButton: React.FC<ButtonProps> = ({
+const PrimaryButton = ({
   text,
   className,
   onClick,
   children,
   disabled,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       className={`btn ${className || ""}`}

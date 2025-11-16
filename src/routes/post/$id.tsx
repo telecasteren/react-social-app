@@ -1,13 +1,22 @@
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect, Link } from "@tanstack/react-router";
 import { usePageMeta } from "@/hooks/meta/usePageMeta";
-import { useQuery } from "@tanstack/react-query";
 import { fetchSinglePost } from "@/services/api/posts/fetchSinglePost";
 import { POST_DESC_FALLBACK, NO_IMG_URL } from "@/utils/branding/config";
+import { useAuth } from "@/hooks/auth/useAuth";
 import Spinner from "@/components/loaders/Spinner";
 import DateBadge from "@/components/badge/DateBadge";
+import Comments from "@/features/post/components/comments/Comments";
+import CommentForm from "@/features/post/components/CommentForm";
+import type { Comment } from "@/utils/types/post/comment";
+import type { Post } from "@/utils/types/post/post";
 
 function Post() {
   const { postId } = Route.useLoaderData();
+  const queryClient = useQueryClient();
+  const {
+    auth: { user },
+  } = useAuth();
   const {
     data: post,
     isLoading,
@@ -35,6 +44,30 @@ function Post() {
   const author = post.author?.name || "Unknown author";
   const postImgUrl = post.media?.url || NO_IMG_URL;
   const postImgAlt = post.media?.alt || "Default post image";
+
+  const comments = post?.comments || [];
+  const handleNewComments = (commentText: string) => {
+    const newComment: Comment = {
+      id: Date.now(),
+      postId: Number(postId),
+      body: commentText,
+      created: new Date().toISOString(),
+      owner: user?.name || "Unknown user",
+      author: {
+        name: user?.name || "Unknown user",
+        email: user?.email || "",
+        avatar: {
+          url: user?.avatar?.url || "",
+          alt: user?.avatar?.alt || "User avatar",
+        },
+      },
+    };
+
+    queryClient.setQueryData(["post", postId], (oldData: Post | undefined) => ({
+      ...oldData,
+      comments: [...(oldData?.comments || []), newComment],
+    }));
+  };
 
   return (
     <>
@@ -123,14 +156,11 @@ function Post() {
           className="flex flex-col xl:w-96 rounded-r-sm border border-solid border-gray-200 dark:border-[#0f0c29] p-0"
         >
           <div className="sm:max-h-[40vh] sm:min-h-[20vh] xl:max-h-[80vh] xl:min-h-[80vh] p-5 overflow-y-auto">
-            {/* Comments component will go here */}
-            <div>Comments section</div>
+            <Comments comments={comments} postId={post.id} />
           </div>
 
           <div className="relative bottom-0 p-5 m-0 bg-stone-50 dark:bg-[#0f0c29]">
-            {/* Comment form will go here */}
-            <div>Comment form</div>
-            <button className="mt-2">Toggle Comment Form</button>
+            <CommentForm postId={post.id} commentAdded={handleNewComments} />
           </div>
         </div>
       </div>

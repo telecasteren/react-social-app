@@ -8,7 +8,11 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ link }) => {
   if (link.isDropdown) {
-    return <SettingsComponent />;
+    return (
+      <div className="relative">
+        <SettingsComponent />
+      </div>
+    );
   }
 
   return (

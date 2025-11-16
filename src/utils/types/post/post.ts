@@ -1,4 +1,5 @@
 import type { Profile } from "@/utils/types/user/profile";
+import type { Reaction } from "@/utils/types/post/reaction";
 
 export interface Post {
   id: number;
@@ -18,20 +19,4 @@ export interface Post {
   author?: Profile;
   comments?: Array<Comment>;
   reactions?: Array<Reaction>;
-}
-
-export interface Comment {
-  id: number;
-  postId: number;
-  body: string;
-  created: string;
-  owner: string;
-  author?: Profile;
-  replyToId?: null | number;
-}
-
-export interface Reaction {
-  symbol: string;
-  count: number;
-  reactors: string[];
 }
