@@ -71,7 +71,7 @@ function Post() {
 
   return (
     <>
-      <div className="grid grid-cols-1 xl:grid-cols-[2fr,1.5fr] justify-self-center mt-5 max-w-[95vw] md:max-w-[60vw]">
+      <div className="grid grid-cols-1 xl:grid-cols-2 justify-self-center mt-5 max-w-[95vw] md:max-w-[60vw]">
         <div className="relative flex flex-col bg-stone-50 border border-gray-200 rounded-l-sm shadow-sm dark:bg-[#0f0c29] dark:border-none">
           <img
             className="rounded-l-sm w-full h-[500px] object-cover"

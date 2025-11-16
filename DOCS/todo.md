@@ -27,4 +27,9 @@ Next up:
 
 ## Other
 
-- zod for validation - same schema for frontend / backend (relevance?)
+- Check out these:<br/>
+  [zod](https://zod.dev)<br/>
+  [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)<br/>
+  [react cache](https://tanstack.com/query/v4/docs/framework/react/guides/caching#basic-example)<br/>
+  [react query cache](https://stackoverflow.com/questions/70238846/react-query-query-is-not-using-cache)<br/>
+  [useLocalStorage](https://usehooks-ts.com/react-hook/use-local-storage)<br/>
