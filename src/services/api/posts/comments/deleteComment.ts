@@ -1,15 +1,16 @@
 import { authFetch } from "@/services/api/auth/authFetch";
-import { getPostParams } from "@/services/helpers/getPostParams";
 import { API_BASE_URL, API_POSTS } from "@/services/api/auth/config/constants";
 import { toast } from "react-hot-toast";
 
 interface deleteCommentProps {
+  postId: number;
   commentId: number;
 }
 
-export const deleteComment = async ({ commentId }: deleteCommentProps) => {
-  const { id: postId } = getPostParams();
-
+export const deleteComment = async ({
+  postId,
+  commentId,
+}: deleteCommentProps) => {
   try {
     const response = await authFetch(
       `${API_BASE_URL}${API_POSTS}/${postId}/comment/${commentId}`,
@@ -23,7 +24,7 @@ export const deleteComment = async ({ commentId }: deleteCommentProps) => {
     }
 
     if (response.status === 204) {
-      toast.success("Comment deleted successfully");
+      toast.success("Comment deleted");
 
       setTimeout(() => toast.dismiss(), 2000);
       return null;
@@ -33,9 +34,6 @@ export const deleteComment = async ({ commentId }: deleteCommentProps) => {
     return result;
   } catch (error) {
     toast.error("Failed to delete your comment. Please try again.");
-    console.error(
-      `deleteComment(): couldn't delete comment: ${commentId}, "Error:" ${error.message}`,
-    );
-    return;
+    throw error;
   }
 };

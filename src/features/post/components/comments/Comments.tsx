@@ -1,6 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { formatDate } from "@/services/helpers/formatDate";
 import type { Comment } from "@/utils/types/post/comment";
+import { deleteComment } from "@/services/api/posts/comments/deleteComment";
+import { useState } from "react";
+import { useAuth } from "@/hooks/auth/useAuth";
 
 interface CommentItemProps {
   comment: Comment;
@@ -53,20 +56,44 @@ interface CommentsProps {
 }
 
 const Comments = ({ comments, postId }: CommentsProps) => {
+  const [commentList, setCommentList] = useState(comments);
+  const {
+    auth: { user, isAuthenticated },
+  } = useAuth();
+
+  const handleDeleteComment = async (commentId: number) => {
+    await deleteComment({ postId, commentId });
+    setCommentList((prevComments) =>
+      prevComments.filter((comment) => comment.id !== commentId),
+    );
+  };
+
   return (
     <div
       id="comments-container"
       className="commentsContainer flex flex-col gap-2"
       data-post-id={postId}
     >
-      {comments.map((comment, index) => (
-        <div key={comment.id}>
-          {index > 0 && (
-            <hr className="border-solid border-gray-200 dark:border-[#0f0c29] my-2" />
-          )}
-          <CommentItem comment={comment} />
-        </div>
-      ))}
+      {commentList.map((comment, index) => {
+        const isCommentOwner = comment.author?.name === user?.name;
+
+        return (
+          <div key={comment.id} className="flex gap-1 flex-col">
+            {index > 0 && (
+              <hr className="border-solid border-gray-200 dark:border-[#0f0c29] my-2" />
+            )}
+            <CommentItem comment={comment} />
+            {isAuthenticated && user && isCommentOwner && (
+              <button
+                className="bg-red-500 text-white text-xs px-2 py-1 m-0 rounded-md self-end"
+                onClick={() => handleDeleteComment(comment.id)}
+              >
+                Delete
+              </button>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
