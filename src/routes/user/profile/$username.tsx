@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { usePageMeta } from "@/hooks/meta/usePageMeta";
 import { useEffect, useState } from "react";
 import type { Profile } from "@/utils/types/user/profile";
-// import { loadKey } from "@/services/helpers/storage";
 import { fetchUserPosts } from "@/services/api/posts/fetchUserPosts";
 import { getSingleUserProfile } from "@/services/api/user/getSingleUserProfile";
 import { POSTS_PER_PAGE } from "@/services/api/auth/config/constants";
@@ -15,16 +14,13 @@ import GoBackBtn from "@/components/buttons/GoBackBtn";
 import { useScrollRestore } from "@/hooks/scroll/useScrollRestore";
 import SkeletonProfile from "@/components/loaders/SkeletonProfile";
 import SortOptions from "@/components/search/SortOptions";
-// import { getUserParams } from "@/services/helpers/getUserParams";
 
 function Profile() {
   const { username } = Route.useParams();
   const profileUser = Route.useLoaderData();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [showNewPost, setShowNewPost] = useState(false);
-  // const currentUser = loadKey("profile") as Profile;
-  // const isCurrentUser = username === currentUser?.name;
+
   usePageMeta(
     profileUser?.name || PROFILE_DESC_FALLBACK,
     profileUser?.description ||

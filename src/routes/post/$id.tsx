@@ -10,6 +10,9 @@ import Comments from "@/features/post/components/comments/Comments";
 import CommentForm from "@/features/post/components/CommentForm";
 import type { Comment } from "@/utils/types/post/comment";
 import type { Post } from "@/utils/types/post/post";
+// import { useHandleEditPost } from "@/hooks/post/useHandleEditPost";
+import { useHandleLikePost } from "@/hooks/post/useHandleLikePost";
+import GoBackBtn from "@/components/buttons/GoBackBtn";
 
 function Post() {
   const { postId } = Route.useLoaderData();
@@ -17,11 +20,7 @@ function Post() {
   const {
     auth: { user },
   } = useAuth();
-  const {
-    data: post,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: post, isLoading } = useQuery({
     queryKey: ["post", postId],
     queryFn: () => fetchSinglePost(postId),
   });
@@ -31,14 +30,14 @@ function Post() {
     post?.description || POST_DESC_FALLBACK,
   );
 
+  const { handleLikePost, isLiked, likeCount } = useHandleLikePost(
+    post?.id || 0,
+    post,
+  );
+  // const handleEditPost = useHandleEditPost(post, post.author);
+
   if (isLoading) {
     return <Spinner />;
-  }
-
-  if (isError || !post) {
-    return (
-      <div className="p-4 text-center text-red-600">Failed to load post</div>
-    );
   }
 
   const author = post.author?.name || "Unknown author";
@@ -101,14 +100,19 @@ function Post() {
                 </Link>
               </div>
 
-              <div className="flex flex-wrap gap-2 items-center justify-end">
+              <div
+                className="flex flex-wrap gap-2 items-center justify-end"
+                onClick={handleLikePost}
+              >
                 <div id="likes-icon">
                   <i
-                    className="fa-regular fa-heart cursor-pointer"
-                    style={{ color: "var(--accent)" }}
+                    className={`cursor-pointer ${isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}`}
+                    style={{
+                      color: "var(--accent)",
+                    }}
                   />
                 </div>
-                <div id="numb-likes">{post._count?.reactions || 0}</div>
+                <div id="numb-likes">{likeCount}</div>
               </div>
             </div>
 
@@ -130,9 +134,9 @@ function Post() {
             )}
           </div>
 
-          {/* Edit button - show only if current user is author */}
           <div
             data-id={post.id}
+            // onClick={handleEditPost}
             className="edit-post absolute top-2 right-2 pl-2 pr-2 w-10 hover:w-24 h-10 bg-gray-200 hover:bg-gray-400 text-black rounded shadow-md cursor-pointer flex items-center justify-start overflow-hidden transition-all duration-300 group"
           >
             <div>
@@ -163,6 +167,7 @@ function Post() {
             <CommentForm postId={post.id} commentAdded={handleNewComments} />
           </div>
         </div>
+        <GoBackBtn />
       </div>
     </>
   );

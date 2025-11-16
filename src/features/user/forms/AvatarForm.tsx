@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Profile } from "@/utils/types/user/profile";
 import { NO_IMG_URL } from "@/utils/branding/config";
-import { useUpdateUserAvatar } from "@/hooks/user/useUpdateUserAvatar";
+import { useEditUserAvatar } from "@/hooks/user/useEditUserAvatar";
 
 interface AvatarFormProps {
   user: Profile;
@@ -15,7 +15,7 @@ const AvatarForm: React.FC<AvatarFormProps> = ({
   onSuccess,
 }) => {
   const [avatarUrl, setAvatarUrl] = useState(user.avatar?.url || NO_IMG_URL);
-  const { updateAvatar, error: hookError } = useUpdateUserAvatar();
+  const { updateAvatar, error: hookError } = useEditUserAvatar();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const displayError = error || hookError;

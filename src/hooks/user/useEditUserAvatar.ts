@@ -4,7 +4,7 @@ import { authFetch } from "@/services/api/auth/authFetch";
 import { getUserParams } from "@/services/helpers/getUserParams";
 import type { Profile } from "@/utils/types/user/profile";
 
-export const useUpdateUserAvatar = () => {
+export const useEditUserAvatar = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -1,23 +1,21 @@
 ## Project
 
-Ongoing:
+Ongoing conversion:
 
 - Profile:
-  - edit avatar logic
+  - edit avatar: use hook useEditUserAvatar
   - create new post form
+
+- Post:
+  - Edit post: use hook useHandleEditPost
+
+- Feed:
+  - create new post form
+
+- General:
   - sort events
-
-  - Feed:
-    - create new post form
-    - sort events
-
-Next up:
-
-- Create new post form: Feed & Profile
-- Edit post: Profile & SinglePost
-- Edit avatar: Profile
-- Sort events
-- Spinner in loading state (searching, sorting)
+  - Spinner in loading state (searching, sorting)
+  - Fix scroll restore hook bug
 
 ## New stuff
 

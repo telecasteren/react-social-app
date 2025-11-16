@@ -26,7 +26,8 @@ const Heading: React.FC<HeadingProps> = ({ user }) => {
   }
 
   const handleEditAvatar = async () => {
-    console.log("Edit avatar clicked"); // === Edit avatar logic
+    console.log("Edit avatar clicked");
+    // const handleEditAvatar = useHandleEditAvatar(user);
   };
 
   const isCurrentUser = currentUsername === userNameParam;
