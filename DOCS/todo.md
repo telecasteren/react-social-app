@@ -31,3 +31,7 @@ Ongoing conversion:
   [react cache](https://tanstack.com/query/v4/docs/framework/react/guides/caching#basic-example)<br/>
   [react query cache](https://stackoverflow.com/questions/70238846/react-query-query-is-not-using-cache)<br/>
   [useLocalStorage](https://usehooks-ts.com/react-hook/use-local-storage)<br/>
+
+- simplifying fetch profile etc
+  - use react router where i can, useLocalStorage
+- zod
